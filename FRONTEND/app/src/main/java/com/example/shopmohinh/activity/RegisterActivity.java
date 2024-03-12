@@ -47,7 +47,9 @@ public class RegisterActivity extends AppCompatActivity {
         txtSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Chuyển qua trang đăng nhập", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -75,11 +77,11 @@ public class RegisterActivity extends AppCompatActivity {
                         .subscribe(
                                 userModel -> {
                                     if (userModel.isSuccess()){
-//                                        Utils.user_current.setEmail(email);
-//                                        Utils.user_current.setPassword(pass);
-//                                        Intent intent = new Intent(getApplicationContext(), DangNhapActivity.class);
-//                                        startActivity(intent);
-//                                        finish();
+                                        Utils.user_current.setEmail(email);
+                                        Utils.user_current.setPassword(pass);
+                                        Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
+                                        startActivity(intent);
+                                        finish();
                                         Toast.makeText(getApplicationContext(), userModel.getMessage(), Toast.LENGTH_SHORT).show();
                                     } else {
                                         Toast.makeText(getApplicationContext(), userModel.getMessage(), Toast.LENGTH_SHORT).show();
