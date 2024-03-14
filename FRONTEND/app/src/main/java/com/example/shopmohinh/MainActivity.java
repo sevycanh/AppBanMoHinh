@@ -8,14 +8,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.drawable.Animatable;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.interfaces.ItemChangeListener;
+import com.denzcoskun.imageslider.interfaces.ItemClickListener;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -23,11 +30,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolBar;
-    ViewFlipper viewFlipper;
     RecyclerView recyclerView;
     NavigationView navigationView;
     ListView listView;
     DrawerLayout drawerLayout;
+    ImageSlider imageSlider;
+    SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +43,13 @@ public class MainActivity extends AppCompatActivity {
         Anhxa();
         ActionBar();
         ActionViewFlipper();
+        setSearchView();
     }
 
+    private void setSearchView(){
+        searchView.setIconifiedByDefault(false);
+        searchView.setQueryHint("Tìm kiếm");
+    }
     private void ActionBar(){
         setSupportActionBar(toolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -50,31 +63,62 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ActionViewFlipper(){
-        List<String> ArrayQuangCao = new ArrayList<>();
-        ArrayQuangCao.add("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-42.jpg");
-        ArrayQuangCao.add("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-40.jpg");
-        ArrayQuangCao.add("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-23.jpg");
-        for (int i = 0; i < ArrayQuangCao.size(); i++){
-            ImageView imageView = new ImageView(getApplicationContext());
-            Glide.with(this).load(ArrayQuangCao.get(i)).into(imageView);
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            viewFlipper.addView(imageView);
-        }
-        viewFlipper.setFlipInterval(5000);
-        viewFlipper.setAutoStart(true);
 
-        Animation slide_in = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_in_right);
-        Animation slide_out = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_out_right);
-        viewFlipper.setInAnimation(slide_in);
-        viewFlipper.setOutAnimation(slide_out);
+        List<SlideModel> ArrayQuangCao = new ArrayList<>();
+        ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-42.jpg", null));
+        ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-40.jpg",null));
+        ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-23.jpg", null));
+        imageSlider.setImageList(ArrayQuangCao, ScaleTypes.CENTER_CROP);
+
+        imageSlider.setOnTouchListener(touchListener);
     }
+
+    View.OnTouchListener touchListener = new View.OnTouchListener() {
+        private float startX;
+        private float startY;
+        private long startTime;
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    startX = event.getX();
+                    startY = event.getY();
+                    startTime = System.currentTimeMillis();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    float endX = event.getX();
+                    float endY = event.getY();
+                    long endTime = System.currentTimeMillis();
+
+                    float deltaX = endX - startX;
+                    float deltaY = endY - startY;
+                    long deltaTime = endTime - startTime;
+
+                    // Tính toán khoảng cách và thời gian để xác định hướng di chuyển
+                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 100 && deltaTime < 200) {
+                        // Xác định người dùng đã kéo sang trái hay sang phải
+                        if (deltaX > 0) {
+                            // Kéo sang phải
+                            imageSlider.startSliding(10000);
+                        } else {
+                            // Kéo sang trái
+                            imageSlider.startSliding(10000);
+                        }
+                    }
+                    break;
+            }
+            return true;
+        }
+    };
 
     private void Anhxa(){
         toolBar = findViewById(R.id.toolBarHomePage);
-        viewFlipper = findViewById(R.id.viewFlipperHomePage);
         recyclerView = findViewById(R.id.recyclerViewHomePage);
         navigationView = findViewById(R.id.navigationHomePage);
         listView = findViewById(R.id.listViewHomePage);
         drawerLayout = findViewById(R.id.drawerLayoutHomePage);
+        imageSlider = findViewById(R.id.imageSliderHomePage);
+        searchView = findViewById(R.id.searchHomePage);
     }
 }
