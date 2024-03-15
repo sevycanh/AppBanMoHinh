@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">ShopMoHinh</string>
+    <string name="app_name">ToyStore</string>
+    <string name="welcome_message">Chào mừng đến với ứng dụng</string>
+
+    <string name="related">Liên quan</string>
+    <string name="newest">Mới nhất</string>
+    <string name="best_selling">Bán chạy</string>
+    <string name="price">Giá</string>
+    <string name="sort_newest">Mới nhất</string>
+    <string name="sort_best_selling">Bán chạy nhất</string>
+    <string name="sort_lowest_price">Giá thấp nhất</string>
+    <string name="sort_highest_price">Giá cao nhất</string>
+    <string name="load_more">Xem thêm</string>
 </resources>
