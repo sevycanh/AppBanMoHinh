@@ -34,13 +34,19 @@ import com.example.shopmohinh.model.SanPhamMoi;
 import com.example.shopmohinh.retrofit.ApiSanPhamMoi;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.example.shopmohinh.adapter.Loaisp_Adapter;
+import com.example.shopmohinh.model.LoaiSP;
+import com.example.shopmohinh.retrofit.ApiBanHang;
+import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.google.android.material.navigation.NavigationView;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolBar;
@@ -54,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
     List<SanPhamMoi> mangSanPhamMoi;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiSanPhamMoi apiSanPhamMoi;
+    ApiBanHang apiBanHang;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+    List<LoaiSP> mangLoaiSp;
+    Loaisp_Adapter loaispAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +74,11 @@ public class MainActivity extends AppCompatActivity {
         Anhxa();
         ActionBar();
         setSearchView();
-        if (checkConnect(this)){
+        if (isConnected(this)){
             Toast.makeText(getApplicationContext(), "OK!", Toast.LENGTH_LONG).show();
             ActionViewFlipper();
             getSanPhamMoi();
+            getLoaiSanPham();
         }else {
             Toast.makeText(getApplicationContext(), "Không có kết nối Internet!", Toast.LENGTH_LONG).show();
         }
@@ -81,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
         searchView.setIconifiedByDefault(false);
         searchView.setQueryHint("Tìm kiếm");
     }
-    private void ActionBar(){
+
+    private void ActionBar() {
         setSupportActionBar(toolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolBar.setNavigationIcon(android.R.drawable.ic_menu_sort_by_size);
@@ -93,11 +105,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void ActionViewFlipper(){
+    private void ActionViewFlipper() {
 
         List<SlideModel> ArrayQuangCao = new ArrayList<>();
         ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-42.jpg", null));
-        ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-40.jpg",null));
+        ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-40.jpg", null));
         ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-23.jpg", null));
         imageSlider.setImageList(ArrayQuangCao, ScaleTypes.CENTER_CROP);
 
@@ -141,9 +153,11 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         }
+        // retrofit get data tbl_category
+
     };
 
-    private void Anhxa(){
+    private void Anhxa() {
         toolBar = findViewById(R.id.toolBarHomePage);
         recyclerView = findViewById(R.id.recyclerViewHomePage);
         navigationView = findViewById(R.id.navigationHomePage);
@@ -158,16 +172,38 @@ public class MainActivity extends AppCompatActivity {
         spMoiAdapter = new SPMoiAdapter(getApplicationContext(), mangSanPhamMoi);
         listView.setAdapter(spMoiAdapter);
 
+        // retrofit get data tbl_category
+        mangLoaiSp = new ArrayList<>();
+        apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
+
     }
 
-    private boolean checkConnect (Context context){
+
+    }
+
+    private boolean isConnected(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        NetworkInfo mobile = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if ((wifi != null && wifi.isConnected()) || (mobile != null && mobile.isConnected())){
+        NetworkInfo mobile = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if ((wifi != null && wifi.isConnected()) || (mobile != null && mobile.isConnected())) {
             return true;
-        }else {
+        } else {
             return false;
         }
+    }
+
+    private void getLoaiSanPham() {
+        compositeDisposable.add(apiBanHang.getLoaiSp().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        loaiSPModel -> {
+                            if (loaiSPModel.isSuccess()) {
+//                                Toast.makeText(getApplicationContext(),loaiSPModel.getResult().get(0).getName(), Toast.LENGTH_LONG).show();
+                                mangLoaiSp = loaiSPModel.getResult();
+                                loaispAdapter = new Loaisp_Adapter(getApplicationContext(), mangLoaiSp);
+                                ListView listView = findViewById(R.id.listViewHomePage);
+                                listView.setAdapter(loaispAdapter);
+                            }
+                        }
+                ));
     }
 }
