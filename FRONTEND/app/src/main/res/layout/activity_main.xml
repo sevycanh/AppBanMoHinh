@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayoutHomePage"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolBarHomePage"
@@ -34,13 +35,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
                 app:iss_auto_cycle="true"
-                app:iss_period="1000"
                 app:iss_delay="2000"
-                app:iss_text_align="CENTER"/>
+                app:iss_period="1000"
+                app:iss_text_align="CENTER" />
+
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:weightSum="3">
 
                 <androidx.cardview.widget.CardView
@@ -48,28 +50,30 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
-                    <ImageView
-                        android:id="@+id/imageView1"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/sale"
-                        />
-                    <TextView
-                        android:id="@+id/textView1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Khung Giờ Săn Sale"
-                        android:textColor="#000000"
-                        android:textSize="10dp"
-                        android:textAlignment="center"
-                        />
+
+                        <ImageView
+                            android:id="@+id/imageView1"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/sale" />
+
+                        <TextView
+                            android:id="@+id/textView1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Khung Giờ Săn Sale"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="10dp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -98,66 +102,99 @@
                             android:textSize="10dp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
+
                         <ImageView
                             android:id="@+id/imageView3"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/wheel"
-                            />
+                            android:src="@drawable/wheel" />
+
                         <TextView
                             android:id="@+id/textView3"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="Khung Giờ Săn Sale"
-                            android:textColor="#000000"
-                            android:textSize="10dp"
                             android:textAlignment="center"
-                            />
+                            android:textColor="#000000"
+                            android:textSize="10dp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
+
             <LinearLayout
-                android:background="#5992d2"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#5992d2"
+                android:orientation="vertical">
+
                 <TextView
-                    android:textSize="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@android:color/holo_red_light"
-                    android:textStyle="bold"
-                    android:text="Sản phẩm mới nhất"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Sản phẩm mới nhất"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewHomePage"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp">
+
                 </androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigation"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="bottom"
+                android:background="@color/main"
+                app:itemActiveIndicatorStyle="@drawable/item_background_selector"
+                app:itemBackground="@drawable/item_background_selector"
+                app:itemIconTint="@drawable/item_text_color_selector"
+                app:itemPaddingBottom="10dp"
+                app:itemTextColor="@drawable/item_text_color_selector"
+                app:labelVisibilityMode="labeled"
+                app:menu="@menu/bottom_navigation_menu" />
         </LinearLayout>
+
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationHomePage"
-            android:layout_gravity="start"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/layout_header_navigation">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_130sdp"
+                android:text="@string/DanhMuc"
+                android:textAlignment="center"
+                android:textSize="@dimen/_20sdp"
+                android:textStyle="bold" />
+
             <ListView
+                android:layout_marginTop="@dimen/_160sdp"
                 android:id="@+id/listViewHomePage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </com.google.android.material.navigation.NavigationView>
+
     </androidx.drawerlayout.widget.DrawerLayout>
 
 
