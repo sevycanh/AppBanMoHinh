@@ -1,27 +1,28 @@
-package com.assignments.toystore.model;
+package com.example.shopmohinh.model;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
 public class Product implements Serializable {
-    @SerializedName("id_product")
-    int id_product;
+    @SerializedName("product_id")
+    int product_id;
     String name;
     int price;
     int quantity;
     String description;
     String main_image;
     String sub_image;
-    int promotion_product;
-    int id_category;
+    int coupon;
+    @SerializedName("caregory_id")
+    int caregory_id;
 
-    public int getId_product() {
-        return id_product;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public void setId_product(int id_product) {
-        this.id_product = id_product;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
     public String getName() {
@@ -72,19 +73,19 @@ public class Product implements Serializable {
         this.sub_image = sub_image;
     }
 
-    public int getPromotion_product() {
-        return promotion_product;
+    public int getCoupon() {
+        return coupon;
     }
 
-    public void setPromotion_product(int promotion_product) {
-        this.promotion_product = promotion_product;
+    public void setCoupon(int coupon) {
+        this.coupon = coupon;
     }
 
-    public int getId_category() {
-        return id_category;
+    public int getCaregory_id() {
+        return caregory_id;
     }
 
-    public void setId_category(int id_category) {
-        this.id_category = id_category;
+    public void setCaregory_id(int caregory_id) {
+        this.caregory_id = caregory_id;
     }
 }

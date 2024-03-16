@@ -1,4 +1,4 @@
-package com.assignments.toystore.Interface;
+package com.example.shopmohinh.Interface;
 
 import android.view.View;
 

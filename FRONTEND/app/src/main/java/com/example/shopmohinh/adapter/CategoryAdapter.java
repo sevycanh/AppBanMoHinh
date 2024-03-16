@@ -1,4 +1,4 @@
-package com.assignments.toystore.adapter;
+package com.example.shopmohinh.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,10 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.assignments.toystore.R;
-import com.assignments.toystore.model.Category;
 import com.bumptech.glide.Glide;
+import com.example.shopmohinh.R;
+import com.example.shopmohinh.model.Category;
 
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class CategoryAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(R.layout.item_category, null);
-            viewHolder.textName = view.findViewById(R.id.item_name);
+            viewHolder.textName = view.findViewById(com.example.shopmohinh.R.id.item_name);
             viewHolder.imageView = view.findViewById(R.id.item_image);
             view.setTag(viewHolder);
         } else {

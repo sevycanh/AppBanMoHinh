@@ -1,4 +1,4 @@
-package com.assignments.toystore.adapter;
+package com.example.shopmohinh.adapter;
 
 import static com.assignments.toystore.utils.NumberWithDotSeparator.formatNumberWithDotSeparator;
 
@@ -13,12 +13,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.assignments.toystore.Interface.ItemClickListener;
-import com.assignments.toystore.R;
-import com.assignments.toystore.activity.ProductDetailActivity;
-import com.assignments.toystore.model.Product;
 import com.bumptech.glide.Glide;
+import com.example.shopmohinh.Interface.ItemClickListener;
+import com.example.shopmohinh.R;
+import com.example.shopmohinh.activity.ProductDetailActivity;
+import com.example.shopmohinh.model.Product;
 
 import java.util.List;
 
@@ -38,7 +37,7 @@ public class PhoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if(viewType == VIEW_TYPE_DATA){
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product,parent,false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(com.example.shopmohinh.R.layout.item_product,parent,false);
             return new MyViewHolder(view);
         }else{
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading,parent,false);
@@ -56,7 +55,7 @@ public class PhoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             myViewHolder.price.setText(formatNumberWithDotSeparator(product.getPrice()) + " VNĐ");
 
             int price = product.getPrice();
-            int discount = product.getPrice() * product.getPromotion_product() / 100;
+            int discount = product.getPrice() * product.getCoupon() / 100;
             int finalPrice = price - discount;
 
             myViewHolder.price_after_apply_promotion.setText(formatNumberWithDotSeparator(finalPrice) + " VNĐ");

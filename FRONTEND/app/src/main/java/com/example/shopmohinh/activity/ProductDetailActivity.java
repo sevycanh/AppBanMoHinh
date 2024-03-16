@@ -1,7 +1,6 @@
-package com.assignments.toystore.activity;
+package com.example.shopmohinh.activity;
 
 import static com.assignments.toystore.utils.NumberWithDotSeparator.formatNumberWithDotSeparator;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,11 +15,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.assignments.toystore.R;
-import com.assignments.toystore.adapter.ImageAdapter;
-import com.assignments.toystore.model.Cart;
-import com.assignments.toystore.model.Product;
-import com.assignments.toystore.utils.Utils;
+import com.example.shopmohinh.R;
+import com.example.shopmohinh.model.Cart;
+import com.example.shopmohinh.model.ImageAdapter;
+import com.example.shopmohinh.model.Product;
+import com.example.shopmohinh.utils.Utils;
 import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.text.DecimalFormat;
@@ -43,7 +42,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_detail);
+        setContentView(com.example.shopmohinh.R.layout.activity_product_detail);
         Mapping();
         ActionToolBar();
         initData();
@@ -64,20 +63,20 @@ public class ProductDetailActivity extends AppCompatActivity {
             boolean flag = false;
             int quantity = Integer.parseInt(txtQuantity.getText().toString());
             for (int i=0; i<Utils.carts.size();i++){
-                if (Utils.carts.get(i).getIdProduct() == product.getId_product()){
+                if (Utils.carts.get(i).getIdProduct() == product.getProduct_id()){
                     Utils.carts.get(i).setQuantity(quantity + Utils.carts.get(i).getQuantity());
                     flag = true;
                 }
             }
             if (flag == false){
                 int price = product.getPrice();
-                int discount = product.getPrice() * product.getPromotion_product() / 100;
+                int discount = product.getPrice() * product.getCoupon() / 100;
                 int finalPrice = price - discount;
 
                 Cart cart = new Cart();
                 cart.setPrice(finalPrice);
                 cart.setQuantity(quantity);
-                cart.setIdProduct(product.getId_product());
+                cart.setIdProduct(product.getProduct_id());
                 cart.setName(product.getName());
                 cart.setImage(product.getMain_image());
                 Utils.carts.add(cart);
@@ -85,13 +84,13 @@ public class ProductDetailActivity extends AppCompatActivity {
         } else {
             int quantity = Integer.parseInt(txtQuantity.getText().toString());
             int price = product.getPrice();
-            int discount = product.getPrice() * product.getPromotion_product() / 100;
+            int discount = product.getPrice() * product.getCoupon() / 100;
             int finalPrice = price - discount;
 
             Cart cart = new Cart();
             cart.setPrice(finalPrice);
             cart.setQuantity(quantity);
-            cart.setIdProduct(product.getId_product());
+            cart.setIdProduct(product.getProduct_id());
             cart.setName(product.getName());
             cart.setImage(product.getMain_image());
             Utils.carts.add(cart);
@@ -106,7 +105,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         //Calculator present product * price product
         int price = product.getPrice();
-        int discount = product.getPrice() * product.getPromotion_product() / 100;
+        int discount = product.getPrice() * product.getCoupon() / 100;
         int finalPrice = price - discount;
 
         txtSalePrice.setText(formatNumberWithDotSeparator(finalPrice)  + " VNĐ");

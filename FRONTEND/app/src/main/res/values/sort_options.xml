@@ -1,0 +1,8 @@
+<resources>
+    <string-array name="sort_options">
+        <item>@string/sort_newest</item>
+        <item>@string/sort_best_selling</item>
+        <item>@string/sort_lowest_price</item>
+        <item>@string/sort_highest_price</item>
+    </string-array>
+</resources>

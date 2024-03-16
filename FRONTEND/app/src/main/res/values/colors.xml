@@ -3,4 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main">#fbc02d</color>
+    <color name="main_color">#FF0000</color>
+    <color name="background_color">#ffffff</color>
+    <color name="shopee_orange">#FF7400</color>
+    <color name="colorPrimary">#FF4081</color>
 </resources>

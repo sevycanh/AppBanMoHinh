@@ -1,4 +1,4 @@
-package com.assignments.toystore.model;
+package com.example.shopmohinh.model;
 
 public class Cart {
     int idProduct;

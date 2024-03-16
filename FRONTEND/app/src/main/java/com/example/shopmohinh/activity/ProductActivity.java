@@ -1,4 +1,4 @@
-package com.assignments.toystore.activity;
+package com.example.shopmohinh.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,12 +12,12 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
 
-import com.assignments.toystore.R;
-import com.assignments.toystore.adapter.PhoneAdapter;
-import com.assignments.toystore.model.Product;
-import com.assignments.toystore.retrofit.RetrofitClient;
-import com.assignments.toystore.retrofit.SalesApi;
-import com.assignments.toystore.utils.Utils;
+import com.example.shopmohinh.R;
+import com.example.shopmohinh.adapter.PhoneAdapter;
+import com.example.shopmohinh.model.Product;
+import com.example.shopmohinh.retrofit.RetrofitClient;
+import com.example.shopmohinh.retrofit.SalesApi;
+import com.example.shopmohinh.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class ProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product);
+        setContentView(com.example.shopmohinh.R.layout.activity_product);
         salesApi = RetrofitClient.getInstance(Utils.BASE_URL).create(SalesApi.class);
         category = getIntent().getIntExtra("id_category", 1);
         Mapping();
