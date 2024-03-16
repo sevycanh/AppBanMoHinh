@@ -2,7 +2,6 @@ package com.example.shopmohinh.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,7 +13,7 @@ import android.widget.Toast;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
-import com.example.shopmohinh.util.Utils;
+import com.example.shopmohinh.utils.Utils;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;

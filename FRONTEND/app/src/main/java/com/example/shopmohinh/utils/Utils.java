@@ -1,9 +1,6 @@
-package com.example.shopmohinh.util;
+package com.example.shopmohinh.utils;
 
 import com.example.shopmohinh.model.User;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Utils {
     //wifi nha
