@@ -1,4 +1,4 @@
-package com.example.shopmohinh;
+package com.example.shopmohinh.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -6,7 +6,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.graphics.drawable.Animatable;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,6 +19,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
@@ -23,10 +28,19 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.interfaces.ItemChangeListener;
 import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.shopmohinh.R;
+import com.example.shopmohinh.adapter.SPMoiAdapter;
+import com.example.shopmohinh.model.SanPhamMoi;
+import com.example.shopmohinh.retrofit.ApiSanPhamMoi;
+import com.example.shopmohinh.retrofit.RetrofitClient;
+import com.example.shopmohinh.utils.Utils;
 import com.google.android.material.navigation.NavigationView;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolBar;
@@ -36,16 +50,33 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageSlider imageSlider;
     SearchView searchView;
+    SPMoiAdapter spMoiAdapter;
+    List<SanPhamMoi> mangSanPhamMoi;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+    ApiSanPhamMoi apiSanPhamMoi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        apiSanPhamMoi = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiSanPhamMoi.class);
+
         Anhxa();
         ActionBar();
-        ActionViewFlipper();
         setSearchView();
+        if (checkConnect(this)){
+            Toast.makeText(getApplicationContext(), "OK!", Toast.LENGTH_LONG).show();
+            ActionViewFlipper();
+            getSanPhamMoi();
+        }else {
+            Toast.makeText(getApplicationContext(), "Không có kết nối Internet!", Toast.LENGTH_LONG).show();
+        }
     }
 
+    private void getSanPhamMoi(){
+
+
+    }
     private void setSearchView(){
         searchView.setIconifiedByDefault(false);
         searchView.setQueryHint("Tìm kiếm");
@@ -120,5 +151,23 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayoutHomePage);
         imageSlider = findViewById(R.id.imageSliderHomePage);
         searchView = findViewById(R.id.searchHomePage);
+        //Khoi tao list
+        mangSanPhamMoi = new ArrayList<>();
+
+        //Khoi tao Adapter
+        spMoiAdapter = new SPMoiAdapter(getApplicationContext(), mangSanPhamMoi);
+        listView.setAdapter(spMoiAdapter);
+
+    }
+
+    private boolean checkConnect (Context context){
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobile = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if ((wifi != null && wifi.isConnected()) || (mobile != null && mobile.isConnected())){
+            return true;
+        }else {
+            return false;
+        }
     }
 }
