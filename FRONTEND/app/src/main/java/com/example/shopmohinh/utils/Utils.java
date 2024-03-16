@@ -9,4 +9,7 @@ public class Utils {
     //wifi dien thoai phat canh
 //    public static final String BASE_URL = "http://192.168.43.114:8019/banhang/";
     public static User user_current = new User();
+
+    public static List<Cart> carts = new ArrayList<>();
+    public static List<Cart> purchases = new ArrayList<>();
 }

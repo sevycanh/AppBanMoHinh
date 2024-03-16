@@ -17,6 +17,7 @@ import com.assignments.toystore.adapter.PhoneAdapter;
 import com.assignments.toystore.model.Product;
 import com.assignments.toystore.retrofit.RetrofitClient;
 import com.assignments.toystore.retrofit.SalesApi;
+import com.assignments.toystore.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class ProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
-        salesApi = RetrofitClient.getInstance().create(SalesApi.class);
+        salesApi = RetrofitClient.getInstance(Utils.BASE_URL).create(SalesApi.class);
         category = getIntent().getIntExtra("id_category", 1);
         Mapping();
         ActionToolBar();

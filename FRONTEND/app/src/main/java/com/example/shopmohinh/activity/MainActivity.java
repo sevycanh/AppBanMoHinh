@@ -25,6 +25,7 @@ import com.assignments.toystore.adapter.CategoryAdapter;
 import com.assignments.toystore.model.Category;
 import com.assignments.toystore.retrofit.RetrofitClient;
 import com.assignments.toystore.retrofit.SalesApi;
+import com.assignments.toystore.utils.Utils;
 import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        salesApi = RetrofitClient.getInstance().create(SalesApi.class);
+        salesApi = RetrofitClient.getInstance(Utils.BASE_URL).create(SalesApi.class);
         Mapping();
         ActionBar();
 
