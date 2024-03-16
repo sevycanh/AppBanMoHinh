@@ -21,14 +21,14 @@ import com.example.shopmohinh.model.Product;
 
 import java.util.List;
 
-public class PhoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context context;
     List<Product> products;
     private static final int VIEW_TYPE_DATA = 0;
     private static final int VIEW_TYPE_LOADING = 1;
 
-    public PhoneAdapter(Context applicationContext, List<Product> categoryList) {
+    public ProductAdapter(Context applicationContext, List<Product> categoryList) {
         this.context = applicationContext;
         this.products = categoryList;
     }

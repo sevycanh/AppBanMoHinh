@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.shopmohinh.R;
-import com.example.shopmohinh.adapter.PhoneAdapter;
+import com.example.shopmohinh.adapter.ProductAdapter;
 import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.retrofit.SalesApi;
@@ -34,7 +34,7 @@ public class ProductActivity extends AppCompatActivity {
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     int page = 1;
     int category;
-    PhoneAdapter phoneAdapter;
+    ProductAdapter phoneAdapter;
     List<Product> productList;
     LinearLayoutManager linearLayoutManager;
     Handler handler = new Handler();
@@ -109,7 +109,7 @@ public class ProductActivity extends AppCompatActivity {
                             if (productModel.isSuccess()) {
                                 if (phoneAdapter == null) {
                                     productList = productModel.getResult();
-                                    phoneAdapter = new PhoneAdapter(getApplicationContext(), productList);
+                                    phoneAdapter = new ProductAdapter(getApplicationContext(), productList);
                                     recyclerView.setAdapter(phoneAdapter);
                                     currentItemCount = productList.size();
                                 } else {
