@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/_43sdp"
     tools:context=".fragment.HomeFragment">
 
     <!-- Include the entire layout of activity_main.xml -->
@@ -27,20 +27,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-
-                    <androidx.appcompat.widget.Toolbar
-                        android:id="@+id/toolBarHomePage_HomeFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        android:background="#FFC107"
-                        app:title="Trang chủ">
-
-                        <SearchView
-                            android:id="@+id/searchHomePage_HomeFragment"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#FFC107" />
-                    </androidx.appcompat.widget.Toolbar>
 
                     <com.denzcoskun.imageslider.ImageSlider
                         android:id="@+id/imageSliderHomePage_HomeFragMent"
@@ -297,50 +283,8 @@
 
 
             </FrameLayout>
-<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
 
-<!--                <com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--                    android:id="@+id/bottomNavigation_HomeFragment"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="60dp"-->
-<!--                    android:layout_gravity="bottom"-->
-<!--                    android:background="@color/main"-->
-<!--                    app:itemActiveIndicatorStyle="@drawable/item_background_selector"-->
-<!--                    app:itemBackground="@drawable/item_background_selector"-->
-<!--                    app:itemIconTint="@drawable/item_text_color_selector"-->
-<!--                    app:itemPaddingBottom="10dp"-->
-<!--                    app:itemTextColor="@drawable/item_text_color_selector"-->
-<!--                    app:labelVisibilityMode="labeled"-->
 
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:menu="@menu/bottom_navigation_menu" />-->
-<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-            <com.google.android.material.navigation.NavigationView
-                android:id="@+id/navigationHomePage_HomeFragMent"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                app:headerLayout="@layout/layout_header_navigation">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_130sdp"
-                    android:text="Danh Muc Fragment"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/_20sdp"
-                    android:textStyle="bold" />
-
-                <ListView
-                    android:id="@+id/listViewHomePage_HomeFragMent"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/_160sdp" />
-            </com.google.android.material.navigation.NavigationView>
         </androidx.drawerlayout.widget.DrawerLayout>
 
 

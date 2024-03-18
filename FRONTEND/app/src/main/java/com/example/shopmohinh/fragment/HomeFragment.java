@@ -68,33 +68,34 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         Anhxa(rootView);
         ActionViewFlipper();
-        setSearchView();
-        ActionBar();
-        getLoaiSanPham();
+//        setSearchView();
+//        ActionBar();
         return rootView;
     }
 
-    private void setSearchView() {
-        searchView.setIconifiedByDefault(false);
-        searchView.setQueryHint("Tìm kiếm");
-    }
+//    private void setSearchView() {
+//        searchView.setIconifiedByDefault(false);
+//        searchView.setQueryHint("Tìm kiếm");
+//    }
 
-    private void ActionBar() {
-        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolBar);
-        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
-
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(android.R.drawable.ic_menu_sort_by_size);
-
-            toolBar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    drawerLayout.openDrawer(GravityCompat.START);
-                }
-            });
-        }
-    }
+//    private void ActionBar() {
+//        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolBar);
+//        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+//
+//        if (actionBar != null) {
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//            actionBar.setHomeAsUpIndicator(android.R.drawable.ic_menu_sort_by_size);
+//
+//            toolBar.setNavigationOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                    drawerLayout.openDrawer(GravityCompat.START);
+//
+//                }
+//            });
+//        }
+//    }
 
     private void ActionViewFlipper() {
         List<SlideModel> ArrayQuangCao = new ArrayList<>();
@@ -141,51 +142,33 @@ public class HomeFragment extends Fragment {
     };
 
     private void Anhxa(View rootView) {
-        toolBar = rootView.findViewById(R.id.toolBarHomePage_HomeFragment);
+//        toolBar = rootView.findViewById(R.id.toolBarHomePage_HomeFragment);
         recyclerView = rootView.findViewById(R.id.recyclerViewHomePage_HomeFragMent);
-        navigationView = rootView.findViewById(R.id.navigationHomePage_HomeFragMent);
-        listView = rootView.findViewById(R.id.listViewHomePage_HomeFragMent);
         drawerLayout = rootView.findViewById(R.id.drawerLayoutHomePage_HomeFragMent);
         imageSlider = rootView.findViewById(R.id.imageSliderHomePage_HomeFragMent);
-        searchView = rootView.findViewById(R.id.searchHomePage_HomeFragment);
+//        searchView = rootView.findViewById(R.id.searchHomePage_HomeFragment);
         mangSanPhamMoi = new ArrayList<>();
         mangLoaiSp = new ArrayList<>();
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
     }
-    private void getLoaiSanPham() {
-        compositeDisposable.add(apiBanHang.getLoaiSp().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        loaiSPModel -> {
-                            if (loaiSPModel.isSuccess()) {
-//                              Toast.makeText(getApplicationContext(),loaiSPModel.getResult().get(0).getName(), Toast.LENGTH_LONG).show();
-                                mangLoaiSp = loaiSPModel.getResult();
-                                loaispAdapter = new Loaisp_Adapter(getActivity().getApplicationContext(), mangLoaiSp);
-                                ListView listView = getActivity().findViewById(R.id.listViewHomePage_HomeFragMent);
-                                listView.setAdapter(loaispAdapter);
-                            }
-                        },throwable -> {
-                            Toast.makeText(getActivity(),throwable.getMessage(), Toast.LENGTH_LONG).show();
-                        }
 
-                ));
-    }
-    private void getSanPhamMoi() {
-        compositeDisposable.add(apiBanHang.getSanPhamMoi().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        sanPhamMoiModel -> {
-                            if (sanPhamMoiModel.isSuccess()) {
-//                              Toast.makeText(getApplicationContext(),loaiSPModel.getResult().get(0).getName(), Toast.LENGTH_LONG).show();
-                                mangSanPhamMoi = sanPhamMoiModel.getResult();
-//                                spMoiAdapter = new Loaisp_Adapter(getActivity().getApplicationContext(), mangSanPhamMoi);
-                                ListView listView = getActivity().findViewById(R.id.listViewHomePage_HomeFragMent);
-                                listView.setAdapter(spMoiAdapter);
-                            }
-                        },throwable -> {
-                            Toast.makeText(getActivity(),throwable.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-
-                ));
-    }
+//    private void getSanPhamMoi() {
+//        compositeDisposable.add(apiBanHang.getSanPhamMoi().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(
+//                        sanPhamMoiModel -> {
+//                            if (sanPhamMoiModel.isSuccess()) {
+////                              Toast.makeText(getApplicationContext(),loaiSPModel.getResult().get(0).getName(), Toast.LENGTH_LONG).show();
+//                                mangSanPhamMoi = sanPhamMoiModel.getResult();
+////                                spMoiAdapter = new Loaisp_Adapter(getActivity().getApplicationContext(), mangSanPhamMoi);
+//                                ListView listView = getActivity().findViewById(R.id.listViewHomePage_HomeFragMent);
+//                                listView.setAdapter(spMoiAdapter);
+//                            }
+//                        },throwable -> {
+//                            Toast.makeText(getActivity(),throwable.getMessage(), Toast.LENGTH_LONG).show();
+//                        }
+//
+//                ));
+//    }
 }
 
 
