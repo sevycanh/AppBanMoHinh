@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.example.shopmohinh.R;
-import com.example.shopmohinh.Utils.Utils;
+import com.example.shopmohinh.utils.Utils;
 import com.example.shopmohinh.adapter.SPMoiAdapter;
 import com.example.shopmohinh.fragment.AccountFragment;
 import com.example.shopmohinh.fragment.ContactFragment;
