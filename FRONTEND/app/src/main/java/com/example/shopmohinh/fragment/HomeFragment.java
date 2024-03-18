@@ -2,7 +2,6 @@ package com.example.shopmohinh.fragment;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,14 +24,14 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.shopmohinh.R;
-import com.example.shopmohinh.Utils.Utils;
+
 import com.example.shopmohinh.adapter.Loaisp_Adapter;
 import com.example.shopmohinh.adapter.SPMoiAdapter;
 import com.example.shopmohinh.model.LoaiSP;
 import com.example.shopmohinh.model.SanPhamMoi;
 import com.example.shopmohinh.retrofit.ApiBanHang;
-import com.example.shopmohinh.retrofit.ApiSanPhamMoi;
 import com.example.shopmohinh.retrofit.RetrofitClient;
+import com.example.shopmohinh.Utils.Utils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -54,7 +53,6 @@ public class HomeFragment extends Fragment {
     SPMoiAdapter spMoiAdapter;
     List<SanPhamMoi> mangSanPhamMoi;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-    ApiSanPhamMoi apiSanPhamMoi;
     ApiBanHang apiBanHang;
     List<LoaiSP> mangLoaiSp;
     Loaisp_Adapter loaispAdapter;
@@ -68,8 +66,6 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-
-        apiSanPhamMoi = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiSanPhamMoi.class);
         Anhxa(rootView);
         ActionViewFlipper();
         setSearchView();
@@ -153,8 +149,6 @@ public class HomeFragment extends Fragment {
         imageSlider = rootView.findViewById(R.id.imageSliderHomePage_HomeFragMent);
         searchView = rootView.findViewById(R.id.searchHomePage_HomeFragment);
         mangSanPhamMoi = new ArrayList<>();
-        spMoiAdapter = new SPMoiAdapter(requireActivity().getApplicationContext(), mangSanPhamMoi);
-        listView.setAdapter(spMoiAdapter);
         mangLoaiSp = new ArrayList<>();
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
     }
@@ -163,13 +157,33 @@ public class HomeFragment extends Fragment {
                 .subscribe(
                         loaiSPModel -> {
                             if (loaiSPModel.isSuccess()) {
-//                                Toast.makeText(getApplicationContext(),loaiSPModel.getResult().get(0).getName(), Toast.LENGTH_LONG).show();
+//                              Toast.makeText(getApplicationContext(),loaiSPModel.getResult().get(0).getName(), Toast.LENGTH_LONG).show();
                                 mangLoaiSp = loaiSPModel.getResult();
                                 loaispAdapter = new Loaisp_Adapter(getActivity().getApplicationContext(), mangLoaiSp);
                                 ListView listView = getActivity().findViewById(R.id.listViewHomePage_HomeFragMent);
                                 listView.setAdapter(loaispAdapter);
                             }
+                        },throwable -> {
+                            Toast.makeText(getActivity(),throwable.getMessage(), Toast.LENGTH_LONG).show();
                         }
+
+                ));
+    }
+    private void getSanPhamMoi() {
+        compositeDisposable.add(apiBanHang.getSanPhamMoi().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        sanPhamMoiModel -> {
+                            if (sanPhamMoiModel.isSuccess()) {
+//                              Toast.makeText(getApplicationContext(),loaiSPModel.getResult().get(0).getName(), Toast.LENGTH_LONG).show();
+                                mangSanPhamMoi = sanPhamMoiModel.getResult();
+//                                spMoiAdapter = new Loaisp_Adapter(getActivity().getApplicationContext(), mangSanPhamMoi);
+                                ListView listView = getActivity().findViewById(R.id.listViewHomePage_HomeFragMent);
+                                listView.setAdapter(spMoiAdapter);
+                            }
+                        },throwable -> {
+                            Toast.makeText(getActivity(),throwable.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+
                 ));
     }
 }

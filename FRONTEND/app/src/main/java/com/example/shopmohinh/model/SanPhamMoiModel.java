@@ -2,7 +2,7 @@ package com.example.shopmohinh.model;
 
 import java.util.List;
 
-public class SanPhamModel {
+public class SanPhamMoiModel {
     boolean success;
     String message;
     List<SanPhamMoi> result;

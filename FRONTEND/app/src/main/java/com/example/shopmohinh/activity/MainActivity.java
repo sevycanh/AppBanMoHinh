@@ -3,7 +3,6 @@ package com.example.shopmohinh.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -11,22 +10,16 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
-import com.denzcoskun.imageslider.constants.ScaleTypes;
-import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.adapter.SPMoiAdapter;
 import com.example.shopmohinh.fragment.AccountFragment;
@@ -34,23 +27,17 @@ import com.example.shopmohinh.fragment.ContactFragment;
 import com.example.shopmohinh.fragment.HomeFragment;
 import com.example.shopmohinh.fragment.OrderFragment;
 import com.example.shopmohinh.model.SanPhamMoi;
-import com.example.shopmohinh.retrofit.ApiSanPhamMoi;
-import com.example.shopmohinh.retrofit.RetrofitClient;
 
 import com.example.shopmohinh.adapter.Loaisp_Adapter;
 import com.example.shopmohinh.model.LoaiSP;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 
-import com.example.shopmohinh.Utils.Utils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolBar;
@@ -63,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     SPMoiAdapter spMoiAdapter;
     List<SanPhamMoi> mangSanPhamMoi;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-    ApiSanPhamMoi apiSanPhamMoi;
     ApiBanHang apiBanHang;
     List<LoaiSP> mangLoaiSp;
     Loaisp_Adapter loaispAdapter;
@@ -75,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        apiSanPhamMoi = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiSanPhamMoi.class);
-
+//        apiSanPhamMoi = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiSanPhamMoi.class);
         Anhxa();
 //        ActionBar();
 //        setSearchView();
