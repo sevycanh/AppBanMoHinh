@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_130sdp"
-            android:text="Danh Muc Fragment"
+            android:text="@string/DanhMuc"
             android:textAlignment="center"
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold" />
