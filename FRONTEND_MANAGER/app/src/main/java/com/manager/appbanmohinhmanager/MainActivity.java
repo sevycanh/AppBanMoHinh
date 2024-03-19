@@ -1,4 +1,4 @@
-package com.manager.appbanmohinh;
+package com.manager.appbanmohinhmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
 

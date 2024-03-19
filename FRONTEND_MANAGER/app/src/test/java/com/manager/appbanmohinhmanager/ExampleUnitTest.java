@@ -1,4 +1,4 @@
-package com.manager.appbanmohinh;
+package com.manager.appbanmohinhmanager;
 
 import org.junit.Test;
 
