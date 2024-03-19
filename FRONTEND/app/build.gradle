@@ -67,4 +67,7 @@ dependencies {
 
     //brage
     implementation 'com.nex3z:notification-badge:1.0.4'
+
+    //lottie animation
+    implementation 'com.airbnb.android:lottie:6.4.0'
 }
