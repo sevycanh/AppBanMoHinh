@@ -21,7 +21,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText edtEmail, edtUsername, edtPass, edtRePass;
+    EditText edtEmail, edtPass, edtRePass;
     Button btnSignUp;
     TextView txtSignIn;
     ApiBanHang apiBanHang;
@@ -58,20 +58,17 @@ public class RegisterActivity extends AppCompatActivity {
         String email = edtEmail.getText().toString().trim();
         String pass = edtPass.getText().toString().trim();
         String rePass = edtRePass.getText().toString().trim();
-        String username = edtUsername.getText().toString().trim();
         if (TextUtils.isEmpty(email)){
             Toast.makeText(getApplicationContext(),"Bạn chưa nhập email", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(pass)){
             Toast.makeText(getApplicationContext(),"Bạn chưa nhập password", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(rePass)){
             Toast.makeText(getApplicationContext(),"Bạn chưa nhập lại password", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(username)){
-            Toast.makeText(getApplicationContext(), "Bạn chưa nhập username", Toast.LENGTH_SHORT).show();
         }
         else {
             if (pass.equals(rePass)){
                 //Post data
-                compositeDisposable.add(apiBanHang.dangKy(email, username, pass)
+                compositeDisposable.add(apiBanHang.dangKy(email, pass)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
@@ -103,7 +100,6 @@ public class RegisterActivity extends AppCompatActivity {
         edtEmail = findViewById(R.id.edtEmail_signUp);
         edtPass = findViewById(R.id.edtPassword_signUp);
         edtRePass = findViewById(R.id.edtRePassword_signUp);
-        edtUsername = findViewById(R.id.edtUsername_signUp);
         btnSignUp = findViewById(R.id.btnSignUp);
         txtSignIn = findViewById(R.id.txtSignIn_Register);
     }
