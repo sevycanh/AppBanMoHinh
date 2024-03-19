@@ -37,7 +37,7 @@
                         android:id="@+id/searchHomePage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#FFC107" />
+                        android:background="@color/main" />
                 </androidx.appcompat.widget.Toolbar>
 
             </com.google.android.material.appbar.AppBarLayout>

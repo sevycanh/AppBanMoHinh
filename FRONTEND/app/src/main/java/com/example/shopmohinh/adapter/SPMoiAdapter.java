@@ -4,60 +4,57 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.shopmohinh.R;
+import com.example.shopmohinh.fragment.HomeFragment;
 import com.example.shopmohinh.model.SanPhamMoi;
 
 import java.util.List;
 
-public class SPMoiAdapter extends BaseAdapter {
-    List<SanPhamMoi> array;
+public class SPMoiAdapter extends RecyclerView.Adapter<SPMoiAdapter.MyViewHolder> {
     Context context;
+    List<SanPhamMoi> array;
 
     public SPMoiAdapter(Context context, List<SanPhamMoi> array) {
-        this.array = array;
         this.context = context;
+        this.array = array;
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sanphammoi, parent, false);
+        return new MyViewHolder(item);
     }
 
     @Override
-    public int getCount() {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        SanPhamMoi sanPhamMoi = array.get(position);
+        holder.txtTen.setText(sanPhamMoi.getTensp());
+        holder.txtGia.setText("Giá: " + String.valueOf(sanPhamMoi.getGiasp()) +"đ");
+        Glide.with(context).load(sanPhamMoi.getHinhanh()).into(holder.imgItem);
+    }
+
+    @Override
+    public int getItemCount() {
         return array.size();
     }
 
-    @Override
-    public Object getItem(int position) {
-        return null;
-    }
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+        TextView txtGia, txtTen;
+        ImageView imgItem;
 
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
-
-    public class ViewHolder{
-        TextView tensp;
-        ImageView imgsp;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder = null;
-        if(viewHolder == null){
-            viewHolder = new ViewHolder();
-            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.item_sanphammoi, null);
-            viewHolder.tensp = convertView.findViewById(R.id.item_tensp);
-            viewHolder.imgsp = convertView.findViewById(R.id.item_imgsp);
-            convertView.setTag(viewHolder);
-        }else {
-            viewHolder = (ViewHolder) convertView.getTag();
-            viewHolder.tensp.setText(array.get(position).getTensp());
-            Glide.with(context).load(array.get(position).getHinhanh()).into(viewHolder.imgsp);
+        public MyViewHolder(@NonNull View itemView){
+            super(itemView);
+            txtGia = itemView.findViewById(R.id.newsp_price);
+            txtTen = itemView.findViewById(R.id.newsp_name);
+            imgItem = itemView.findViewById(R.id.newsp_image);
         }
-        return convertView;
     }
 }

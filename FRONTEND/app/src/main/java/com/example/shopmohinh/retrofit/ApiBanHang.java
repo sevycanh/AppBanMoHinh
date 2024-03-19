@@ -25,7 +25,7 @@ public interface ApiBanHang {
             @Field("email") String email,
             @Field("pass") String pass
     );
-  @GET("getloaisp.php")
+    @GET("getloaisp.php")
     Observable<LoaiSPModel> getLoaiSp();
     @GET("getsanphammoi.php")
     Observable<SanPhamMoiModel> getSanPhamMoi();

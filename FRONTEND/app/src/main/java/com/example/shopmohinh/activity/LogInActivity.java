@@ -12,11 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.shopmohinh.MainActivity;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
-import com.example.shopmohinh.utils.Utils;
+import com.example.shopmohinh.Utils.Utils;
 
 import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;

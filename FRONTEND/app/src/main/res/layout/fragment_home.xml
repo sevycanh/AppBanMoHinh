@@ -256,7 +256,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="#5992d2"
+                        android:background="#E4E3E3"
                         android:orientation="vertical">
 
                         <TextView
@@ -264,7 +264,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:text="Sản phẩm mới nhất"
-                            android:textColor="@android:color/holo_red_light"
+                            android:layout_gravity="center"
+                            android:textColor="#FF3E01"
                             android:textSize="20dp"
                             android:textStyle="bold" />
 
@@ -272,8 +273,7 @@
                             android:id="@+id/recyclerViewHomePage_HomeFragMent"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp">
+                            android:layout_marginStart="@dimen/_10sdp">
 
                         </androidx.recyclerview.widget.RecyclerView>
 

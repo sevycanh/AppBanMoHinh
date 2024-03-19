@@ -3,19 +3,16 @@ package com.example.shopmohinh.fragment;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -25,14 +22,12 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.shopmohinh.R;
 
-import com.example.shopmohinh.adapter.Loaisp_Adapter;
 import com.example.shopmohinh.adapter.SPMoiAdapter;
 import com.example.shopmohinh.model.LoaiSP;
 import com.example.shopmohinh.model.SanPhamMoi;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.Utils.Utils;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -43,10 +38,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class HomeFragment extends Fragment {
-    Toolbar toolBar;
     RecyclerView recyclerView;
     NavigationView navigationView;
-    ListView listView;
     DrawerLayout drawerLayout;
     ImageSlider imageSlider;
     SearchView searchView;
@@ -55,10 +48,6 @@ public class HomeFragment extends Fragment {
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
     List<LoaiSP> mangLoaiSp;
-    Loaisp_Adapter loaispAdapter;
-    BottomNavigationView bottomNavigationView;
-    FrameLayout frameLayout;
-    Fragment orderFragment;
 
     @Nullable
     @Override
@@ -68,34 +57,9 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         Anhxa(rootView);
         ActionViewFlipper();
-//        setSearchView();
-//        ActionBar();
+        getSanPhamMoi();
         return rootView;
     }
-
-//    private void setSearchView() {
-//        searchView.setIconifiedByDefault(false);
-//        searchView.setQueryHint("Tìm kiếm");
-//    }
-
-//    private void ActionBar() {
-//        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolBar);
-//        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
-//
-//        if (actionBar != null) {
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//            actionBar.setHomeAsUpIndicator(android.R.drawable.ic_menu_sort_by_size);
-//
-//            toolBar.setNavigationOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                    drawerLayout.openDrawer(GravityCompat.START);
-//
-//                }
-//            });
-//        }
-//    }
 
     private void ActionViewFlipper() {
         List<SlideModel> ArrayQuangCao = new ArrayList<>();
@@ -142,33 +106,34 @@ public class HomeFragment extends Fragment {
     };
 
     private void Anhxa(View rootView) {
-//        toolBar = rootView.findViewById(R.id.toolBarHomePage_HomeFragment);
         recyclerView = rootView.findViewById(R.id.recyclerViewHomePage_HomeFragMent);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
         drawerLayout = rootView.findViewById(R.id.drawerLayoutHomePage_HomeFragMent);
         imageSlider = rootView.findViewById(R.id.imageSliderHomePage_HomeFragMent);
-//        searchView = rootView.findViewById(R.id.searchHomePage_HomeFragment);
+        searchView = rootView.findViewById(R.id.searchHomePage);
         mangSanPhamMoi = new ArrayList<>();
-        mangLoaiSp = new ArrayList<>();
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
     }
 
-//    private void getSanPhamMoi() {
-//        compositeDisposable.add(apiBanHang.getSanPhamMoi().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(
-//                        sanPhamMoiModel -> {
-//                            if (sanPhamMoiModel.isSuccess()) {
-////                              Toast.makeText(getApplicationContext(),loaiSPModel.getResult().get(0).getName(), Toast.LENGTH_LONG).show();
-//                                mangSanPhamMoi = sanPhamMoiModel.getResult();
-////                                spMoiAdapter = new Loaisp_Adapter(getActivity().getApplicationContext(), mangSanPhamMoi);
-//                                ListView listView = getActivity().findViewById(R.id.listViewHomePage_HomeFragMent);
-//                                listView.setAdapter(spMoiAdapter);
-//                            }
-//                        },throwable -> {
-//                            Toast.makeText(getActivity(),throwable.getMessage(), Toast.LENGTH_LONG).show();
-//                        }
-//
-//                ));
-//    }
+    private void getSanPhamMoi() {
+        compositeDisposable.add(apiBanHang.getSanPhamMoi()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        sanPhamMoiModel -> {
+                            if (sanPhamMoiModel.isSuccess()) {
+                                mangSanPhamMoi = sanPhamMoiModel.getResult();
+                                spMoiAdapter = new SPMoiAdapter(getContext(), mangSanPhamMoi);
+                                recyclerView.setAdapter(spMoiAdapter);
+                            }
+                        },throwable -> {
+                            Toast.makeText(getActivity(),throwable.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+
+                ));
+    }
 }
 
 
