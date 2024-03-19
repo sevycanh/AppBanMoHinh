@@ -12,7 +12,6 @@ public interface ApiBanHang {
     @FormUrlEncoded
     Observable<UserModel> dangKy(
             @Field("email") String email,
-            @Field("username") String username,
             @Field("password") String pass
     );
 
