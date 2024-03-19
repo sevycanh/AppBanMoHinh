@@ -1,6 +1,6 @@
 package com.example.shopmohinh.adapter;
 
-import static com.assignments.toystore.utils.NumberWithDotSeparator.formatNumberWithDotSeparator;
+import static com.example.shopmohinh.utils.NumberWithDotSeparator.formatNumberWithDotSeparator;
 
 import android.content.Context;
 import android.content.Intent;

@@ -48,33 +48,25 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolBar;
-    RecyclerView recyclerView;
     NavigationView navigationView;
     ListView listView;
     DrawerLayout drawerLayout;
-    ImageSlider imageSlider;
     SearchView searchView;
-    SPMoiAdapter spMoiAdapter;
-    List<SanPhamMoi> mangSanPhamMoi;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
     List<LoaiSP> mangLoaiSp;
     Loaisp_Adapter loaispAdapter;
     BottomNavigationView bottomNavigationView;
     FrameLayout frameLayout;
-    Fragment orderFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        apiSanPhamMoi = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiSanPhamMoi.class);
         Anhxa();
         ActionBar();
         setSearchView();
         if (isConnected(this)) {
-//            Toast.makeText(getApplicationContext(), "OK!", Toast.LENGTH_LONG).show();
-//            ActionViewFlipper();
             getSanPhamMoi();
             getLoaiSanPham();
         } else {
@@ -129,73 +121,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    private void ActionViewFlipper() {
-//
-//        List<SlideModel> ArrayQuangCao = new ArrayList<>();
-//        ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-42.jpg", null));
-//        ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-40.jpg", null));
-//        ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-23.jpg", null));
-//        imageSlider.setImageList(ArrayQuangCao, ScaleTypes.CENTER_CROP);
-//
-//        imageSlider.setOnTouchListener(touchListener);
-//    }
-
-//    View.OnTouchListener touchListener = new View.OnTouchListener() {
-//        private float startX;
-//        private float startY;
-//        private long startTime;
-//
-//        @Override
-//        public boolean onTouch(View v, MotionEvent event) {
-//            switch (event.getAction()) {
-//                case MotionEvent.ACTION_DOWN:
-//                    startX = event.getX();
-//                    startY = event.getY();
-//                    startTime = System.currentTimeMillis();
-//                    break;
-//                case MotionEvent.ACTION_UP:
-//                    float endX = event.getX();
-//                    float endY = event.getY();
-//                    long endTime = System.currentTimeMillis();
-//
-//                    float deltaX = endX - startX;
-//                    float deltaY = endY - startY;
-//                    long deltaTime = endTime - startTime;
-//
-//                    // Tính toán khoảng cách và thời gian để xác định hướng di chuyển
-//                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 100 && deltaTime < 200) {
-//                        // Xác định người dùng đã kéo sang trái hay sang phải
-//                        if (deltaX > 0) {
-//                            // Kéo sang phải
-//                            imageSlider.startSliding(10000);
-//                        } else {
-//                            // Kéo sang trái
-//                            imageSlider.startSliding(10000);
-//                        }
-//                    }
-//                    break;
-//            }
-//            return true;
-//        }
-//
-//
-//    };
-
     private void Anhxa() {
         toolBar = findViewById(R.id.toolBarHomePage);
-//        recyclerView = findViewById(R.id.recyclerViewHomePage);
         navigationView = findViewById(R.id.navigationHomePage);
         listView = findViewById(R.id.listViewHomePage);
         drawerLayout = findViewById(R.id.drawerLayoutHomePage);
-//        imageSlider = findViewById(R.id.imageSliderHomePage);
         searchView = findViewById(R.id.searchHomePage);
-        //Khoi tao list
-//        mangSanPhamMoi = new ArrayList<>();
-
-        //Khoi tao Adapter
-//        spMoiAdapter = new SPMoiAdapter(getApplicationContext(), mangSanPhamMoi);
-//        listView.setAdapter(spMoiAdapter);
-
         // retrofit get data tbl_category
         mangLoaiSp = new ArrayList<>();
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
@@ -220,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(
                         loaiSPModel -> {
                             if (loaiSPModel.isSuccess()) {
-//                                Toast.makeText(getApplicationContext(),loaiSPModel.getResult().get(0).getName(), Toast.LENGTH_LONG).show();
                                 mangLoaiSp = loaiSPModel.getResult();
                                 loaispAdapter = new Loaisp_Adapter(getApplicationContext(), mangLoaiSp);
                                 ListView listView = findViewById(R.id.listViewHomePage);
@@ -235,8 +165,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (isAppInitialized) {
             fragmentTransaction.add(R.id.frameLayout, fragment);
-//            Toast.makeText(this, "Fragment", Toast.LENGTH_SHORT).show();
-
         } else {
             fragmentTransaction.replace(R.id.frameLayout, fragment);
         }

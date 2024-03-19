@@ -1,6 +1,6 @@
 package com.example.shopmohinh.activity;
 
-import static com.assignments.toystore.utils.NumberWithDotSeparator.formatNumberWithDotSeparator;
+import static com.example.shopmohinh.utils.NumberWithDotSeparator.formatNumberWithDotSeparator;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -34,7 +34,6 @@ public class ProductDetailActivity extends AppCompatActivity {
     Button btnDecrease, btnIncrease, btnAddToCart;
     Toolbar toolbar;
     ViewPager imageViewPager;
-    private RecyclerView recyclerView;
     private CircleIndicator circleIndicator;
     Product product;
     NotificationBadge badge;
