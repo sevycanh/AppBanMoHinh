@@ -18,4 +18,11 @@ public interface ApiBanHang {
             @Field("address") String diachi,
             @Field("chitiet") String chitiet
     );
+
+    @POST("updatezalo.php")
+    @FormUrlEncoded
+    Observable<MessageModel> updateZalo(
+            @Field("iddonhang") int id,
+            @Field("token") String token
+    );
 }
