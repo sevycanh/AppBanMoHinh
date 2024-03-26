@@ -76,24 +76,17 @@ public class LogInActivity extends AppCompatActivity {
                 } else {
                     //save acc
                     Paper.book().write("email", email);
-
-//                    if (firebaseUser != null){
-//                        //user đã có đăng nhập firebase rồi
-//                        dangNhap(email);
-//                    } else {
-                        //user đã đăng xuất khỏi firebase
-                        firebaseAuth.signInWithEmailAndPassword(email, pass)
-                                .addOnCompleteListener(LogInActivity.this, new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (task.isSuccessful()){
-                                            dangNhap(email);
-                                        } else {
-                                            txtSaiThongTin.setVisibility(View.VISIBLE);
-                                        }
+                    firebaseAuth.signInWithEmailAndPassword(email, pass)
+                            .addOnCompleteListener(LogInActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()){
+                                        dangNhap(email);
+                                    } else {
+                                        txtSaiThongTin.setVisibility(View.VISIBLE);
                                     }
-                                });
-//                    }
+                                }
+                            });
                 }
             }
         });
