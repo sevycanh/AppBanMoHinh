@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +23,8 @@ import com.example.shopmohinh.Interface.IImageClickListener;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.model.Cart;
 import com.example.shopmohinh.model.EventBus.TinhTongEvent;
+import com.example.shopmohinh.retrofit.ApiBanHang;
+import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -29,13 +32,21 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 import java.util.Locale;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
     Context context;
     List<Cart> gioHangList;
 
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private ApiBanHang apiBanHang;
+
     public CartAdapter(Context context, List<Cart> gioHangList) {
         this.context = context;
         this.gioHangList = gioHangList;
+        apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
     }
     @NonNull
     @Override
@@ -101,6 +112,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                         String formattedNumber = decimalFormat.format(gia * soluongmoi);
                         holder.txtTongGiaSanPhamGioHang.setText(formattedNumber + "");
                         EventBus.getDefault().postSticky(new TinhTongEvent());
+                        UpdateCartApi(Utils.carts.get(pos).getIdProduct(), soluongmoi);
+
                     }
                     else if(soluong == 1){
                         AlertDialog.Builder builder  = new AlertDialog.Builder(view.getRootView().getContext());
@@ -109,6 +122,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                         builder.setPositiveButton("Dong Y", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                UpdateCartApi(Utils.carts.get(pos).getIdProduct(), 0);
                                 Utils.purchases.remove(gioHang);
                                 Utils.carts.remove(pos);
                                 notifyDataSetChanged();
@@ -135,6 +149,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     String formattedNumber = decimalFormat.format(gia * soluongmoi);
                     holder.txtTongGiaSanPhamGioHang.setText(formattedNumber + "");
                     EventBus.getDefault().postSticky(new TinhTongEvent());
+                    UpdateCartApi(Utils.carts.get(pos).getIdProduct(), soluongmoi);
+
                 }
 
                 else if (giatri == 3){
@@ -144,6 +160,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     builder.setPositiveButton("Dong Y", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            UpdateCartApi(Utils.carts.remove(pos).getIdProduct(), 0);
                             Utils.purchases.remove(gioHang);
                             Utils.carts.remove(pos);
                             notifyDataSetChanged();
@@ -162,6 +179,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
             }
         });
+    }
+
+    private void UpdateCartApi(int productId ,int quantity){
+        compositeDisposable.add(apiBanHang.updateShoppingCart(Utils.user_current.getAccount_id(), productId, quantity)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        messageModel -> {
+//                            Toast.makeText(this.context, "Thanh cong", Toast.LENGTH_SHORT).show();
+                        },
+                        throwable -> {
+                            Toast.makeText(this.context,throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
     }
 
     @Override

@@ -23,6 +23,8 @@ import com.example.shopmohinh.R;
 import com.example.shopmohinh.adapter.CartAdapter;
 import com.example.shopmohinh.helper.SwipeHelper;
 import com.example.shopmohinh.model.EventBus.TinhTongEvent;
+import com.example.shopmohinh.retrofit.ApiBanHang;
+import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -32,6 +34,10 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.List;
 import java.util.Locale;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class CartActivity extends AppCompatActivity {
     TextView giohangtrong, tongtien;
     Toolbar toolbar;
@@ -40,6 +46,9 @@ public class CartActivity extends AppCompatActivity {
     CartAdapter gioHangAdapter;
     SwipeHelper swipeHelper;
     long tongtiensp;
+
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private ApiBanHang apiBanHang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +87,7 @@ public class CartActivity extends AppCompatActivity {
                                                 EventBus.getDefault().postSticky(new TinhTongEvent());
                                             }
                                         }
-
+                                        UpdateCartApi(Utils.carts.get(pos).getIdProduct(), 0);
                                         Utils.carts.remove(pos);
                                         gioHangAdapter.notifyDataSetChanged();
                                         EventBus.getDefault().postSticky(new TinhTongEvent());
@@ -98,6 +107,35 @@ public class CartActivity extends AppCompatActivity {
             }
         };
     }
+
+    private void RemoveAllCartApi(int productId){
+        compositeDisposable.add(apiBanHang.deleteShoppingCart(Utils.user_current.getAccount_id())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        messageModel -> {
+//                            Toast.makeText(getApplicationContext(), "Thanh cong", Toast.LENGTH_SHORT).show();
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
+    }
+
+    private void UpdateCartApi(int productId ,int quantity){
+        compositeDisposable.add(apiBanHang.updateShoppingCart(Utils.user_current.getAccount_id(), productId, quantity)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        messageModel -> {
+//                            Toast.makeText(getApplicationContext(), "Thanh cong", Toast.LENGTH_SHORT).show();
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
+    }
+
 
     private void TinhTongTien(){
         if(Utils.carts.size() == 0){
@@ -175,6 +213,7 @@ public class CartActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Utils.carts.clear();
                         Utils.purchases.clear();
+                        RemoveAllCartApi(Utils.user_current.getAccount_id());
                         EventBus.getDefault().postSticky(new TinhTongEvent());
                     }
                 });
@@ -197,6 +236,7 @@ public class CartActivity extends AppCompatActivity {
         recyclerViewGioHang = findViewById(R.id.recyclerViewGioHang);
         btnMuaHang = findViewById(R.id.btnMuaHang);
         btnDeleteGioHang = findViewById(R.id.btnDeleteGioHang);
+        apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
     }
 
     @Override

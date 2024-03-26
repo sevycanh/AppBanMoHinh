@@ -1,5 +1,6 @@
 package com.example.shopmohinh.retrofit;
 
+import com.example.shopmohinh.model.CartModel;
 import com.example.shopmohinh.model.MessageModel;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.Field;
@@ -25,4 +26,43 @@ public interface ApiBanHang {
             @Field("iddonhang") int id,
             @Field("token") String token
     );
+
+
+    @POST("update_profile.php")
+    @FormUrlEncoded
+    Observable<MessageModel> updateProfile(
+            @Field("userId") int id,
+            @Field("userName") String name,
+            @Field("userPhone") String phone,
+            @Field("userAddress") String address
+            );
+
+    @POST("shopping_cart.php")
+    @FormUrlEncoded
+    Observable<MessageModel> shoppingCart(
+            @Field("accountId") int accountId,
+            @Field("productId") int productId,
+            @Field("quantity") int quantity
+    );
+
+    @POST("get_shopping_cart.php")
+    @FormUrlEncoded
+    Observable<CartModel> getShoppingCart(
+            @Field("accountId") int accountId
+    );
+
+    @POST("update_cart.php")
+    @FormUrlEncoded
+    Observable<MessageModel> updateShoppingCart(
+            @Field("accountId") int accountId,
+            @Field("productId") int productId,
+            @Field("quantity") int quantity
+    );
+
+    @POST("delete_cart.php")
+    @FormUrlEncoded
+    Observable<MessageModel> deleteShoppingCart(
+            @Field("accountId") int accountId
+    );
+
 }
