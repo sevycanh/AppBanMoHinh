@@ -1,5 +1,6 @@
 package com.example.shopmohinh.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +16,14 @@ import com.example.shopmohinh.R;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthEmailException;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -26,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextView txtSignIn;
     ApiBanHang apiBanHang;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,34 +74,62 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Bạn chưa nhập password", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(rePass)){
             Toast.makeText(getApplicationContext(),"Bạn chưa nhập lại password", Toast.LENGTH_SHORT).show();
+        } else if (pass.length() < 6){
+            Toast.makeText(getApplicationContext(),"Mật khẩu phải có ít nhất 6 ký tự", Toast.LENGTH_SHORT).show();
         }
         else {
             if (pass.equals(rePass)){
-                //Post data
-                compositeDisposable.add(apiBanHang.dangKy(email, pass)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                userModel -> {
-                                    if (userModel.isSuccess()){
-                                        Utils.user_current.setEmail(email);
-                                        Utils.user_current.setPassword(pass);
-                                        Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                        Toast.makeText(getApplicationContext(), userModel.getMessage(), Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), userModel.getMessage(), Toast.LENGTH_SHORT).show();
+                firebaseAuth = FirebaseAuth.getInstance();
+                firebaseAuth.createUserWithEmailAndPassword(email, pass)
+                        .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()){
+                                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                                    if (user!=null){
+                                        dangKy(email);
                                     }
-                                },
-                                throwable -> {
-                                    Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                                } else {
+                                    // Xử lý khi đăng ký không thành công firebase
+                                    Exception exception = task.getException();
+                                    if (exception instanceof FirebaseAuthUserCollisionException) {
+                                        Toast.makeText(getApplicationContext(), "Email đã tồn tại.", Toast.LENGTH_SHORT).show();
+                                    } else if (exception instanceof FirebaseAuthInvalidCredentialsException){
+                                        Toast.makeText(getApplicationContext(), "Địa chỉ email không hợp lệ.", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        String errorMessage = exception.getMessage();
+                                        Toast.makeText(getApplicationContext(), "Đăng ký thất bại: " + errorMessage, Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                        ));
+                            }
+                        });
             } else {
                 Toast.makeText(getApplicationContext(),"Password và Re-Password chưa khớp", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void dangKy(String email){
+        compositeDisposable.add(apiBanHang.dangKy(email)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        userModel -> {
+                            if (userModel.isSuccess()){
+                                Utils.user_current.setEmail(email);
+                                Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
+                                startActivity(intent);
+                                finish();
+                                Toast.makeText(getApplicationContext(), userModel.getMessage(), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), userModel.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
     }
 
     private void initView() {
