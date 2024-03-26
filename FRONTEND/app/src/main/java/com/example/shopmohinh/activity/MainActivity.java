@@ -14,6 +14,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.example.shopmohinh.R;
+import com.example.shopmohinh.model.User;
 import com.example.shopmohinh.utils.Utils;
 import com.example.shopmohinh.adapter.SPMoiAdapter;
 import com.example.shopmohinh.fragment.AccountFragment;
@@ -36,12 +38,15 @@ import com.example.shopmohinh.model.LoaiSP;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 
 import com.example.shopmohinh.retrofit.RetrofitClient;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -63,6 +68,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //load user hiện tại
+        Paper.init(this);
+        if (Paper.book().read("user") != null){
+            User user = Paper.book().read("user");
+            Utils.user_current = user;
+        }
+        getToken();
+
         Anhxa();
         ActionBar();
         setSearchView();
@@ -97,6 +111,37 @@ public class MainActivity extends AppCompatActivity {
 
         });
         loadFragment(new HomeFragment(), true);
+    }
+
+    private void getToken() {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnSuccessListener(new OnSuccessListener<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        if (!TextUtils.isEmpty(s)){
+                            compositeDisposable.add(apiBanHang.updateToken(Utils.user_current.getAccount_id(), s)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(
+                                            messageModel -> {},
+                                            throwable -> {}
+                                    ));
+                        }
+                    }
+                });
+
+//        compositeDisposable.add(apiBanHang.gettoken(1)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(
+//                        userModel -> {
+//                            if (userModel.isSuccess()){
+//                                Utils.ID_RECEIVED = String.valueOf(userModel.getResult().get(0).getId());
+//                            }
+//                        }, throwable -> {
+//
+//                        }
+//                ));
     }
 
     private void getSanPhamMoi() {
