@@ -1,25 +1,19 @@
 package com.example.shopmohinh.model;
 
-public class MessageModel {
+import java.util.List;
+
+public class CartModel {
     boolean success;
     String message;
-    String name;
-    String iddonhang;
 
-    public String getIddonhang() {
-        return iddonhang;
+    List<Product> result;
+
+    public List<Product> getResult() {
+        return result;
     }
 
-    public void setIddonhang(String iddonhang) {
-        this.iddonhang = iddonhang;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-
+    public void setResult(List<Product> result) {
+        this.result = result;
     }
 
     public boolean isSuccess() {
@@ -37,4 +31,5 @@ public class MessageModel {
     public void setMessage(String message) {
         this.message = message;
     }
+
 }
