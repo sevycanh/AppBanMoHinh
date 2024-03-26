@@ -1,0 +1,27 @@
+<resources>
+
+    <string name="welcome_message">Chào mừng đến với ứng dụng</string>
+
+    <string name="related">Liên quan</string>
+    <string name="newest">Mới nhất</string>
+    <string name="best_selling">Bán chạy</string>
+    <string name="price">Giá</string>
+    <string name="sort_newest">Mới nhất</string>
+    <string name="sort_best_selling">Bán chạy nhất</string>
+    <string name="sort_lowest_price">Giá thấp nhất</string>
+    <string name="sort_highest_price">Giá cao nhất</string>
+    <string name="load_more">Xem thêm</string>
+
+    <string name="app_name">ShopMoHinh</string>
+    <string name="shopname">Figure Shop</string>
+    <string name="DanhMuc">Danh Mục</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="Home">Trang chủ</string>
+    <string name="Order">Đơn hàng</string>
+    <string name="Contact">Liên hệ</string>
+    <string name="Account">Tài khoản</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
