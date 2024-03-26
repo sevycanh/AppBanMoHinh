@@ -4,7 +4,6 @@ public class MessageModel {
     boolean success;
     String message;
     String name;
-
     String iddonhang;
 
     public String getIddonhang() {
@@ -13,6 +12,14 @@ public class MessageModel {
 
     public void setIddonhang(String iddonhang) {
         this.iddonhang = iddonhang;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+
     }
 
     public boolean isSuccess() {
@@ -29,13 +36,5 @@ public class MessageModel {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

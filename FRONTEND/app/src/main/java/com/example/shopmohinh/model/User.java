@@ -1,5 +1,7 @@
 package com.example.shopmohinh.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
     int account_id;
     String email;
