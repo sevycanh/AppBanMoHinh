@@ -1,7 +1,7 @@
 <?php
 include "connect.php";
 $email=$_POST['email'];
-$pass=$_POST['password'];
+// $pass=$_POST['password'];
 
 //checkdata
 $query = 'SELECT * FROM `tbl_account` WHERE `email` = "'.$email.'"';
@@ -14,7 +14,7 @@ if ($numrow > 0){
 	];
 } else {
 	//insert
-	$query = 'INSERT INTO `tbl_account`(`email`, `password`, `role`, `status`) VALUES ("'.$email.'","'.$pass.'", "1", "1")';
+	$query = 'INSERT INTO `tbl_account`(`email`, `role`, `status`) VALUES ("'.$email.'", "1", "1")';
 	$data = mysqli_query($conn, $query);
 
 	if ($data == true){
