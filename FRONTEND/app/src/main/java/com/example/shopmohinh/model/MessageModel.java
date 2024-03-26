@@ -12,6 +12,7 @@ public class MessageModel {
 
     public void setIddonhang(String iddonhang) {
         this.iddonhang = iddonhang;
+    }
 
     public String getName() {
         return name;

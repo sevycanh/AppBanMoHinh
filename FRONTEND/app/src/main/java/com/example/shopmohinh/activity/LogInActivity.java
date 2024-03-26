@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -76,10 +77,10 @@ public class LogInActivity extends AppCompatActivity {
                     //save acc
                     Paper.book().write("email", email);
 
-                    if (firebaseUser != null){
-                        //user đã có đăng nhập firebase rồi
-                        dangNhap(email);
-                    } else {
+//                    if (firebaseUser != null){
+//                        //user đã có đăng nhập firebase rồi
+//                        dangNhap(email);
+//                    } else {
                         //user đã đăng xuất khỏi firebase
                         firebaseAuth.signInWithEmailAndPassword(email, pass)
                                 .addOnCompleteListener(LogInActivity.this, new OnCompleteListener<AuthResult>() {
@@ -92,7 +93,7 @@ public class LogInActivity extends AppCompatActivity {
                                         }
                                     }
                                 });
-                    }
+//                    }
                 }
             }
         });
@@ -128,7 +129,7 @@ public class LogInActivity extends AppCompatActivity {
                                 Utils.user_current = userModel.getResult().get(0);
                                 //Luu lai thong tin nguoi dung
                                 Paper.book().write("user", userModel.getResult().get(0));
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {

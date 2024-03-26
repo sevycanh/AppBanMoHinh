@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +32,7 @@ import java.util.List;
 import me.relex.circleindicator.CircleIndicator;
 
 public class ProductDetailActivity extends AppCompatActivity {
+    ImageView imgCart;
     TextView txtName, txtPrice, txtSalePrice, tvStock, txtDescription,txtQuantity;
     Button btnDecrease, btnIncrease, btnAddToCart;
     Toolbar toolbar;
@@ -55,6 +58,17 @@ public class ProductDetailActivity extends AppCompatActivity {
                 AddToCart();
             }
         });
+        imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewCart();
+            }
+        });
+    }
+
+    private void viewCart() {
+        Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+        startActivity(intent);
     }
 
     private void AddToCart() {
@@ -98,6 +112,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     private void initData() {
+        imgCart = findViewById(R.id.imgCart_CTSP);
         product = (Product) getIntent().getSerializableExtra("productDetail");
         txtName.setText(product.getName());
         txtPrice.setText(String.valueOf(formatNumberWithDotSeparator(product.getPrice())) + " VNĐ");
