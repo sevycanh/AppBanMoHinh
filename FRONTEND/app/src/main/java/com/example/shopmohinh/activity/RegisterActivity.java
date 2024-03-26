@@ -85,10 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
-                                    FirebaseUser user = firebaseAuth.getCurrentUser();
-                                    if (user!=null){
-                                        dangKy(email);
-                                    }
+                                    dangKy(email);
                                 } else {
                                     // Xử lý khi đăng ký không thành công firebase
                                     Exception exception = task.getException();

@@ -34,7 +34,6 @@ public class LogInActivity extends AppCompatActivity {
     Button btnSignIn;
     TextView txtForgot, txtSignUp, txtSaiThongTin;
     FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
     ApiBanHang apiBanHang;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -59,8 +58,8 @@ public class LogInActivity extends AppCompatActivity {
         txtForgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), ResetPassActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), ForgotPassActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -105,7 +104,6 @@ public class LogInActivity extends AppCompatActivity {
         txtSaiThongTin = findViewById(R.id.txt_SaiThongTin);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
 
         if (Paper.book().read("email") != null){
             edtEmail.setText(Paper.book().read("email"));
