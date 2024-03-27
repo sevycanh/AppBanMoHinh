@@ -1,6 +1,7 @@
 package com.example.shopmohinh.activity;
 
-import static com.assignments.toystore.utils.NumberWithDotSeparator.formatNumberWithDotSeparator;
+import static com.example.shopmohinh.utils.NumberWithDotSeparator.formatNumberWithDotSeparator;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
