@@ -168,27 +168,6 @@ public class HomeFragment extends Fragment {
         recyclerView = rootView.findViewById(R.id.recyclerViewHomePage_HomeFragMent);
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         gridLayoutManager = new GridLayoutManager(getContext(), 2);
-        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                if (isSpecificRow(position)) {
-                    return 1;
-                } else {
-                    return 2;
-                }
-            }
-
-            private boolean isSpecificRow(int position) {
-                if(position == 4){
-//                    loadMore();
-                    Toast.makeText(getActivity(), String.valueOf(position), Toast.LENGTH_LONG).show();
-                }
-                if (gridLayoutManager.findLastCompletelyVisibleItemPosition() == mangSanPhamMoi.size() - 1) {
-
-                }
-                return true;
-            }
-        });
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setHasFixedSize(true);
         drawerLayout = rootView.findViewById(R.id.drawerLayoutHomePage_HomeFragMent);
