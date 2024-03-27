@@ -29,6 +29,7 @@ import com.example.shopmohinh.fragment.AccountFragment;
 import com.example.shopmohinh.fragment.ContactFragment;
 import com.example.shopmohinh.fragment.HomeFragment;
 import com.example.shopmohinh.fragment.OrderFragment;
+import com.example.shopmohinh.fragment.SearchFragment;
 import com.example.shopmohinh.model.SanPhamMoi;
 
 import com.example.shopmohinh.adapter.Loaisp_Adapter;
@@ -65,8 +66,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Anhxa();
         ActionBar();
+        setSearchView();
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    clrFrameLayout();
+                    bottomNavigationView.setVisibility(View.GONE);
+                    loadFragment(new SearchFragment(), false);
+                }
+            }
+        });
         if (isConnected(this)) {
-            setSearchView();
             getLoaiSanPham();
         } else {
             Toast.makeText(getApplicationContext(), "Không có kết nối Internet!", Toast.LENGTH_LONG).show();
