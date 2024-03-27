@@ -1,0 +1,36 @@
+<!-- list_item_with_image.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- ImageView -->
+
+
+    <ImageView
+        android:id="@+id/image_view_loaisp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/text_view_loaisp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/image_view_loaisp"
+        android:layout_marginStart="23dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@id/image_view_loaisp"
+        android:text="Item Name"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@id/image_view_loaisp"
+        android:layout_marginTop="8dp" />
+
+</RelativeLayout>
