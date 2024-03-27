@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,9 +18,11 @@ import com.example.shopmohinh.model.SanPhamMoi;
 
 import java.util.List;
 
-public class SPMoiAdapter extends RecyclerView.Adapter<SPMoiAdapter.MyViewHolder> {
+public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
     List<SanPhamMoi> array;
+    private static final int VIEW_TYPE_DATA = 0;
+    private static final int VIEW_TYPE_LOADING = 1;
 
     public SPMoiAdapter(Context context, List<SanPhamMoi> array) {
         this.context = context;
@@ -28,22 +31,48 @@ public class SPMoiAdapter extends RecyclerView.Adapter<SPMoiAdapter.MyViewHolder
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sanphammoi, parent, false);
-        return new MyViewHolder(item);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if(viewType == VIEW_TYPE_DATA){
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sanphammoi, parent, false);
+            return new MyViewHolder(view);
+        }
+        else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading, parent, false);
+            return new LoadingViewHolder(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        SanPhamMoi sanPhamMoi = array.get(position);
-        holder.txtTen.setText(sanPhamMoi.getTensp());
-        holder.txtGia.setText("Giá: " + String.valueOf(sanPhamMoi.getGiasp()) +"đ");
-        Glide.with(context).load(sanPhamMoi.getHinhanh()).into(holder.imgItem);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof MyViewHolder) {
+            MyViewHolder myViewHolder = (MyViewHolder) holder;
+            SanPhamMoi sanPhamMoi = array.get(position);
+            myViewHolder.txtTen.setText(String.valueOf(sanPhamMoi.getId()));
+            myViewHolder.txtGia.setText("Giá: " + String.valueOf(sanPhamMoi.getGiasp()) + "đ");
+            Glide.with(context).load(sanPhamMoi.getHinhanh()).into(myViewHolder.imgItem);
+        }else {
+            LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
+            loadingViewHolder.progressBar.setIndeterminate(true);
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return array.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_DATA;
     }
 
     @Override
     public int getItemCount() {
         return array.size();
+    }
+
+    public class LoadingViewHolder extends RecyclerView.ViewHolder{
+        ProgressBar progressBar;
+
+        public LoadingViewHolder(@NonNull View itemView) {
+            super(itemView);
+            progressBar = itemView.findViewById(R.id.loading);
+        }
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
@@ -57,4 +86,5 @@ public class SPMoiAdapter extends RecyclerView.Adapter<SPMoiAdapter.MyViewHolder
             imgItem = itemView.findViewById(R.id.newsp_image);
         }
     }
+
 }

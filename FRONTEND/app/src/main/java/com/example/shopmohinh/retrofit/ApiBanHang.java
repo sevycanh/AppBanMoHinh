@@ -9,6 +9,7 @@ import com.example.shopmohinh.model.UserModel;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiBanHang {
     @POST("dangky.php")
@@ -27,6 +28,10 @@ public interface ApiBanHang {
     );
     @GET("getloaisp.php")
     Observable<LoaiSPModel> getLoaiSp();
-    @GET("getsanphammoi.php")
-    Observable<SanPhamMoiModel> getSanPhamMoi();
+
+    @POST("getsanphammoi.php")
+    @FormUrlEncoded
+    Observable<SanPhamMoiModel> getSanPhamMoi(
+            @Field("page") int page
+    );
 }

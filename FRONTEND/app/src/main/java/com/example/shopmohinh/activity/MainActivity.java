@@ -159,6 +159,8 @@ public class MainActivity extends AppCompatActivity {
                                 ListView listView = findViewById(R.id.listViewHomePage);
                                 listView.setAdapter(loaispAdapter);
                             }
+                        }, throwable -> {
+                            Toast.makeText(this,throwable.getMessage(), Toast.LENGTH_LONG).show();
                         }
                 ));
     }

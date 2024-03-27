@@ -2,13 +2,16 @@ package com.example.shopmohinh.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,6 +33,8 @@ import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.Utils.Utils;
 import com.google.android.material.navigation.NavigationView;
 
+import org.objectweb.asm.Handle;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +52,11 @@ public class HomeFragment extends Fragment {
     List<SanPhamMoi> mangSanPhamMoi;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
-    List<LoaiSP> mangLoaiSp;
+    LinearLayoutManager linearLayoutManager;
+    GridLayoutManager gridLayoutManager;
+    Handler handler = new Handler();
+    boolean isLoading = false;
+    int page = 1;
 
     @Nullable
     @Override
@@ -57,8 +66,58 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         Anhxa(rootView);
         ActionViewFlipper();
-        getSanPhamMoi();
+        getSanPhamMoi(page);
+        addEventLoad();
         return rootView;
+    }
+
+    private void addEventLoad(){
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (isLoading == false){
+//                    Toast.makeText(getActivity(),String.valueOf(gridLayoutManager.findLastCompletelyVisibleItemPosition() == mangSanPhamMoi.size()-1), Toast.LENGTH_LONG).show();
+                    if (gridLayoutManager.findLastCompletelyVisibleItemPosition() == mangSanPhamMoi.size()-1){
+                        isLoading = true;
+                        loadMore();
+                    }
+                }
+            }
+        });
+    }
+    private void loadMore(){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                //add null in list spmoi
+//                mangSanPhamMoi.add(null);
+//                spMoiAdapter.notifyItemInserted(mangSanPhamMoi.size()-1);
+            }
+        });
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+//              mangSanPhamMoi.remove(mangSanPhamMoi.size()-1);
+//              spMoiAdapter.notifyItemRemoved(mangSanPhamMoi.size()-1);
+                page = page + 1;
+                getSanPhamMoi(page);
+                isLoading = false;
+                spMoiAdapter.notifyDataSetChanged();
+            }
+        },500);
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                //remove null in list spmoi
+//
+//            }
+//        }, 2000);
     }
 
     private void ActionViewFlipper() {
@@ -107,8 +166,30 @@ public class HomeFragment extends Fragment {
 
     private void Anhxa(View rootView) {
         recyclerView = rootView.findViewById(R.id.recyclerViewHomePage_HomeFragMent);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
-        recyclerView.setLayoutManager(layoutManager);
+        linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (isSpecificRow(position)) {
+                    return 1;
+                } else {
+                    return 2;
+                }
+            }
+
+            private boolean isSpecificRow(int position) {
+                if(position == 4){
+//                    loadMore();
+                    Toast.makeText(getActivity(), String.valueOf(position), Toast.LENGTH_LONG).show();
+                }
+                if (gridLayoutManager.findLastCompletelyVisibleItemPosition() == mangSanPhamMoi.size() - 1) {
+
+                }
+                return true;
+            }
+        });
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setHasFixedSize(true);
         drawerLayout = rootView.findViewById(R.id.drawerLayoutHomePage_HomeFragMent);
         imageSlider = rootView.findViewById(R.id.imageSliderHomePage_HomeFragMent);
@@ -117,16 +198,31 @@ public class HomeFragment extends Fragment {
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
     }
 
-    private void getSanPhamMoi() {
-        compositeDisposable.add(apiBanHang.getSanPhamMoi()
+    private void getSanPhamMoi(int page) {
+        compositeDisposable.add(apiBanHang.getSanPhamMoi(page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         sanPhamMoiModel -> {
                             if (sanPhamMoiModel.isSuccess()) {
-                                mangSanPhamMoi = sanPhamMoiModel.getResult();
-                                spMoiAdapter = new SPMoiAdapter(getContext(), mangSanPhamMoi);
-                                recyclerView.setAdapter(spMoiAdapter);
+                                if (spMoiAdapter == null){
+                                    mangSanPhamMoi = sanPhamMoiModel.getResult();
+                                    spMoiAdapter = new SPMoiAdapter(getContext(), mangSanPhamMoi);
+                                    recyclerView.setAdapter(spMoiAdapter);
+                                }else {
+                                    int position = mangSanPhamMoi.size()-1;
+                                    int soluongadd = sanPhamMoiModel.getResult().size();
+                                    for (int i=0; i<soluongadd; i++){
+                                        mangSanPhamMoi.add(sanPhamMoiModel.getResult().get(i));
+                                    }
+                                    spMoiAdapter.notifyItemRangeInserted(position, soluongadd);
+                                }
+                            }
+                            else {
+                                int position = mangSanPhamMoi.size()-1;
+                                mangSanPhamMoi.remove(position);
+                                spMoiAdapter.notifyItemRemoved(position);
+                                Toast.makeText(getActivity(),"Đã hết sản phẩm", Toast.LENGTH_LONG).show();
                             }
                         },throwable -> {
                             Toast.makeText(getActivity(),throwable.getMessage(), Toast.LENGTH_LONG).show();
