@@ -45,6 +45,7 @@ public class SearchActivity extends AppCompatActivity {
     String sortGlobal = "";
     Button btnLienQuan, btnMoiNhat, btnKhuyenMai, btnGia;
     View viewLienQuan, viewMoiNhat, viewKhuyenMai, viewGia;
+    Drawable icon_down, icon_up, icon_default;
 
 
     @Override
@@ -58,6 +59,7 @@ public class SearchActivity extends AppCompatActivity {
         handleSearch();
     }
     private void clearButtonView(){
+        btnGia.setCompoundDrawablesWithIntrinsicBounds(null, null, icon_default, null);
         viewLienQuan.setVisibility(View.GONE);
         btnLienQuan.setTextColor(Color.BLACK);
         viewMoiNhat.setVisibility(View.GONE);
@@ -117,6 +119,27 @@ public class SearchActivity extends AppCompatActivity {
                 getSanPhamSearch(typeGlobal, nameGlobal);
             }
         });
+        btnGia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sortGlobal == "" || sortGlobal == "ASC"){
+                    sortGlobal = "DESC";
+                    clearButtonView();
+                    viewGia.setVisibility(View.VISIBLE);
+                    btnGia.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.main));
+                    btnGia.setCompoundDrawablesWithIntrinsicBounds(null, null, icon_down, null);
+                    getSanPhamSearch(sortGlobal, nameGlobal);
+                }
+                else {
+                    sortGlobal = "ASC";
+                    clearButtonView();
+                    viewGia.setVisibility(View.VISIBLE);
+                    btnGia.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.main));
+                    btnGia.setCompoundDrawablesWithIntrinsicBounds(null, null, icon_up, null);
+                    getSanPhamSearch(sortGlobal, nameGlobal);
+                }
+            }
+        });
     }
 
     private void actionToolBar() {
@@ -133,6 +156,9 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void AnhXa(){
+        icon_default = getResources().getDrawable(R.drawable.default_arrow);
+        icon_down = getResources().getDrawable(R.drawable.arrow_down);
+        icon_up = getResources().getDrawable(R.drawable.arrow_up);
         linearLayout = findViewById(R.id.linearInSearchView);
         btnLienQuan = findViewById(R.id.btnLienQuan);
         btnMoiNhat = findViewById(R.id.btnMoiNhat);
