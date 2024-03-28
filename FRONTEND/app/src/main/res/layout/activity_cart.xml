@@ -65,7 +65,7 @@
                 android:paddingBottom="15dp"
                 android:textAlignment="textEnd"
                 android:layout_weight="1"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="@dimen/_13ssp"
@@ -73,15 +73,14 @@
                 android:text="₫"/>
 
             <TextView
-                android:textAlignment="textEnd"
                 android:id="@+id/txtTongTien"
-                android:text="50.000 "
-                android:textSize="@dimen/_13ssp"
-                android:textStyle="bold"
-                android:textColor="#FF0000"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="50.000"
+                android:textColor="#FF0000"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>

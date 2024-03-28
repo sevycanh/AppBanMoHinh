@@ -15,6 +15,9 @@ import android.widget.Toast;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.adapter.ProductAdapter;
 import com.example.shopmohinh.model.Product;
+import com.example.shopmohinh.model.Cart;
+import com.example.shopmohinh.model.User;
+import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.retrofit.SalesApi;
 import com.example.shopmohinh.utils.Utils;
@@ -22,6 +25,7 @@ import com.example.shopmohinh.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -42,6 +46,10 @@ public class ProductActivity extends AppCompatActivity {
     private int currentItemCount = 0;
     private int maxItems = 0;
 
+    ApiBanHang apiBanHang;
+
+    Product productTemp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +60,42 @@ public class ProductActivity extends AppCompatActivity {
         ActionToolBar();
         getData(page);
         addEventLoad();
+        if (Paper.book().read("user") != null){
+            User user = Paper.book().read("user");
+            Utils.user_current = user;
+        }
+        initCart();
+    }
+
+    private void initCart() {
+        compositeDisposable.add(apiBanHang.getShoppingCart(Utils.user_current.getAccount_id())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        productModel -> {
+                            if(productModel.isSuccess()){
+                                productList = productModel.getResult();
+                                productToCart(productList);
+                            }
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
+    }
+
+    private void productToCart(List<Product> productList) {
+        for (int i = 0; i < productList.size(); i++) {
+            productTemp = productList.get(i);
+            Cart cartTemp = new Cart();
+            cartTemp.setIdProduct(productTemp.getProduct_id());
+            cartTemp.setQuantity(productTemp.getQuantity());
+            cartTemp.setName(productTemp.getName());
+            int finalPrice = productTemp.getPrice() - (productTemp.getPrice() * productTemp.getCoupon() / 100);
+            cartTemp.setPrice(finalPrice);
+            cartTemp.setImage(productTemp.getMain_image());
+            Utils.carts.add(cartTemp);
+        }
     }
 
     private void addEventLoad() {
@@ -153,6 +197,7 @@ public class ProductActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         productList = new ArrayList<>();
+        apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
     }
 
     @Override

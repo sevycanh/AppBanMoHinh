@@ -1,6 +1,8 @@
 package com.example.shopmohinh.retrofit;
 import com.example.shopmohinh.model.CartModel;
 import com.example.shopmohinh.model.MessageModel;
+
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -20,7 +22,7 @@ public interface ApiBanHang {
     @POST("donhang.php")
     @FormUrlEncoded
     Observable<MessageModel> createOrder(
-            @Field("email") String email,
+            @Field("username") String username,
             @Field("phone") String sdt,
             @Field("total") String tongtien,
             @Field("accountId") int id,
@@ -39,10 +41,10 @@ public interface ApiBanHang {
     @POST("update_profile.php")
     @FormUrlEncoded
     Observable<MessageModel> updateProfile(
-            @Field("userId") int id,
-            @Field("userName") String name,
-            @Field("userPhone") String phone,
-            @Field("userAddress") String address
+            @Field("accountId") int id,
+            @Field("username") String name,
+            @Field("phone") String phone,
+            @Field("address") String address
             );
 
     @POST("shopping_cart.php")
@@ -95,4 +97,11 @@ public interface ApiBanHang {
     Observable<LoaiSPModel> getLoaiSp();
     @GET("getsanphammoi.php")
     Observable<SanPhamMoiModel> getSanPhamMoi();
+
+    @POST("checkQuantityProduct.php")
+    @FormUrlEncoded
+    Observable<MessageModel> checkQuantityProduct(
+            @Field("productId") int productId
+    );
+
 }

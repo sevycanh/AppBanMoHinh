@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,6 +22,8 @@ import com.example.shopmohinh.R;
 import com.example.shopmohinh.model.Cart;
 import com.example.shopmohinh.model.ImageAdapter;
 import com.example.shopmohinh.model.Product;
+import com.example.shopmohinh.retrofit.ApiBanHang;
+import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
 import com.nex3z.notificationbadge.NotificationBadge;
 
@@ -29,6 +32,9 @@ import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import me.relex.circleindicator.CircleIndicator;
 
 public class ProductDetailActivity extends AppCompatActivity {
@@ -40,6 +46,8 @@ public class ProductDetailActivity extends AppCompatActivity {
     private CircleIndicator circleIndicator;
     Product product;
     NotificationBadge badge;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+    ApiBanHang apiBanHang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +87,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 if (Utils.carts.get(i).getIdProduct() == product.getProduct_id()){
                     Utils.carts.get(i).setQuantity(quantity + Utils.carts.get(i).getQuantity());
                     flag = true;
+                    UpdateCartApi(Utils.carts.get(i).getQuantity());
                 }
             }
             if (flag == false){
@@ -93,6 +102,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 cart.setName(product.getName());
                 cart.setImage(product.getMain_image());
                 Utils.carts.add(cart);
+                CartApi(quantity);
             }
         } else {
             int quantity = Integer.parseInt(txtQuantity.getText().toString());
@@ -107,6 +117,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             cart.setName(product.getName());
             cart.setImage(product.getMain_image());
             Utils.carts.add(cart);
+            CartApi(quantity);
         }
         badge.setText(String.valueOf(Utils.carts.size()));
     }
@@ -205,6 +216,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         if(Utils.carts!=null){
             badge.setText(String.valueOf(Utils.carts.size()));
         }
+        apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
+
     }
 
     private void ActionToolBar() {
@@ -217,4 +230,44 @@ public class ProductDetailActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        badge.setText(String.valueOf(Utils.carts.size()));
+    }
+
+    private void CartApi(int quantity){
+        Log.d("Cart", "Success");
+        Log.d("Cart", String.valueOf(Utils.user_current.getAccount_id()));
+        Log.d("Cart", String.valueOf(product.getProduct_id()));
+        Log.d("Cart", String.valueOf(quantity));
+        compositeDisposable.add(apiBanHang.shoppingCart(Utils.user_current.getAccount_id(), product.getProduct_id(), quantity)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        messageModel -> {
+                            Toast.makeText(getApplicationContext(), "Thanh cong", Toast.LENGTH_SHORT).show();
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
+    }
+
+    private void UpdateCartApi(int quantity){
+        compositeDisposable.add(apiBanHang.updateShoppingCart(Utils.user_current.getAccount_id(), product.getProduct_id(), quantity)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        messageModel -> {
+                            Toast.makeText(getApplicationContext(), "Thanh cong", Toast.LENGTH_SHORT).show();
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
+    }
+
+
 }
