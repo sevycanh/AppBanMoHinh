@@ -5,6 +5,8 @@ import com.example.shopmohinh.model.LoaiSPModel;
 import com.example.shopmohinh.model.SanPhamMoiModel;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
+
+import com.example.shopmohinh.model.SanPhamSearchModel;
 import com.example.shopmohinh.model.UserModel;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -33,5 +35,12 @@ public interface ApiBanHang {
     @FormUrlEncoded
     Observable<SanPhamMoiModel> getSanPhamMoi(
             @Field("page") int page
+    );
+
+    @POST("searchsp.php")
+    @FormUrlEncoded
+    Observable<SanPhamSearchModel> searchSp (
+            @Field("type") String type,
+            @Field("tensp") String tensp
     );
 }

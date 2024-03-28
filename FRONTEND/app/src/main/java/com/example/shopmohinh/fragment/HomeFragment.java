@@ -44,7 +44,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
-    NavigationView navigationView;
     DrawerLayout drawerLayout;
     ImageSlider imageSlider;
     SearchView searchView;
@@ -62,7 +61,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         Anhxa(rootView);
         ActionViewFlipper();
@@ -95,29 +93,18 @@ public class HomeFragment extends Fragment {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                //add null in list spmoi
-//                mangSanPhamMoi.add(null);
-//                spMoiAdapter.notifyItemInserted(mangSanPhamMoi.size()-1);
+                Toast.makeText(getActivity(), "Đang tải...", Toast.LENGTH_SHORT).show();
             }
         });
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-//              mangSanPhamMoi.remove(mangSanPhamMoi.size()-1);
-//              spMoiAdapter.notifyItemRemoved(mangSanPhamMoi.size()-1);
                 page = page + 1;
                 getSanPhamMoi(page);
                 isLoading = false;
                 spMoiAdapter.notifyDataSetChanged();
             }
-        },500);
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                //remove null in list spmoi
-//
-//            }
-//        }, 2000);
+        },2500);
     }
 
     private void ActionViewFlipper() {

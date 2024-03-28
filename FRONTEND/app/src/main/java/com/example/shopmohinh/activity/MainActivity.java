@@ -8,9 +8,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -21,16 +21,12 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.denzcoskun.imageslider.ImageSlider;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.Utils.Utils;
-import com.example.shopmohinh.adapter.SPMoiAdapter;
 import com.example.shopmohinh.fragment.AccountFragment;
 import com.example.shopmohinh.fragment.ContactFragment;
 import com.example.shopmohinh.fragment.HomeFragment;
 import com.example.shopmohinh.fragment.OrderFragment;
-import com.example.shopmohinh.fragment.SearchFragment;
-import com.example.shopmohinh.model.SanPhamMoi;
 
 import com.example.shopmohinh.adapter.Loaisp_Adapter;
 import com.example.shopmohinh.model.LoaiSP;
@@ -59,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     Loaisp_Adapter loaispAdapter;
     BottomNavigationView bottomNavigationView;
     FrameLayout frameLayout;
+    Boolean checkViewSearch = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,22 +63,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Anhxa();
         ActionBar();
-        setSearchView();
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    clrFrameLayout();
-                    bottomNavigationView.setVisibility(View.GONE);
-                    loadFragment(new SearchFragment(), false);
-                }
-            }
-        });
-        if (isConnected(this)) {
-            getLoaiSanPham();
-        } else {
-            Toast.makeText(getApplicationContext(), "Không có kết nối Internet!", Toast.LENGTH_LONG).show();
-        }
+        handleSearchClicked();
+        getLoaiSanPham();
+        loadBottomNavView();
+    }
+
+    private void loadBottomNavView(){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -109,10 +96,17 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(new HomeFragment(), true);
     }
 
-
-    private void setSearchView() {
-        searchView.setIconifiedByDefault(false);
-        searchView.setQueryHint("Tìm kiếm");
+    private void handleSearchClicked(){
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
     }
 
     private void ActionBar() {
