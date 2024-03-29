@@ -42,7 +42,6 @@ public class AddProductActivity extends AppCompatActivity {
     Button btn_multiple_img;
     Button btn_single_img;
     ImageView single_img;
-    ImageView download_img;
     Button btn_submit;
     ProgressBar progressBar;
 
@@ -64,7 +63,6 @@ public class AddProductActivity extends AppCompatActivity {
         handleClickedButtonSingle();
         handleClickedButtonMultiple();
         handleSubmitData();
-        downloadToFirebase();
     }
 
     @Override
@@ -138,29 +136,6 @@ public class AddProductActivity extends AppCompatActivity {
         });
     }
 
-    private void downloadToFirebase(){
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageReference1 = storage.getReference()
-                .child("/images")
-                .child("776f2bd4-d279-4489-a21e-c2521b3e6f44");
-
-        storageReference1.getDownloadUrl()
-                .addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Glide.with(AddProductActivity.this)
-                                .load(uri)
-                                .into(download_img);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(AddProductActivity.this, "Download Failed", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
     private void uploadToFirebase(Uri imageuri) {
 
         final String randomName = UUID.randomUUID().toString();
@@ -201,7 +176,6 @@ public class AddProductActivity extends AppCompatActivity {
     private void initView() {
         uri = new ArrayList<>();
         single_img = findViewById(R.id.single_image);
-        download_img = findViewById(R.id.download_image);
         recyclerView = findViewById(R.id.recyclerView_Multiple_Images);
         btn_single_img = findViewById(R.id.getMainPickture);
         btn_multiple_img = findViewById(R.id.getSubPickture);
