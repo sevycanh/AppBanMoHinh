@@ -3,12 +3,14 @@ package com.manager.appbanmohinhmanager.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
+    CardView cardViewProductManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +46,18 @@ public class MainActivity extends AppCompatActivity {
             Utils.user_current = user;
         }
         getToken();
-
         initView();
+        initControll();
+    }
+
+    protected void initControll(){
+        cardViewProductManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddProductActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getToken() {
@@ -66,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
-
+        cardViewProductManager = findViewById(R.id.cardSanPham_Manager);
         toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
     }
