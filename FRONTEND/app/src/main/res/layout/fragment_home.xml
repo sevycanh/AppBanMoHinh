@@ -7,7 +7,6 @@
     android:layout_marginTop="@dimen/_43sdp"
     tools:context=".fragment.HomeFragment">
 
-    <!-- Include the entire layout of activity_main.xml -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -134,61 +133,9 @@
                                     </LinearLayout>
                                 </androidx.cardview.widget.CardView>
 
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="10dp">
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
 
-                                        <ImageView
-                                            android:id="@+id/imageView4"
-                                            android:layout_width="50dp"
-                                            android:layout_height="50dp"
-                                            android:layout_gravity="center"
-                                            android:src="@drawable/wheel" />
 
-                                        <TextView
-                                            android:id="@+id/textView4"
-                                            android:layout_width="50dp"
-                                            android:layout_height="wrap_content"
-                                            android:text="Vòng quay may mắn"
-                                            android:textAlignment="center"
-                                            android:textColor="#000000"
-                                            android:textSize="10dp" />
-                                    </LinearLayout>
-                                </androidx.cardview.widget.CardView>
-
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="10dp">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
-
-                                        <ImageView
-                                            android:id="@+id/imageView5"
-                                            android:layout_width="50dp"
-                                            android:layout_height="50dp"
-                                            android:layout_gravity="center"
-                                            android:src="@drawable/wheel" />
-
-                                        <TextView
-                                            android:id="@+id/textView5"
-                                            android:layout_width="50dp"
-                                            android:layout_height="wrap_content"
-                                            android:text="Vòng quay may mắn"
-                                            android:textAlignment="center"
-                                            android:textColor="#000000"
-                                            android:textSize="10dp" />
-                                    </LinearLayout>
-                                </androidx.cardview.widget.CardView>
 
                                 <androidx.cardview.widget.CardView
                                     android:layout_width="wrap_content"
