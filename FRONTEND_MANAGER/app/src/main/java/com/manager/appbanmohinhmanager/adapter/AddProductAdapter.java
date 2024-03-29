@@ -32,6 +32,14 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull AddProductAdapter.ViewHolder holder, int position) {
         holder.imageView.setImageURI(uriArrayList.get(position));
+
+        holder.remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uriArrayList.remove(position);
+                notifyItemRangeChanged(position,getItemCount());
+            }
+        });
     }
 
     @Override
@@ -40,11 +48,12 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+        ImageView imageView,remove;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.multiple_image);
+            remove = itemView.findViewById(R.id.remove_item);
         }
     }
 }

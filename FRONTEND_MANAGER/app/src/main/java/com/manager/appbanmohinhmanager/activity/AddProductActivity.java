@@ -11,18 +11,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.manager.appbanmohinhmanager.R;
@@ -38,7 +42,9 @@ public class AddProductActivity extends AppCompatActivity {
     Button btn_multiple_img;
     Button btn_single_img;
     ImageView single_img;
+    ImageView download_img;
     Button btn_submit;
+    ProgressBar progressBar;
 
     ArrayList<Uri> uri;
     AddProductAdapter adapter;
@@ -58,6 +64,7 @@ public class AddProductActivity extends AppCompatActivity {
         handleClickedButtonSingle();
         handleClickedButtonMultiple();
         handleSubmitData();
+        downloadToFirebase();
     }
 
     @Override
@@ -100,24 +107,6 @@ public class AddProductActivity extends AppCompatActivity {
 
     }
 
-    private void uploadToFirebase(Uri imageuri) {
-        final String randomName = UUID.randomUUID().toString();
-        storageReference = FirebaseStorage.getInstance().getReference().child("images/" + randomName);
-        storageReference.putFile(imageuri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(AddProductActivity.this, "Images Uploaded", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(AddProductActivity.this, "Images Uploading failed", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
     private void handleClickedButtonSingle() {
         btn_single_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +138,54 @@ public class AddProductActivity extends AppCompatActivity {
         });
     }
 
+    private void downloadToFirebase(){
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageReference1 = storage.getReference()
+                .child("/images")
+                .child("776f2bd4-d279-4489-a21e-c2521b3e6f44");
+
+        storageReference1.getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Glide.with(AddProductActivity.this)
+                                .load(uri)
+                                .into(download_img);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(AddProductActivity.this, "Download Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void uploadToFirebase(Uri imageuri) {
+
+        final String randomName = UUID.randomUUID().toString();
+        storageReference = FirebaseStorage.getInstance().getReference().child("images/" + randomName);
+        storageReference.putFile(imageuri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        progressBar.setVisibility(View.GONE);
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(AddProductActivity.this, "Images Uploading failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
     private void handleSubmitData() {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,10 +201,12 @@ public class AddProductActivity extends AppCompatActivity {
     private void initView() {
         uri = new ArrayList<>();
         single_img = findViewById(R.id.single_image);
+        download_img = findViewById(R.id.download_image);
         recyclerView = findViewById(R.id.recyclerView_Multiple_Images);
         btn_single_img = findViewById(R.id.getMainPickture);
         btn_multiple_img = findViewById(R.id.getSubPickture);
         btn_submit = findViewById(R.id.submitDataAddProduct);
+        progressBar = findViewById(R.id.progressBarAddProduct);
         adapter = new AddProductAdapter(uri);
         recyclerView.setLayoutManager(new GridLayoutManager(AddProductActivity.this, 5));
         recyclerView.setAdapter(adapter);
