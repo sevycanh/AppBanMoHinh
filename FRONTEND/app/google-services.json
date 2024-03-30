@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "811489681826",
+    "project_id": "appordertoypj",
+    "storage_bucket": "appordertoypj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811489681826:android:8ae8135720cdc2d682d2fb",
+        "android_client_info": {
+          "package_name": "com.example.shopmohinh"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJewAOm5xb0qPnRnrF6J4TRqrdRrWsa8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

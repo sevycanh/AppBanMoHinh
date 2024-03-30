@@ -27,6 +27,7 @@
                 android:layout_height="@dimen/_20sdp"/>
 
             <ImageView
+                android:id="@+id/imgCart_CTSP"
                 android:layout_marginTop="@dimen/_13sdp"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
