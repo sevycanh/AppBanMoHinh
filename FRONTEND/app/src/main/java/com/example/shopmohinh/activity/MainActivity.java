@@ -1,6 +1,7 @@
 package com.example.shopmohinh.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -48,6 +50,7 @@ import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
@@ -87,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
         Anhxa();
         ActionBar();
         setSearchView();
+        getEventClick();
+
         if (isConnected(this)) {
             getSanPhamMoi();
             getLoaiSanPham();
@@ -205,11 +210,30 @@ public class MainActivity extends AppCompatActivity {
                             if (loaiSPModel.isSuccess()) {
                                 mangLoaiSp = loaiSPModel.getResult();
                                 loaispAdapter = new Loaisp_Adapter(getApplicationContext(), mangLoaiSp);
-                                ListView listView = findViewById(R.id.listViewHomePage);
                                 listView.setAdapter(loaispAdapter);
                             }
                         }
                 ));
+    }
+
+    private void getEventClick() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 0:
+                        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
+                        intent.putExtra("id_category", 1);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        Intent intent1 = new Intent(getApplicationContext(), ProductActivity.class);
+                        intent1.putExtra("id_category", 2);
+                        startActivity(intent1);
+                        break;
+                }
+            }
+        });
     }
 
     private void loadFragment(Fragment fragment, boolean isAppInitialized) {
