@@ -1,11 +1,13 @@
 package com.example.shopmohinh.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +18,11 @@ import com.example.shopmohinh.R;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -26,10 +33,9 @@ public class LogInActivity extends AppCompatActivity {
     EditText edtEmail, edtPass;
     Button btnSignIn;
     TextView txtForgot, txtSignUp, txtSaiThongTin;
-
+    FirebaseAuth firebaseAuth;
     ApiBanHang apiBanHang;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-    boolean isLogin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +58,8 @@ public class LogInActivity extends AppCompatActivity {
         txtForgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), ResetPassActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), ForgotPassActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -69,9 +75,17 @@ public class LogInActivity extends AppCompatActivity {
                 } else {
                     //save acc
                     Paper.book().write("email", email);
-                    Paper.book().write("pass", pass);
-
-                    dangNhap(email, pass);
+                    firebaseAuth.signInWithEmailAndPassword(email, pass)
+                            .addOnCompleteListener(LogInActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()){
+                                        dangNhap(email);
+                                    } else {
+                                        txtSaiThongTin.setVisibility(View.VISIBLE);
+                                    }
+                                }
+                            });
                 }
             }
         });
@@ -89,38 +103,24 @@ public class LogInActivity extends AppCompatActivity {
         btnSignIn = findViewById(R.id.btnSignIn);
         txtSaiThongTin = findViewById(R.id.txt_SaiThongTin);
 
-        if (Paper.book().read("email") != null && Paper.book().read("pass") != null){
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        if (Paper.book().read("email") != null){
             edtEmail.setText(Paper.book().read("email"));
-            edtPass.setText(Paper.book().read("pass"));
-            if (Paper.book().read("isLogin") != null){
-                boolean flag = Paper.book().read("isLogin");
-                if (flag){
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-//                            dangNhap(Paper.book().read("email"), Paper.book().read("pass"));
-                        }
-                    }, 1000);
-                }
-            }
         }
     }
 
-    private void dangNhap(String email, String pass) {
-        compositeDisposable.add(apiBanHang.dangNhap(email, pass)
+    private void dangNhap(String email) {
+        compositeDisposable.add(apiBanHang.dangNhap(email)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         userModel -> {
                             if (userModel.isSuccess()){
-                                isLogin = true;
-                                Paper.book().write("isLogin", isLogin);
-
                                 Utils.user_current = userModel.getResult().get(0);
-
                                 //Luu lai thong tin nguoi dung
                                 Paper.book().write("user", userModel.getResult().get(0));
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {
@@ -136,9 +136,8 @@ public class LogInActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (Utils.user_current.getEmail() != null && Utils.user_current.getPassword() != null){
+        if (Utils.user_current.getEmail() != null){
             edtEmail.setText(Utils.user_current.getEmail());
-            edtPass.setText(Utils.user_current.getPassword());
         }
     }
 

@@ -8,9 +8,18 @@ public class User {
     String username;
     String password;
     String address;
-    int phone;
+    String phone;
     int role;
     int status;
+    String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public int getAccount_id() {
         return account_id;
@@ -52,11 +61,11 @@ public class User {
         this.address = address;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

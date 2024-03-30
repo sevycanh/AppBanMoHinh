@@ -37,22 +37,12 @@ import java.util.List;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public class HomeFragment extends Fragment {
-    Toolbar toolBar;
     RecyclerView recyclerView;
-    NavigationView navigationView;
-    ListView listView;
     DrawerLayout drawerLayout;
     ImageSlider imageSlider;
-    SearchView searchView;
-    SPMoiAdapter spMoiAdapter;
     List<SanPhamMoi> mangSanPhamMoi;
-    CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
     List<LoaiSP> mangLoaiSp;
-    Loaisp_Adapter loaispAdapter;
-    BottomNavigationView bottomNavigationView;
-    FrameLayout frameLayout;
-    Fragment orderFragment;
 
     @Nullable
     @Override
@@ -62,34 +52,8 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         Anhxa(rootView);
         ActionViewFlipper();
-//        setSearchView();
-//        ActionBar();
         return rootView;
     }
-
-//    private void setSearchView() {
-//        searchView.setIconifiedByDefault(false);
-//        searchView.setQueryHint("Tìm kiếm");
-//    }
-
-//    private void ActionBar() {
-//        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolBar);
-//        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
-//
-//        if (actionBar != null) {
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//            actionBar.setHomeAsUpIndicator(android.R.drawable.ic_menu_sort_by_size);
-//
-//            toolBar.setNavigationOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                    drawerLayout.openDrawer(GravityCompat.START);
-//
-//                }
-//            });
-//        }
-//    }
 
     private void ActionViewFlipper() {
         List<SlideModel> ArrayQuangCao = new ArrayList<>();
@@ -136,33 +100,13 @@ public class HomeFragment extends Fragment {
     };
 
     private void Anhxa(View rootView) {
-//        toolBar = rootView.findViewById(R.id.toolBarHomePage_HomeFragment);
         recyclerView = rootView.findViewById(R.id.recyclerViewHomePage_HomeFragMent);
         drawerLayout = rootView.findViewById(R.id.drawerLayoutHomePage_HomeFragMent);
         imageSlider = rootView.findViewById(R.id.imageSliderHomePage_HomeFragMent);
-//        searchView = rootView.findViewById(R.id.searchHomePage_HomeFragment);
         mangSanPhamMoi = new ArrayList<>();
         mangLoaiSp = new ArrayList<>();
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
     }
-
-//    private void getSanPhamMoi() {
-//        compositeDisposable.add(apiBanHang.getSanPhamMoi().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(
-//                        sanPhamMoiModel -> {
-//                            if (sanPhamMoiModel.isSuccess()) {
-////                              Toast.makeText(getApplicationContext(),loaiSPModel.getResult().get(0).getName(), Toast.LENGTH_LONG).show();
-//                                mangSanPhamMoi = sanPhamMoiModel.getResult();
-////                                spMoiAdapter = new Loaisp_Adapter(getActivity().getApplicationContext(), mangSanPhamMoi);
-//                                ListView listView = getActivity().findViewById(R.id.listViewHomePage_HomeFragMent);
-//                                listView.setAdapter(spMoiAdapter);
-//                            }
-//                        },throwable -> {
-//                            Toast.makeText(getActivity(),throwable.getMessage(), Toast.LENGTH_LONG).show();
-//                        }
-//
-//                ));
-//    }
 }
 
 

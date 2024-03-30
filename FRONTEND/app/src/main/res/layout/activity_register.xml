@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/background"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -49,19 +49,6 @@
                 android:drawableLeft="@drawable/baseline_email_24"
                 android:drawablePadding="@dimen/_8sdp"
                 android:hint="Email"
-                android:padding="@dimen/_8sdp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="@dimen/_20sdp"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
-                android:id="@+id/edtUsername_signUp"
-                android:background="@drawable/custom_edittext_login"
-                android:drawableLeft="@drawable/baseline_person_24"
-                android:drawablePadding="@dimen/_8sdp"
-                android:hint="Username"
                 android:padding="@dimen/_8sdp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"

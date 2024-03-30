@@ -1,5 +1,12 @@
 package com.example.shopmohinh.activity;
 
+
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.shopmohinh.R;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,6 +21,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -23,6 +31,7 @@ import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.example.shopmohinh.R;
+import com.example.shopmohinh.model.User;
 import com.example.shopmohinh.utils.Utils;
 import com.example.shopmohinh.adapter.SPMoiAdapter;
 import com.example.shopmohinh.fragment.AccountFragment;
@@ -36,45 +45,49 @@ import com.example.shopmohinh.model.LoaiSP;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 
 import com.example.shopmohinh.retrofit.RetrofitClient;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolBar;
-    RecyclerView recyclerView;
     NavigationView navigationView;
     ListView listView;
     DrawerLayout drawerLayout;
-    ImageSlider imageSlider;
     SearchView searchView;
-    SPMoiAdapter spMoiAdapter;
-    List<SanPhamMoi> mangSanPhamMoi;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
     List<LoaiSP> mangLoaiSp;
     Loaisp_Adapter loaispAdapter;
     BottomNavigationView bottomNavigationView;
     FrameLayout frameLayout;
-    Fragment orderFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        apiSanPhamMoi = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiSanPhamMoi.class);
+
+        //load user hiện tại
+        Paper.init(this);
+        if (Paper.book().read("user") != null){
+            User user = Paper.book().read("user");
+            Utils.user_current = user;
+        }
+        getToken();
+
         Anhxa();
         ActionBar();
         setSearchView();
         if (isConnected(this)) {
-//            Toast.makeText(getApplicationContext(), "OK!", Toast.LENGTH_LONG).show();
-//            ActionViewFlipper();
             getSanPhamMoi();
             getLoaiSanPham();
         } else {
@@ -107,6 +120,37 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(new HomeFragment(), true);
     }
 
+    private void getToken() {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnSuccessListener(new OnSuccessListener<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        if (!TextUtils.isEmpty(s)){
+                            compositeDisposable.add(apiBanHang.updateToken(Utils.user_current.getAccount_id(), s)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(
+                                            messageModel -> {},
+                                            throwable -> {}
+                                    ));
+                        }
+                    }
+                });
+
+//        compositeDisposable.add(apiBanHang.gettoken(1)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(
+//                        userModel -> {
+//                            if (userModel.isSuccess()){
+//                                Utils.ID_RECEIVED = String.valueOf(userModel.getResult().get(0).getId());
+//                            }
+//                        }, throwable -> {
+//
+//                        }
+//                ));
+    }
+
     private void getSanPhamMoi() {
 
 
@@ -129,73 +173,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    private void ActionViewFlipper() {
-//
-//        List<SlideModel> ArrayQuangCao = new ArrayList<>();
-//        ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-42.jpg", null));
-//        ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-40.jpg", null));
-//        ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-23.jpg", null));
-//        imageSlider.setImageList(ArrayQuangCao, ScaleTypes.CENTER_CROP);
-//
-//        imageSlider.setOnTouchListener(touchListener);
-//    }
-
-//    View.OnTouchListener touchListener = new View.OnTouchListener() {
-//        private float startX;
-//        private float startY;
-//        private long startTime;
-//
-//        @Override
-//        public boolean onTouch(View v, MotionEvent event) {
-//            switch (event.getAction()) {
-//                case MotionEvent.ACTION_DOWN:
-//                    startX = event.getX();
-//                    startY = event.getY();
-//                    startTime = System.currentTimeMillis();
-//                    break;
-//                case MotionEvent.ACTION_UP:
-//                    float endX = event.getX();
-//                    float endY = event.getY();
-//                    long endTime = System.currentTimeMillis();
-//
-//                    float deltaX = endX - startX;
-//                    float deltaY = endY - startY;
-//                    long deltaTime = endTime - startTime;
-//
-//                    // Tính toán khoảng cách và thời gian để xác định hướng di chuyển
-//                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 100 && deltaTime < 200) {
-//                        // Xác định người dùng đã kéo sang trái hay sang phải
-//                        if (deltaX > 0) {
-//                            // Kéo sang phải
-//                            imageSlider.startSliding(10000);
-//                        } else {
-//                            // Kéo sang trái
-//                            imageSlider.startSliding(10000);
-//                        }
-//                    }
-//                    break;
-//            }
-//            return true;
-//        }
-//
-//
-//    };
-
     private void Anhxa() {
         toolBar = findViewById(R.id.toolBarHomePage);
-//        recyclerView = findViewById(R.id.recyclerViewHomePage);
         navigationView = findViewById(R.id.navigationHomePage);
         listView = findViewById(R.id.listViewHomePage);
         drawerLayout = findViewById(R.id.drawerLayoutHomePage);
-//        imageSlider = findViewById(R.id.imageSliderHomePage);
         searchView = findViewById(R.id.searchHomePage);
-        //Khoi tao list
-//        mangSanPhamMoi = new ArrayList<>();
-
-        //Khoi tao Adapter
-//        spMoiAdapter = new SPMoiAdapter(getApplicationContext(), mangSanPhamMoi);
-//        listView.setAdapter(spMoiAdapter);
-
         // retrofit get data tbl_category
         mangLoaiSp = new ArrayList<>();
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
@@ -220,7 +203,6 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(
                         loaiSPModel -> {
                             if (loaiSPModel.isSuccess()) {
-//                                Toast.makeText(getApplicationContext(),loaiSPModel.getResult().get(0).getName(), Toast.LENGTH_LONG).show();
                                 mangLoaiSp = loaiSPModel.getResult();
                                 loaispAdapter = new Loaisp_Adapter(getApplicationContext(), mangLoaiSp);
                                 ListView listView = findViewById(R.id.listViewHomePage);
@@ -235,8 +217,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         if (isAppInitialized) {
             fragmentTransaction.add(R.id.frameLayout, fragment);
-//            Toast.makeText(this, "Fragment", Toast.LENGTH_SHORT).show();
-
         } else {
             fragmentTransaction.replace(R.id.frameLayout, fragment);
         }
@@ -255,5 +235,4 @@ public class MainActivity extends AppCompatActivity {
             toolBar.setVisibility(View.VISIBLE);
         }
     }
-
 }

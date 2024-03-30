@@ -1,4 +1,4 @@
-package com.assignments.toystore.utils;
+package com.example.shopmohinh.utils;
 
 public class NumberWithDotSeparator {
     public static String formatNumberWithDotSeparator(int number) {
