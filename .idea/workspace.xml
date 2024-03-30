@@ -5,40 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5d4eda0-b72e-4142-9877-38da8a04f5a1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/AppBanMoHinh.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/retrofit/SalesApi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/utils/URLS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/anim/slide_in_right.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/anim/slide_out_right.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/drawable/baseline_perm_device_information_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/drawable/button_underline_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/activity_product_detail.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/item_category.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/values/sort_options.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/values/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FRONTEND/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/Interface/ItemClickListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/Interface/ItemClickListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/LogInActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/LogInActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/ProductActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/ProductActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/ProductDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/ProductDetailActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/CategoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/CategoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/ImageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/ImageAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/PhoneAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/PhoneAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/model/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/model/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/model/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/model/CategoryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/model/CategoryModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/model/ProductModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/model/ProductModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/res/drawable/baseline_shopping_cart_24.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/drawable/baseline_shopping_cart_24.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/ProductAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/ProductAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/utils/NumberWithDotSeparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/utils/NumberWithDotSeparator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/activity_product.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/activity_product.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/item_product.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/item_product.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,9 +30,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2dlxXJ5PoWzJwFo3qJSwQpoqKgr" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -70,7 +46,8 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "C:/Users/ADMIN/Desktop/AppBanMoHinh/FRONTEND",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/ADMIN/Desktop/AppBanMoHinh",
     "settings.editor.selected.configurable": "AndroidSdkUpdater"
   }
 }]]></component>

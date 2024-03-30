@@ -11,70 +11,43 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.shopmohinh.Interface.ItemClickListener;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.activity.ProductDetailActivity;
 import com.example.shopmohinh.model.Product;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-    Context context;
-    List<Product> products;
     private static final int VIEW_TYPE_DATA = 0;
     private static final int VIEW_TYPE_LOADING = 1;
+    Context context;
+    List<Product> products;
 
-    public ProductAdapter(Context applicationContext, List<Product> categoryList) {
-        this.context = applicationContext;
-        this.products = categoryList;
+    public ProductAdapter(Context context, List<Product> products) {
+        this.context = context;
+        this.products = products;
+    }
+
+    public void loadNewData(List<Product> newProductList) {
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if(viewType == VIEW_TYPE_DATA){
-            View view = LayoutInflater.from(parent.getContext()).inflate(com.example.shopmohinh.R.layout.item_product,parent,false);
+        if (viewType == VIEW_TYPE_DATA) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
             return new MyViewHolder(view);
-        }else{
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading,parent,false);
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading, parent, false);
             return new LoadingViewHolder(view);
-        }
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if(holder instanceof MyViewHolder){
-            MyViewHolder myViewHolder = (MyViewHolder)holder;
-            Product product = products.get(position);
-            myViewHolder.name.setText(product.getName());
-
-            myViewHolder.price.setText(formatNumberWithDotSeparator(product.getPrice()) + " VNĐ");
-
-            int price = product.getPrice();
-            int discount = product.getPrice() * product.getCoupon() / 100;
-            int finalPrice = price - discount;
-
-            myViewHolder.price_after_apply_promotion.setText(formatNumberWithDotSeparator(finalPrice) + " VNĐ");
-            Glide.with(context).load(product.getMain_image()).into(myViewHolder.image);
-
-            myViewHolder.setItemClickListener(new ItemClickListener() {
-                @Override
-                public void onClick(View view, int pos, boolean isLongClick) {
-                    if(!isLongClick){
-                        Intent intent = new Intent(context, ProductDetailActivity.class);
-                        intent.putExtra("productDetail",product);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
-                    }
-                }
-            });
-        }else{
-            LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
-            loadingViewHolder.progressBar.setIndeterminate(true);
         }
     }
 
@@ -84,23 +57,59 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof MyViewHolder) {
+            MyViewHolder myViewHolder = (MyViewHolder) holder;
+            Product product = products.get(position);
+            myViewHolder.id.setText(product.getProduct_id() + "");
+            myViewHolder.name.setText(product.getName());
+            myViewHolder.price.setText(formatNumberWithDotSeparator(product.getPrice()) + " VNĐ");
+            int price = product.getPrice();
+            int discount = product.getPrice() * product.getCoupon() / 100;
+            int finalPrice = price - discount;
+            myViewHolder.price_after_apply_promotion.setText(formatNumberWithDotSeparator(finalPrice) + " VNĐ");
+            Glide.with(context).load(product.getMain_image()).into(myViewHolder.image);
+
+            myViewHolder.setItemClickListener(new ItemClickListener() {
+                @Override
+                public void onClick(View view, int pos, boolean isLongClick) {
+                    if (!isLongClick) {
+                        Intent intent = new Intent(context, ProductDetailActivity.class);
+                        intent.putExtra("productDetail", (Serializable) product);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }
+                }
+            });
+        } else {
+            LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
+            loadingViewHolder.progressBar.setIndeterminate(true);
+        }
+    }
+
+    @Override
     public int getItemCount() {
         return products.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView name, price,price_after_apply_promotion;
-        TextView id;
+    public class LoadingViewHolder extends RecyclerView.ViewHolder {
+        ProgressBar progressBar;
+
+        public LoadingViewHolder(@NonNull View itemView) {
+            super(itemView);
+            progressBar = itemView.findViewById(R.id.progressBar);
+        }
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView name, price, price_after_apply_promotion, id;
         ImageView image;
 
         private ItemClickListener itemClickListener;
 
-        public void setItemClickListener(ItemClickListener itemClickListener) {
-            this.itemClickListener = itemClickListener;
-        }
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            id = itemView.findViewById(R.id.item_id);
             name = itemView.findViewById(R.id.item_name);
             price = itemView.findViewById(R.id.item_price);
             price.setPaintFlags(price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
@@ -109,20 +118,13 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             itemView.setOnClickListener(this);
         }
 
+        public void setItemClickListener(ItemClickListener itemClickListener) {
+            this.itemClickListener = itemClickListener;
+        }
+
         @Override
         public void onClick(View view) {
-            itemClickListener.onClick(view,getAdapterPosition(),false);
-        }
-    }
-
-
-    public class LoadingViewHolder extends RecyclerView.ViewHolder{
-        ProgressBar progressBar;
-
-
-        public LoadingViewHolder(@NonNull View itemView) {
-            super(itemView);
-            progressBar = itemView.findViewById(R.id.progressBar);
+            itemClickListener.onClick(view, getAdapterPosition(), false);
         }
     }
 }
