@@ -1,5 +1,6 @@
 package com.example.shopmohinh.retrofit;
 import com.example.shopmohinh.model.CartModel;
+import com.example.shopmohinh.model.CouponModel;
 import com.example.shopmohinh.model.MessageModel;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.Field;
@@ -12,6 +13,9 @@ import com.example.shopmohinh.model.SanPhamMoiModel;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
 import com.example.shopmohinh.model.UserModel;
+
+import java.sql.Date;
+
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -91,6 +95,34 @@ public interface ApiBanHang {
             @Field("id") int id,
             @Field("token") String token
     );
+
+    @POST("getcoin.php")
+    @FormUrlEncoded
+    Observable<UserModel> getCoin(
+            @Field("id") int id
+    );
+
+    @POST("updatecoin.php")
+    @FormUrlEncoded
+    Observable<MessageModel> updateCoin(
+            @Field("id") int id,
+            @Field("coin") int coin
+    );
+
+    @POST("insertcoupon.php")
+    @FormUrlEncoded
+    Observable<CouponModel> insertCoupon(
+            @Field("name") String name,
+//            @Field("code") String code,
+            @Field("count") int count,
+            @Field("discount") int discount,
+//            @Field("dateFrom") Date dateFrom,
+//            @Field("dateTo") Date dateTo,
+            @Field("userId") int userId,
+            @Field("isPublic") int isPublic,
+            @Field("duration") int duration
+            );
+
   @GET("getloaisp.php")
     Observable<LoaiSPModel> getLoaiSp();
     @GET("getsanphammoi.php")
