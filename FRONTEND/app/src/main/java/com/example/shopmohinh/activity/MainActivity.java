@@ -85,12 +85,13 @@ public class MainActivity extends AppCompatActivity {
             User user = Paper.book().read("user");
             Utils.user_current = user;
         }
-        getToken();
-
         Anhxa();
         ActionBar();
         setSearchView();
         getEventClick();
+
+        getToken();
+        checkIn();
 
         if (isConnected(this)) {
             getSanPhamMoi();
@@ -123,6 +124,17 @@ public class MainActivity extends AppCompatActivity {
 
         });
         loadFragment(new HomeFragment(), true);
+    }
+
+    private void checkIn() {
+        //check-in để update điểm danh và lượt chơi lucky box
+        compositeDisposable.add(apiBanHang.checkIn(Utils.user_current.getAccount_id())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        messageModel -> {},
+                        throwable -> {}
+                ));
     }
 
     private void getToken() {
@@ -258,5 +270,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             toolBar.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
     }
 }
