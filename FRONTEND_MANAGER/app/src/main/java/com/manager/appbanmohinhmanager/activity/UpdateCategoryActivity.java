@@ -7,11 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,31 +36,39 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class AddCategoryActivity extends AppCompatActivity {
-    EditText txtTenDanhMuc;
-    Button btnChonAnh;
-    Button btnSubmit;
+public class UpdateCategoryActivity extends AppCompatActivity {
+    Toolbar toolbar;
+    EditText txtNameCategory;
     ImageView imgCategory;
-    private static final int PICK_IMAGE = 1;
+    Button btnChonAnh;
+    Button btnSave;
+    ProgressBar progressBar;
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-
-    private Uri imageUri;
-
-    Toolbar toolbar;
     StorageReference storageReference;
-    ProgressBar progressBar;
+    Uri imageUri;
     ApiManager apiManager;
 
+    private static final int PICK_IMAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_category);
+        Bundle bundle = getIntent().getExtras();
+        setContentView(R.layout.activity_update_category);
         initView();
         actionToolBar();
+        showData(bundle);
         handleClickedButtonAddImg();
-        handleButtonSubmit();
+        handleClickedButtonSave(bundle);
+    }
+
+    private void showData(Bundle bundle){
+        txtNameCategory.setText(bundle.getString("nameCategory"));
+        Uri uri = bundle.getParcelable("UriImage");
+        Glide.with(getApplicationContext())
+                .load(uri)
+                .into(imgCategory);
     }
 
     private void handleClickedButtonAddImg() {
@@ -75,6 +81,54 @@ public class AddCategoryActivity extends AppCompatActivity {
                     intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                 }
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+            }
+        });
+    }
+
+    private void handleClickedButtonSave(Bundle bundle){
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String randomName = UUID.randomUUID().toString();
+                uploadToFirebase(imageUri, randomName, bundle);
+            }
+        });
+    }
+
+    private void uploadToFirebase(Uri imageuri, String randomName, Bundle bundle) {
+        storageReference = FirebaseStorage.getInstance().getReference().child("images/" + randomName);
+        storageReference.putFile(imageuri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        String nameCategory = String.valueOf(txtNameCategory.getText());
+                        updateCategory(nameCategory, randomName, bundle);
+                        DeleteToFirebase(bundle.getString("nameImg"));
+                        progressBar.setVisibility(View.GONE);
+                        finish();
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(UpdateCategoryActivity.this, "Images Uploading failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void actionToolBar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }
@@ -96,78 +150,43 @@ public class AddCategoryActivity extends AppCompatActivity {
         }
     }
 
-    private void handleButtonSubmit(){
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String randomName = UUID.randomUUID().toString();
-                uploadToFirebase(imageUri, randomName);
-            }
-        });
+    private void DeleteToFirebase(String nameimg){
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageReference = storage.getReference()
+                .child("/images")
+                .child(nameimg);
+        storageReference.delete();
     }
 
-    private void uploadToFirebase(Uri imageuri, String randomName) {
-        storageReference = FirebaseStorage.getInstance().getReference().child("images/" + randomName);
-        storageReference.putFile(imageuri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        String nameCategory = String.valueOf(txtTenDanhMuc.getText());
-                        addNewCategory(nameCategory, randomName);
-                        progressBar.setVisibility(View.GONE);
-                        finish();
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                        progressBar.setVisibility(View.VISIBLE);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(AddCategoryActivity.this, "Images Uploading failed", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    private void actionToolBar() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-    }
-
-    private void addNewCategory(String nameCategory,String imgCategory){
-            compositeDisposable.add(apiManager.addDataCategory(nameCategory, imgCategory)
+    private void updateCategory(String nameCategory, String randomName,Bundle bundle){
+        int idCategory = bundle.getInt("id");
+//        Toast.makeText(this, idCategory +"_"+ nameCategory +"_"+ randomName, Toast.LENGTH_SHORT).show();
+        compositeDisposable.add(apiManager.updateDataCategory(idCategory, nameCategory, randomName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         CategoryManagerModel ->{
                             if (CategoryManagerModel.isSuccess()){
-                                Toast.makeText(getApplicationContext(), "Thêm Danh Mục Thành Công", Toast.LENGTH_SHORT).show();
-                            }else {
-                                Toast.makeText(getApplicationContext(), CategoryManagerModel.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "Cập Nhật Dữ Liệu Thành Công", Toast.LENGTH_SHORT).show();
                             }
-                    }, throwable -> {
-                            Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                            else {
+                                Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show();
+                            }
+                        }, throwable -> {
+                            Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
+
                         }
                 )
         );
     }
 
     private void initView(){
-        txtTenDanhMuc = findViewById(R.id.txtTenDanhMuc);
-        toolbar = findViewById(R.id.toolbarAddCategory);
-        btnChonAnh = findViewById(R.id.btnAddImgCaterogy);
-        btnSubmit = findViewById(R.id.btnSubmitAddCategory);
-        imgCategory = findViewById(R.id.imgAddCategory);
-        progressBar = findViewById(R.id.progressBarAddCategory);
+        toolbar = findViewById(R.id.toolbarUpdateCategory);
+        txtNameCategory = findViewById(R.id.txtUpdateTenDanhMuc);
+        imgCategory = findViewById(R.id.imgUpdateCategory);
+        btnChonAnh = findViewById(R.id.btnUpdateImgCaterogy);
+        btnSave = findViewById(R.id.btnSave);
         apiManager = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiManager.class);
+        progressBar = findViewById(R.id.progressBarUpdateCategory);
     }
 }

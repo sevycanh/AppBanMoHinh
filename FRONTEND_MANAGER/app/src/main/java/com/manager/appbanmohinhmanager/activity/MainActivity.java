@@ -28,11 +28,11 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
+
     Toolbar toolbar;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
     CardView cardViewProductManager, cardViewCategoryManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

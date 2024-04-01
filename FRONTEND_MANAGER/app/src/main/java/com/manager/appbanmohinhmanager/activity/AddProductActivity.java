@@ -3,6 +3,7 @@ package com.manager.appbanmohinhmanager.activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -54,6 +55,7 @@ public class AddProductActivity extends AppCompatActivity {
     private List<Uri> listImgSub = new ArrayList<>();
 
     StorageReference storageReference;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,7 @@ public class AddProductActivity extends AppCompatActivity {
         handleClickedButtonSingle();
         handleClickedButtonMultiple();
         handleSubmitData();
+        actionToolBar();
     }
 
     @Override
@@ -137,7 +140,6 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void uploadToFirebase(Uri imageuri) {
-
         final String randomName = UUID.randomUUID().toString();
         storageReference = FirebaseStorage.getInstance().getReference().child("images/" + randomName);
         storageReference.putFile(imageuri)
@@ -173,10 +175,21 @@ public class AddProductActivity extends AppCompatActivity {
         });
     }
 
+    private void actionToolBar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
     private void initView() {
         uri = new ArrayList<>();
-        single_img = findViewById(R.id.single_image);
-        recyclerView = findViewById(R.id.recyclerView_Multiple_Images);
+        single_img = findViewById(R.id.imgAdd_Main);
+        recyclerView = findViewById(R.id.recyclerView_MultipleImages);
         btn_single_img = findViewById(R.id.getMainPickture);
         btn_multiple_img = findViewById(R.id.getSubPickture);
         btn_submit = findViewById(R.id.submitDataAddProduct);
@@ -184,5 +197,6 @@ public class AddProductActivity extends AppCompatActivity {
         adapter = new AddProductAdapter(uri);
         recyclerView.setLayoutManager(new GridLayoutManager(AddProductActivity.this, 5));
         recyclerView.setAdapter(adapter);
+        toolbar = findViewById(R.id.toolBarAddProduct);
     }
 }

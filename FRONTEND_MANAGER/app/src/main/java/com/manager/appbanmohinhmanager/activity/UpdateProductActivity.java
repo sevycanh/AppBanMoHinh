@@ -100,7 +100,7 @@ public class UpdateProductActivity extends AppCompatActivity {
         mangDataDownload.add("776f2bd4-d279-4489-a21e-c2521b3e6f44");
         mangDataDownload.add("64a10317-1f18-47a5-b30a-65c6282cfc64");
         adapter = new UpdateProductAdapter(getApplicationContext(), uriArrayList, mangDataDownload);
-        recyclerViewUpdate = findViewById(R.id.recyclerViewUpdate);
+        recyclerViewUpdate = findViewById(R.id.recyclerViewMultipleImageUpdate);
         recyclerViewUpdate.setLayoutManager(new GridLayoutManager(UpdateProductActivity.this, 5));
         recyclerViewUpdate.setAdapter(adapter);
         toolbar = findViewById(R.id.toolBarTTSP);

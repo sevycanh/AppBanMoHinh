@@ -5,8 +5,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.manager.appbanmohinhmanager.R;
@@ -18,6 +20,7 @@ import com.manager.appbanmohinhmanager.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -25,6 +28,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CateroryManagerActivity extends AppCompatActivity {
     Toolbar toolbar;
+    ImageView btnAdd;
     RecyclerView recyclerView;
     List<CategoryManager> mangDanhMuc;
     LinearLayoutManager linearLayoutManager;
@@ -39,6 +43,7 @@ public class CateroryManagerActivity extends AppCompatActivity {
         initView();
         actionToolBar();
         getDataCategoryManager();
+        handleButtonAdd();
     }
 
     private void actionToolBar() {
@@ -52,9 +57,19 @@ public class CateroryManagerActivity extends AppCompatActivity {
         });
     }
 
-    private void initView(){
+    private void handleButtonAdd(){
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddCategoryActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
+    private void initView(){
         toolbar = findViewById(R.id.toolbarDanhMuc);
+        btnAdd = findViewById(R.id.btnAddCategory);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView = findViewById(R.id.listCategory);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -79,6 +94,11 @@ public class CateroryManagerActivity extends AppCompatActivity {
         );
     }
 
+    @Override
+    protected void onResume() {
+        getDataCategoryManager();
+        super.onResume();
+    }
 }
 
 

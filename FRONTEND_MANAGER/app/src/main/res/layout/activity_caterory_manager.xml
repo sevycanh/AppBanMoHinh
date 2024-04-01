@@ -17,6 +17,7 @@
             android:background="@color/main"
             app:title="Quản Lí Danh Mục">
             <ImageView
+                android:id="@+id/btnAddCategory"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="right"
