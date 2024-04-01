@@ -1,5 +1,6 @@
 package com.manager.appbanmohinhmanager.retrofit;
 
+import com.manager.appbanmohinhmanager.model.CategoryManagerModel;
 import com.manager.appbanmohinhmanager.model.ProductManagerModel;
 import com.manager.appbanmohinhmanager.model.UserModel;
 
@@ -13,4 +14,7 @@ public interface ApiManager {
 
     @GET("getproduct.php")
     Observable<ProductManagerModel> getDataProduct();
+
+    @GET("getcategory.php")
+    Observable<CategoryManagerModel> getDataCategory();
 }

@@ -10,6 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBarTTSP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Thông Tin Sản Phẩm"
+            android:background="@color/main">
+
+        </androidx.appcompat.widget.Toolbar>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewUpdate"
             android:layout_width="match_parent"

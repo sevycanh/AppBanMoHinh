@@ -2,11 +2,13 @@ package com.manager.appbanmohinhmanager.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ import java.util.List;
 public class UpdateProductActivity extends AppCompatActivity {
     Button btnSave;
     RecyclerView recyclerViewUpdate;
+    Toolbar toolbar;
 
     ArrayList<Uri> uriArrayList;
     List<String> mangDataDownload = new ArrayList<>();
@@ -37,6 +40,17 @@ public class UpdateProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_product);
         initView();
         downloadItemAtIndex(0);
+        actionToolBar();
+    }
+    private void actionToolBar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void downloadItemAtIndex(int index) {
@@ -89,5 +103,6 @@ public class UpdateProductActivity extends AppCompatActivity {
         recyclerViewUpdate = findViewById(R.id.recyclerViewUpdate);
         recyclerViewUpdate.setLayoutManager(new GridLayoutManager(UpdateProductActivity.this, 5));
         recyclerViewUpdate.setAdapter(adapter);
+        toolbar = findViewById(R.id.toolBarTTSP);
     }
 }
