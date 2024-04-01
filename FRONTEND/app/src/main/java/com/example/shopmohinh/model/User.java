@@ -9,9 +9,18 @@ public class User {
     String password;
     String address;
     String phone;
+    int coin;
     int role;
     int status;
     String token;
+
+    public int getCoin() {
+        return coin;
+    }
+
+    public void setCoin(int coin) {
+        this.coin = coin;
+    }
 
     public String getToken() {
         return token;
