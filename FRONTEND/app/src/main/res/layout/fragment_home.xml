@@ -105,6 +105,7 @@
                                 </androidx.cardview.widget.CardView>
 
                                 <androidx.cardview.widget.CardView
+                                    android:id="@+id/cardMiniGame"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp">
@@ -125,7 +126,7 @@
                                             android:id="@+id/textView4"
                                             android:layout_width="50dp"
                                             android:layout_height="wrap_content"
-                                            android:text="Mini game mỗi ngày"
+                                            android:text="Họp quà may mắn"
                                             android:textAlignment="center"
                                             android:textColor="#000000"
                                             android:textSize="10dp" />

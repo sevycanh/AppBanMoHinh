@@ -19,6 +19,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.shopmohinh.R;
 
+import com.example.shopmohinh.activity.MiniGameActivity;
 import com.example.shopmohinh.activity.SpinCouponActivity;
 import com.example.shopmohinh.model.LoaiSP;
 import com.example.shopmohinh.model.SanPhamMoi;
@@ -36,7 +37,7 @@ public class HomeFragment extends Fragment {
     List<SanPhamMoi> mangSanPhamMoi;
     ApiBanHang apiBanHang;
     List<LoaiSP> mangLoaiSp;
-    CardView cardWheel_Coupon;
+    CardView cardWheel_Coupon, cardMiniGame;
 
     @Nullable
     @Override
@@ -55,6 +56,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), SpinCouponActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cardMiniGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MiniGameActivity.class);
                 startActivity(intent);
             }
         });
@@ -113,6 +122,7 @@ public class HomeFragment extends Fragment {
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
 
         cardWheel_Coupon = rootView.findViewById(R.id.cardWheel_coupon);
+        cardMiniGame = rootView.findViewById(R.id.cardMiniGame);
     }
 }
 

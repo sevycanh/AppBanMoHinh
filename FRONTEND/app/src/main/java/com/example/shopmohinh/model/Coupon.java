@@ -8,8 +8,8 @@ public class Coupon {
     String code;
     int count;
     int discount;
-    Date dateFrom;
-    Date dateTo;
+    String dateFrom;
+    String dateTo;
     int user_id;
     int isPublic;
 
@@ -53,19 +53,19 @@ public class Coupon {
         this.discount = discount;
     }
 
-    public Date getDateFrom() {
+    public String getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(Date dateFrom) {
+    public void setDateFrom(String dateFrom) {
         this.dateFrom = dateFrom;
     }
 
-    public Date getDateTo() {
+    public String getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(Date dateTo) {
+    public void setDateTo(String dateTo) {
         this.dateTo = dateTo;
     }
 
