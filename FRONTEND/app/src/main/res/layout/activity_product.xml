@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ProductActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        app:title="Sản phẩm"
+        android:background="#fbc02d"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/btnRelated"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/related"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/main_color" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/black" />
+
+        <Button
+            android:id="@+id/btnNewest"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/newest"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/black" />
+
+        <Button
+            android:id="@+id/btnBestSelling"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/best_selling"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/black" />
+
+        <Button
+            android:id="@+id/btnPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:text="@string/price"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <!-- Slider layout -->
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <View
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:id="@+id/slider"
+            android:layout_width="@dimen/_65sdp"
+            android:layout_height="5dp"
+            android:background="#FF0000"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleview_phone"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        app:layout_constraintTop_toBottomOf="@id/linear_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

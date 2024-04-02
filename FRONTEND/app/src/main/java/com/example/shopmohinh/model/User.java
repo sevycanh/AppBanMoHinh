@@ -2,15 +2,62 @@ package com.example.shopmohinh.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.sql.Date;
+
 public class User {
     int account_id;
     String email;
     String username;
     String password;
     String address;
-    int phone;
+    String phone;
+    int coin;
+    int check_in;
+    int luckybox;
+    String last_login;
     int role;
     int status;
+    String token;
+
+    public int getCheck_in() {
+        return check_in;
+    }
+
+    public void setCheck_in(int check_in) {
+        this.check_in = check_in;
+    }
+
+    public int getLuckybox() {
+        return luckybox;
+    }
+
+    public void setLuckybox(int luckybox) {
+        this.luckybox = luckybox;
+    }
+
+    public String getLast_login() {
+        return last_login;
+    }
+
+    public void setLast_login(String last_login) {
+        this.last_login = last_login;
+    }
+
+    public int getCoin() {
+        return coin;
+    }
+
+    public void setCoin(int coin) {
+        this.coin = coin;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public int getAccount_id() {
         return account_id;
@@ -52,11 +99,11 @@ public class User {
         this.address = address;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_wheel"
+    tools:context=".activity.SpinCouponActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarSpinCoupon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/main"
+        app:title="Vòng quay coupon"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="@dimen/_18ssp"
+        app:layout_constraintTop_toBottomOf="@id/toolbarSpinCoupon"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp">
+            <ImageView
+                android:src="@drawable/icon_coin"
+                android:layout_gravity="center"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_25sdp"/>
+            <TextView
+                android:id="@+id/txtcoin_wheelcoupon"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:textSize="@dimen/_15ssp"
+                android:text="999999999"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imgSpinCoupon"
+        android:src="@drawable/spin_coupon"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_250sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/imgSpinArrow"
+        android:src="@drawable/spin_arrow"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_250sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/btnSpinCoupon"
+        android:backgroundTint="@color/main"
+        android:text="500 coin"
+        android:textSize="@dimen/_20ssp"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintTop_toBottomOf="@id/imgSpinCoupon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </Button>
+</androidx.constraintlayout.widget.ConstraintLayout>

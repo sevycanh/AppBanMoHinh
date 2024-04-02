@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a5d4eda0-b72e-4142-9877-38da8a04f5a1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/FRONTEND/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/ProductActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/ProductActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/ProductDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/ProductDetailActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/ProductAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/ProductAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/utils/NumberWithDotSeparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/utils/NumberWithDotSeparator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/item_product.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/item_product.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FRONTEND/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2dlxXJ5PoWzJwFo3qJSwQpoqKgr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/ADMIN/Desktop/AppBanMoHinh",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND\app\src\main\res" />
+      <recent name="C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND\app\src\main\java\com\example\shopmohinh" />
+      <recent name="C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND\app\src\main\java\com\example\shopmohinh\model" />
+      <recent name="C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND\app\src\main\java\com\example\shopmohinh\activity" />
+      <recent name="C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND\app\src\main\java\com\example\shopmohinh\utils" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND\app\src\main\java\com\example\shopmohinh\activity" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a5d4eda0-b72e-4142-9877-38da8a04f5a1" name="Changes" comment="" />
+      <created>1710596503311</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710596503311</updated>
+    </task>
+    <servers />
+  </component>
+</project>

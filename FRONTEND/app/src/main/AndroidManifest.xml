@@ -20,7 +20,37 @@
             android:name=".activity.SearchActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.MiniGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SpinCouponActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.WheelCouponActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ForgotPassActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.LogInActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.CartActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.PaymentActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.AddressUserActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +64,12 @@
         <activity
             android:name=".activity.RegisterActivity"
             android:exported="true"></activity>
+        <activity
+            android:name=".activity.ProductActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.ProductDetailActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

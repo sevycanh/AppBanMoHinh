@@ -1,10 +1,12 @@
 package com.example.shopmohinh.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -26,36 +28,33 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.shopmohinh.R;
 
 import com.example.shopmohinh.adapter.SPMoiAdapter;
+import com.example.shopmohinh.activity.MiniGameActivity;
+import com.example.shopmohinh.activity.SpinCouponActivity;
 import com.example.shopmohinh.model.LoaiSP;
 import com.example.shopmohinh.model.SanPhamMoi;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
-import com.example.shopmohinh.Utils.Utils;
 import com.google.android.material.navigation.NavigationView;
+import com.example.shopmohinh.utils.Utils;
 
 import org.objectweb.asm.Handle;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
-
 public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     DrawerLayout drawerLayout;
     ImageSlider imageSlider;
-    SearchView searchView;
-    SPMoiAdapter spMoiAdapter;
     List<SanPhamMoi> mangSanPhamMoi;
-    CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
     LinearLayoutManager linearLayoutManager;
     GridLayoutManager gridLayoutManager;
     Handler handler = new Handler();
     boolean isLoading = false;
     int page = 1;
+    List<LoaiSP> mangLoaiSp;
+    CardView cardWheel_Coupon, cardMiniGame;
 
     @Nullable
     @Override
@@ -105,6 +104,27 @@ public class HomeFragment extends Fragment {
                 spMoiAdapter.notifyDataSetChanged();
             }
         },2500);
+    }
+        initControll();
+        return rootView;
+    }
+
+    private void initControll() {
+        cardWheel_Coupon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SpinCouponActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cardMiniGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MiniGameActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void ActionViewFlipper() {
@@ -162,6 +182,8 @@ public class HomeFragment extends Fragment {
         searchView = rootView.findViewById(R.id.searchHomePage);
         mangSanPhamMoi = new ArrayList<>();
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
+        cardWheel_Coupon = rootView.findViewById(R.id.cardWheel_coupon);
+        cardMiniGame = rootView.findViewById(R.id.cardMiniGame);
     }
 
     private void getSanPhamMoi(int page) {
@@ -195,6 +217,7 @@ public class HomeFragment extends Fragment {
                         }
 
                 ));
+        
     }
 }
 
