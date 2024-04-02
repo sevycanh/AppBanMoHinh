@@ -1,6 +1,7 @@
 <?php
 include "connect.php";
 
+$username = $_POST['username'];
 $phone= $_POST['phone'];
 $total = $_POST['total'];
 $accountId = $_POST['accountId'];
@@ -13,7 +14,7 @@ $chitiet = $_POST['chitiet'];
 
 // $query = 'INSERT INTO `tbl_order`(`iduser`, `diachi`, `sodienthoai`, `email`, `soluong`, `tongtien`) VALUES ('.$iduser.',"'.$diachi.'","'.$sdt.'","'.$email.'",'.$soluong.',"'.$tongtien.'")';
 
-$query = "INSERT INTO `tbl_order`(`account_id`, `address`, `phone`, `payment_method`, `coupon_id`, `total`) VALUES ( '.$accountId.' ,'$address','.$phone.','$payment_method','.$coupon_id.','.$total.')";
+$query = "INSERT INTO `tbl_order`(`account_id`,`username`, `address`, `phone`, `payment_method`, `coupon_id`, `total`) VALUES ( '.$accountId.','$username' ,'$address','$phone','$payment_method','.$coupon_id.','.$total.')";
 
 //echo $query;
 $data = mysqli_query($conn, $query);

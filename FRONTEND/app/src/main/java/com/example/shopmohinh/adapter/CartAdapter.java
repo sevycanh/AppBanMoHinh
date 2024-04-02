@@ -31,6 +31,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -103,8 +104,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 if(giatri == 1){
                     if(soluong > 1){
                         soluongmoi = soluong - 1;
-                        gioHangList.get(holder.getAdapterPosition()).setQuantity(soluongmoi);
+//                        checkQuantityProuduct(gioHangList.get(holder.getAdapterPosition()).getIdProduct() ,soluongmoi);
 
+
+                        gioHangList.get(holder.getAdapterPosition()).setQuantity(soluongmoi);
                         holder.txtSoLuongSanPhamGioHang.setText(soluongmoi + "");
                         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
                         symbols.setGroupingSeparator('.'); // Dấu phân tách hàng nghìn
@@ -141,6 +144,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 }
                 else if (giatri == 2){
                     soluongmoi = soluong + 1;
+//                    checkQuantityProuduct(gioHangList.get(holder.getAdapterPosition()).getIdProduct() ,soluongmoi);
                     gioHangList.get(pos).setQuantity(soluongmoi);
                     holder.txtSoLuongSanPhamGioHang.setText(soluongmoi + "");
                     DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
@@ -179,6 +183,37 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
             }
         });
+    }
+
+    private void checkQuantityProuduct(int productId, int quantity) {
+        compositeDisposable.add(apiBanHang.checkQuantityProduct(productId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        messageModel -> {
+                            if(messageModel.isSuccess()){
+                                int quantityProduct = Integer.parseInt(messageModel.getMessage());
+                                if (quantity > quantityProduct ) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(this.context);
+                                    builder.setTitle("Thông báo");
+                                    builder.setMessage("Số lượng không được vượt quá " +quantityProduct);
+                                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss(); // Đóng Dialog
+
+                                        }
+                                    });
+
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+                                }
+                            }
+                        },
+                        throwable -> {
+                            Toast.makeText(this.context,throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
     }
 
     private void UpdateCartApi(int productId ,int quantity){

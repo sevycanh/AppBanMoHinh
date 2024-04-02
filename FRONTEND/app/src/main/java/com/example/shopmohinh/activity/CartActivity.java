@@ -8,6 +8,7 @@ import android.icu.text.DecimalFormat;
 import android.icu.text.DecimalFormatSymbols;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -57,9 +58,6 @@ public class CartActivity extends AppCompatActivity {
         initView();
         initControl();
         initHelper();
-        if(Utils.purchases != null ){
-            Utils.purchases.clear();
-        }
     }
 
     private void initHelper() {
@@ -150,8 +148,8 @@ public class CartActivity extends AppCompatActivity {
             symbols.setGroupingSeparator('.'); // Dấu phân tách hàng nghìn
             DecimalFormat decimalFormat = new DecimalFormat("###,###,###", symbols);
             String tongtienspFormat = decimalFormat.format(tongtiensp);
-
             tongtien.setText(tongtienspFormat);
+            Log.d("tongtien", tongtienspFormat);
         }
     }
 

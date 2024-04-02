@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".activity.PaymentActivity">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolBarDatHang"
+        android:id="@+id/toolBarPayment"
         app:title="Thanh toán"
         android:background="@color/main"
         android:layout_width="match_parent"
@@ -137,6 +137,7 @@
         android:layout_height="1dp">
     </View>
     <LinearLayout
+        android:id="@+id/btnChangePaymentMethod"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

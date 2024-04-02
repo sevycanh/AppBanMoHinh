@@ -34,11 +34,11 @@ public class PaymentActivity extends AppCompatActivity {
     AppCompatButton btnDatHang;
     TextView txtTongTienDatHang, txtThongTinKH, txtDiaChiKH, txtPTThanhToan;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-    long tongtien,asdasd;
+    long tongtien;
 
     ApiBanHang apiBanHang;
 
-    LinearLayout btnChangeAddress;
+    LinearLayout btnChangeAddress, btnChangePaymentMethod;
     int iddonhang;
 
 
@@ -75,10 +75,15 @@ public class PaymentActivity extends AppCompatActivity {
         tongtien = getIntent().getLongExtra("tongtien", 0);
         String tongTienFormat = decimalFormat.format(tongtien);
         txtTongTienDatHang.setText(tongTienFormat);
-        txtThongTinKH.setText(Utils.user_current.getUsername() + "|" + Utils.user_current.getPhone());
+        txtThongTinKH.setText(Utils.user_current.getUsername() + " " + Utils.user_current.getPhone());
         txtDiaChiKH.setText(Utils.user_current.getAddress());
 //        txtPTThanhToan.setText(Utils.PTThanhToan);
 
+        btnChangePaymentMethod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
         btnChangeAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,19 +96,22 @@ public class PaymentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("test", new Gson().toJson(Utils.purchases));
-                String email = Utils.user_current.getEmail();
+                String name = Utils.user_current.getUsername();
                 String sdt = String.valueOf(Utils.user_current.getPhone());
                 String address = Utils.user_current.getAddress();
 
                 Log.d("test", address);
 
                 int id = Utils.user_current.getAccount_id();
-                if(sdt == ""){
-                    Toast.makeText(getApplicationContext(), "Chua nhap sdt", Toast.LENGTH_LONG).show();
+                if(name.trim().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Thông tin chưa đầy đủ !!!", Toast.LENGTH_LONG).show();
+                }
+                else if(sdt.trim().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Thông tin chưa đầy đủ !!!", Toast.LENGTH_LONG).show();
                 } else if (address.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Chua nhap dia chi", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Thông tin chưa đầy đủ !!!", Toast.LENGTH_LONG).show();
                 }else {
-                    compositeDisposable.add(apiBanHang.createOrder(email, sdt, String.valueOf(tongtien), id, address, new Gson().toJson(Utils.purchases))
+                    compositeDisposable.add(apiBanHang.createOrder(name, sdt, String.valueOf(tongtien), id, address, new Gson().toJson(Utils.purchases))
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(
@@ -111,6 +119,7 @@ public class PaymentActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), "Thanh cong", Toast.LENGTH_SHORT).show();
                                         for (int i =0; i< Utils.purchases.size();i++){
                                             Cart gioHang = Utils.purchases.get(i);
+                                            UpdateCartApi(Utils.purchases.get(i).getIdProduct(), 0);
                                             if (Utils.carts.contains(gioHang)){
                                                 Utils.carts.remove(gioHang);
                                             }
@@ -131,6 +140,20 @@ public class PaymentActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void UpdateCartApi(int productId ,int quantity){
+        compositeDisposable.add(apiBanHang.updateShoppingCart(Utils.user_current.getAccount_id(), productId, quantity)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        messageModel -> {
+//                            Toast.makeText(getApplicationContext(), "Thanh cong", Toast.LENGTH_SHORT).show();
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
     }
 
 //    private void requestZalo() {
@@ -200,7 +223,7 @@ public class PaymentActivity extends AppCompatActivity {
 //    }
 
     private void initView() {
-        toolbar = findViewById(R.id.toolBarDatHang);
+        toolbar = findViewById(R.id.toolBarPayment);
 //        recyclerViewDatHang = findViewById(R.id.recyclerViewDatHang);
         btnDatHang = findViewById(R.id.btnDatHang);
         txtTongTienDatHang = findViewById(R.id.txtTongTienDatHang);
@@ -208,6 +231,7 @@ public class PaymentActivity extends AppCompatActivity {
         txtDiaChiKH = findViewById(R.id.txtDiaChiKH);
         txtPTThanhToan = findViewById(R.id.txtPTThanhToan);
         btnChangeAddress = findViewById(R.id.btnChangeAddress);
+        btnChangePaymentMethod = findViewById(R.id.btnChangePaymentMethod);
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
     }
 
@@ -216,6 +240,12 @@ public class PaymentActivity extends AppCompatActivity {
     protected void onDestroy() {
         compositeDisposable.clear();
         super.onDestroy();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        initControl();
     }
 
 //    @Override
