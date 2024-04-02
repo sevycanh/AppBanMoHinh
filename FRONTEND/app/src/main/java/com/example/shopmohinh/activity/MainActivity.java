@@ -77,13 +77,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        handleSearchClicked();
-        getLoaiSanPham();
-        loadBottomNavView();
 
         //load user hiện tại
         Paper.init(this);
-        if (Paper.book().read("user") != null){
+        if (Paper.book().read("user") != null) {
             User user = Paper.book().read("user");
             Utils.user_current = user;
         }
@@ -91,16 +88,20 @@ public class MainActivity extends AppCompatActivity {
         ActionBar();
         setSearchView();
         getEventClick();
+        handleSearchClicked();
+        getLoaiSanPham();
+        loadBottomNavView();
 
         getToken();
         checkIn();
 
         if (isConnected(this)) {
-            getSanPhamMoi();
             getLoaiSanPham();
         } else {
             Toast.makeText(getApplicationContext(), "Không có kết nối Internet!", Toast.LENGTH_LONG).show();
         }
+        loadFragment(new HomeFragment(), true);
+    }
         private void loadBottomNavView(){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -127,8 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
         }
-        loadFragment(new HomeFragment(), true);
-    }
 
     private void handleSearchClicked(){
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
@@ -141,17 +140,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
     private void checkIn() {
         //check-in để update điểm danh và lượt chơi lucky box
         compositeDisposable.add(apiBanHang.checkIn(Utils.user_current.getAccount_id())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        messageModel -> {},
-                        throwable -> {}
+                        messageModel -> {
+                        },
+                        throwable -> {
+                        }
                 ));
     }
-
     private void getToken() {
         FirebaseMessaging.getInstance().getToken()
                 .addOnSuccessListener(new OnSuccessListener<String>() {

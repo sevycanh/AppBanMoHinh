@@ -34,19 +34,26 @@ import com.example.shopmohinh.model.LoaiSP;
 import com.example.shopmohinh.model.SanPhamMoi;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
-import com.google.android.material.navigation.NavigationView;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.material.navigation.NavigationView;
 
 import org.objectweb.asm.Handle;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     DrawerLayout drawerLayout;
     ImageSlider imageSlider;
+    SearchView searchView;
     List<SanPhamMoi> mangSanPhamMoi;
+    SPMoiAdapter spMoiAdapter;
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
     LinearLayoutManager linearLayoutManager;
     GridLayoutManager gridLayoutManager;
@@ -65,6 +72,7 @@ public class HomeFragment extends Fragment {
         ActionViewFlipper();
         getSanPhamMoi(page);
         addEventLoad();
+        initControll();
         return rootView;
     }
 
@@ -105,9 +113,7 @@ public class HomeFragment extends Fragment {
             }
         },2500);
     }
-        initControll();
-        return rootView;
-    }
+
 
     private void initControll() {
         cardWheel_Coupon.setOnClickListener(new View.OnClickListener() {
@@ -218,6 +224,12 @@ public class HomeFragment extends Fragment {
 
                 ));
         
+    }
+
+    @Override
+    public void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
     }
 }
 

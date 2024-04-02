@@ -71,7 +71,7 @@ public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         public LoadingViewHolder(@NonNull View itemView) {
             super(itemView);
-            progressBar = itemView.findViewById(R.id.loading);
+            progressBar = itemView.findViewById(R.id.progressBar);
         }
     }
 

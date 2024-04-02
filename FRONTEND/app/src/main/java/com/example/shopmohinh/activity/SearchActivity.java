@@ -17,11 +17,11 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.shopmohinh.R;
-import com.example.shopmohinh.Utils.Utils;
 import com.example.shopmohinh.adapter.SpSearchAdapter;
 import com.example.shopmohinh.model.SanPhamSearch;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
+import com.example.shopmohinh.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
