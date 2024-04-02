@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.SearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.MiniGameActivity"
             android:exported="false" />
         <activity
@@ -55,6 +58,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.LogInActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".activity.ProductActivity"
             android:exported="true" />

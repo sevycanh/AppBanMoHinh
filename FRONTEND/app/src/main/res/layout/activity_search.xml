@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBarSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main">
+
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/main"
+                android:iconifiedByDefault="false"
+                android:queryHint="Tìm kiếm" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:id="@+id/linearInSearchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnLienQuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/white"
+                    android:text="Liên quan"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp" />
+
+                <View
+                    android:id="@+id/viewLienQuan"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="@color/main"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnMoiNhat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/white"
+                    android:text="Mới nhất"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp" />
+
+                <View
+                    android:id="@+id/viewMoiNhat"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="@color/main"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnKhuyenMai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/white"
+                    android:text="Khuyến mãi"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp" />
+
+                <View
+                    android:id="@+id/viewKhuyenMai"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="@color/main"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@color/black" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnGia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/white"
+                    android:drawableRight="@drawable/default_arrow"
+                    android:outlineProvider="none"
+                    android:text="Giá"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp" />
+
+                <View
+                    android:id="@+id/viewGia"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="@color/main"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+</FrameLayout>

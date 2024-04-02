@@ -16,9 +16,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -31,7 +31,6 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.denzcoskun.imageslider.ImageSlider;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.model.User;
 import com.example.shopmohinh.utils.Utils;
@@ -40,7 +39,6 @@ import com.example.shopmohinh.fragment.AccountFragment;
 import com.example.shopmohinh.fragment.ContactFragment;
 import com.example.shopmohinh.fragment.HomeFragment;
 import com.example.shopmohinh.fragment.OrderFragment;
-import com.example.shopmohinh.model.SanPhamMoi;
 
 import com.example.shopmohinh.adapter.Loaisp_Adapter;
 import com.example.shopmohinh.model.LoaiSP;
@@ -73,11 +71,15 @@ public class MainActivity extends AppCompatActivity {
     Loaisp_Adapter loaispAdapter;
     BottomNavigationView bottomNavigationView;
     FrameLayout frameLayout;
+    Boolean checkViewSearch = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        handleSearchClicked();
+        getLoaiSanPham();
+        loadBottomNavView();
 
         //load user hiện tại
         Paper.init(this);
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "Không có kết nối Internet!", Toast.LENGTH_LONG).show();
         }
+        private void loadBottomNavView(){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -123,9 +126,21 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+        }
         loadFragment(new HomeFragment(), true);
     }
 
+    private void handleSearchClicked(){
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
     private void checkIn() {
         //check-in để update điểm danh và lượt chơi lucky box
         compositeDisposable.add(apiBanHang.checkIn(Utils.user_current.getAccount_id())
@@ -166,11 +181,6 @@ public class MainActivity extends AppCompatActivity {
 //
 //                        }
 //                ));
-    }
-
-    private void getSanPhamMoi() {
-
-
     }
 
     private void setSearchView() {
@@ -224,6 +234,8 @@ public class MainActivity extends AppCompatActivity {
                                 loaispAdapter = new Loaisp_Adapter(getApplicationContext(), mangLoaiSp);
                                 listView.setAdapter(loaispAdapter);
                             }
+                        }, throwable -> {
+                            Toast.makeText(this,throwable.getMessage(), Toast.LENGTH_LONG).show();
                         }
                 ));
     }

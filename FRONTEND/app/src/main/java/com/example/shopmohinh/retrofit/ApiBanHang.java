@@ -12,6 +12,8 @@ import com.example.shopmohinh.model.MessageModel;
 import com.example.shopmohinh.model.SanPhamMoiModel;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
+
+import com.example.shopmohinh.model.SanPhamSearchModel;
 import com.example.shopmohinh.model.UserModel;
 
 import java.sql.Date;
@@ -19,6 +21,7 @@ import java.sql.Date;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiBanHang {
     @POST("donhang.php")
@@ -139,6 +142,17 @@ public interface ApiBanHang {
 
   @GET("getloaisp.php")
     Observable<LoaiSPModel> getLoaiSp();
-    @GET("getsanphammoi.php")
-    Observable<SanPhamMoiModel> getSanPhamMoi();
+
+    @POST("getsanphammoi.php")
+    @FormUrlEncoded
+    Observable<SanPhamMoiModel> getSanPhamMoi(
+            @Field("page") int page
+    );
+
+    @POST("searchsp.php")
+    @FormUrlEncoded
+    Observable<SanPhamSearchModel> searchSp (
+            @Field("type") String type,
+            @Field("tensp") String tensp
+    );
 }

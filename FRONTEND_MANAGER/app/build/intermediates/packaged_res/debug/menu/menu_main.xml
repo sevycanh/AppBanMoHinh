@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="Lựa chọn"
+        android:icon="@drawable/icon_menu"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:icon="@drawable/ic_change_pass"
+                android:title="Đổi mật khẩu"
+                android:id="@+id/menuDoiMatKhau"
+                />
+            <item
+                android:icon="@drawable/baseline_output_24"
+                android:title="Đăng xuất"
+                android:id="@+id/menuDangXuat"
+                />
+        </menu>
+    </item>
+</menu>
