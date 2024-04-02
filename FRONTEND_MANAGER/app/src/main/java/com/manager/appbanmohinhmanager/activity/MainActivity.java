@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId()==R.id.menuDoiMatKhau){
-            Toast.makeText(this, "Đổi mật khẩu", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), ForgotPassActivity.class);
+            startActivity(intent);
         } else if (item.getItemId()==R.id.menuDangXuat){
             Paper.book().delete("user");
             FirebaseAuth.getInstance().signOut();

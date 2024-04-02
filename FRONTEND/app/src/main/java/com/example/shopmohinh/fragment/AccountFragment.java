@@ -13,10 +13,12 @@ import android.widget.TextView;
 
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.activity.AddressUserActivity;
+import com.example.shopmohinh.activity.ForgotPassActivity;
 import com.example.shopmohinh.activity.LogInActivity;
 import com.example.shopmohinh.activity.SplashActivity;
 import com.example.shopmohinh.model.User;
 import com.example.shopmohinh.utils.Utils;
+import com.google.firebase.auth.FirebaseAuth;
 
 import io.paperdb.Paper;
 
@@ -67,7 +69,8 @@ public class AccountFragment extends Fragment {
         btnChangePasswordProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getContext(), ForgotPassActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -76,6 +79,7 @@ public class AccountFragment extends Fragment {
             public void onClick(View view) {
                 Utils.user_current = new User();
                 Paper.book().delete("user");
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getContext(), SplashActivity.class);
                 startActivity(intent);
             }
