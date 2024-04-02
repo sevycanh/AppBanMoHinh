@@ -63,7 +63,6 @@ public class ProductManagerAdapter extends RecyclerView.Adapter<ProductManagerAd
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, "Download Failed", Toast.LENGTH_SHORT).show();
                     }
                 });
         holder.txtName.setText(String.valueOf(productManager.getProduct_id())+"_"+productManager.getName());

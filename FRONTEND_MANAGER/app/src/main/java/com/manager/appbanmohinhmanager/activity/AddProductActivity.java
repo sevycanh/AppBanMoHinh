@@ -62,7 +62,7 @@ public class AddProductActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
     String typechoose = "";
     private Uri imageUri;
-    private Uri ImgMain;
+    private Uri ImgMain = null;
     private List<Uri> listImgSub = new ArrayList<>();
 
     StorageReference storageReference;
@@ -98,7 +98,7 @@ public class AddProductActivity extends AppCompatActivity {
         handleButtonQuantity();
     }
 
-    private void handleButtonQuantity(){
+    private void handleButtonQuantity() {
         btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -215,124 +215,158 @@ public class AddProductActivity extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int nextid = bundle.getInt("nextid") + 1 ;
-                List<String> ArraySubImg = new ArrayList<>();
-                for (int i = 0; i < listImgSub.size(); i++) {
-                    ArraySubImg.add(String.valueOf(nextid)+"_"+UUID.randomUUID().toString());
+                boolean check = true;
+                if (txtNameProduct.getText().toString().isEmpty()) {
+                    check = false;
+                    txtNameProduct.requestFocus();
+                    Toast.makeText(AddProductActivity.this, "Vui lòng nhập tên", Toast.LENGTH_SHORT).show();
+                } else if (txtDescriptionProduct.getText().toString().isEmpty()) {
+                    check = false;
+                    txtDescriptionProduct.requestFocus();
+                    Toast.makeText(AddProductActivity.this, "Vui lòng nhập mô tả", Toast.LENGTH_SHORT).show();
+                } else if (txtPriceProduct.getText().toString().isEmpty()) {
+                    check = false;
+                    txtPriceProduct.requestFocus();
+                    Toast.makeText(AddProductActivity.this, "Vui lòng nhập giá", Toast.LENGTH_SHORT).show();
+                } else if (txtPriceProduct.getText().toString().matches(".*[a-zA-Z].*")) {
+                    check = false;
+                    txtPriceProduct.setText("");
+                    txtPriceProduct.requestFocus();
+                    Toast.makeText(AddProductActivity.this, "Giá không hợp lệ", Toast.LENGTH_SHORT).show();
+                } else if (ImgMain == null) {
+                    check = false;
+                    Toast.makeText(AddProductActivity.this, "Vui lòng chọn ảnh đại diện", Toast.LENGTH_SHORT).show();
+                } else if (listImgSub.size() == 0) {
+                    check = false;
+                    Toast.makeText(AddProductActivity.this, "Vui lòng chọn ảnh mô tả", Toast.LENGTH_SHORT).show();
+                } else if (txtCouponProduct.getText().toString().matches(".*[a-zA-Z].*")) {
+                    check = false;
+                    txtCouponProduct.setText("0");
+                    txtCouponProduct.requestFocus();
+                    Toast.makeText(AddProductActivity.this, "Khuyến mãi không hợp lệ", Toast.LENGTH_SHORT).show();
                 }
-                final String MainImg = String.valueOf(nextid)+"_"+UUID.randomUUID().toString();
-                String subImg = "";
-                for (int i = 0; i < listImgSub.size(); i++) {
-                    uploadToFirebase(listImgSub.get(i), ArraySubImg.get(i));
-                    if (i == (listImgSub.size()-1)){
-                        subImg += (ArraySubImg.get(i)) ;
-                    }
-                    else {
-                        subImg += (ArraySubImg.get(i) + ",") ;
-                    }
-                }
-                uploadToFirebase(ImgMain, MainImg);
-                Toast.makeText(AddProductActivity.this, subImg, Toast.LENGTH_SHORT).show();
-                String nameProduct = txtNameProduct.getText().toString();
-                String descriptionProduct = txtDescriptionProduct.getText().toString();
-                int priceProduct = Integer.parseInt(txtPriceProduct.getText().toString());
-                int couponProduct = Integer.parseInt(txtCouponProduct.getText().toString());
-
-                uploadDataProduct(nameProduct, priceProduct, quantity, descriptionProduct, MainImg, subImg, couponProduct, idcategory, 1);
-            }
-        });
-    }
-
-    private void uploadDataProduct(String name, int price, int quantity, String description, String main_image, String subimage, int coupon, int idcategory, int status){
-        Log.d("query", name +", "+ price +", "+ quantity +", "+ description +", "+ main_image +", "+ subimage +", "+ coupon + ", " + status);
-        compositeDisposable.add(apiManager.addDataProduct(name, price, quantity, description, main_image, subimage, coupon, idcategory, status)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        ProductManagerModel -> {
-                            if (ProductManagerModel.isSuccess()){
-                                Toast.makeText(this, "Thêm sản phẩm mới thành công", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }else {
-                                Toast.makeText(this, ProductManagerModel.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }, throwable -> {
-                            Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                    if (check == true) {
+                        String nameProduct = txtNameProduct.getText().toString();
+                        String descriptionProduct = txtDescriptionProduct.getText().toString();
+                        int priceProduct = Integer.parseInt(txtPriceProduct.getText().toString());
+                        int couponProduct = Integer.parseInt(txtCouponProduct.getText().toString());
+                        int nextid = bundle.getInt("nextid") + 1;
+                        List<String> ArraySubImg = new ArrayList<>();
+                        for (int i = 0; i < listImgSub.size(); i++) {
+                            ArraySubImg.add(String.valueOf(nextid) + "_" + UUID.randomUUID().toString());
                         }
-                )
-        );
-    }
+                        final String MainImg = String.valueOf(nextid) + "_" + UUID.randomUUID().toString();
+                        String subImg = "";
+                        for (int i = 0; i < listImgSub.size(); i++) {
+                            uploadToFirebase(listImgSub.get(i), ArraySubImg.get(i));
+                            if (i == (listImgSub.size() - 1)) {
+                                subImg += (ArraySubImg.get(i));
+                            } else {
+                                subImg += (ArraySubImg.get(i) + ",");
+                            }
+                        }
+                        uploadToFirebase(ImgMain, MainImg);
+                        Toast.makeText(AddProductActivity.this, subImg, Toast.LENGTH_SHORT).show();
 
-    private void actionToolBar() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-    }
 
-    private void getCategory() {
-        compositeDisposable.add(apiManager.getDataCategory()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        CategoryManagerModel -> {
-                            if (CategoryManagerModel.isSuccess()){
-                                arrayCategory = CategoryManagerModel.getResult();
-                                List<String> data = new ArrayList<>();
-                                for (int i = 0; i < arrayCategory.size(); i++){
-                                    int id = arrayCategory.get(i).getCategory_id();
-                                    String s = arrayCategory.get(i).getCategory_id() + "_" + arrayCategory.get(i).getName();
-                                    data.add(s);
+                        uploadDataProduct(nameProduct, priceProduct, quantity, descriptionProduct, MainImg, subImg, couponProduct, idcategory, 1);
+
+                    }
+                }
+            });
+        }
+
+        private void uploadDataProduct (String name,int price, int quantity, String
+        description, String main_image, String subimage,int coupon, int idcategory, int status){
+            Log.d("query", name + ", " + price + ", " + quantity + ", " + description + ", " + main_image + ", " + subimage + ", " + coupon + ", " + status);
+            compositeDisposable.add(apiManager.addDataProduct(name, price, quantity, description, main_image, subimage, coupon, idcategory, status)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            ProductManagerModel -> {
+                                if (ProductManagerModel.isSuccess()) {
+                                    Toast.makeText(this, "Thêm sản phẩm mới thành công", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                } else {
+                                    Toast.makeText(this, ProductManagerModel.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
-                                ArrayAdapter<String> adapterCategory = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, data);
-                                spinner.setAdapter(adapterCategory);
-                                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                    @Override
-                                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                        String s[] = data.get(position).split("_");
-                                        idcategory = Integer.parseInt(s[0]);
-                                    }
-
-                                    @Override
-                                    public void onNothingSelected(AdapterView<?> parent) {
-
-                                    }
-                                });
+                            }, throwable -> {
+                                Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
                             }
+                    )
+            );
+        }
 
-                        }, throwable -> {
-                            Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                )
-        );
-    }
+        private void actionToolBar () {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
+        }
 
-    private void initView() {
-        uri = new ArrayList<>();
-        single_img = findViewById(R.id.imgAdd_Main);
-        recyclerView = findViewById(R.id.recyclerView_MultipleImages);
-        btn_single_img = findViewById(R.id.getMainPickture);
-        btn_multiple_img = findViewById(R.id.getSubPickture);
-        btn_submit = findViewById(R.id.submitDataAddProduct);
-        progressBar = findViewById(R.id.progressBarAddProduct);
-        adapter = new AddProductAdapter(uri);
-        recyclerView.setLayoutManager(new GridLayoutManager(AddProductActivity.this, 5));
-        recyclerView.setAdapter(adapter);
-        toolbar = findViewById(R.id.toolBarAddProduct);
-        spinner = findViewById(R.id.spinnerAdd);
-        apiManager = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiManager.class);
-        arrayCategory = new ArrayList<>();
-        tvQuantity = findViewById(R.id.tvQuantity);
-        btnMinus = findViewById(R.id.btnMinus);
-        btnPlus = findViewById(R.id.btnPlus);
-        txtNameProduct = findViewById(R.id.txtAdd_NameProduct);
-        txtDescriptionProduct = findViewById(R.id.txtAdd_Description);
-        txtPriceProduct = findViewById(R.id.txtAdd_Price);
-        txtCouponProduct = findViewById(R.id.txtAdd_Coupon);
-        MangProduct = new ArrayList<>();
+        private void getCategory () {
+            compositeDisposable.add(apiManager.getDataCategory()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            CategoryManagerModel -> {
+                                if (CategoryManagerModel.isSuccess()) {
+                                    arrayCategory = CategoryManagerModel.getResult();
+                                    List<String> data = new ArrayList<>();
+                                    for (int i = 0; i < arrayCategory.size(); i++) {
+                                        int id = arrayCategory.get(i).getCategory_id();
+                                        String s = arrayCategory.get(i).getCategory_id() + "_" + arrayCategory.get(i).getName();
+                                        data.add(s);
+                                    }
+                                    ArrayAdapter<String> adapterCategory = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, data);
+                                    spinner.setAdapter(adapterCategory);
+                                    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                        @Override
+                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                            String s[] = data.get(position).split("_");
+                                            idcategory = Integer.parseInt(s[0]);
+                                        }
+
+                                        @Override
+                                        public void onNothingSelected(AdapterView<?> parent) {
+
+                                        }
+                                    });
+                                }
+
+                            }, throwable -> {
+                                Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                    )
+            );
+        }
+
+        private void initView () {
+            uri = new ArrayList<>();
+            single_img = findViewById(R.id.imgAdd_Main);
+            recyclerView = findViewById(R.id.recyclerView_MultipleImages);
+            btn_single_img = findViewById(R.id.getMainPickture);
+            btn_multiple_img = findViewById(R.id.getSubPickture);
+            btn_submit = findViewById(R.id.submitDataAddProduct);
+            progressBar = findViewById(R.id.progressBarAddProduct);
+            adapter = new AddProductAdapter(uri);
+            recyclerView.setLayoutManager(new GridLayoutManager(AddProductActivity.this, 5));
+            recyclerView.setAdapter(adapter);
+            toolbar = findViewById(R.id.toolBarAddProduct);
+            spinner = findViewById(R.id.spinnerAdd);
+            apiManager = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiManager.class);
+            arrayCategory = new ArrayList<>();
+            tvQuantity = findViewById(R.id.tvQuantity);
+            btnMinus = findViewById(R.id.btnMinus);
+            btnPlus = findViewById(R.id.btnPlus);
+            txtNameProduct = findViewById(R.id.txtAdd_NameProduct);
+            txtDescriptionProduct = findViewById(R.id.txtAdd_Description);
+            txtPriceProduct = findViewById(R.id.txtAdd_Price);
+            txtCouponProduct = findViewById(R.id.txtAdd_Coupon);
+            MangProduct = new ArrayList<>();
+        }
     }
-}

@@ -68,7 +68,6 @@ public class CategoryManagerAdapter extends RecyclerView.Adapter<CategoryManager
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, "Download Failed", Toast.LENGTH_SHORT).show();
                     }
                 });
         bundle.putInt("id", categoryManager.getCategory_id());
