@@ -12,10 +12,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -32,6 +34,8 @@ import com.google.firebase.storage.UploadTask;
 import com.manager.appbanmohinhmanager.R;
 import com.manager.appbanmohinhmanager.adapter.AddProductAdapter;
 import com.manager.appbanmohinhmanager.model.CategoryManager;
+import com.manager.appbanmohinhmanager.model.ProductManager;
+import com.manager.appbanmohinhmanager.model.ProductManagerModel;
 import com.manager.appbanmohinhmanager.retrofit.ApiManager;
 import com.manager.appbanmohinhmanager.retrofit.RetrofitClient;
 import com.manager.appbanmohinhmanager.utils.Utils;
@@ -71,19 +75,24 @@ public class AddProductActivity extends AppCompatActivity {
     Spinner spinner;
     int idcategory;
 
+    List<ProductManager> MangProduct;
+
     TextView tvQuantity;
     int quantity;
     ImageView btnMinus, btnPlus;
+
+    EditText txtNameProduct, txtDescriptionProduct, txtPriceProduct, txtCouponProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+        Bundle bundle = getIntent().getExtras();
         quantity = 0;
         initView();
         handleClickedButtonSingle();
         handleClickedButtonMultiple();
-        handleSubmitData();
+        handleSubmitData(bundle);
         actionToolBar();
         getCategory();
         handleButtonQuantity();
@@ -179,8 +188,7 @@ public class AddProductActivity extends AppCompatActivity {
         });
     }
 
-    private void uploadToFirebase(Uri imageuri) {
-        final String randomName = UUID.randomUUID().toString();
+    private void uploadToFirebase(Uri imageuri, String randomName) {
         storageReference = FirebaseStorage.getInstance().getReference().child("images/" + randomName);
         storageReference.putFile(imageuri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -203,16 +211,56 @@ public class AddProductActivity extends AppCompatActivity {
                 });
     }
 
-    private void handleSubmitData() {
+    private void handleSubmitData(Bundle bundle) {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int nextid = bundle.getInt("nextid") + 1 ;
+                List<String> ArraySubImg = new ArrayList<>();
                 for (int i = 0; i < listImgSub.size(); i++) {
-                    uploadToFirebase(listImgSub.get(i));
+                    ArraySubImg.add(String.valueOf(nextid)+"_"+UUID.randomUUID().toString());
                 }
-                uploadToFirebase(ImgMain);
+                final String MainImg = String.valueOf(nextid)+"_"+UUID.randomUUID().toString();
+                String subImg = "";
+                for (int i = 0; i < listImgSub.size(); i++) {
+                    uploadToFirebase(listImgSub.get(i), ArraySubImg.get(i));
+                    if (i == (listImgSub.size()-1)){
+                        subImg += (ArraySubImg.get(i)) ;
+                    }
+                    else {
+                        subImg += (ArraySubImg.get(i) + ",") ;
+                    }
+                }
+                uploadToFirebase(ImgMain, MainImg);
+                Toast.makeText(AddProductActivity.this, subImg, Toast.LENGTH_SHORT).show();
+                String nameProduct = txtNameProduct.getText().toString();
+                String descriptionProduct = txtDescriptionProduct.getText().toString();
+                int priceProduct = Integer.parseInt(txtPriceProduct.getText().toString());
+                int couponProduct = Integer.parseInt(txtCouponProduct.getText().toString());
+
+                uploadDataProduct(nameProduct, priceProduct, quantity, descriptionProduct, MainImg, subImg, couponProduct, idcategory, 1);
             }
         });
+    }
+
+    private void uploadDataProduct(String name, int price, int quantity, String description, String main_image, String subimage, int coupon, int idcategory, int status){
+        Log.d("query", name +", "+ price +", "+ quantity +", "+ description +", "+ main_image +", "+ subimage +", "+ coupon + ", " + status);
+        compositeDisposable.add(apiManager.addDataProduct(name, price, quantity, description, main_image, subimage, coupon, idcategory, status)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        ProductManagerModel -> {
+                            if (ProductManagerModel.isSuccess()){
+                                Toast.makeText(this, "Thêm sản phẩm mới thành công", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }else {
+                                Toast.makeText(this, ProductManagerModel.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }, throwable -> {
+                            Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                )
+        );
     }
 
     private void actionToolBar() {
@@ -281,5 +329,10 @@ public class AddProductActivity extends AppCompatActivity {
         tvQuantity = findViewById(R.id.tvQuantity);
         btnMinus = findViewById(R.id.btnMinus);
         btnPlus = findViewById(R.id.btnPlus);
+        txtNameProduct = findViewById(R.id.txtAdd_NameProduct);
+        txtDescriptionProduct = findViewById(R.id.txtAdd_Description);
+        txtPriceProduct = findViewById(R.id.txtAdd_Price);
+        txtCouponProduct = findViewById(R.id.txtAdd_Coupon);
+        MangProduct = new ArrayList<>();
     }
 }

@@ -4,6 +4,7 @@ import static java.security.AccessController.getContext;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.manager.appbanmohinhmanager.R;
 import com.manager.appbanmohinhmanager.activity.UpdateProductActivity;
 import com.manager.appbanmohinhmanager.model.ProductManager;
@@ -41,7 +46,26 @@ public class ProductManagerAdapter extends RecyclerView.Adapter<ProductManagerAd
     @Override
     public void onBindViewHolder(@NonNull ProductManagerAdapter.ViewHolder holder, int position) {
         ProductManager productManager = array.get(position);
-        Glide.with(context).load(productManager.getMain_image()).into(holder.imgMain);
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageReference = storage.getReference()
+                .child("/images")
+                .child(productManager.getMain_image());
+
+        storageReference.getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Glide.with(context)
+                                .load(uri)
+                                .into(holder.imgMain);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Download Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
         holder.txtName.setText(String.valueOf(productManager.getProduct_id())+"_"+productManager.getName());
         holder.txtQuantity.setText("Số Lượng: "+ String.valueOf(productManager.getQuantity()));
         holder.txtPrice.setText("Giá: "+String.valueOf(productManager.getPrice()));
@@ -66,6 +90,8 @@ public class ProductManagerAdapter extends RecyclerView.Adapter<ProductManagerAd
             }
         });
     }
+
+
 
     @Override
     public int getItemCount() {

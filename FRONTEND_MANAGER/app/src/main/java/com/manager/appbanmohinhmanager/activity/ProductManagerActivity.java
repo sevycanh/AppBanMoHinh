@@ -44,8 +44,8 @@ public class ProductManagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_manager);
         initView();
-        handleClickedButton();
         getDataProductManager();
+        handleClickedButton();
         actionToolBar();
     }
 
@@ -67,6 +67,10 @@ public class ProductManagerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddProductActivity.class);
+                Bundle bundle = new Bundle();
+                int nextid = mangSP.get(mangSP.size()-1).getProduct_id();
+                bundle.putInt("nextid", nextid);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -96,5 +100,11 @@ public class ProductManagerActivity extends AppCompatActivity {
                         }
                 )
         );
+    }
+
+    @Override
+    protected void onResume() {
+        getDataProductManager();
+        super.onResume();
     }
 }

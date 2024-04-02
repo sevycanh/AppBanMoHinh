@@ -20,9 +20,9 @@ public interface ApiManager {
     @FormUrlEncoded
     Observable<ProductManagerModel> addDataProduct(
             @Field("name") String name,
+            @Field("price") int price,
             @Field("quantity") int quantity,
             @Field("description") String description,
-            @Field("price") int price,
             @Field("main_image") String main_image,
             @Field("sub_image") String sub_image,
             @Field("coupon") int coupon,
