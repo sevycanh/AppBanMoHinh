@@ -1,5 +1,6 @@
 package com.manager.appbanmohinhmanager.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -25,11 +26,9 @@ import java.util.List;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import retrofit2.Retrofit;
 
 public class ProductManagerActivity extends AppCompatActivity {
     ImageView btnAdd;
-    Button btnUpdate;
     RecyclerView recyclerView;
     List<ProductManager> mangSP;
     LinearLayoutManager linearLayoutManager;
@@ -37,6 +36,8 @@ public class ProductManagerActivity extends AppCompatActivity {
     ProductManagerAdapter productManagerAdapter;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     Toolbar toolbar;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,8 @@ public class ProductManagerActivity extends AppCompatActivity {
         });
     }
 
+
+
     private void handleClickedButton() {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,18 +70,10 @@ public class ProductManagerActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), UpdateProductActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void initView() {
         btnAdd = findViewById(R.id.btnThem);
-        btnUpdate = findViewById(R.id.btnSua);
         recyclerView = findViewById(R.id.listProduct);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);

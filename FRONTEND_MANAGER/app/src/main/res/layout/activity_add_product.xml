@@ -7,190 +7,224 @@
     android:layout_height="match_parent"
     tools:context=".activity.AddProductActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolBarAddProduct"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/main"
-            app:title="Thêm Sản Phẩm Mới" />
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tên Sản Phẩm:"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/txtAdd_NameProduct"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBarAddProduct"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Số Lượng:"
-                android:textStyle="bold" />
+                android:background="@color/main"
+                app:title="Thêm Sản Phẩm Mới" />
 
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mô Tả:"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/txtAdd_Description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Giá:"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/txtAdd_Price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hình Đại Diện: "
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/getMainPickture"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_5sdp"
-                android:text="Chọn Hình" />
-        </LinearLayout>
+                android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imgAdd_Main"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_70sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="1"
-            tools:ignore="MissingConstraints" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tên Sản Phẩm:"
+                    android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/txtAdd_NameProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Các Hình Mô Tả: "
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/getSubPickture"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_5sdp"
-                android:text="Lấy Hình Mô Tả" />
-        </LinearLayout>
+                android:orientation="horizontal">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_MultipleImages"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:scrollbarStyle="outsideInset"
-            android:scrollbars="vertical" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Số Lượng:"
+                    android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/btnMinus"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:src="@drawable/minus"
+                    app:tint="@color/main" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Khuyến Mãi:"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="0"
+                    android:textSize="24sp" />
 
-            <EditText
-                android:id="@+id/txtAdd_Coupon"
+                <ImageView
+                    android:id="@+id/btnPlus"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/plus"
+                    app:tint="@color/main" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mô Tả:"
+                    android:textStyle="bold" />
 
-            <TextView
+                <EditText
+                    android:id="@+id/txtAdd_Description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giá:"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/txtAdd_Price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hình Đại Diện: "
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/getMainPickture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:backgroundTint="@color/main"
+                    android:text="Chọn Hình"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgAdd_Main"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="1"
+                tools:ignore="MissingConstraints" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Các Hình Mô Tả: "
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/getSubPickture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:backgroundTint="@color/main"
+                    android:text="Lấy Hình Mô Tả"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_MultipleImages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:scrollbarStyle="outsideInset"
+                android:scrollbars="vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Khuyến Mãi:"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/txtAdd_Coupon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Loại Sản Phẩm:"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></Spinner>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submitDataAddProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Loại Sản Phẩm:"
-                android:textStyle="bold" />
+                android:layout_gravity="center"
+                android:backgroundTint="@color/main"
+                android:text="Thêm sản phẩm"
+                android:textColor="@color/black" />
 
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></Spinner>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/submitDataAddProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Thêm sản phẩm" />
-
-    </LinearLayout>
+    </ScrollView>
 
     <ProgressBar
         android:id="@+id/progressBarAddProduct"

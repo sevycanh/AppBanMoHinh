@@ -4,23 +4,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -32,10 +31,18 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.manager.appbanmohinhmanager.R;
 import com.manager.appbanmohinhmanager.adapter.AddProductAdapter;
+import com.manager.appbanmohinhmanager.model.CategoryManager;
+import com.manager.appbanmohinhmanager.retrofit.ApiManager;
+import com.manager.appbanmohinhmanager.retrofit.RetrofitClient;
+import com.manager.appbanmohinhmanager.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -57,15 +64,48 @@ public class AddProductActivity extends AppCompatActivity {
     StorageReference storageReference;
     Toolbar toolbar;
 
+    CompositeDisposable compositeDisposable = new CompositeDisposable();
+    ApiManager apiManager;
+
+    List<CategoryManager> arrayCategory;
+    Spinner spinner;
+    int idcategory;
+
+    TextView tvQuantity;
+    int quantity;
+    ImageView btnMinus, btnPlus;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+        quantity = 0;
         initView();
         handleClickedButtonSingle();
         handleClickedButtonMultiple();
         handleSubmitData();
         actionToolBar();
+        getCategory();
+        handleButtonQuantity();
+    }
+
+    private void handleButtonQuantity(){
+        btnMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (quantity > 0) {
+                    quantity--;
+                    tvQuantity.setText(String.valueOf(quantity));
+                }
+            }
+        });
+        btnPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quantity++;
+                tvQuantity.setText(String.valueOf(quantity));
+            }
+        });
     }
 
     @Override
@@ -186,6 +226,43 @@ public class AddProductActivity extends AppCompatActivity {
         });
     }
 
+    private void getCategory() {
+        compositeDisposable.add(apiManager.getDataCategory()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        CategoryManagerModel -> {
+                            if (CategoryManagerModel.isSuccess()){
+                                arrayCategory = CategoryManagerModel.getResult();
+                                List<String> data = new ArrayList<>();
+                                for (int i = 0; i < arrayCategory.size(); i++){
+                                    int id = arrayCategory.get(i).getCategory_id();
+                                    String s = arrayCategory.get(i).getCategory_id() + "_" + arrayCategory.get(i).getName();
+                                    data.add(s);
+                                }
+                                ArrayAdapter<String> adapterCategory = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, data);
+                                spinner.setAdapter(adapterCategory);
+                                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                    @Override
+                                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                        String s[] = data.get(position).split("_");
+                                        idcategory = Integer.parseInt(s[0]);
+                                    }
+
+                                    @Override
+                                    public void onNothingSelected(AdapterView<?> parent) {
+
+                                    }
+                                });
+                            }
+
+                        }, throwable -> {
+                            Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                )
+        );
+    }
+
     private void initView() {
         uri = new ArrayList<>();
         single_img = findViewById(R.id.imgAdd_Main);
@@ -198,5 +275,11 @@ public class AddProductActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(AddProductActivity.this, 5));
         recyclerView.setAdapter(adapter);
         toolbar = findViewById(R.id.toolBarAddProduct);
+        spinner = findViewById(R.id.spinnerAdd);
+        apiManager = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiManager.class);
+        arrayCategory = new ArrayList<>();
+        tvQuantity = findViewById(R.id.tvQuantity);
+        btnMinus = findViewById(R.id.btnMinus);
+        btnPlus = findViewById(R.id.btnPlus);
     }
 }

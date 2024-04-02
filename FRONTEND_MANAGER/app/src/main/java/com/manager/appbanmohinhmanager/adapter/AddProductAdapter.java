@@ -37,7 +37,8 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.Vi
             @Override
             public void onClick(View v) {
                 uriArrayList.remove(position);
-                notifyItemRangeChanged(position,getItemCount());
+                int range = getItemCount();
+                notifyItemRangeChanged(position,range -1);
             }
         });
     }

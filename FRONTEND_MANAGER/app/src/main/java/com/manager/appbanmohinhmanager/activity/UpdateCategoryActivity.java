@@ -25,7 +25,6 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.manager.appbanmohinhmanager.R;
-import com.manager.appbanmohinhmanager.model.CategoryManagerModel;
 import com.manager.appbanmohinhmanager.retrofit.ApiManager;
 import com.manager.appbanmohinhmanager.retrofit.RetrofitClient;
 import com.manager.appbanmohinhmanager.utils.Utils;

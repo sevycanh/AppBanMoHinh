@@ -13,10 +13,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -53,7 +55,6 @@ public class AddCategoryActivity extends AppCompatActivity {
     StorageReference storageReference;
     ProgressBar progressBar;
     ApiManager apiManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
