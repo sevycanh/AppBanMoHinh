@@ -122,6 +122,14 @@ public interface ApiBanHang {
             @Field("luckybox") int luckybox
     );
 
+    @POST("update_checkin.php")
+    @FormUrlEncoded
+    Observable<MessageModel> updateCheckIn(
+            @Field("id") int id,
+            @Field("coin") int coin,
+            @Field("checkin") int checkin
+    );
+
     @POST("insertcoupon.php")
     @FormUrlEncoded
     Observable<CouponModel> insertCoupon(

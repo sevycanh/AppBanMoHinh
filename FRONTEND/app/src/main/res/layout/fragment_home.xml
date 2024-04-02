@@ -50,6 +50,7 @@
                                 android:orientation="horizontal">
 
                                 <androidx.cardview.widget.CardView
+                                    android:id="@+id/cardCheckIn_HomeFragment"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp">
@@ -125,7 +126,7 @@
                                             android:id="@+id/textView4"
                                             android:layout_width="50dp"
                                             android:layout_height="wrap_content"
-                                            android:text="Họp quà may mắn"
+                                            android:text="Hộp quà may mắn"
                                             android:textAlignment="center"
                                             android:textColor="#000000"
                                             android:textSize="10dp" />

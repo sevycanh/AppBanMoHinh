@@ -27,6 +27,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.shopmohinh.R;
 
+import com.example.shopmohinh.activity.CheckInActivity;
 import com.example.shopmohinh.adapter.SPMoiAdapter;
 import com.example.shopmohinh.activity.MiniGameActivity;
 import com.example.shopmohinh.activity.SpinCouponActivity;
@@ -61,7 +62,7 @@ public class HomeFragment extends Fragment {
     boolean isLoading = false;
     int page = 1;
     List<LoaiSP> mangLoaiSp;
-    CardView cardWheel_Coupon, cardMiniGame;
+    CardView cardWheel_Coupon, cardMiniGame, cardCheckIn;
 
     @Nullable
     @Override
@@ -131,6 +132,13 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        cardCheckIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CheckInActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void ActionViewFlipper() {
@@ -190,6 +198,7 @@ public class HomeFragment extends Fragment {
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         cardWheel_Coupon = rootView.findViewById(R.id.cardWheel_coupon);
         cardMiniGame = rootView.findViewById(R.id.cardMiniGame);
+        cardCheckIn = rootView.findViewById(R.id.cardCheckIn_HomeFragment);
     }
 
     private void getSanPhamMoi(int page) {
