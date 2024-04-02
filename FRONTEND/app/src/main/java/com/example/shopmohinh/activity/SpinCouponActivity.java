@@ -8,11 +8,14 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +24,12 @@ import com.example.shopmohinh.R;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.Random;
 
@@ -40,15 +49,57 @@ public class SpinCouponActivity extends AppCompatActivity {
     String[] winPoints = {"30%", "0%", "15%", "0%", "5%", "0%", "10%", "0%"};
     int randPosition = 0;
     int coin = 0;
+    FrameLayout adContainerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spin_coupon);
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
 
         initView();
         actionToolBar();
         initControll();
         getCoin();
+        loadBanner();
+    }
+
+    private AdSize getAdSize() {
+        // Determine the screen width (less decorations) to use for the ad width.
+        Display display = getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+        float density = outMetrics.density;
+
+        float adWidthPixels = adContainerView.getWidth();
+
+        // If the ad hasn't been laid out, default to the full screen width.
+        if (adWidthPixels == 0) {
+            adWidthPixels = outMetrics.widthPixels;
+        }
+
+        int adWidth = (int) (adWidthPixels / density);
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth);
+    }
+
+    private void loadBanner() {
+
+        // Create a new ad view.
+        AdView adView = new AdView(this);
+        adView.setAdSize(getAdSize());
+        adView.setAdUnitId("ca-app-pub-3940256099942544/9214589741");
+
+        // Replace ad container with new ad view.
+        adContainerView.removeAllViews();
+        adContainerView.addView(adView);
+
+        // Start loading the ad in the background.
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
     private void getCoin() {
@@ -191,6 +242,7 @@ public class SpinCouponActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbarSpinCoupon);
         txtCoin = findViewById(R.id.txtcoin_wheelcoupon);
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
+        adContainerView = findViewById(R.id.ad_view_container);
     }
 
     @Override
