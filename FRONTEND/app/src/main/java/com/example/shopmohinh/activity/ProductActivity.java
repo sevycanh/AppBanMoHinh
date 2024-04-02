@@ -43,8 +43,6 @@ public class ProductActivity extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     Handler handler = new Handler();
     boolean isLoading = false;
-    private int currentItemCount = 0;
-    private int maxItems = 0;
 
     ApiBanHang apiBanHang;
 
@@ -108,11 +106,8 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (!isLoading && currentItemCount < maxItems) {
-                    int lastVisibleItemPosition = linearLayoutManager.findLastCompletelyVisibleItemPosition();
-                    int totalItemCount = linearLayoutManager.getItemCount();
-
-                    if (lastVisibleItemPosition == totalItemCount - 1) {
+                if (isLoading == false) {
+                    if (linearLayoutManager.findLastCompletelyVisibleItemPosition() == productList.size() - 1) {
                         isLoading = true;
                         loadMore();
                     }
@@ -126,8 +121,9 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //add null
-                productList.add(null);
-                phoneAdapter.notifyItemInserted(productList.size() - 1);
+                //productList.add(null);
+                //phoneAdapter.notifyItemInserted(productList.size() - 1);
+                Toast.makeText(getApplicationContext(), "Đang tải ...", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -135,14 +131,15 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //remove null
-                productList.remove(productList.size() - 1);
-                phoneAdapter.notifyItemRemoved(productList.size());
+                //productList.remove(productList.size() - 1);
+                //phoneAdapter.notifyItemRemoved(productList.size());
                 page = page + 1;
                 getData(page);
-                phoneAdapter.notifyDataSetChanged();
+                //phoneAdapter.notifyDataSetChanged();
+                phoneAdapter.loadNewData(productList);
                 isLoading = false;
             }
-        }, 3000);
+        }, 2000);
     }
 
     private void getData(int page) {
@@ -155,7 +152,6 @@ public class ProductActivity extends AppCompatActivity {
                                     productList = productModel.getResult();
                                     phoneAdapter = new ProductAdapter(getApplicationContext(), productList);
                                     recyclerView.setAdapter(phoneAdapter);
-                                    currentItemCount = productList.size();
                                 } else {
                                     int position = productList.size() - 1;
                                     int numberAdd = productModel.getResult().size();
@@ -163,14 +159,10 @@ public class ProductActivity extends AppCompatActivity {
                                         productList.add(productModel.getResult().get(i));
                                     }
                                     phoneAdapter.notifyItemRangeInserted(position, numberAdd);
-                                    currentItemCount += numberAdd;
                                 }
                             } else {
-                                Toast.makeText(getApplicationContext(), "Hết dữ liệu rồi", Toast.LENGTH_LONG).show();
                                 isLoading = true;
-                            }
-                            if (currentItemCount >= maxItems) {
-                                isLoading = true; // Đã hiển thị đủ số lượng sản phẩm, không cần tải thêm
+                                Toast.makeText(getApplicationContext(), "Hết sản phẩm", Toast.LENGTH_LONG).show();
                             }
                         },
                         throwable -> {

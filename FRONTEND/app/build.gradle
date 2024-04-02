@@ -68,7 +68,7 @@ dependencies {
     //viewpager
     implementation 'androidx.viewpager:viewpager:1.0.0'
 
-    //circleindicator
+    //circle indicator
     implementation 'me.relex:circleindicator:2.1.6'
 
     //brage

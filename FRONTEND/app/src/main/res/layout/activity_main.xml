@@ -37,7 +37,9 @@
                         android:id="@+id/searchHomePage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#FFC107" />
+                        android:background="@color/main"
+                        android:iconifiedByDefault="false"
+                        android:queryHint="Tìm kiếm"/>
                 </androidx.appcompat.widget.Toolbar>
 
             </com.google.android.material.appbar.AppBarLayout>
@@ -80,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_130sdp"
-            android:text="@string/DanhMuc"
+            android:text="Danh Muc Fragment"
             android:textAlignment="center"
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold" />

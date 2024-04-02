@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="@dimen/_8sdp"
+    app:cardCornerRadius="@dimen/_4sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginEnd="@dimen/_10sdp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/sp_image_search"
+                android:src="@drawable/ic_launcher_foreground"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"/>
+            <TextView
+                android:id="@+id/sp_name_search"
+                android:text="Naruto"
+                android:textSize="@dimen/_20ssp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/sp_price_search"
+                android:text="Giá: 20000đ"
+                android:textSize="@dimen/_15ssp"
+                android:textColor="#FF3E01"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </FrameLayout>
+</androidx.cardview.widget.CardView>

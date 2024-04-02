@@ -1,6 +1,7 @@
 package com.example.shopmohinh.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,21 +16,21 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.denzcoskun.imageslider.ImageSlider;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.model.User;
 import com.example.shopmohinh.utils.Utils;
@@ -38,7 +39,6 @@ import com.example.shopmohinh.fragment.AccountFragment;
 import com.example.shopmohinh.fragment.ContactFragment;
 import com.example.shopmohinh.fragment.HomeFragment;
 import com.example.shopmohinh.fragment.OrderFragment;
-import com.example.shopmohinh.model.SanPhamMoi;
 
 import com.example.shopmohinh.adapter.Loaisp_Adapter;
 import com.example.shopmohinh.model.LoaiSP;
@@ -48,6 +48,7 @@ import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
     Loaisp_Adapter loaispAdapter;
     BottomNavigationView bottomNavigationView;
     FrameLayout frameLayout;
+    Boolean checkViewSearch = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,21 +80,29 @@ public class MainActivity extends AppCompatActivity {
 
         //load user hiện tại
         Paper.init(this);
-        if (Paper.book().read("user") != null){
+        if (Paper.book().read("user") != null) {
             User user = Paper.book().read("user");
             Utils.user_current = user;
         }
-        getToken();
-
         Anhxa();
         ActionBar();
         setSearchView();
+        getEventClick();
+        handleSearchClicked();
+        getLoaiSanPham();
+        loadBottomNavView();
+
+        getToken();
+        checkIn();
+
         if (isConnected(this)) {
-            getSanPhamMoi();
             getLoaiSanPham();
         } else {
             Toast.makeText(getApplicationContext(), "Không có kết nối Internet!", Toast.LENGTH_LONG).show();
         }
+        loadFragment(new HomeFragment(), true);
+    }
+        private void loadBottomNavView(){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -117,9 +127,34 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        loadFragment(new HomeFragment(), true);
+        }
+
+    private void handleSearchClicked(){
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+
     }
 
+    private void checkIn() {
+        //check-in để update điểm danh và lượt chơi lucky box
+        compositeDisposable.add(apiBanHang.checkIn(Utils.user_current.getAccount_id())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        messageModel -> {
+                        },
+                        throwable -> {
+                        }
+                ));
+    }
     private void getToken() {
         FirebaseMessaging.getInstance().getToken()
                 .addOnSuccessListener(new OnSuccessListener<String>() {
@@ -149,11 +184,6 @@ public class MainActivity extends AppCompatActivity {
 //
 //                        }
 //                ));
-    }
-
-    private void getSanPhamMoi() {
-
-
     }
 
     private void setSearchView() {
@@ -205,11 +235,32 @@ public class MainActivity extends AppCompatActivity {
                             if (loaiSPModel.isSuccess()) {
                                 mangLoaiSp = loaiSPModel.getResult();
                                 loaispAdapter = new Loaisp_Adapter(getApplicationContext(), mangLoaiSp);
-                                ListView listView = findViewById(R.id.listViewHomePage);
                                 listView.setAdapter(loaispAdapter);
                             }
+                        }, throwable -> {
+                            Toast.makeText(this,throwable.getMessage(), Toast.LENGTH_LONG).show();
                         }
                 ));
+    }
+
+    private void getEventClick() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 0:
+                        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
+                        intent.putExtra("id_category", 1);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        Intent intent1 = new Intent(getApplicationContext(), ProductActivity.class);
+                        intent1.putExtra("id_category", 2);
+                        startActivity(intent1);
+                        break;
+                }
+            }
+        });
     }
 
     private void loadFragment(Fragment fragment, boolean isAppInitialized) {
@@ -234,5 +285,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             toolBar.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        compositeDisposable.clear();
+        super.onDestroy();
     }
 }
