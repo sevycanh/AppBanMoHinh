@@ -37,9 +37,9 @@ public class SpSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         MyViewHolder myViewHolder = (MyViewHolder) holder;
         SanPhamSearch sanPhamSearch = array.get(position);
-        myViewHolder.txtTen.setText(String.valueOf(sanPhamSearch.getTensp()));
-        myViewHolder.txtGia.setText("Giá: " + String.valueOf(sanPhamSearch.getGiasp()) + "đ");
-        Glide.with(context).load(sanPhamSearch.getHinhanh()).into(myViewHolder.imgItem);
+        myViewHolder.txtTen.setText(String.valueOf(sanPhamSearch.getName()));
+        myViewHolder.txtGia.setText("Giá: " + String.valueOf(sanPhamSearch.getPrice()) + "đ");
+        Glide.with(context).load(sanPhamSearch.getMain_image()).into(myViewHolder.imgItem);
     }
 
     @Override
