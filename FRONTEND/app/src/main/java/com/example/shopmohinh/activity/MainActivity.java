@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         Anhxa();
         ActionBar();
         setSearchView();
-        getEventClick();
         handleSearchClicked();
         getLoaiSanPham();
         loadBottomNavView();
@@ -241,26 +240,6 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(this,throwable.getMessage(), Toast.LENGTH_LONG).show();
                         }
                 ));
-    }
-
-    private void getEventClick() {
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i){
-                    case 0:
-                        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
-                        intent.putExtra("id_category", 1);
-                        startActivity(intent);
-                        break;
-                    case 1:
-                        Intent intent1 = new Intent(getApplicationContext(), ProductActivity.class);
-                        intent1.putExtra("id_category", 2);
-                        startActivity(intent1);
-                        break;
-                }
-            }
-        });
     }
 
     private void loadFragment(Fragment fragment, boolean isAppInitialized) {
