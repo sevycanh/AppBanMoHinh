@@ -2,10 +2,12 @@ package com.manager.appbanmohinhmanager.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -41,6 +43,7 @@ public class UpdateCategoryActivity extends AppCompatActivity {
     ImageView imgCategory;
     Button btnChonAnh;
     Button btnSave;
+    Button btnDelete;
     ProgressBar progressBar;
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -60,6 +63,7 @@ public class UpdateCategoryActivity extends AppCompatActivity {
         showData(bundle);
         handleClickedButtonAddImg();
         handleClickedButtonSave(bundle);
+        handleButtonDelete(bundle);
     }
 
     private void showData(Bundle bundle) {
@@ -97,6 +101,45 @@ public class UpdateCategoryActivity extends AppCompatActivity {
                     final String randomName = UUID.randomUUID().toString();
                     uploadToFirebase(imageUri, randomName, bundle);
                 }
+            }
+        });
+    }
+
+    private void handleButtonDelete(Bundle bundle){
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(UpdateCategoryActivity.this);
+                builder.setTitle("Xác nhận");
+                builder.setMessage("Bạn có chắc chắn muốn xóa danh mục không?");
+
+                builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateCategoryActivity.this);
+                        builder.setTitle("Xác nhận");
+                        builder.setMessage("Nếu xóa tất cả sản phẩm trong danh mục cũng sẽ bị xóa, bạn có chắc chứ?");
+
+                        builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteCategory(bundle);
+                            }
+                        });
+
+                        builder.setNegativeButton("Hủy bỏ", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                        builder.create().show();
+                    }
+                });
+
+                builder.setNegativeButton("Hủy bỏ", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.create().show();
             }
         });
     }
@@ -185,6 +228,46 @@ public class UpdateCategoryActivity extends AppCompatActivity {
         );
     }
 
+    private void deleteCategory(Bundle bundle) {
+        int idCategory = bundle.getInt("id");
+        compositeDisposable.add(apiManager.deleteDataCategory(idCategory)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        CategoryManagerModel -> {
+                            if (CategoryManagerModel.isSuccess()) {
+                                hiddenProduct(idCategory);
+                            } else {
+                                Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show();
+                            }
+                        }, throwable -> {
+                            Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                )
+        );
+    }
+
+    private void hiddenProduct(int idCategory) {
+        compositeDisposable.add(apiManager.hiddenProduct(idCategory)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        ProductManagerModel -> {
+                            if (ProductManagerModel.isSuccess()) {
+                                Toast.makeText(this, "Xóa Dữ Liệu Thành Công", Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show();
+                            }
+                        }, throwable -> {
+                            Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                )
+        );
+    }
+
     private void initView() {
         toolbar = findViewById(R.id.toolbarUpdateCategory);
         txtNameCategory = findViewById(R.id.txtUpdateTenDanhMuc);
@@ -193,5 +276,6 @@ public class UpdateCategoryActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
         apiManager = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiManager.class);
         progressBar = findViewById(R.id.progressBarUpdateCategory);
+        btnDelete = findViewById(R.id.btnDeleteCategory);
     }
 }

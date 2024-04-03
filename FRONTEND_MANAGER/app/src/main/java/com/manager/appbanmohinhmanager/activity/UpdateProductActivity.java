@@ -2,12 +2,14 @@ package com.manager.appbanmohinhmanager.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -103,13 +105,7 @@ public class UpdateProductActivity extends AppCompatActivity {
         handleClickedButtonSingle();
         handleClickedButtonMultiple();
         handleButtonSave(bundle);
-        btnDelele.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("MangData", String.valueOf(mangDataDownload));
-                Log.d("MangDataDeleted", String.valueOf(mangDataDownloadDeleted));
-            }
-        });
+        handleButtonDelete(bundle);
     }
 
     @Override
@@ -151,6 +147,30 @@ public class UpdateProductActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    private void handleButtonDelete(Bundle bundle) {
+        btnDelele.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(UpdateProductActivity.this);
+                builder.setTitle("Xác nhận");
+                builder.setMessage("Bạn có chắc chắn muốn xóa sản phẩm không?");
+
+                builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteDataProduct(bundle.getInt("idproduct"));
+                    }
+                });
+
+                builder.setNegativeButton("Hủy bỏ", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.create().show();
+            }
+        });
     }
 
     private void handleClickedButtonSingle() {
@@ -224,7 +244,7 @@ public class UpdateProductActivity extends AppCompatActivity {
                     boolean checkFinish = false;
 
                     String subImg = "";
-                    for (int i = 0; i < mangDataDownload.size();i++){
+                    for (int i = 0; i < mangDataDownload.size(); i++) {
                         if (i == (mangDataDownload.size() - 1)) {
                             subImg += (mangDataDownload.get(i));
                         } else {
@@ -232,14 +252,14 @@ public class UpdateProductActivity extends AppCompatActivity {
                         }
                     }
                     Log.d("NewList", String.valueOf(listImgSub.size()));
-                    for (int i = 0; i < listImgSub.size();i++){
+                    for (int i = 0; i < listImgSub.size(); i++) {
                         ArraySubImg.add(String.valueOf(id) + "_" + UUID.randomUUID().toString());
                     }
-                    if (mangDataDownload.size() > 0 && listImgSub.size() > 0){
+                    if (mangDataDownload.size() > 0 && listImgSub.size() > 0) {
                         subImg += ",";
                     }
                     for (int i = 0; i < listImgSub.size(); i++) {
-                        if ((i == listImgSub.size() - 1) && ImgMain_New == null){
+                        if ((i == listImgSub.size() - 1) && ImgMain_New == null) {
                             checkFinish = true;
                         }
                         uploadToFirebase(listImgSub.get(i), ArraySubImg.get(i), checkFinish);
@@ -249,18 +269,18 @@ public class UpdateProductActivity extends AppCompatActivity {
                             subImg += (ArraySubImg.get(i) + ",");
                         }
                     }
-                    Log.d("subImg" , subImg);
+                    Log.d("subImg", subImg);
                     ImgMain = bundle.getString("mainImg");
-                    if (ImgMain_New != null){
+                    if (ImgMain_New != null) {
                         final String MainImg = String.valueOf(id) + "_" + UUID.randomUUID().toString();
                         ImgMain = MainImg;
-                        uploadToFirebase(ImgMain_New, MainImg , true);
+                        uploadToFirebase(ImgMain_New, MainImg, true);
                         DeleteToFirebase(bundle.getString("mainImg"));
                     }
-                    for (int i = 0; i < mangDataDownloadDeleted.size(); i++){
+                    for (int i = 0; i < mangDataDownloadDeleted.size(); i++) {
                         DeleteToFirebase(mangDataDownloadDeleted.get(i));
                     }
-                    Log.d("mainImg" , ImgMain);
+                    Log.d("mainImg", ImgMain);
                     updateDataProduct(id, nameProduct, priceProduct, quantity, descriptionProduct, ImgMain, subImg, couponProduct, idcategory, 1);
                 }
             }
@@ -283,7 +303,7 @@ public class UpdateProductActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         progressBar.setVisibility(View.GONE);
-                        if (check == true){
+                        if (check == true) {
                             finish();
                         }
                     }
@@ -414,8 +434,8 @@ public class UpdateProductActivity extends AppCompatActivity {
                 });
     }
 
-    private void updateDataProduct (int id, String name,int price, int quantity, String
-            description, String main_image, String subimage,int coupon, int idcategory, int status){
+    private void updateDataProduct(int id, String name, int price, int quantity, String
+            description, String main_image, String subimage, int coupon, int idcategory, int status) {
 //        Log.d("query", name + ", " + price + ", " + quantity + ", " + description + ", " + main_image + ", " + subimage + ", " + coupon + ", " + status);
         compositeDisposable.add(apiManager.updateDataProduct(id, name, price, quantity, description, main_image, subimage, coupon, idcategory, status)
                 .subscribeOn(Schedulers.io())
@@ -424,6 +444,25 @@ public class UpdateProductActivity extends AppCompatActivity {
                         ProductManagerModel -> {
                             if (ProductManagerModel.isSuccess()) {
                                 Toast.makeText(this, "Lưu thông tin thành công", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(this, ProductManagerModel.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }, throwable -> {
+                            Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                )
+        );
+    }
+
+    private void deleteDataProduct(int id) {
+        compositeDisposable.add(apiManager.deleteProduct(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        ProductManagerModel -> {
+                            if (ProductManagerModel.isSuccess()) {
+                                Toast.makeText(this, "Xóa sản phẩm thành công", Toast.LENGTH_SHORT).show();
+                                finish();
                             } else {
                                 Toast.makeText(this, ProductManagerModel.getMessage(), Toast.LENGTH_SHORT).show();
                             }
@@ -483,7 +522,7 @@ public class UpdateProductActivity extends AppCompatActivity {
         btnDelele = findViewById(R.id.btnDeleteProduct);
         btn_single_img = findViewById(R.id.getMainUpdatePicture);
         btn_multiple_img = findViewById(R.id.getSubUpdatePicture);
-        adapter = new UpdateProductAdapter(getApplicationContext(), uriArrayList, mangDataDownload, mangDataDownloadDeleted );
+        adapter = new UpdateProductAdapter(getApplicationContext(), uriArrayList, mangDataDownload, mangDataDownloadDeleted);
         recyclerViewUpdate = findViewById(R.id.recyclerViewMultipleImageUpdate);
         recyclerViewUpdate.setLayoutManager(new GridLayoutManager(UpdateProductActivity.this, 5));
         recyclerViewUpdate.setAdapter(adapter);

@@ -45,6 +45,12 @@ public interface ApiManager {
             @Field("status") int status
     );
 
+    @POST("deleteproduct.php")
+    @FormUrlEncoded
+    Observable<ProductManagerModel> deleteProduct(
+            @Field("id") int id
+    );
+
     @GET("getcategory.php")
     Observable<CategoryManagerModel> getDataCategory();
 
@@ -61,5 +67,17 @@ public interface ApiManager {
             @Field("idcategory") int id,
             @Field("namecategory") String name,
             @Field("imgcategory") String img
+    );
+
+    @POST("deletecategory.php")
+    @FormUrlEncoded
+    Observable<CategoryManagerModel> deleteDataCategory(
+            @Field("idcategory") int id
+    );
+
+    @POST("hiddenproduct.php")
+    @FormUrlEncoded
+    Observable<ProductManagerModel> hiddenProduct(
+            @Field("idcategory") int id
     );
 }
