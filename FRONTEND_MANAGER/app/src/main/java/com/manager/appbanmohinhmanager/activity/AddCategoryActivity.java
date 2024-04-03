@@ -49,7 +49,7 @@ public class AddCategoryActivity extends AppCompatActivity {
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    private Uri imageUri;
+    private Uri imageUri = null;
 
     Toolbar toolbar;
     StorageReference storageReference;
@@ -101,8 +101,15 @@ public class AddCategoryActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String randomName = UUID.randomUUID().toString();
-                uploadToFirebase(imageUri, randomName);
+                if (txtTenDanhMuc.getText().toString().isEmpty()){
+                    txtTenDanhMuc.requestFocus();
+                    Toast.makeText(AddCategoryActivity.this, "Vui lòng nhập tên", Toast.LENGTH_SHORT).show();
+                } else if (imageUri == null) {
+                    Toast.makeText(AddCategoryActivity.this, "Vui lòng chọn hình đại diện", Toast.LENGTH_SHORT).show();
+                } else {
+                    final String randomName = UUID.randomUUID().toString();
+                    uploadToFirebase(imageUri, randomName);
+                }
             }
         });
     }

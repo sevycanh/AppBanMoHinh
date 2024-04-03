@@ -32,13 +32,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tên Sản Phẩm:"
+                    android:text="Tên:"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/txtAdd_NameProduct"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="Nhập tên sản phẩm ..."/>
             </LinearLayout>
 
             <LinearLayout
@@ -94,7 +95,8 @@
                 <EditText
                     android:id="@+id/txtAdd_Description"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="Nhập Mô Tả Sản Phẩm ..."/>
             </LinearLayout>
 
             <LinearLayout
@@ -111,8 +113,9 @@
 
                 <EditText
                     android:id="@+id/txtAdd_Price"
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Nhập giá sản phẩm..."/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -133,7 +136,7 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/getMainPickture"
+                    android:id="@+id/getMainPicture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
@@ -164,7 +167,7 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/getSubPickture"
+                    android:id="@+id/getSubPicture"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
@@ -216,7 +219,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loại Sản Phẩm:"
+                    android:text="Loại:"
                     android:textStyle="bold" />
 
                 <Spinner

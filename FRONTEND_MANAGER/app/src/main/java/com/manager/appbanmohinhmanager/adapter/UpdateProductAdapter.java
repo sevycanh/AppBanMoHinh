@@ -28,11 +28,14 @@ public class UpdateProductAdapter extends RecyclerView.Adapter<UpdateProductAdap
     Context context;
     private ArrayList<Uri> uriArray;
     private List<String> nameArray;
+    private List<String> nameArrayDeleted;
 
-    public UpdateProductAdapter(Context context, ArrayList<Uri> uriArray, List<String> nameArray) {
+
+    public UpdateProductAdapter(Context context, ArrayList<Uri> uriArray, List<String> nameArray, List<String> nameArrayDeleted) {
         this.context = context;
         this.uriArray = uriArray;
         this.nameArray = nameArray;
+        this.nameArrayDeleted = nameArrayDeleted;
     }
 
     @NonNull
@@ -49,23 +52,15 @@ public class UpdateProductAdapter extends RecyclerView.Adapter<UpdateProductAdap
                 .load(uriArray.get(position))
                 .into(holder.imageView);
 
-        holder.remove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, nameArray.get(position), Toast.LENGTH_SHORT).show();
-                DeleteToFirebase(nameArray.get(position));
-                uriArray.remove(position);
-                notifyItemRangeChanged(position,getItemCount());
-            }
-        });
-    }
-
-    private void DeleteToFirebase(String nameimg){
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageReference = storage.getReference()
-                .child("/images")
-                .child(nameimg);
-        storageReference.delete();
+            holder.remove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    uriArray.remove(position);
+                    nameArrayDeleted.add(nameArray.get(position));
+                    nameArray.remove(position);
+                    notifyDataSetChanged();
+                }
+            });
     }
 
     @Override
@@ -73,8 +68,9 @@ public class UpdateProductAdapter extends RecyclerView.Adapter<UpdateProductAdap
         return uriArray.size();
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView,remove;
+        ImageView imageView, remove;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

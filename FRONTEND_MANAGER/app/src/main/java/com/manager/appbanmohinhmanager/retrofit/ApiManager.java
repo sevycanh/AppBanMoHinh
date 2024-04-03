@@ -30,6 +30,21 @@ public interface ApiManager {
             @Field("status") int status
     );
 
+    @POST("updateproduct.php")
+    @FormUrlEncoded
+    Observable<ProductManagerModel> updateDataProduct(
+            @Field("id") int id,
+            @Field("name") String name,
+            @Field("price") int price,
+            @Field("quantity") int quantity,
+            @Field("description") String description,
+            @Field("main_image") String main_image,
+            @Field("sub_image") String sub_image,
+            @Field("coupon") int coupon,
+            @Field("category_id") int category_id,
+            @Field("status") int status
+    );
+
     @GET("getcategory.php")
     Observable<CategoryManagerModel> getDataCategory();
 

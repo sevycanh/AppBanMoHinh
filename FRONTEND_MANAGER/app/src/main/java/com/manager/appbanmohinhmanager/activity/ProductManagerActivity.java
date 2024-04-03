@@ -1,5 +1,6 @@
 package com.manager.appbanmohinhmanager.activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -38,7 +39,6 @@ public class ProductManagerActivity extends AppCompatActivity {
     Toolbar toolbar;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +59,6 @@ public class ProductManagerActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
     private void handleClickedButton() {
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +94,7 @@ public class ProductManagerActivity extends AppCompatActivity {
                             productManagerAdapter = new ProductManagerAdapter(getApplicationContext(), mangSP);
                             recyclerView.setAdapter(productManagerAdapter);
                         }, throwable -> {
-                            Toast.makeText(getApplicationContext(), "Lỗi tìm kiếm", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "404", Toast.LENGTH_LONG).show();
                         }
                 )
         );

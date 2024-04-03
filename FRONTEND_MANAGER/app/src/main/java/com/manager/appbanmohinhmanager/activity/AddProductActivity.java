@@ -188,13 +188,16 @@ public class AddProductActivity extends AppCompatActivity {
         });
     }
 
-    private void uploadToFirebase(Uri imageuri, String randomName) {
+    private void uploadToFirebase(Uri imageuri, String randomName, boolean check) {
         storageReference = FirebaseStorage.getInstance().getReference().child("images/" + randomName);
         storageReference.putFile(imageuri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         progressBar.setVisibility(View.GONE);
+                        if(check == true){
+                            finish();
+                        }
                     }
                 })
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -258,16 +261,14 @@ public class AddProductActivity extends AppCompatActivity {
                         final String MainImg = String.valueOf(nextid) + "_" + UUID.randomUUID().toString();
                         String subImg = "";
                         for (int i = 0; i < listImgSub.size(); i++) {
-                            uploadToFirebase(listImgSub.get(i), ArraySubImg.get(i));
+                            uploadToFirebase(listImgSub.get(i), ArraySubImg.get(i), false);
                             if (i == (listImgSub.size() - 1)) {
                                 subImg += (ArraySubImg.get(i));
                             } else {
                                 subImg += (ArraySubImg.get(i) + ",");
                             }
                         }
-                        uploadToFirebase(ImgMain, MainImg);
-                        Toast.makeText(AddProductActivity.this, subImg, Toast.LENGTH_SHORT).show();
-
+                        uploadToFirebase(ImgMain, MainImg, true);
 
                         uploadDataProduct(nameProduct, priceProduct, quantity, descriptionProduct, MainImg, subImg, couponProduct, idcategory, 1);
 
@@ -286,7 +287,6 @@ public class AddProductActivity extends AppCompatActivity {
                             ProductManagerModel -> {
                                 if (ProductManagerModel.isSuccess()) {
                                     Toast.makeText(this, "Thêm sản phẩm mới thành công", Toast.LENGTH_SHORT).show();
-                                    finish();
                                 } else {
                                     Toast.makeText(this, ProductManagerModel.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
@@ -349,8 +349,8 @@ public class AddProductActivity extends AppCompatActivity {
             uri = new ArrayList<>();
             single_img = findViewById(R.id.imgAdd_Main);
             recyclerView = findViewById(R.id.recyclerView_MultipleImages);
-            btn_single_img = findViewById(R.id.getMainPickture);
-            btn_multiple_img = findViewById(R.id.getSubPickture);
+            btn_single_img = findViewById(R.id.getMainPicture);
+            btn_multiple_img = findViewById(R.id.getSubPicture);
             btn_submit = findViewById(R.id.submitDataAddProduct);
             progressBar = findViewById(R.id.progressBarAddProduct);
             adapter = new AddProductAdapter(uri);

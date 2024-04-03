@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ public class ProductManagerAdapter extends RecyclerView.Adapter<ProductManagerAd
 
     @Override
     public void onBindViewHolder(@NonNull ProductManagerAdapter.ViewHolder holder, int position) {
+        Bundle bundle = new Bundle();
         ProductManager productManager = array.get(position);
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageReference = storage.getReference()
@@ -63,8 +65,10 @@ public class ProductManagerAdapter extends RecyclerView.Adapter<ProductManagerAd
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+
                     }
                 });
+
         holder.txtName.setText(String.valueOf(productManager.getProduct_id())+"_"+productManager.getName());
         holder.txtQuantity.setText("Số Lượng: "+ String.valueOf(productManager.getQuantity()));
         holder.txtPrice.setText("Giá: "+String.valueOf(productManager.getPrice()));
@@ -73,7 +77,7 @@ public class ProductManagerAdapter extends RecyclerView.Adapter<ProductManagerAd
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, UpdateProductActivity.class);
-                Bundle bundle = new Bundle();
+                bundle.putInt("idproduct", productManager.getProduct_id());
                 bundle.putInt("id", productManager.getCategory_id());
                 bundle.putString("name", productManager.getName());
                 bundle.putInt("price", productManager.getPrice());
@@ -82,7 +86,6 @@ public class ProductManagerAdapter extends RecyclerView.Adapter<ProductManagerAd
                 bundle.putString("mainImg", productManager.getMain_image());
                 bundle.putString("subImg", productManager.getSub_image());
                 bundle.putInt("coupon", productManager.getCoupon());
-                bundle.putInt("id", productManager.getCategory_id());
                 intent.putExtras(bundle);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
