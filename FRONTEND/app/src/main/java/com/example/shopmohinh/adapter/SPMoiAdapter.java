@@ -1,12 +1,14 @@
 package com.example.shopmohinh.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +17,10 @@ import com.bumptech.glide.Glide;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.fragment.HomeFragment;
 import com.example.shopmohinh.model.SanPhamMoi;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -49,7 +55,26 @@ public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             SanPhamMoi sanPhamMoi = array.get(position);
             myViewHolder.txtTen.setText(String.valueOf(sanPhamMoi.getProduct_id()));
             myViewHolder.txtGia.setText("Giá: " + String.valueOf(sanPhamMoi.getPrice()) + "đ");
-            Glide.with(context).load(sanPhamMoi.getMain_image()).into(myViewHolder.imgItem);
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageReference = storage.getReference()
+                    .child("/images")
+                    .child(sanPhamMoi.getMain_image());
+
+            storageReference.getDownloadUrl()
+                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Glide.with(context)
+                                    .load(uri)
+                                    .into(myViewHolder.imgItem);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(context, "Download Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }else {
             LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
             loadingViewHolder.progressBar.setIndeterminate(true);

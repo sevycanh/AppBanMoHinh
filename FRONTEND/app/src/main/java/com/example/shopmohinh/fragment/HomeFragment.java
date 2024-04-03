@@ -223,7 +223,6 @@ public class HomeFragment extends Fragment {
                             }
                             else {
                                 int position = mangSanPhamMoi.size()-1;
-                                mangSanPhamMoi.remove(position);
                                 spMoiAdapter.notifyItemRemoved(position);
                                 Toast.makeText(getActivity(),"Đã hết sản phẩm", Toast.LENGTH_LONG).show();
                             }
