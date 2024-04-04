@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
-    CardView cardViewProductManager, cardViewCategoryManager;
+    CardView cardViewProductManager, cardViewCategoryManager,cartThongKeManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        cartThongKeManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StatisticalActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getToken() {
@@ -89,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         cardViewProductManager = findViewById(R.id.cardSanPham_Manager);
         cardViewCategoryManager = findViewById(R.id.cardDanhMuc_Manager);
+        cartThongKeManager = findViewById(R.id.cardThongKe_Manager);
         toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
     }
@@ -101,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId()==R.id.menuDoiMatKhau){
+        if (item.getItemId() == R.id.menuDoiMatKhau){
             Intent intent = new Intent(getApplicationContext(), ForgotPassActivity.class);
             startActivity(intent);
         } else if (item.getItemId()==R.id.menuDangXuat){

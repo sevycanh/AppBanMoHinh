@@ -4010,6 +4010,7 @@ id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
 id automatic
+id barchart
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -4199,6 +4200,7 @@ id info
 id invisible
 id inward
 id italic
+id item_statistics
 id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
@@ -4217,6 +4219,7 @@ id listProduct
 id list_item
 id lottie_layer_name
 id m3_side_sheet
+id main
 id mainImageSP
 id marquee
 id masked
@@ -4331,6 +4334,7 @@ id path
 id pathRelative
 id peekHeight
 id percent
+id piechart
 id pin
 id position
 id postLayout
@@ -4352,6 +4356,7 @@ id recyclerView_MultipleImages
 id remove_item
 id report_drawn
 id restart
+id revenue_statistics
 id reverse
 id reverseSawtooth
 id right
@@ -4464,6 +4469,7 @@ id toggle
 id toolBarAddProduct
 id toolBarPM
 id toolBarTTSP
+id toolbar
 id toolbarAddCategory
 id toolbarDanhMuc
 id toolbarUpdateCategory
@@ -4487,6 +4493,7 @@ id txtAdd_NameProduct
 id txtAdd_Price
 id txtForgot
 id txtTenDanhMuc
+id txtThongke
 id txtUpdateTenDanhMuc
 id txtUpdate_Coupon
 id txtUpdate_Description
@@ -4641,6 +4648,7 @@ layout activity_log_in
 layout activity_main
 layout activity_product_manager
 layout activity_splash
+layout activity_statistical
 layout activity_update_category
 layout activity_update_product
 layout browser_actions_context_menu_page
@@ -4730,6 +4738,7 @@ layout sp_example
 layout ssp_example
 layout support_simple_spinner_dropdown_item
 menu menu_main
+menu menu_statistical
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
