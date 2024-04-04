@@ -66,6 +66,7 @@ public class LogInActivity extends AppCompatActivity {
                         .requestEmail()
                                 .build();
         client = GoogleSignIn.getClient(this, options);
+      
         initView();
         initControl();
     }

@@ -20,6 +20,14 @@
     <string name="Order">Đơn hàng</string>
     <string name="Contact">Liên hệ</string>
     <string name="Account">Tài khoản</string>
+<!--order status-->
+    <string name="TatCaDonHang">Tất cả</string>
+    <string name="ChuaXacNhan">Chưa xác nhận</string>
+    <string name="DaXacNhan">Đã xác nhận</string>
+    <string name="DangGiao">Đang giao</string>
+    <string name="GiaoThanhCong">Giao thành công</string>
+    <string name="DaHuy">Đã hủy</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
