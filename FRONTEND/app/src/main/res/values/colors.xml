@@ -3,11 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main">#fbc02d</color>
-
     <color name="gray">#8F8F8F</color>
     <color name="red">#FF3333</color>
     <color name="reddit">#ee4d2d</color>
-
     <color name="main_color">#FF0000</color>
     <color name="background_color">#ffffff</color>
     <color name="shopee_orange">#FF7400</color>
@@ -16,5 +14,7 @@
     <color name="transparent">#00000000</color>
     <color name="selected_color">#FF0000</color> <!-- Đổi màu thành màu đỏ -->
     <color name="default_color">#FFFFFF</color>
-
+    <color name="green">#76ff03</color>
+    <color name="yellow">#ffeb3b</color>
+    <color name="grey">#b0bec5</color>
 </resources>

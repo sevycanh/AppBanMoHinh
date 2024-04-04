@@ -5,4 +5,12 @@
         <item>@string/sort_lowest_price</item>
         <item>@string/sort_highest_price</item>
     </string-array>
+    <string-array name="order_status_option">
+        <item>@string/TatCaDonHang</item>
+        <item>@string/ChuaXacNhan</item>
+        <item>@string/DaXacNhan</item>
+        <item>@string/DangGiao</item>
+        <item>@string/GiaoThanhCong</item>
+        <item>@string/DaHuy</item>
+    </string-array>
 </resources>

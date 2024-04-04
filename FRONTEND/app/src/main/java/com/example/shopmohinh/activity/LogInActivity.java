@@ -41,7 +41,6 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
-
         initView();
         initControl();
     }
@@ -120,7 +119,7 @@ public class LogInActivity extends AppCompatActivity {
                                 Utils.user_current = userModel.getResult().get(0);
                                 //Luu lai thong tin nguoi dung
                                 Paper.book().write("user", userModel.getResult().get(0));
-                                Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {
