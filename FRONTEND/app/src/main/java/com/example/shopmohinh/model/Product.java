@@ -17,6 +17,16 @@ public class Product implements Serializable {
     @SerializedName("caregory_id")
     int caregory_id;
 
+    String linkvideo;
+
+    public String getLinkVideo() {
+        return linkvideo;
+    }
+
+    public void setLinkVideo(String linkVideo) {
+        this.linkvideo = linkVideo;
+    }
+
     public int getProduct_id() {
         return product_id;
     }

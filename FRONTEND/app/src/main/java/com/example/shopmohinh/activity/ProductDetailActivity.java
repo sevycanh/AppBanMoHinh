@@ -34,7 +34,7 @@ import me.relex.circleindicator.CircleIndicator;
 public class ProductDetailActivity extends AppCompatActivity {
     ImageView imgCart;
     TextView txtName, txtPrice, txtSalePrice, tvStock, txtDescription,txtQuantity;
-    Button btnDecrease, btnIncrease, btnAddToCart;
+    Button btnDecrease, btnIncrease, btnAddToCart,btnYoutube;
     Toolbar toolbar;
     ViewPager imageViewPager;
     private CircleIndicator circleIndicator;
@@ -62,6 +62,15 @@ public class ProductDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 viewCart();
+            }
+        });
+
+        btnYoutube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent youtube = new Intent(getApplicationContext(), YoutubeActivity.class);
+                youtube.putExtra("linkvideo",product.getLinkVideo());
+                startActivity(youtube);
             }
         });
     }
@@ -205,6 +214,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         if(Utils.carts!=null){
             badge.setText(String.valueOf(Utils.carts.size()));
         }
+        btnYoutube = findViewById(R.id.btn_youtube);
     }
 
     private void ActionToolBar() {

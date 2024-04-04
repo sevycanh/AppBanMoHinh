@@ -15,6 +15,7 @@
         android:layout_height="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
+
         <FrameLayout
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_gravity="right"
@@ -45,7 +46,7 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/imageViewPager"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_250sdp"
+            android:layout_height="289dp"
             android:padding="0dp" />
 
         <me.relex.circleindicator.CircleIndicator
@@ -61,14 +62,28 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- TextView txtNameProduct -->
-            <TextView
-                android:id="@+id/txtNameProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tên sản phẩm"
-                android:textSize="@dimen/_20ssp"
-                android:textStyle="bold" />
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="vertical">
+               <!-- TextView txtNameProduct -->
+               <TextView
+                   android:id="@+id/txtNameProduct"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Tên sản phẩm"
+                   android:textSize="@dimen/_15ssp"
+                   android:textStyle="bold" />
+
+               <androidx.appcompat.widget.AppCompatButton
+                   android:id="@+id/btn_youtube"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:backgroundTint="#0BDCF6"
+                   android:text="Xem Video"
+                   android:textColor="@color/white"
+                   android:textSize="@dimen/_10sdp" />
+           </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -109,6 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Số lượng còn lại"
+                    android:textStyle="bold"
                     android:textSize="@dimen/_12ssp" />
 
                 <!-- TextView tvStock -->
@@ -126,25 +142,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mô tả chi tiết sản phẩm"
-                android:textSize="@dimen/_10ssp" />
+                android:textStyle="bold"
+                android:textSize="@dimen/_15ssp" />
 
             <!-- ScrollView for tvDescription -->
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp">
+                android:layout_height="@dimen/_35sdp">
 
                 <!-- TextView tvDescription -->
                 <TextView
                     android:id="@+id/tvDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxHeight="@dimen/_100sdp"
-                    android:textSize="@dimen/_12ssp"
-                    android:textStyle="bold" />
+                    android:maxHeight="@dimen/_80sdp"
+                    android:textSize="@dimen/_10ssp" />
             </ScrollView>
 
             <LinearLayout
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
