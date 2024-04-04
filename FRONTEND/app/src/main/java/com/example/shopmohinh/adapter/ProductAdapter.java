@@ -69,7 +69,12 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             Product product = products.get(position);
             myViewHolder.id.setText(product.getProduct_id() + "");
             myViewHolder.name.setText(product.getName());
-            myViewHolder.price.setText(formatNumberWithDotSeparator(product.getPrice()) + " VNĐ");
+            if (product.getCoupon() > 0){
+                myViewHolder.price.setText(formatNumberWithDotSeparator(product.getPrice()) + " VNĐ");
+            }
+            else {
+                myViewHolder.price.setVisibility(View.GONE);
+            }
             int price = product.getPrice();
             int discount = product.getPrice() * product.getCoupon() / 100;
             int finalPrice = price - discount;

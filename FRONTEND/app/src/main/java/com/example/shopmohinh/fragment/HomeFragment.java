@@ -110,7 +110,7 @@ public class HomeFragment extends Fragment {
                 page = page + 1;
                 getSanPhamMoi(page);
                 isLoading = false;
-                spMoiAdapter.notifyDataSetChanged();
+//                spMoiAdapter.notifyDataSetChanged();
             }
         },2500);
     }
@@ -222,8 +222,8 @@ public class HomeFragment extends Fragment {
                                 }
                             }
                             else {
-                                int position = mangSanPhamMoi.size()-1;
-                                spMoiAdapter.notifyItemRemoved(position);
+//                                int position = mangSanPhamMoi.size()-1;
+//                                spMoiAdapter.notifyItemRemoved(position);
                                 Toast.makeText(getActivity(),"Đã hết sản phẩm", Toast.LENGTH_LONG).show();
                             }
                         },throwable -> {

@@ -1,6 +1,9 @@
 package com.example.shopmohinh.adapter;
 
+import static com.example.shopmohinh.utils.NumberWithDotSeparator.formatNumberWithDotSeparator;
+
 import android.content.Context;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +57,16 @@ public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             MyViewHolder myViewHolder = (MyViewHolder) holder;
             SanPhamMoi sanPhamMoi = array.get(position);
             myViewHolder.txtTen.setText(String.valueOf(sanPhamMoi.getProduct_id()));
-            myViewHolder.txtGia.setText("Giá: " + String.valueOf(sanPhamMoi.getPrice()) + "đ");
+            if (sanPhamMoi.getCoupon() > 0){
+                myViewHolder.txtGiaChuaKM.setText(formatNumberWithDotSeparator(sanPhamMoi.getPrice()) + " VNĐ");
+            }
+            else {
+                myViewHolder.txtGiaChuaKM.setVisibility(View.GONE);
+            }
+            int price = sanPhamMoi.getPrice();
+            int discount = sanPhamMoi.getPrice() * sanPhamMoi.getCoupon() / 100;
+            int finalPrice = price - discount;
+            myViewHolder.txtGia.setText(formatNumberWithDotSeparator(finalPrice) + " VNĐ");
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageReference = storage.getReference()
                     .child("/images")
@@ -101,11 +113,13 @@ public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView txtGia, txtTen;
+        TextView txtGiaChuaKM,txtGia, txtTen;
         ImageView imgItem;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
+            txtGiaChuaKM = itemView.findViewById(R.id.newsp_price_nocoupon);
+            txtGiaChuaKM.setPaintFlags(txtGiaChuaKM.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             txtGia = itemView.findViewById(R.id.newsp_price);
             txtTen = itemView.findViewById(R.id.newsp_name);
             imgItem = itemView.findViewById(R.id.newsp_image);

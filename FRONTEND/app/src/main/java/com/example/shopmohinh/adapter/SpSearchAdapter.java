@@ -1,6 +1,9 @@
 package com.example.shopmohinh.adapter;
 
+import static com.example.shopmohinh.utils.NumberWithDotSeparator.formatNumberWithDotSeparator;
+
 import android.content.Context;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +47,16 @@ public class SpSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         MyViewHolder myViewHolder = (MyViewHolder) holder;
         SanPhamSearch sanPhamSearch = array.get(position);
         myViewHolder.txtTen.setText(String.valueOf(sanPhamSearch.getName()));
-        myViewHolder.txtGia.setText("Giá: " + String.valueOf(sanPhamSearch.getPrice()) + "đ");
+        if (sanPhamSearch.getCoupon() > 0){
+            myViewHolder.txtGiaChuaKM.setText(formatNumberWithDotSeparator(sanPhamSearch.getPrice()) + " VNĐ");
+        }
+        else {
+            myViewHolder.txtGiaChuaKM.setVisibility(View.GONE);
+        }
+        int price = sanPhamSearch.getPrice();
+        int discount = sanPhamSearch.getPrice() * sanPhamSearch.getCoupon() / 100;
+        int finalPrice = price - discount;
+        myViewHolder.txtGia.setText(formatNumberWithDotSeparator(finalPrice) + " VNĐ");
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageReference = storage.getReference()
                 .child("/images")
@@ -73,11 +85,13 @@ public class SpSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView txtGia, txtTen;
+        TextView txtGiaChuaKM, txtGia, txtTen;
         ImageView imgItem;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            txtGiaChuaKM = itemView.findViewById(R.id.search_price_nocoupon);
+            txtGiaChuaKM.setPaintFlags(txtGiaChuaKM.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             txtGia = itemView.findViewById(R.id.sp_price_search);
             txtTen = itemView.findViewById(R.id.sp_name_search);
             imgItem = itemView.findViewById(R.id.sp_image_search);
