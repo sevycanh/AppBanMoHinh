@@ -12,7 +12,20 @@
           "package_name": "com.example.shopmohinh"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "811489681826-q0fkn1oclsrg02s2bqlf1af2njej5j0f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shopmohinh",
+            "certificate_hash": "62943358336781646b72ae1d92087ada2ea7815b"
+          }
+        },
+        {
+          "client_id": "811489681826-tcflik3ebcckkehde19n2aps0nlc5ssj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDJewAOm5xb0qPnRnrF6J4TRqrdRrWsa8s"
@@ -20,7 +33,49 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811489681826-tcflik3ebcckkehde19n2aps0nlc5ssj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811489681826:android:e738e9df7494b96982d2fb",
+        "android_client_info": {
+          "package_name": "com.manager.appbanmohinhmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811489681826-otmpo0khjnumgu5kkdan6p3fc0rvdc3l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.manager.appbanmohinhmanager",
+            "certificate_hash": "62943358336781646b72ae1d92087ada2ea7815b"
+          }
+        },
+        {
+          "client_id": "811489681826-tcflik3ebcckkehde19n2aps0nlc5ssj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJewAOm5xb0qPnRnrF6J4TRqrdRrWsa8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811489681826-tcflik3ebcckkehde19n2aps0nlc5ssj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
