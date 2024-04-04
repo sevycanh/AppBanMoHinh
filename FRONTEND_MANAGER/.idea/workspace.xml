@@ -32,18 +32,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="deb6dbf4-4a6e-4300-a366-af38ceec404d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../FRONTEND/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONTEND/.idea/deploymentTargetDropDown.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FRONTEND/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONTEND/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FRONTEND/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONTEND/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FRONTEND/app/src/main/java/com/example/shopmohinh/activity/LogInActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONTEND/app/src/main/java/com/example/shopmohinh/activity/LogInActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/CategoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/CategoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/SPMoiAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/SPMoiAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FRONTEND/app/src/main/java/com/example/shopmohinh/fragment/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONTEND/app/src/main/java/com/example/shopmohinh/fragment/HomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FRONTEND/app/src/main/java/com/example/shopmohinh/utils/URLS.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FRONTEND/app/src/main/java/com/example/shopmohinh/utils/URLS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/manager/appbanmohinhmanager/activity/UpdateCategoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/manager/appbanmohinhmanager/activity/UpdateCategoryActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/manager/appbanmohinhmanager/activity/UpdateProductActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/manager/appbanmohinhmanager/activity/UpdateProductActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +104,7 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "C:/Users/dung3/AndroidStudioProjects/AppBanMoHinh/FRONTEND_MANAGER",
+    "last_opened_file_path": "C:/Users/dung3/AndroidStudioProjects/AppBanMoHinh/FRONTEND",
     "settings.editor.selected.configurable": "AndroidSdkUpdater"
   }
 }]]></component>

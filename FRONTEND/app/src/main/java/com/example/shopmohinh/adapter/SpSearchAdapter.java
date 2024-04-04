@@ -1,11 +1,13 @@
 package com.example.shopmohinh.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.model.SanPhamSearch;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -39,7 +45,26 @@ public class SpSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         SanPhamSearch sanPhamSearch = array.get(position);
         myViewHolder.txtTen.setText(String.valueOf(sanPhamSearch.getName()));
         myViewHolder.txtGia.setText("Giá: " + String.valueOf(sanPhamSearch.getPrice()) + "đ");
-        Glide.with(context).load(sanPhamSearch.getMain_image()).into(myViewHolder.imgItem);
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageReference = storage.getReference()
+                .child("/images")
+                .child(sanPhamSearch.getMain_image());
+
+        storageReference.getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Glide.with(context)
+                                .load(uri)
+                                .into(myViewHolder.imgItem);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Download Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     @Override
