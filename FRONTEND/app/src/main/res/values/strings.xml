@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ToyStore</string>
     <string name="welcome_message">Chào mừng đến với ứng dụng</string>
+    <string name="client_id">811489681826-tcflik3ebcckkehde19n2aps0nlc5ssj.apps.googleusercontent.com</string>
 
     <string name="related">Liên quan</string>
     <string name="newest">Mới nhất</string>

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.manager.appbanmohinhmanager.app-mergeDebugResources-38:/values-or/values-or.xml",
+            "outputFile": "com.manager.appbanmohinhmanager.app-mergeDebugResources-39:/values-or/values-or.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\401e5122c2c5017ca3a96daba1ad46f3\\transformed\\play-services-basement-18.1.0\\res\\values-or\\values.xml",

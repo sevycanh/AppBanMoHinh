@@ -1,10 +1,10 @@
 <?php
 include "connect.php";
 $email=$_POST['email'];
-// $pass=$_POST['pass'];
+$pass=$_POST['pass'];
 
 //checkdata
-$query = 'SELECT * FROM `tbl_account` WHERE `email` = "'.$email.'"';
+$query = 'SELECT * FROM `tbl_account` WHERE `email` = "'.$email.'" AND `password` ="'.$pass.'"';
 $data = mysqli_query($conn, $query);
 $result = array();
 while ($row = mysqli_fetch_assoc($data)) {

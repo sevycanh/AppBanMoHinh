@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.manager.appbanmohinhmanager.app-mergeDebugResources-38:/values-in/values-in.xml",
+            "outputFile": "com.manager.appbanmohinhmanager.app-mergeDebugResources-39:/values-in/values-in.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\d0fed0d99e04c10f2f4f288c7b2e96ed\\transformed\\play-services-base-18.0.1\\res\\values-in\\values.xml",

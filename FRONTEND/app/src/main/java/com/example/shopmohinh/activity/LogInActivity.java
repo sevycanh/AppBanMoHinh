@@ -1,8 +1,15 @@
 package com.example.shopmohinh.activity;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,12 +25,21 @@ import com.example.shopmohinh.R;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -33,14 +49,24 @@ public class LogInActivity extends AppCompatActivity {
     EditText edtEmail, edtPass;
     Button btnSignIn;
     TextView txtForgot, txtSignUp, txtSaiThongTin;
+    CircleImageView circleImageView;
     FirebaseAuth firebaseAuth;
     ApiBanHang apiBanHang;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
+    GoogleSignInClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+
+        FirebaseApp.initializeApp(this);
+        GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.client_id))
+                        .requestEmail()
+                                .build();
+        client = GoogleSignIn.getClient(this, options);
+      
         initView();
         initControl();
     }
@@ -79,7 +105,21 @@ public class LogInActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()){
-                                        dangNhap(email);
+                                        if (firebaseAuth.getCurrentUser().isEmailVerified()){
+                                            dangNhap(email);
+                                        } else {
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(LogInActivity.this);
+                                            builder.setTitle("Thông báo");
+                                            builder.setMessage("Vui lòng kiểm tra email để thực hiện xác thực trước khi đăng nhập!");
+                                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                            AlertDialog alertDialog = builder.create();
+                                            alertDialog.show();
+                                        }
                                     } else {
                                         txtSaiThongTin.setVisibility(View.VISIBLE);
                                     }
@@ -88,7 +128,46 @@ public class LogInActivity extends AppCompatActivity {
                 }
             }
         });
+
+        circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = client.getSignInIntent();
+                activityResultLauncher.launch(i);
+            }
+        });
     }
+
+    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult o) {
+
+                if (o.getResultCode() == RESULT_OK){
+                    Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(o.getData());
+                    try {
+                        GoogleSignInAccount account = task.getResult(ApiException.class);
+                        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+                        firebaseAuth.signInWithCredential(credential)
+                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()){
+//                                            dangNhap(firebaseAuth.getCurrentUser().getEmail());
+                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        } else {
+                                            Toast.makeText(LogInActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                    } catch (ApiException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+    });
 
     private void initView() {
         Paper.init(this);
@@ -101,6 +180,7 @@ public class LogInActivity extends AppCompatActivity {
         edtPass = findViewById(R.id.edtPassword_signIn);
         btnSignIn = findViewById(R.id.btnSignIn);
         txtSaiThongTin = findViewById(R.id.txt_SaiThongTin);
+        circleImageView = findViewById(R.id.signIn_Google);
 
         firebaseAuth = FirebaseAuth.getInstance();
 

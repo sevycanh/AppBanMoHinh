@@ -47,9 +47,9 @@ public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         if (holder instanceof MyViewHolder) {
             MyViewHolder myViewHolder = (MyViewHolder) holder;
             SanPhamMoi sanPhamMoi = array.get(position);
-            myViewHolder.txtTen.setText(String.valueOf(sanPhamMoi.getId()));
-            myViewHolder.txtGia.setText("Giá: " + String.valueOf(sanPhamMoi.getGiasp()) + "đ");
-            Glide.with(context).load(sanPhamMoi.getHinhanh()).into(myViewHolder.imgItem);
+            myViewHolder.txtTen.setText(String.valueOf(sanPhamMoi.getProduct_id()));
+            myViewHolder.txtGia.setText("Giá: " + String.valueOf(sanPhamMoi.getPrice()) + "đ");
+            Glide.with(context).load(sanPhamMoi.getMain_image()).into(myViewHolder.imgItem);
         }else {
             LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
             loadingViewHolder.progressBar.setIndeterminate(true);
