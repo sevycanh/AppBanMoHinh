@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:2:1-59:12
-INJECTED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:2:1-59:12
-INJECTED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:2:1-59:12
-INJECTED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:2:1-59:12
+ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:2:1-68:12
+INJECTED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:2:1-68:12
+INJECTED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:2:1-68:12
+INJECTED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:2:1-68:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\Admin\.gradle\caches\transforms-3\d9f1408602df15d416656c30b99e7681\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Admin\.gradle\caches\transforms-3\d6bb6152c3a50810967890334921e1cc\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [io.github.pilgr:paperdb:2.7.2] C:\Users\Admin\.gradle\caches\transforms-3\7beb2fbb297fa0ad8cb2abd3898b4f90\transformed\paperdb-2.7.2\AndroidManifest.xml:2:1-11:12
@@ -104,8 +104,8 @@ ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\ap
 	android:name
 		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:7:22-79
 application
-ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:9:5-57:19
-INJECTED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:9:5-57:19
+ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:9:5-66:19
+INJECTED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:9:5-66:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\Admin\.gradle\caches\transforms-3\d9f1408602df15d416656c30b99e7681\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\Admin\.gradle\caches\transforms-3\d9f1408602df15d416656c30b99e7681\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Admin\.gradle\caches\transforms-3\d6bb6152c3a50810967890334921e1cc\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -194,76 +194,94 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Admin\.gradle\cach
 		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:11:9-65
 	android:usesCleartextTraffic
 		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:19:9-44
-activity#com.manager.appbanmohinhmanager.activity.UpdateCategoryActivity
+activity#com.manager.appbanmohinhmanager.activity.UpdateVoucherActivity
 ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:21:9-23:40
 	android:exported
 		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:23:13-37
 	android:name
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:22:13-60
-activity#com.manager.appbanmohinhmanager.activity.AddCategoryActivity
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:22:13-59
+activity#com.manager.appbanmohinhmanager.activity.AddVoucherActivity
 ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:24:9-26:40
 	android:exported
 		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:26:13-37
 	android:name
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:25:13-57
-activity#com.manager.appbanmohinhmanager.activity.CateroryManagerActivity
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:25:13-56
+activity#com.manager.appbanmohinhmanager.activity.VoucherManagerActivity
 ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:27:9-29:40
 	android:exported
 		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:29:13-37
 	android:name
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:28:13-61
-activity#com.manager.appbanmohinhmanager.activity.UpdateProductActivity
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:28:13-60
+activity#com.manager.appbanmohinhmanager.activity.UpdateCategoryActivity
 ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:30:9-32:40
 	android:exported
 		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:32:13-37
 	android:name
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:31:13-59
-activity#com.manager.appbanmohinhmanager.activity.AddProductActivity
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:31:13-60
+activity#com.manager.appbanmohinhmanager.activity.AddCategoryActivity
 ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:33:9-35:40
 	android:exported
 		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:35:13-37
 	android:name
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:34:13-56
-activity#com.manager.appbanmohinhmanager.activity.ProductManagerActivity
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:34:13-57
+activity#com.manager.appbanmohinhmanager.activity.CateroryManagerActivity
 ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:36:9-38:40
 	android:exported
 		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:38:13-37
 	android:name
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:37:13-60
-activity#com.manager.appbanmohinhmanager.activity.MainActivity
-ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:39:9-47:20
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:37:13-61
+activity#com.manager.appbanmohinhmanager.activity.UpdateProductActivity
+ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:39:9-41:40
 	android:exported
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:41:13-36
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:41:13-37
 	android:name
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:40:13-50
-intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:42:13-46:29
-action#android.intent.action.MAIN
-ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:43:17-69
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:40:13-59
+activity#com.manager.appbanmohinhmanager.activity.AddProductActivity
+ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:42:9-44:40
+	android:exported
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:44:13-37
 	android:name
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:43:25-66
-category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:45:17-77
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:43:13-56
+activity#com.manager.appbanmohinhmanager.activity.ProductManagerActivity
+ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:45:9-47:40
+	android:exported
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:47:13-37
 	android:name
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:45:27-74
-activity#com.manager.appbanmohinhmanager.activity.ForgotPassActivity
-ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:48:9-50:39
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:46:13-60
+activity#com.manager.appbanmohinhmanager.activity.MainActivity
+ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:48:9-56:20
 	android:exported
 		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:50:13-36
 	android:name
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:49:13-56
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:49:13-50
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:51:13-55:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:52:17-69
+	android:name
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:52:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:54:17-77
+	android:name
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:54:27-74
+activity#com.manager.appbanmohinhmanager.activity.ForgotPassActivity
+ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:57:9-59:39
+	android:exported
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:59:13-36
+	android:name
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:58:13-56
 activity#com.manager.appbanmohinhmanager.activity.LogInActivity
-ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:51:9-53:39
+ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:60:9-62:39
 	android:exported
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:53:13-36
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:62:13-36
 	android:name
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:52:13-51
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:61:13-51
 activity#com.manager.appbanmohinhmanager.activity.SplashActivity
-ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:54:9-56:39
+ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:63:9-65:39
 	android:exported
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:56:13-36
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:65:13-36
 	android:name
-		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:55:13-52
+		ADDED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:64:13-52
 uses-sdk
 INJECTED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml
