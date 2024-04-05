@@ -4,6 +4,7 @@
     <color name="main">#fbc02d</color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">Shop Toy Manager</string>
+    <string name="default_web_client_id" translatable="false">811489681826-tcflik3ebcckkehde19n2aps0nlc5ssj.apps.googleusercontent.com</string>
     <string name="gcm_defaultSenderId" translatable="false">811489681826</string>
     <string name="google_api_key" translatable="false">AIzaSyDJewAOm5xb0qPnRnrF6J4TRqrdRrWsa8s</string>
     <string name="google_app_id" translatable="false">1:811489681826:android:e738e9df7494b96982d2fb</string>

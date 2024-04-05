@@ -1,5 +1,9 @@
 [
     {
+        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_ic_add_voucher.xml.flat",
+        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/ic_add_voucher.xml"
+    },
+    {
         "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_icon_san_pham.png.flat",
         "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/icon_san_pham.png"
     },
@@ -46,6 +50,10 @@
     {
         "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_main.xml.flat",
         "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_voucher_manager.xml.flat",
+        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_voucher_manager.xml"
     },
     {
         "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_icon_danh_muc.png.flat",
@@ -102,6 +110,10 @@
     {
         "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_add_category.png.flat",
         "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/add_category.png"
+    },
+    {
+        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_add_voucher.xml.flat",
+        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_add_voucher.xml"
     },
     {
         "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/mipmap-mdpi_ic_launcher.webp.flat",
@@ -206,6 +218,10 @@
     {
         "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_icon_don_hang.png.flat",
         "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/icon_don_hang.png"
+    },
+    {
+        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_item_voucher_manager.xml.flat",
+        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/item_voucher_manager.xml"
     },
     {
         "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_logo.png.flat",

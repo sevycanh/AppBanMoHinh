@@ -1,6 +1,10 @@
 package com.example.shopmohinh.retrofit;
+
 import com.example.shopmohinh.model.CartModel;
 import com.example.shopmohinh.model.CouponModel;
+import com.example.shopmohinh.model.InforDetail;
+import com.example.shopmohinh.model.InforDetailModel;
+import com.example.shopmohinh.model.ItemOrderDetailModel;
 import com.example.shopmohinh.model.MessageModel;
 
 import io.reactivex.rxjava3.core.Completable;
@@ -9,9 +13,13 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+
 import com.example.shopmohinh.model.LoaiSPModel;
 import com.example.shopmohinh.model.MessageModel;
+import com.example.shopmohinh.model.Order;
+import com.example.shopmohinh.model.OrderModel;
 import com.example.shopmohinh.model.SanPhamMoiModel;
+
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
 
@@ -52,7 +60,7 @@ public interface ApiBanHang {
             @Field("username") String name,
             @Field("phone") String phone,
             @Field("address") String address
-            );
+    );
 
     @POST("shopping_cart.php")
     @FormUrlEncoded
@@ -81,8 +89,8 @@ public interface ApiBanHang {
     Observable<MessageModel> deleteShoppingCart(
             @Field("accountId") int accountId
     );
-  
-  @POST("dangky.php")
+
+    @POST("dangky.php")
     @FormUrlEncoded
     Observable<UserModel> dangKy(
             @Field("email") String email
@@ -142,7 +150,7 @@ public interface ApiBanHang {
             @Field("userId") int userId,
             @Field("isPublic") int isPublic,
             @Field("duration") int duration
-            );
+    );
 
     @POST("check_in.php")
     @FormUrlEncoded
@@ -150,7 +158,13 @@ public interface ApiBanHang {
             @Field("id") int id
     );
 
-  @GET("getloaisp.php")
+    @POST("dangnhapgoogle.php")
+    @FormUrlEncoded
+    Observable<UserModel> dangNhapGoogle(
+            @Field("email") String email
+    );
+
+    @GET("getloaisp.php")
     Observable<LoaiSPModel> getLoaiSp();
 
 
@@ -168,9 +182,25 @@ public interface ApiBanHang {
 
     @POST("searchsp.php")
     @FormUrlEncoded
-    Observable<SanPhamSearchModel> searchSp (
+    Observable<SanPhamSearchModel> searchSp(
             @Field("type") String type,
             @Field("tensp") String tensp
     );
 
+    @GET("getOrder.php")
+    Observable<OrderModel> getOrder(@Query("accountId") int accountID);
+
+    @GET("getOrderByOrderStatus.php")
+    Observable<OrderModel> getOrderByOrderStatus(@Query("accountId") int accountID, @Query("order_status") int order_status);
+
+
+    @GET("xemdonhang.php")
+    Observable<InforDetailModel> getInforDetail(@Query("orderId") int orderID);
+
+    @GET("getItemOrderDetail.php")
+    Observable<ItemOrderDetailModel> getItemOrderDetail(@Query("orderId") int orderID);
+
+    @POST("updateOrderStatus.php")
+    @FormUrlEncoded
+    Observable<InforDetailModel> updateOrderStatus(@Field("orderId") int orderID);
 }

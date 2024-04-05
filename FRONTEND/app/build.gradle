@@ -83,4 +83,10 @@ dependencies {
     //gif image
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.28'
 
+    //circle image
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //login google
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
+
 }

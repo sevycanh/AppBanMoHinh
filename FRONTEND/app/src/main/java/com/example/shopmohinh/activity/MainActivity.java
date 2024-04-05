@@ -23,6 +23,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -148,9 +149,9 @@ public class MainActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        messageModel -> {
-                        },
+                        messageModel -> {},
                         throwable -> {
+                            Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                 ));
     }

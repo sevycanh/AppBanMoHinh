@@ -3,13 +3,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.OrderFragment"
     android:id="@+id/order_fragment">
 
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/Order"
-        android:gravity="center"/>
+        android:orientation="vertical"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/main"
+            app:title="@string/Order"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_20sdp"
+            android:gravity="end">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lọc đơn hàng: "
+            android:textSize="@dimen/_12sdp" />
+            <Spinner
+                android:id="@+id/sp_OrderStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <View
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/black"
+
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recylerViewOrder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/noOrder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="KHÔNG TÌM ĐƠN HÀNG PHÙ HỢP"
+        android:gravity="center"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        >
+
+    </TextView>
 </FrameLayout>
