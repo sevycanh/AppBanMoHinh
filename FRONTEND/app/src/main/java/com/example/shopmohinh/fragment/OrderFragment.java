@@ -143,8 +143,12 @@ public class OrderFragment extends Fragment {
 
     @Override
     public void onResume() {
-        orderStatusSpinner.setSelection(selection);
+        if (selection != 0) {
+            orderStatusSpinner.setSelection(selection);
+            getOrderByOrderStatus(101, selection);
+        } else {
+            getOrder(101);
+        }
         super.onResume();
     }
-
 }
