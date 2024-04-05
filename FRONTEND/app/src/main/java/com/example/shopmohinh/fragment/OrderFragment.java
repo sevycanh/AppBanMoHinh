@@ -54,7 +54,7 @@ public class OrderFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_order, container, false);
         AnhXa(rootView);
         //push accountid de tim dung order
-        getOrder(101);
+        getOrder(Utils.user_current.getAccount_id());
         orderStatusSpinner.setAdapter(setOrderStatusSpinner());
         orderStatusSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -62,22 +62,22 @@ public class OrderFragment extends Fragment {
                 Log.d("ThongBao", i + ""); // Log vị trí của mục được chọn
                 if (i == 0) {
                     orderList.clear();
-                    getOrder(101);
+                    getOrder(Utils.user_current.getAccount_id());
                     selection = 0;
                 } else if (i == 1) {
-                    getOrderByOrderStatus(101, 1);
+                    getOrderByOrderStatus(Utils.user_current.getAccount_id(), 1);
                     selection = 1;
                 } else if (i == 2) {
-                    getOrderByOrderStatus(101, 2);
+                    getOrderByOrderStatus(Utils.user_current.getAccount_id(), 2);
                     selection = 2;
                 } else if (i == 3) {
-                    getOrderByOrderStatus(101, 3);
+                    getOrderByOrderStatus(Utils.user_current.getAccount_id(), 3);
                     selection = 3;
                 } else if (i == 4) {
-                    getOrderByOrderStatus(101, 4);
+                    getOrderByOrderStatus(Utils.user_current.getAccount_id(), 4);
                     selection = 4;
                 } else if (i == 5) {
-                    getOrderByOrderStatus(101, 5);
+                    getOrderByOrderStatus(Utils.user_current.getAccount_id(), 5);
                     selection = 5;
                 }
             }
