@@ -2,6 +2,7 @@ package com.example.shopmohinh.retrofit;
 
 import com.example.shopmohinh.model.CartModel;
 import com.example.shopmohinh.model.CouponModel;
+import com.example.shopmohinh.model.InforDetail;
 import com.example.shopmohinh.model.InforDetailModel;
 import com.example.shopmohinh.model.ItemOrderDetailModel;
 import com.example.shopmohinh.model.MessageModel;
@@ -195,5 +196,5 @@ public interface ApiBanHang {
 
     @POST("updateOrderStatus.php")
     @FormUrlEncoded
-    Observable<OrderModel> updateOrderStatus(@Field("orderId") int orderID);
+    Observable<InforDetailModel> updateOrderStatus(@Field("orderId") int orderID);
 }
