@@ -157,6 +157,12 @@ public interface ApiBanHang {
             @Field("id") int id
     );
 
+    @POST("dangnhapgoogle.php")
+    @FormUrlEncoded
+    Observable<UserModel> dangNhapGoogle(
+            @Field("email") String email
+    );
+
     @GET("getloaisp.php")
     Observable<LoaiSPModel> getLoaiSp();
 

@@ -152,10 +152,7 @@ public class LogInActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()){
-//                                            dangNhap(firebaseAuth.getCurrentUser().getEmail());
-                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                            startActivity(intent);
-                                            finish();
+                                            signInGoogle(firebaseAuth.getCurrentUser().getEmail());
                                         } else {
                                             Toast.makeText(LogInActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                         }
@@ -168,6 +165,29 @@ public class LogInActivity extends AppCompatActivity {
             }
 
     });
+
+    private void signInGoogle(String email){
+        compositeDisposable.add(apiBanHang.dangNhapGoogle(email)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        userModel -> {
+                            if (userModel.isSuccess()){
+                                Utils.user_current = userModel.getResult().get(0);
+                                //Luu lai thong tin nguoi dung
+                                Paper.book().write("user", userModel.getResult().get(0));
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(getApplicationContext(),userModel.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
+    }
 
     private void initView() {
         Paper.init(this);
