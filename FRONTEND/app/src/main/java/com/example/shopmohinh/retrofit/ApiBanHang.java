@@ -20,6 +20,8 @@ import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.model.ProductModel;
 import com.example.shopmohinh.model.Order;
 import com.example.shopmohinh.model.OrderModel;
+import com.example.shopmohinh.model.Product;
+import com.example.shopmohinh.model.ProductModel;
 import com.example.shopmohinh.model.SanPhamMoiModel;
 
 import io.reactivex.rxjava3.core.Observable;
@@ -170,8 +172,7 @@ public interface ApiBanHang {
     @GET("getloaisp.php")
     Observable<LoaiSPModel> getLoaiSp();
 
-
-    @POST("get_quantity_product.php")
+    @POST("checkQuantityProduct.php")
     @FormUrlEncoded
     Observable<ProductModel> checkQuantityProduct(
             @Field("product_id") int product_id
@@ -182,6 +183,10 @@ public interface ApiBanHang {
     Observable<SanPhamMoiModel> getSanPhamMoi(
             @Field("page") int page
     );
+
+    @POST("getproduct.php")
+    @FormUrlEncoded
+    Observable<ProductModel> getNewProduct(@Field("page") int page);
 
     @POST("searchsp.php")
     @FormUrlEncoded

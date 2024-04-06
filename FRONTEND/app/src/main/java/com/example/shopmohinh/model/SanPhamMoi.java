@@ -7,7 +7,11 @@ public class SanPhamMoi {
     int quantity;
     int coupon;
     String main_image;
+
     String description;
+    String main_image;
+    String sub_image;
+    int coupon;
     int category_id;
 
     public int getQuantity() {
@@ -72,5 +76,29 @@ public class SanPhamMoi {
 
     public void setCategory_id(int category_id) {
         this.category_id = category_id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getSub_image() {
+        return sub_image;
+    }
+
+    public void setSub_image(String sub_image) {
+        this.sub_image = sub_image;
+    }
+
+    public int getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(int coupon) {
+        this.coupon = coupon;
     }
 }

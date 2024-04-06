@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import com.example.shopmohinh.model.SanPhamSearch;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +48,8 @@ public class SearchActivity extends AppCompatActivity {
     Button btnLienQuan, btnMoiNhat, btnKhuyenMai, btnGia;
     View viewLienQuan, viewMoiNhat, viewKhuyenMai, viewGia;
     Drawable icon_down, icon_up, icon_default;
-
+    NotificationBadge badge_search_main;
+    ImageView imgCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,7 @@ public class SearchActivity extends AppCompatActivity {
         actionToolBar();
         searchView.requestFocus();
         handleSearch();
+        initControl();
     }
     private void clearButtonView(){
         btnGia.setCompoundDrawablesWithIntrinsicBounds(null, null, icon_default, null);
@@ -68,6 +72,21 @@ public class SearchActivity extends AppCompatActivity {
         btnKhuyenMai.setTextColor(Color.BLACK);
         viewGia.setVisibility(View.GONE);
         btnGia.setTextColor(Color.BLACK);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        badge_search_main.setText(String.valueOf(Utils.carts.size()));
+    }
+
+    private void initControl() {
+        imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewCart();
+            }
+        });
     }
 
     private void handleSearch(){
@@ -89,6 +108,7 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         btnLienQuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,6 +176,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void AnhXa(){
+        imgCart = findViewById(R.id.imgCart_search);
         icon_default = getResources().getDrawable(R.drawable.default_arrow);
         icon_down = getResources().getDrawable(R.drawable.arrow_down);
         icon_up = getResources().getDrawable(R.drawable.arrow_up);
@@ -175,6 +196,16 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager);
         mangSpSearch = new ArrayList<>();
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
+
+        badge_search_main = findViewById(R.id.menu_quantity_search);
+        if (Utils.carts != null) {
+            badge_search_main.setText(String.valueOf(Utils.carts.size()));
+        }
+    }
+
+    private void viewCart() {
+        Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+        startActivity(intent);
     }
 
     private void getSanPhamSearch(String type, String tensp){
