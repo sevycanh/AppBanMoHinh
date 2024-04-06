@@ -51,6 +51,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     FrameLayout frameLayout;
     Boolean checkViewSearch = true;
+
+    NotificationBadge badge_main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -213,9 +216,17 @@ public class MainActivity extends AppCompatActivity {
         mangLoaiSp = new ArrayList<>();
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-
+        badge_main = findViewById(R.id.menu_quantity_main);
+        if(Utils.carts!=null){
+            badge_main.setText(String.valueOf(Utils.carts.size()));
+        }
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        badge_main.setText(String.valueOf(Utils.carts.size()));
+    }
 
     private boolean isConnected(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

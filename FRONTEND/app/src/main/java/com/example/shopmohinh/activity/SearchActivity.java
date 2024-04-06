@@ -22,6 +22,7 @@ import com.example.shopmohinh.model.SanPhamSearch;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,7 @@ public class SearchActivity extends AppCompatActivity {
     Button btnLienQuan, btnMoiNhat, btnKhuyenMai, btnGia;
     View viewLienQuan, viewMoiNhat, viewKhuyenMai, viewGia;
     Drawable icon_down, icon_up, icon_default;
-
+    NotificationBadge badge_search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,7 +175,17 @@ public class SearchActivity extends AppCompatActivity {
         gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         mangSpSearch = new ArrayList<>();
+        badge_search = findViewById(R.id.menu_quantity_search);
+        if(Utils.carts!=null){
+            badge_search.setText(String.valueOf(Utils.carts.size()));
+        }
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        badge_search.setText(String.valueOf(Utils.carts.size()));
     }
 
     private void getSanPhamSearch(String type, String tensp){

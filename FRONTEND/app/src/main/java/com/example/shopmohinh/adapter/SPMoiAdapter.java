@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.fragment.HomeFragment;
+import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.model.SanPhamMoi;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,11 +30,11 @@ import java.util.List;
 
 public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    List<SanPhamMoi> array;
+    List<Product> array;
     private static final int VIEW_TYPE_DATA = 0;
     private static final int VIEW_TYPE_LOADING = 1;
 
-    public SPMoiAdapter(Context context, List<SanPhamMoi> array) {
+    public SPMoiAdapter(Context context, List<Product> array) {
         this.context = context;
         this.array = array;
     }
@@ -55,7 +56,7 @@ public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MyViewHolder) {
             MyViewHolder myViewHolder = (MyViewHolder) holder;
-            SanPhamMoi sanPhamMoi = array.get(position);
+            Product sanPhamMoi = array.get(position);
             myViewHolder.txtTen.setText(String.valueOf(sanPhamMoi.getName()));
             if (sanPhamMoi.getCoupon() > 0){
                 myViewHolder.txtGiaChuaKM.setText(formatNumberWithDotSeparator(sanPhamMoi.getPrice()) + " VNĐ");

@@ -21,6 +21,26 @@
                 android:background="@color/main"
                 android:iconifiedByDefault="false"
                 android:queryHint="Tìm kiếm" />
+
+            <FrameLayout
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_gravity="right"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="?attr/actionBarSize">
+                <com.nex3z.notificationbadge.NotificationBadge
+                    android:layout_gravity="top|right"
+                    android:id="@+id/menu_quantity_search"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"/>
+
+                <ImageView
+                    android:id="@+id/imgCart_main"
+                    android:layout_marginTop="@dimen/_13sdp"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:src="@drawable/baseline_shopping_cart_24">
+                </ImageView>
+            </FrameLayout>
         </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout

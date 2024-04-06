@@ -179,7 +179,7 @@ public interface ApiBanHang {
 
     @POST("getsanphammoi.php")
     @FormUrlEncoded
-    Observable<SanPhamMoiModel> getSanPhamMoi(
+    Observable<ProductModel> getSanPhamMoi(
             @Field("page") int page
     );
 
