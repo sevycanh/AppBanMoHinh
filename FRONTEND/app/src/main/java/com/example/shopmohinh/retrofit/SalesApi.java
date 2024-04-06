@@ -15,9 +15,8 @@ public interface SalesApi {
 
     @FormUrlEncoded
     @POST("product.php")
-    Observable<ProductModel> getProduct(@Field("page") int page , @Field("category") int category);
-
-    @FormUrlEncoded
-    @POST("getProductById.php")
-    Observable<ProductModel> getProductById(@Field("productId") int productId);
+    Observable<ProductModel> getProduct(
+            @Field("page") int page ,
+            @Field("category") int category,
+            @Field("type") String type);
 }

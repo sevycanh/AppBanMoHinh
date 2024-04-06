@@ -34,7 +34,6 @@ import com.example.shopmohinh.adapter.SPMoiAdapter;
 import com.example.shopmohinh.activity.MiniGameActivity;
 import com.example.shopmohinh.activity.SpinCouponActivity;
 import com.example.shopmohinh.model.LoaiSP;
-import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.model.SanPhamMoi;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
@@ -55,7 +54,7 @@ public class HomeFragment extends Fragment {
     DrawerLayout drawerLayout;
     ImageSlider imageSlider;
     SearchView searchView;
-    List<Product> mangSanPhamMoi;
+    List<SanPhamMoi> mangSanPhamMoi;
     SPMoiAdapter spMoiAdapter;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
@@ -215,7 +214,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void getSanPhamMoi(int page) {
-        compositeDisposable.add(apiBanHang.getNewProduct(page)
+        compositeDisposable.add(apiBanHang.getSanPhamMoi(page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -244,6 +243,7 @@ public class HomeFragment extends Fragment {
                         }
 
                 ));
+        
     }
 
     @Override

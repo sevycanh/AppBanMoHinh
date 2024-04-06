@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class Product implements Serializable {
+    @SerializedName("product_id")
     int product_id;
     String name;
     int price;
@@ -13,6 +14,7 @@ public class Product implements Serializable {
     String main_image;
     String sub_image;
     int coupon;
+    @SerializedName("caregory_id")
     int caregory_id;
 
     public int getProduct_id() {
