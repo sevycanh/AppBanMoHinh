@@ -1,5 +1,12 @@
 package com.example.shopmohinh.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,20 +14,16 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
-import android.widget.Toast;
-
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.adapter.ProductAdapter;
-import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.model.Cart;
+import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.model.User;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.retrofit.SalesApi;
 import com.example.shopmohinh.utils.Utils;
+import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,26 +46,36 @@ public class ProductActivity extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     Handler handler = new Handler();
     boolean isLoading = false;
-
     ApiBanHang apiBanHang;
-
     Product productTemp;
+    NotificationBadge badge_product;
+    ImageView imgCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.example.shopmohinh.R.layout.activity_product);
         salesApi = RetrofitClient.getInstance(Utils.BASE_URL).create(SalesApi.class);
-        category = getIntent().getIntExtra("id_category", 1);
+        category = getIntent().getIntExtra("category", 1);
         Mapping();
         ActionToolBar();
         getData(page);
         addEventLoad();
-        if (Paper.book().read("user") != null){
+        if (Paper.book().read("user") != null) {
             User user = Paper.book().read("user");
             Utils.user_current = user;
         }
         initCart();
+        initControl();
+    }
+
+    private void initControl() {
+        imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewCart();
+            }
+        });
     }
 
     private void initCart() {
@@ -71,13 +84,13 @@ public class ProductActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         productModel -> {
-                            if(productModel.isSuccess()){
+                            if (productModel.isSuccess()) {
                                 productList = productModel.getResult();
                                 productToCart(productList);
                             }
                         },
                         throwable -> {
-                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                 ));
     }
@@ -116,6 +129,16 @@ public class ProductActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        badge_product.setText(String.valueOf(Utils.carts.size()));
+    }
+
+    private void viewCart() {
+        Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+        startActivity(intent);
+    }
     private void loadMore() {
         handler.post(new Runnable() {
             @Override
@@ -183,13 +206,18 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     private void Mapping() {
+        imgCart = findViewById(R.id.imgCart_SP);
         toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.recycleview_phone);
-        linearLayoutManager = new GridLayoutManager(this,2);
+        linearLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
         productList = new ArrayList<>();
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
+        badge_product = findViewById(R.id.menu_quantity_product);
+        if (Utils.carts != null) {
+            badge_product.setText(String.valueOf(Utils.carts.size()));
+        }
     }
 
     @Override
