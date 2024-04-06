@@ -146,7 +146,7 @@ public class PaymentActivity extends AppCompatActivity {
                 .subscribe(
                         messageModel -> {
 //                            Utils.coupon = null;
-                            Toast.makeText(getApplicationContext(), messageModel.getMessage(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), messageModel.getMessage(), Toast.LENGTH_SHORT).show();
                         },
                         throwable -> {
                             Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
@@ -187,7 +187,7 @@ public class PaymentActivity extends AppCompatActivity {
                 .subscribe(
                         messageModel -> {
                             Utils.coupon = null;
-//                            Toast.makeText(getApplicationContext(), "Coupon Thanh cong", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "Coupon Thanh cong", Toast.LENGTH_SHORT).show();
                         },
                         throwable -> {
                             Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
@@ -201,7 +201,7 @@ public class PaymentActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         messageModel -> {
-//                            Toast.makeText(getApplicationContext(), "Thanh cong", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "Thanh cong", Toast.LENGTH_SHORT).show();
                         },
                         throwable -> {
                             Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
@@ -215,7 +215,7 @@ public class PaymentActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         messageModel -> {
-//                            Toast.makeText(getApplicationContext(),messageModel.getMessage(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(),messageModel.getMessage(), Toast.LENGTH_SHORT).show();
                         },
                         throwable -> {
                             Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();

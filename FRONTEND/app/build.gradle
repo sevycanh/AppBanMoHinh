@@ -40,7 +40,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:23.4.1'
 
     implementation 'androidx.activity:activity:1.8.0'
-    implementation fileTree(dir: 'D:\\2024\\Android\\AppBanMoHinh\\FRONTEND\\app\\src\\main\\libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation fileTree(dir: 'C:\\Users\\Admin\\AndroidStudioProjects\\AppBanMoHinh\\FRONTEND\\app\\src\\main\\libs', include: ['*.aar', '*.jar'], exclude: [])
 
     implementation 'com.google.firebase:firebase-storage:20.3.0'
 
