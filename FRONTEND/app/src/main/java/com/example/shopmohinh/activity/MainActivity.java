@@ -28,6 +28,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     Boolean checkViewSearch = true;
 
     NotificationBadge badge_main;
+    ImageView imgCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,9 +96,9 @@ public class MainActivity extends AppCompatActivity {
         handleSearchClicked();
         getLoaiSanPham();
         loadBottomNavView();
-
         getToken();
         checkIn();
+        initControl();
 
         if (isConnected(this)) {
             getLoaiSanPham();
@@ -131,6 +133,20 @@ public class MainActivity extends AppCompatActivity {
 
         });
         }
+
+    private void initControl() {
+        imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewCart();
+            }
+        });
+    }
+
+    private void viewCart() {
+        Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+        startActivity(intent);
+    }
 
     private void handleSearchClicked(){
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
@@ -207,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Anhxa() {
+        imgCart = findViewById(R.id.imgCart_main);
         toolBar = findViewById(R.id.toolBarHomePage);
         navigationView = findViewById(R.id.navigationHomePage);
         listView = findViewById(R.id.listViewHomePage);

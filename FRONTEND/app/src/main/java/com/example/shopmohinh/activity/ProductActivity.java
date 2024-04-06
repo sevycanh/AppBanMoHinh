@@ -8,12 +8,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -58,6 +60,7 @@ public class ProductActivity extends AppCompatActivity {
     String typeGlobal = "lienquan";
     String sortGlobal = "";
     NotificationBadge badge_product;
+    ImageView imgCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,21 @@ public class ProductActivity extends AppCompatActivity {
         initCart();
         clearButtonView();
         handleButtonBar();
+        initControl();
+    }
+
+    private void initControl() {
+        imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewCart();
+            }
+        });
+    }
+
+    private void viewCart() {
+        Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+        startActivity(intent);
     }
 
     private void clearButtonView() {
@@ -279,6 +297,7 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     private void Mapping() {
+        imgCart = findViewById(R.id.imgCart_SP);
         toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.recycleview_phone);
         linearLayoutManager = new GridLayoutManager(this, 2);

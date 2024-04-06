@@ -16,7 +16,7 @@
 
             <SearchView
                 android:id="@+id/searchView"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/_230sdp"
                 android:layout_height="wrap_content"
                 android:background="@color/main"
                 android:iconifiedByDefault="false"
@@ -29,12 +29,12 @@
                 android:layout_height="?attr/actionBarSize">
                 <com.nex3z.notificationbadge.NotificationBadge
                     android:layout_gravity="top|right"
-                    android:id="@+id/menu_quantity_search"
+                        android:id="@+id/menu_quantity_search"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"/>
 
                 <ImageView
-                    android:id="@+id/imgCart_main"
+                    android:id="@+id/imgCart_search"
                     android:layout_marginTop="@dimen/_13sdp"
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="@dimen/_25sdp"

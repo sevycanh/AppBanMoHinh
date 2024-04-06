@@ -134,7 +134,6 @@ public class CouponActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                     ));
-
         }
     }
     private void clearButtonView() {

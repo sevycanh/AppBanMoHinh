@@ -33,9 +33,10 @@
                     android:layout_height="match_parent"
                     android:background="@color/main"
                     app:popupTheme="@style/Theme.AppCompat.Light">
+
                     <SearchView
                         android:id="@+id/searchHomePage"
-                        android:layout_width="match_parent"
+                        android:layout_width="@dimen/_220sdp"
                         android:layout_height="wrap_content"
                         android:background="@color/main"
                         android:iconifiedByDefault="false"

@@ -199,9 +199,9 @@ public class CartActivity extends AppCompatActivity {
                     }, 5000); // 5000 milliseconds = 5 giây
                 }
                 else {
-                    Intent intent = new Intent(getApplicationContext(),PaymentActivity.class);
-                    intent.putExtra("tongtien", tongtiensp);
-                    startActivity(intent);
+//                    Intent intent = new Intent(getApplicationContext(),PaymentActivity.class);
+//                    intent.putExtra("tongtien", tongtiensp);
+//                    startActivity(intent);
                 }
 
             }
@@ -222,6 +222,7 @@ public class CartActivity extends AppCompatActivity {
                         EventBus.getDefault().postSticky(new TinhTongEvent());
                     }
                 });
+                
                 builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -232,13 +233,13 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
-        couponSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),CouponSelectActivity.class);
-                startActivity(intent);
-            }
-        });
+//        couponSelect.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(),CouponSelectActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
 
