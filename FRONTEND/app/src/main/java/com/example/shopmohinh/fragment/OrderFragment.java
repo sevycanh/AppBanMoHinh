@@ -61,8 +61,12 @@ public class OrderFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("ThongBao", i + ""); // Log vị trí của mục được chọn
                 if (i == 0) {
-                    orderList.clear();
-                    getOrder(Utils.user_current.getAccount_id());
+                    if (orderList == null){
+                        getOrder(Utils.user_current.getAccount_id());
+                    } else {
+                        orderList.clear();
+                        getOrder(Utils.user_current.getAccount_id());
+                    }
                     selection = 0;
                 } else if (i == 1) {
                     getOrderByOrderStatus(Utils.user_current.getAccount_id(), 1);

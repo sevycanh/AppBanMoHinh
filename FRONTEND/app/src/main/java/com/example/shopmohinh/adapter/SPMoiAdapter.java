@@ -56,7 +56,7 @@ public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         if (holder instanceof MyViewHolder) {
             MyViewHolder myViewHolder = (MyViewHolder) holder;
             SanPhamMoi sanPhamMoi = array.get(position);
-            myViewHolder.txtTen.setText(String.valueOf(sanPhamMoi.getProduct_id()));
+            myViewHolder.txtTen.setText(String.valueOf(sanPhamMoi.getName()));
             if (sanPhamMoi.getCoupon() > 0){
                 myViewHolder.txtGiaChuaKM.setText(formatNumberWithDotSeparator(sanPhamMoi.getPrice()) + " VNĐ");
             }
