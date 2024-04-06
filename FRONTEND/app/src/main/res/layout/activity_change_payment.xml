@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ChangePayment"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBarChangePayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main"
+        app:title="Phương thức thanh toán" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton
+            android:padding="@dimen/_12sdp"
+            android:layout_marginLeft="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginRight="@dimen/_36sdp"
+            android:layoutDirection="rtl"
+            android:text="COD"
+            android:id="@+id/radioButtonCash"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <RadioButton
+            android:padding="@dimen/_12sdp"
+
+            android:layout_marginLeft="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginRight="@dimen/_36sdp"
+            android:layoutDirection="rtl"
+            android:text="Zalo Pay"
+            android:id="@+id/radioButtonZalo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RadioGroup>
+
+    <Button
+        android:backgroundTint="@color/main"
+        android:layout_margin="@dimen/_12sdp"
+        android:id="@+id/saveButtonPayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Hoành Thành" />
+
+</LinearLayout>

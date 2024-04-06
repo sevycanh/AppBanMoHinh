@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.CouponActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarCoupon"
+        app:title="Voucher"
+        android:background="@color/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/btnPublicCoupon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:text="Voucher Của Shop"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9ssp" />
+
+            <View
+                android:id="@+id/viewPublicVoucher"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:background="@color/main"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/btnPrivateCoupon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:text="Voucher Dành Cho Bạn"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9ssp" />
+            <View
+                android:id="@+id/viewPrivateVoucher"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:background="@color/main"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_margin="@dimen/_10sdp"
+        android:id="@+id/recyclerViewCoupon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+<!--    <TextView-->
+<!--        android:layout_marginLeft="@dimen/_10sdp"-->
+<!--        android:layout_marginRight="@dimen/_10sdp"-->
+<!--        android:layout_marginTop="@dimen/_10sdp"-->
+<!--        android:text="Khuyen Mai Cua Nguoi Dung"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:layout_margin="@dimen/_10sdp"-->
+<!--        android:id="@+id/recyclerViewCouponPrivate"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        />-->
+
+
+</LinearLayout>

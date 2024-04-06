@@ -11,6 +11,8 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import com.example.shopmohinh.model.LoaiSPModel;
 import com.example.shopmohinh.model.MessageModel;
+import com.example.shopmohinh.model.Product;
+import com.example.shopmohinh.model.ProductModel;
 import com.example.shopmohinh.model.SanPhamMoiModel;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
@@ -34,10 +36,11 @@ public interface ApiBanHang {
             @Field("total") String tongtien,
             @Field("accountId") int id,
             @Field("address") String diachi,
+            @Field("payment") String payment,
             @Field("chitiet") String chitiet
     );
 
-    @POST("updatezalo.php")
+    @POST("update_zalo.php")
     @FormUrlEncoded
     Observable<MessageModel> updateZalo(
             @Field("iddonhang") int id,
@@ -154,10 +157,10 @@ public interface ApiBanHang {
     Observable<LoaiSPModel> getLoaiSp();
 
 
-    @POST("checkQuantityProduct.php")
+    @POST("get_quantity_product.php")
     @FormUrlEncoded
-    Observable<MessageModel> checkQuantityProduct(
-            @Field("productId") int productId
+    Observable<ProductModel> checkQuantityProduct(
+            @Field("product_id") int product_id
     );
 
     @POST("getsanphammoi.php")
@@ -173,4 +176,27 @@ public interface ApiBanHang {
             @Field("tensp") String tensp
     );
 
+    @POST("get_coupon.php")
+    @FormUrlEncoded
+    Observable<CouponModel> getCoupon (
+            @Field("user_id") int user_id
+    );
+
+    @GET("get_coupon_public.php")
+    Observable<CouponModel> getCouponPublic (
+    );
+
+    @POST("update_coupon.php")
+    @FormUrlEncoded
+    Observable<CouponModel> updateCoupon (
+            @Field("coupon_id") int coupon_id,
+            @Field("count") int count
+    );
+
+    @POST("update_quantity_product.php")
+    @FormUrlEncoded
+    Observable<MessageModel> updateQuantityProduct (
+            @Field("product_id") int product_id,
+            @Field("quantity") int quantity
+    );
 }
