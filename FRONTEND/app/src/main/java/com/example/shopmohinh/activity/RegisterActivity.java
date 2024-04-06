@@ -1,8 +1,10 @@
 package com.example.shopmohinh.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -85,7 +87,27 @@ public class RegisterActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
-                                    dangKy(email);
+                                    firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()){
+                                                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                                                builder.setTitle("Thông báo");
+                                                builder.setMessage("Đăng ký thành công. Vui lòng kiểm tra email để thực hiện xác thực trước khi đăng nhập!");
+                                                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        dialog.dismiss();
+                                                        dangKyDB(email);
+                                                    }
+                                                });
+                                                AlertDialog alertDialog = builder.create();
+                                                alertDialog.show();
+                                            } else {
+                                                Toast.makeText(getApplicationContext(), "Lỗi gửi xác thực cho email.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                                 } else {
                                     // Xử lý khi đăng ký không thành công firebase
                                     Exception exception = task.getException();
@@ -107,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    private void dangKy(String email){
+    private void dangKyDB(String email){
         compositeDisposable.add(apiBanHang.dangKy(email)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -118,7 +140,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
                                 startActivity(intent);
                                 finish();
-                                Toast.makeText(getApplicationContext(), userModel.getMessage(), Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(getApplicationContext(), userModel.getMessage(), Toast.LENGTH_SHORT).show();
                             }

@@ -5,6 +5,16 @@
       <config />
     </shared>
     <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_voucher.xml">
+        <config>
+          <theme>@style/Theme.AppBanMoHinhManager</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_caterory_manager.xml">
+        <config>
+          <theme>@style/Theme.AppBanMoHinhManager</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_forgot_pass.xml">
         <config>
           <theme>@style/Theme.AppBanMoHinhManager</theme>
@@ -20,7 +30,37 @@
           <theme>@style/Theme.AppBanMoHinhManager</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_product_manager.xml">
+        <config>
+          <theme>@style/Theme.AppBanMoHinhManager</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
+        <config>
+          <theme>@style/Theme.AppBanMoHinhManager</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_update_category.xml">
+        <config>
+          <theme>@style/Theme.AppBanMoHinhManager</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_update_product.xml">
+        <config>
+          <theme>@style/Theme.AppBanMoHinhManager</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_voucher_manager.xml">
+        <config>
+          <theme>@style/Theme.AppBanMoHinhManager</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_product_manager.xml">
+        <config>
+          <theme>@style/Theme.AppBanMoHinhManager</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_voucher_manager.xml">
         <config>
           <theme>@style/Theme.AppBanMoHinhManager</theme>
         </config>
@@ -63,6 +103,14 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="layoutResourceFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -87,11 +135,17 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\java\com\manager\appbanmohinhmanager" />
+      <recent name="C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app" />
       <recent name="C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\res\raw" />
       <recent name="C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\res\layout" />
       <recent name="C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\res\drawable" />
-      <recent name="C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\java\com\manager\appbanmohinhmanager\model" />
-      <recent name="C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\java\com\manager\appbanmohinhmanager\retrofit" />
+    </key>
+    <key name="android.template.1564744953">
+      <recent name="com.manager.appbanmohinhmanager.activity" />
+    </key>
+    <key name="android.template.59719905">
+      <recent name="com.manager.appbanmohinhmanager.activity" />
     </key>
     <key name="android.template.1332295821">
       <recent name="com.manager.appbanmohinhmanager.activity" />

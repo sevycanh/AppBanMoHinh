@@ -1,58 +1,76 @@
 package com.example.shopmohinh.model;
 
 public class SanPhamMoi {
-    int id;
-    String tensp;
-    int giasp;
-    String hinhanh;
-    String mota;
-    int loai;
+    int product_id;
+    String name;
+    int price;
+    int quantity;
+    int coupon;
+    String main_image;
+    String description;
+    int category_id;
 
-    public int getId() {
-        return id;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public String getTensp() {
-        return tensp;
+    public int getCoupon() {
+        return coupon;
     }
 
-    public void setTensp(String tensp) {
-        this.tensp = tensp;
+    public void setCoupon(int coupon) {
+        this.coupon = coupon;
     }
 
-    public int getGiasp() {
-        return giasp;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public void setGiasp(int giasp) {
-        this.giasp = giasp;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
-    public String getHinhanh() {
-        return hinhanh;
+    public String getName() {
+        return name;
     }
 
-    public void setHinhanh(String hinhanh) {
-        this.hinhanh = hinhanh;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getMota() {
-        return mota;
+    public int getPrice() {
+        return price;
     }
 
-    public void setMota(String mota) {
-        this.mota = mota;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public int getLoai() {
-        return loai;
+    public String getMain_image() {
+        return main_image;
     }
 
-    public void setLoai(int loai) {
-        this.loai = loai;
+    public void setMain_image(String main_image) {
+        this.main_image = main_image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
     }
 }

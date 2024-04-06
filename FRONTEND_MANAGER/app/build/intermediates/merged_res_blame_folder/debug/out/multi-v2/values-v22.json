@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.manager.appbanmohinhmanager.app-mergeDebugResources-38:/values-v22/values-v22.xml",
+            "outputFile": "com.manager.appbanmohinhmanager.app-mergeDebugResources-39:/values-v22/values-v22.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\d41211f0e3554fbc0c69d1b435092397\\transformed\\appcompat-1.6.1\\res\\values-v22\\values-v22.xml",
+                    "source": "C:\\Users\\dung3\\.gradle\\caches\\transforms-3\\d41211f0e3554fbc0c69d1b435092397\\transformed\\appcompat-1.6.1\\res\\values-v22\\values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",

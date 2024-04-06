@@ -5,12 +5,14 @@ import static com.example.shopmohinh.utils.NumberWithDotSeparator.formatNumberWi
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +22,10 @@ import com.example.shopmohinh.Interface.ItemClickListener;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.activity.ProductDetailActivity;
 import com.example.shopmohinh.model.Product;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.Serializable;
 import java.util.List;
@@ -63,13 +69,36 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             Product product = products.get(position);
             myViewHolder.id.setText(product.getProduct_id() + "");
             myViewHolder.name.setText(product.getName());
-            myViewHolder.price.setText(formatNumberWithDotSeparator(product.getPrice()) + " VNĐ");
+            if (product.getCoupon() > 0){
+                myViewHolder.price.setText(formatNumberWithDotSeparator(product.getPrice()) + " VNĐ");
+            }
+            else {
+                myViewHolder.price.setVisibility(View.GONE);
+            }
             int price = product.getPrice();
             int discount = product.getPrice() * product.getCoupon() / 100;
             int finalPrice = price - discount;
             myViewHolder.price_after_apply_promotion.setText(formatNumberWithDotSeparator(finalPrice) + " VNĐ");
-            Glide.with(context).load(product.getMain_image()).into(myViewHolder.image);
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageReference = storage.getReference()
+                    .child("/images")
+                    .child(product.getMain_image());
 
+            storageReference.getDownloadUrl()
+                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Glide.with(context)
+                                    .load(uri)
+                                    .into(myViewHolder.image);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(context, "Download Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
             myViewHolder.setItemClickListener(new ItemClickListener() {
                 @Override
                 public void onClick(View view, int pos, boolean isLongClick) {

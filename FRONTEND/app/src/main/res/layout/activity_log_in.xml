@@ -125,4 +125,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/_15ssp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_2sdp"/>
+        <TextView
+            android:text=" OR "
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <View
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_2sdp"/>
+    </LinearLayout>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="@dimen/_10sdp"
+        android:id="@+id/signIn_Google"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:src="@drawable/logo_gg"/>
 </LinearLayout>

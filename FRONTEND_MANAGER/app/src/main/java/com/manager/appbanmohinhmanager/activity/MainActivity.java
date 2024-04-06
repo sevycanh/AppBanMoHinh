@@ -3,12 +3,14 @@ package com.manager.appbanmohinhmanager.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,9 +28,11 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
+
     Toolbar toolbar;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
+    CardView cardViewProductManager, cardViewCategoryManager, cardVoucherManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +46,32 @@ public class MainActivity extends AppCompatActivity {
             Utils.user_current = user;
         }
         getToken();
-
         initView();
+        initControll();
+    }
+
+    protected void initControll(){
+        cardViewProductManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ProductManagerActivity.class);
+                startActivity(intent);
+            }
+        });
+        cardViewCategoryManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CateroryManagerActivity.class);
+                startActivity(intent);
+            }
+        });
+        cardVoucherManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), VoucherManagerActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getToken() {
@@ -66,7 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
-
+        cardViewProductManager = findViewById(R.id.cardSanPham_Manager);
+        cardViewCategoryManager = findViewById(R.id.cardDanhMuc_Manager);
+        cardVoucherManager = findViewById(R.id.cardVoucher_Manager);
         toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
     }

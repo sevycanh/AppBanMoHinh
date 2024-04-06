@@ -1,61 +1,61 @@
 package com.example.shopmohinh.model;
 
 public class SanPhamSearch {
-    int id;
-    String tensp;
-    int giasp;
-    String hinhanh;
-    String mota;
-    int loai;
+    int product_id;
+    String name;
+    int price;
+    String main_image;
+    String description;
+    int category_id;
     int coupon;
     int status;
 
-    public int getId() {
-        return id;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
-    public String getTensp() {
-        return tensp;
+    public String getName() {
+        return name;
     }
 
-    public void setTensp(String tensp) {
-        this.tensp = tensp;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getGiasp() {
-        return giasp;
+    public int getPrice() {
+        return price;
     }
 
-    public void setGiasp(int giasp) {
-        this.giasp = giasp;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public String getHinhanh() {
-        return hinhanh;
+    public String getMain_image() {
+        return main_image;
     }
 
-    public void setHinhanh(String hinhanh) {
-        this.hinhanh = hinhanh;
+    public void setMain_image(String main_image) {
+        this.main_image = main_image;
     }
 
-    public String getMota() {
-        return mota;
+    public String getDescription() {
+        return description;
     }
 
-    public void setMota(String mota) {
-        this.mota = mota;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getLoai() {
-        return loai;
+    public int getCategory_id() {
+        return category_id;
     }
 
-    public void setLoai(int loai) {
-        this.loai = loai;
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
     }
 
     public int getCoupon() {
