@@ -1,234 +1,238 @@
 [
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_ic_add_voucher.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/ic_add_voucher.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_icon_san_pham.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/icon_san_pham.png"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_baseline_lock_24.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\baseline_lock_24.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_product_manager.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_product_manager.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_icon_quang_cao.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/icon_quang_cao.png"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_background.jpg.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\background.jpg"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_icon_remove.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/icon_remove.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\menu_menu_main.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\menu\\menu_main.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\raw_animate.json.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\raw\\animate.json"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_item_category_manager.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/item_category_manager.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_ic_change_pass.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\ic_change_pass.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_icon_phan_hoi.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/icon_phan_hoi.png"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_bg_main.jpg.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\bg_main.jpg"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/raw_animate.json.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/raw/animate.json"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_ic_add_voucher.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\ic_add_voucher.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_icon_menu.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/icon_menu.png"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_quang_cao.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\icon_quang_cao.png"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/menu_menu_main.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/menu/menu_main.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_item_voucher_manager.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\item_voucher_manager.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_main.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_main.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_voucher_manager.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_voucher_manager.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_icon_danh_muc.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/icon_danh_muc.png"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_khuyen_mai.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\icon_khuyen_mai.png"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_minus.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/minus.png"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_danh_muc.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\icon_danh_muc.png"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/xml_backup_rules.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/xml/backup_rules.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_add_product.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/add_product.png"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_log_in.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_log_in.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_icon_khuyen_mai.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/icon_khuyen_mai.png"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_forgot_pass.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_forgot_pass.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_item_category_manager.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\item_category_manager.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_splash.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_splash.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_splash.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_splash.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_ic_change_pass.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/ic_change_pass.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\xml\\backup_rules.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_custom_edittext_login.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/custom_edittext_login.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_remove.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\icon_remove.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_baseline_output_24.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/baseline_output_24.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_logo.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\logo.png"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_item_multiple_image.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/item_multiple_image.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_menu.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\icon_menu.png"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/ic_launcher_background.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_tai_khoan.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\icon_tai_khoan.png"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_add_product.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_add_product.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\xml\\data_extraction_rules.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_add_category.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/add_category.png"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_add_product.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\add_product.png"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_add_voucher.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_add_voucher.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_san_pham.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\icon_san_pham.png"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_plus.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\plus.png"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_item_product_manager.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\item_product_manager.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_log_in.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_log_in.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_add_category.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_add_category.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_forgot_pass.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_forgot_pass.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_add_category.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\add_category.png"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_add_voucher.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_add_voucher.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_voucher_manager.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_voucher_manager.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_custom_edittext_login.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\custom_edittext_login.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_baseline_lock_24.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/baseline_lock_24.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_item_multiple_image.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\item_multiple_image.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_baseline_email_24.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/baseline_email_24.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_update_product.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_update_product.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_vong_quay.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\icon_vong_quay.png"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_icon_tai_khoan.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/icon_tai_khoan.png"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_phan_hoi.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\icon_phan_hoi.png"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_background.jpg.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/background.jpg"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_update_category.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_update_category.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_plus.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/plus.png"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_item_product_manager.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/item_product_manager.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_caterory_manager.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_caterory_manager.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_bg_main.jpg.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/bg_main.jpg"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_baseline_output_24.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\baseline_output_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_thong_ke.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\icon_thong_ke.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_add_product.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_add_product.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
         "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_add_category.xml.flat",
         "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_add_category.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_don_hang.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\icon_don_hang.png"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_caterory_manager.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_caterory_manager.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_product_manager.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_product_manager.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_icon_vong_quay.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/icon_vong_quay.png"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_minus.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\minus.png"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_update_category.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_update_category.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_update_product.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_update_product.xml"
-    },
-    {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_icon_thong_ke.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/icon_thong_ke.png"
-    },
-    {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_icon_don_hang.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/icon_don_hang.png"
-    },
-    {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_item_voucher_manager.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/item_voucher_manager.xml"
-    },
-    {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/drawable_logo.png.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/drawable/logo.png"
-    },
-    {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/xml_data_extraction_rules.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/xml/data_extraction_rules.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_baseline_email_24.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\baseline_email_24.xml"
     }
 ]
