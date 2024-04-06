@@ -1,4 +1,5 @@
 package com.example.shopmohinh.activity;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,12 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.adapter.OrderDetailAdapter;
+import com.example.shopmohinh.model.InforDetail;
 import com.example.shopmohinh.model.ItemOrderDetail;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -39,6 +42,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     private OrderDetailAdapter orderDetailAdapter;
     private RecyclerView orderDetailRecylerView;
     private Button btn_CancelOrder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +101,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         String total = intent.getStringExtra("total");
         tv_order_id_detail.setText(String.valueOf(order_id_Detail));
         tv_name_detail.setText(name);
+        checkOrderStatus(order_status);
         tv_order_status_detail.setText(checkOrderStatus(order_status));
         tv_payment_detail.setText(payment);
         tv_address_detail.setText(address);
@@ -123,7 +128,7 @@ public class OrderDetailActivity extends AppCompatActivity {
             tv_order_status_detail.setTextColor(ContextCompat.getColor(this, R.color.green));
             shutdownBtnCancel();
 
-        } else {
+        } else if (order_status == 5) {
             status = "Đã hủy";
             tv_order_status_detail.setTextColor(ContextCompat.getColor(this, R.color.red));
             shutdownBtnCancel();
@@ -132,8 +137,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     }
 
     private void shutdownBtnCancel() {
-        btn_CancelOrder.setClickable(false);
-        btn_CancelOrder.setFocusable(false);
+        btn_CancelOrder.setEnabled(false);
         btn_CancelOrder.setBackgroundColor(ContextCompat.getColor(this, R.color.grey));
     }
 
@@ -164,7 +168,9 @@ public class OrderDetailActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(OrderDetailActivity.this, "Đồng ý hủy đơn hàng :" + order_id, Toast.LENGTH_SHORT).show();
                 updateOrderStatus(order_id);
-                finish();
+                tv_order_status_detail.setText("Đã hủy");
+                tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
+                shutdownBtnCancel();
             }
         });
         builder.setNegativeButton("Hủy bỏ", new DialogInterface.OnClickListener() {
@@ -182,12 +188,12 @@ public class OrderDetailActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        orderModel -> {
+                        inforDetailModel -> {
                             // Xử lý kết quả ở đây nếu cần
-                            if (orderModel.isSuccess()) {
-//                                Toast.makeText(OrderDetailActivity.this, "Đơn hàng đã hủy", Toast.LENGTH_SHORT).show();
+                            if (inforDetailModel.isSuccess()) {
+
                             } else {
-//                                Toast.makeText(OrderDetailActivity.this, "Hủy thất bại", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(OrderDetailActivity.this, "Hủy thất bại", Toast.LENGTH_SHORT).show();
                             }
                         },
                         throwable -> {
@@ -195,5 +201,4 @@ public class OrderDetailActivity extends AppCompatActivity {
                         }
                 ));
     }
-
 }

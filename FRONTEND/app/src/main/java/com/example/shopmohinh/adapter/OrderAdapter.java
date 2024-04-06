@@ -3,6 +3,7 @@ package com.example.shopmohinh.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,10 @@ import com.example.shopmohinh.model.Order;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -67,7 +72,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
 
         } else if (order.getOrder_status() == 2) {
             holder.tv_order_status.setText(String.valueOf("Đã xác nhận"));
-            holder.tv_order_status.setTextColor(ContextCompat.getColor(holder.itemView.getContext(),R.color.black));
+            holder.tv_order_status.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.black));
         } else if (order.getOrder_status() == 3) {
             holder.tv_order_status.setText(String.valueOf("Đang giao"));
             holder.tv_order_status.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.yellow));
@@ -82,9 +87,33 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         }
         holder.tv_price.setText(String.valueOf(order.getPerUnit()));
         holder.tv_product_name.setText(String.valueOf("x" + order.getQuantity()) + " " + order.getProduct_name());
-        productInOrder = order.getProductsInOrder() - 1;
-        holder.tv_productInOrder.setText(String.valueOf("+" + productInOrder));
-        Glide.with(holder.itemView.getContext()).load(order.getMain_img()).into(holder.imv_Product);
+        if (order.getProductsInOrder() == 1) {
+            holder.tv_productInOrder.setText("");
+        } else {
+            productInOrder = order.getProductsInOrder() - 1;
+            holder.tv_productInOrder.setText(String.valueOf("Xem thêm " + productInOrder + " sản phẩm"));
+        }
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageReference = storage.getReference()
+                .child("/images")
+                .child(order.getMain_img());
+
+        storageReference.getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Glide.with(mContext)
+                                .load(uri)
+                                .into(holder.imv_Product);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(mContext, "Download Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+//        Glide.with(holder.itemView.getContext()).load(order.getMain_img()).into(holder.imv_Product);
         //onClick
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +187,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                         },
                         throwable -> {
                             Toast.makeText(mContext, throwable.getMessage(), Toast.LENGTH_LONG).show();
-                            Log.d("Loi Intent :",throwable.getMessage());
+                            Log.d("Loi Intent :", throwable.getMessage());
                         }
                 ));
     }

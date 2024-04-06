@@ -5,11 +5,30 @@ public class SanPhamMoi {
     String name;
     int price;
     int quantity;
+    int coupon;
+    String main_image;
+
     String description;
     String main_image;
     String sub_image;
     int coupon;
     int category_id;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(int coupon) {
+        this.coupon = coupon;
+    }
 
     public int getProduct_id() {
         return product_id;

@@ -87,7 +87,7 @@
                                         android:orientation="vertical">
 
                                         <ImageView
-                                            android:id="@+id/imageView2"
+                                            android:id="@+id/imageCoupon_HomeFragment"
                                             android:layout_width="50dp"
                                             android:layout_height="50dp"
                                             android:layout_gravity="center"

@@ -1,13 +1,19 @@
 package com.example.shopmohinh.adapter;
 
+import static com.example.shopmohinh.utils.NumberWithDotSeparator.formatNumberWithDotSeparator;
+
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
+import android.net.Uri;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +25,10 @@ import com.example.shopmohinh.activity.ProductDetailActivity;
 import com.example.shopmohinh.fragment.HomeFragment;
 import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.model.SanPhamMoi;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.Serializable;
 import java.util.List;
@@ -73,6 +83,38 @@ public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     }
                 }
             });
+            SanPhamMoi sanPhamMoi = array.get(position);
+            myViewHolder.txtTen.setText(String.valueOf(sanPhamMoi.getName()));
+            if (sanPhamMoi.getCoupon() > 0){
+                myViewHolder.txtGiaChuaKM.setText(formatNumberWithDotSeparator(sanPhamMoi.getPrice()) + " VNĐ");
+            }
+            else {
+                myViewHolder.txtGiaChuaKM.setVisibility(View.GONE);
+            }
+            int price = sanPhamMoi.getPrice();
+            int discount = sanPhamMoi.getPrice() * sanPhamMoi.getCoupon() / 100;
+            int finalPrice = price - discount;
+            myViewHolder.txtGia.setText(formatNumberWithDotSeparator(finalPrice) + " VNĐ");
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageReference = storage.getReference()
+                    .child("/images")
+                    .child(sanPhamMoi.getMain_image());
+
+            storageReference.getDownloadUrl()
+                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Glide.with(context)
+                                    .load(uri)
+                                    .into(myViewHolder.imgItem);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(context, "Download Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }else {
             LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
             loadingViewHolder.progressBar.setIndeterminate(true);
@@ -98,13 +140,19 @@ public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
+
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView txtGia, txtTen;
+
+        TextView txtGiaChuaKM,txtGia, txtTen;
+
         ImageView imgItem;
         private ItemClickListener itemClickListener;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
+            txtGiaChuaKM = itemView.findViewById(R.id.newsp_price_nocoupon);
+            txtGiaChuaKM.setPaintFlags(txtGiaChuaKM.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             txtGia = itemView.findViewById(R.id.newsp_price);
             txtTen = itemView.findViewById(R.id.newsp_name);
             imgItem = itemView.findViewById(R.id.newsp_image);

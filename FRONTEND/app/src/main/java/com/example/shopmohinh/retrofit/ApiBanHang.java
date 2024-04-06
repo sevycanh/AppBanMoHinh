@@ -2,6 +2,7 @@ package com.example.shopmohinh.retrofit;
 
 import com.example.shopmohinh.model.CartModel;
 import com.example.shopmohinh.model.CouponModel;
+import com.example.shopmohinh.model.InforDetail;
 import com.example.shopmohinh.model.InforDetailModel;
 import com.example.shopmohinh.model.ItemOrderDetailModel;
 import com.example.shopmohinh.model.MessageModel;
@@ -15,6 +16,8 @@ import retrofit2.http.POST;
 
 import com.example.shopmohinh.model.LoaiSPModel;
 import com.example.shopmohinh.model.MessageModel;
+import com.example.shopmohinh.model.Product;
+import com.example.shopmohinh.model.ProductModel;
 import com.example.shopmohinh.model.Order;
 import com.example.shopmohinh.model.OrderModel;
 import com.example.shopmohinh.model.Product;
@@ -43,10 +46,11 @@ public interface ApiBanHang {
             @Field("total") String tongtien,
             @Field("accountId") int id,
             @Field("address") String diachi,
+            @Field("payment") String payment,
             @Field("chitiet") String chitiet
     );
 
-    @POST("updatezalo.php")
+    @POST("update_zalo.php")
     @FormUrlEncoded
     Observable<MessageModel> updateZalo(
             @Field("iddonhang") int id,
@@ -159,13 +163,19 @@ public interface ApiBanHang {
             @Field("id") int id
     );
 
+    @POST("dangnhapgoogle.php")
+    @FormUrlEncoded
+    Observable<UserModel> dangNhapGoogle(
+            @Field("email") String email
+    );
+
     @GET("getloaisp.php")
     Observable<LoaiSPModel> getLoaiSp();
 
     @POST("checkQuantityProduct.php")
     @FormUrlEncoded
-    Observable<MessageModel> checkQuantityProduct(
-            @Field("productId") int productId
+    Observable<ProductModel> checkQuantityProduct(
+            @Field("product_id") int product_id
     );
 
     @POST("getsanphammoi.php")
@@ -185,6 +195,31 @@ public interface ApiBanHang {
             @Field("tensp") String tensp
     );
 
+
+    @POST("get_coupon.php")
+    @FormUrlEncoded
+    Observable<CouponModel> getCoupon (
+            @Field("user_id") int user_id
+    );
+
+    @GET("get_coupon_public.php")
+    Observable<CouponModel> getCouponPublic (
+    );
+
+    @POST("update_coupon.php")
+    @FormUrlEncoded
+    Observable<CouponModel> updateCoupon (
+            @Field("coupon_id") int coupon_id,
+            @Field("count") int count
+    );
+
+    @POST("update_quantity_product.php")
+    @FormUrlEncoded
+    Observable<MessageModel> updateQuantityProduct (
+            @Field("product_id") int product_id,
+            @Field("quantity") int quantity
+    );
+
     @GET("getOrder.php")
     Observable<OrderModel> getOrder(@Query("accountId") int accountID);
 
@@ -200,5 +235,6 @@ public interface ApiBanHang {
 
     @POST("updateOrderStatus.php")
     @FormUrlEncoded
-    Observable<OrderModel> updateOrderStatus(@Field("orderId") int orderID);
+    Observable<InforDetailModel> updateOrderStatus(@Field("orderId") int orderID);
+
 }

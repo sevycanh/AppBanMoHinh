@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/icon_khuyen_mai"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp">
+        </ImageView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/_5sdp">
+            <TextView
+                android:id="@+id/txtnameVoucher"
+                android:text="Ten khuyen mai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"/>
+            <LinearLayout
+                android:weightSum="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/txtpercentVoucher"
+                    android:text="Phan tram khuyen mai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_red_dark"/>
+                <TextView
+                    android:id="@+id/txtcountVoucher"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:text="So luong: 99"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/txttimeVoucher"
+                android:text="Thoi gian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/txtIdVoucher"
+                android:text="ID sở hữu: "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

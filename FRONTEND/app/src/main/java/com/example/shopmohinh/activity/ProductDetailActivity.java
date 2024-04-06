@@ -103,9 +103,16 @@ public class ProductDetailActivity extends AppCompatActivity {
             int quantity = Integer.parseInt(txtQuantity.getText().toString());
             for (int i=0; i<Utils.carts.size();i++){
                 if (Utils.carts.get(i).getIdProduct() == product.getProduct_id()){
-                    Utils.carts.get(i).setQuantity(quantity + Utils.carts.get(i).getQuantity());
+                    checkQuantityProduct(product.getProduct_id());
+                    if(quantity + Utils.carts.get(i).getQuantity() <= Utils.product.getQuantity()){
+                        Utils.carts.get(i).setQuantity(quantity + Utils.carts.get(i).getQuantity());
+                        UpdateCartApi(Utils.carts.get(i).getQuantity());
+                    }
+                    else{
+                        Utils.carts.get(i).setQuantity(Utils.product.getQuantity());
+                        UpdateCartApi(Utils.carts.get(i).getQuantity());
+                    }
                     flag = true;
-                    UpdateCartApi(Utils.carts.get(i).getQuantity());
                 }
             }
 
@@ -253,6 +260,22 @@ public class ProductDetailActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         badge.setText(String.valueOf(Utils.carts.size()));
+    }
+
+    private void checkQuantityProduct(int productId) {
+        compositeDisposable.add(apiBanHang.checkQuantityProduct(productId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        productModel -> {
+                            if(productModel.isSuccess()){
+                                Utils.product = productModel.getResult().get(0);
+                            }
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
     }
 
     private void CartApi(int quantity){

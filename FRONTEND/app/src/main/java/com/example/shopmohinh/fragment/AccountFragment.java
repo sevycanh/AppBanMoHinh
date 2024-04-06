@@ -3,12 +3,12 @@ package com.example.shopmohinh.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.shopmohinh.R;
@@ -30,7 +30,7 @@ import io.paperdb.Paper;
 public class AccountFragment extends Fragment {
     TextView txtUserNameProfile, txtUserPhoneProfile, txtUserEmailProfile,txtUserAddressProfile;
 
-    AppCompatButton btnChangeProfile, btnChangePasswordProfile,btnSignOut;
+    Button btnChangeProfile, btnChangePasswordProfile,btnSignOut;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

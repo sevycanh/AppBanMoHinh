@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
-    CardView cardViewProductManager, cardViewCategoryManager;
+    CardView cardViewProductManager, cardViewCategoryManager, cardVoucherManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        cardVoucherManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), VoucherManagerActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getToken() {
@@ -89,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         cardViewProductManager = findViewById(R.id.cardSanPham_Manager);
         cardViewCategoryManager = findViewById(R.id.cardDanhMuc_Manager);
+        cardVoucherManager = findViewById(R.id.cardVoucher_Manager);
         toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
     }

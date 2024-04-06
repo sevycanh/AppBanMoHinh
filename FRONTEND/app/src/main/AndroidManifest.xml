@@ -16,9 +16,20 @@
         android:theme="@style/Theme.ShopMoHinh"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".activity.ChangePayment"
+            android:exported="false" />
+        <activity
+            android:name=".activity.CouponSelectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.CouponActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+
         <activity
             android:name=".activity.YoutubeActivity"
             android:exported="false" />
@@ -48,7 +59,17 @@
             android:exported="true" />
         <activity
             android:name=".activity.PaymentActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="demozpdk"
+                    android:host="app" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".activity.AddressUserActivity"
             android:exported="true" />

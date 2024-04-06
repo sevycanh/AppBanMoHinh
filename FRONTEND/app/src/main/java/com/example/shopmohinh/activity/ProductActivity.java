@@ -10,10 +10,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.adapter.ProductAdapter;
 import com.example.shopmohinh.model.Cart;
@@ -51,6 +60,13 @@ public class ProductActivity extends AppCompatActivity {
     NotificationBadge badge_product;
     ImageView imgCart;
 
+    LinearLayout linearLayout;
+    Button btnLienQuan, btnMoiNhat, btnKhuyenMai, btnGia;
+    View viewLienQuan, viewMoiNhat, viewKhuyenMai, viewGia;
+    Drawable icon_down, icon_up, icon_default;
+    String typeGlobal = "lienquan";
+    String sortGlobal = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +75,7 @@ public class ProductActivity extends AppCompatActivity {
         category = getIntent().getIntExtra("category", 1);
         Mapping();
         ActionToolBar();
-        getData(page);
+        getData(page, typeGlobal);
         addEventLoad();
         if (Paper.book().read("user") != null) {
             User user = Paper.book().read("user");
@@ -74,9 +90,93 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 viewCart();
+              
+        clearButtonView();
+        handleButtonBar();
+    }
+
+    private void clearButtonView() {
+        btnGia.setCompoundDrawablesWithIntrinsicBounds(null, null, icon_default, null);
+        viewLienQuan.setVisibility(View.GONE);
+        btnLienQuan.setTextColor(Color.BLACK);
+        viewMoiNhat.setVisibility(View.GONE);
+        btnMoiNhat.setTextColor(Color.BLACK);
+        viewKhuyenMai.setVisibility(View.GONE);
+        btnKhuyenMai.setTextColor(Color.BLACK);
+        viewGia.setVisibility(View.GONE);
+        btnGia.setTextColor(Color.BLACK);
+    }
+
+    private void handleButtonBar() {
+        btnLienQuan.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.main));
+        viewLienQuan.setVisibility(View.VISIBLE);
+        btnLienQuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearButtonView();
+                page = 1;
+                productList.clear();
+                phoneAdapter.notifyDataSetChanged();
+                typeGlobal = "lienquan";
+                viewLienQuan.setVisibility(View.VISIBLE);
+                btnLienQuan.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.main));
+                getData(page, typeGlobal);
+            }
+        });
+        btnMoiNhat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                page = 1;
+                clearButtonView();
+                productList.clear();
+                phoneAdapter.notifyDataSetChanged();
+                typeGlobal = "moinhat";
+                viewMoiNhat.setVisibility(View.VISIBLE);
+                btnMoiNhat.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.main));
+                getData(page, typeGlobal);
+            }
+        });
+        btnKhuyenMai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                page = 1;
+                clearButtonView();
+                productList.clear();
+                phoneAdapter.notifyDataSetChanged();
+                typeGlobal = "khuyenmai";
+                viewKhuyenMai.setVisibility(View.VISIBLE);
+                btnKhuyenMai.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.main));
+                getData(page, typeGlobal);
+            }
+        });
+        btnGia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sortGlobal == "" || sortGlobal == "ASC") {
+                    sortGlobal = "DESC";
+                    page = 1;
+                    clearButtonView();
+                    productList.clear();
+                    phoneAdapter.notifyDataSetChanged();
+                    viewGia.setVisibility(View.VISIBLE);
+                    btnGia.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.main));
+                    btnGia.setCompoundDrawablesWithIntrinsicBounds(null, null, icon_down, null);
+                    getData(page, sortGlobal);
+                } else {
+                    sortGlobal = "ASC";
+                    page = 1;
+                    clearButtonView();
+                    productList.clear();
+                    phoneAdapter.notifyDataSetChanged();
+                    viewGia.setVisibility(View.VISIBLE);
+                    btnGia.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.main));
+                    btnGia.setCompoundDrawablesWithIntrinsicBounds(null, null, icon_up, null);
+                    getData(page, sortGlobal);
+                }
             }
         });
     }
+
 
     private void initCart() {
         compositeDisposable.add(apiBanHang.getShoppingCart(Utils.user_current.getAccount_id())
@@ -157,7 +257,7 @@ public class ProductActivity extends AppCompatActivity {
                 //productList.remove(productList.size() - 1);
                 //phoneAdapter.notifyItemRemoved(productList.size());
                 page = page + 1;
-                getData(page);
+                getData(page, typeGlobal);
                 //phoneAdapter.notifyDataSetChanged();
                 phoneAdapter.loadNewData(productList);
                 isLoading = false;
@@ -165,8 +265,8 @@ public class ProductActivity extends AppCompatActivity {
         }, 2000);
     }
 
-    private void getData(int page) {
-        compositeDisposable.add(salesApi.getProduct(page, category)
+    private void getData(int page, String type) {
+        compositeDisposable.add(salesApi.getProduct(page, category, type)
                 .subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribe(
                         productModel -> {
@@ -218,6 +318,19 @@ public class ProductActivity extends AppCompatActivity {
         if (Utils.carts != null) {
             badge_product.setText(String.valueOf(Utils.carts.size()));
         }
+
+        icon_default = getResources().getDrawable(R.drawable.default_arrow);
+        icon_down = getResources().getDrawable(R.drawable.arrow_down);
+        icon_up = getResources().getDrawable(R.drawable.arrow_up);
+        linearLayout = findViewById(R.id.linearInSearchViewProduct);
+        btnLienQuan = findViewById(R.id.btnLienQuanProduct);
+        btnMoiNhat = findViewById(R.id.btnMoiNhatProduct);
+        btnKhuyenMai = findViewById(R.id.btnKhuyenMaiProduct);
+        btnGia = findViewById(R.id.btnGiaProduct);
+        viewLienQuan = findViewById(R.id.viewLienQuanProduct);
+        viewMoiNhat = findViewById(R.id.viewMoiNhatProduct);
+        viewKhuyenMai = findViewById(R.id.viewKhuyenMaiProduct);
+        viewGia = findViewById(R.id.viewGiaProduct);
     }
 
     @Override
