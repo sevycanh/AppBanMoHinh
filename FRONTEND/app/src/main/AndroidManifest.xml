@@ -31,9 +31,6 @@
             android:value="ca-app-pub-3940256099942544~3347511713" />
 
         <activity
-            android:name=".activity.YoutubeActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity.CheckInActivity"
             android:exported="false" />
         <activity

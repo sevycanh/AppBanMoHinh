@@ -14,30 +14,10 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
-
-        <FrameLayout
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_gravity="right"
-            android:layout_width="@dimen/_36sdp"
-            android:layout_height="?attr/actionBarSize">
-            <com.nex3z.notificationbadge.NotificationBadge
-                android:layout_gravity="top|right"
-                android:id="@+id/menu_quantity_product"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"/>
-
-            <ImageView
-                android:id="@+id/imgCart_SP"
-                android:layout_marginTop="@dimen/_13sdp"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:src="@drawable/baseline_shopping_cart_24">
-            </ImageView>
-        </FrameLayout>
-    </androidx.appcompat.widget.Toolbar>
+        android:layout_height="wrap_content"
+        android:background="#fbc02d"
+        app:title="Sản phẩm"
+        tools:ignore="MissingConstraints"></androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:id="@+id/linearInSearchViewProduct"

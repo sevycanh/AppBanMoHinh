@@ -60,30 +60,12 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     private void initControl() {
-        product = (Product) getIntent().getSerializableExtra("productDetail");
-        int maxQuantity = product.getQuantity();
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (maxQuantity > 0) {
-                    AddToCart();
-                } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ProductDetailActivity.this);
-                    builder.setTitle("Thông báo");
-                    builder.setMessage("Sản phẩm đã hết hàng vui lòng mua sản phẩm khác!");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss(); // Đóng Dialog
-                        }
-                    });
-
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                }
+                AddToCart();
             }
         });
-
         imgCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,7 +97,6 @@ public class ProductDetailActivity extends AppCompatActivity {
                     flag = true;
                 }
             }
-
             if (flag == false){
                 int price = product.getPrice();
                 int discount = product.getPrice() * product.getCoupon() / 100;
@@ -243,6 +224,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             badge.setText(String.valueOf(Utils.carts.size()));
         }
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
+
     }
 
     private void ActionToolBar() {

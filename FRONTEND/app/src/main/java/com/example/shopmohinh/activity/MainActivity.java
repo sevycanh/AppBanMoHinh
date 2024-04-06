@@ -16,7 +16,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -29,16 +28,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.shopmohinh.R;
-import com.example.shopmohinh.adapter.ProductAdapter;
-import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.model.User;
-import com.example.shopmohinh.retrofit.SalesApi;
 import com.example.shopmohinh.utils.Utils;
 import com.example.shopmohinh.adapter.SPMoiAdapter;
 import com.example.shopmohinh.fragment.AccountFragment;
@@ -56,7 +51,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,23 +73,12 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     FrameLayout frameLayout;
     Boolean checkViewSearch = true;
-    RecyclerView recyclerView;
-    SalesApi salesApi;
-    int productId = 1;
-    boolean isLoading = false;
-
-    ProductAdapter phoneAdapter;
-    List<Product> productList;
-
-    NotificationBadge badge_main;
-
-    ImageView imgCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        salesApi = RetrofitClient.getInstance(Utils.BASE_URL).create(SalesApi.class);
+
         //load user hiện tại
         Paper.init(this);
         if (Paper.book().read("user") != null) {
@@ -108,9 +91,10 @@ public class MainActivity extends AppCompatActivity {
         handleSearchClicked();
         getLoaiSanPham();
         loadBottomNavView();
+
         getToken();
         checkIn();
-        initControl();
+
         if (isConnected(this)) {
             getLoaiSanPham();
         } else {
@@ -144,21 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
         }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        badge_main.setText(String.valueOf(Utils.carts.size()));
-    }
-
-    private void initControl() {
-        imgCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewCart();
-            }
-        });
-    }
 
     private void handleSearchClicked(){
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
@@ -235,7 +204,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Anhxa() {
-        imgCart = findViewById(R.id.imgCart_main);
         toolBar = findViewById(R.id.toolBarHomePage);
         navigationView = findViewById(R.id.navigationHomePage);
         listView = findViewById(R.id.listViewHomePage);
@@ -245,12 +213,7 @@ public class MainActivity extends AppCompatActivity {
         mangLoaiSp = new ArrayList<>();
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-        recyclerView = findViewById(R.id.recyclerViewHomePage_HomeFragMent);
 
-        badge_main = findViewById(R.id.menu_quantity_main);
-        if (Utils.carts != null) {
-            badge_main.setText(String.valueOf(Utils.carts.size()));
-        }
     }
 
 
@@ -308,10 +271,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         compositeDisposable.clear();
         super.onDestroy();
-    }
-
-    private void viewCart() {
-        Intent intent = new Intent(getApplicationContext(), CartActivity.class);
-        startActivity(intent);
     }
 }

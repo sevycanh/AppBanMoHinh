@@ -3,10 +3,8 @@ package com.example.shopmohinh.adapter;
 import static com.example.shopmohinh.utils.NumberWithDotSeparator.formatNumberWithDotSeparator;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Paint;
 import android.net.Uri;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,35 +17,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.shopmohinh.Interface.ItemClickListener;
 import com.example.shopmohinh.R;
-import com.example.shopmohinh.activity.ProductDetailActivity;
 import com.example.shopmohinh.fragment.HomeFragment;
-import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.model.SanPhamMoi;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
     List<SanPhamMoi> array;
-    List<Product> products;
     private static final int VIEW_TYPE_DATA = 0;
     private static final int VIEW_TYPE_LOADING = 1;
 
-//    public SPMoiAdapter(Context context, List<SanPhamMoi> array) {
-//        this.context = context;
-//        this.array = array;
-//    }
-
-    public SPMoiAdapter(Context context,List<Product> products) {
+    public SPMoiAdapter(Context context, List<SanPhamMoi> array) {
         this.context = context;
-        this.products = products;
+        this.array = array;
     }
 
     @NonNull
@@ -67,22 +55,6 @@ public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MyViewHolder) {
             MyViewHolder myViewHolder = (MyViewHolder) holder;
-            Product sanPhamMoi = products.get(position);
-            myViewHolder.txtTen.setText(String.valueOf(sanPhamMoi.getProduct_id()));
-            myViewHolder.txtGia.setText("Giá: " + String.valueOf(sanPhamMoi.getPrice()) + "đ");
-            Glide.with(context).load(sanPhamMoi.getMain_image()).into(myViewHolder.imgItem);
-
-            myViewHolder.setItemClickListener(new ItemClickListener() {
-                @Override
-                public void onClick(View view, int pos, boolean isLongClick) {
-                    if (!isLongClick) {
-                        Intent intent = new Intent(context, ProductDetailActivity.class);
-                        intent.putExtra("productDetail", (Serializable) sanPhamMoi);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(intent);
-                    }
-                }
-            });
             SanPhamMoi sanPhamMoi = array.get(position);
             myViewHolder.txtTen.setText(String.valueOf(sanPhamMoi.getName()));
             if (sanPhamMoi.getCoupon() > 0){
@@ -123,12 +95,12 @@ public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemViewType(int position) {
-        return products.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_DATA;
+        return array.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_DATA;
     }
 
     @Override
     public int getItemCount() {
-        return products.size();
+        return array.size();
     }
 
     public class LoadingViewHolder extends RecyclerView.ViewHolder{
@@ -140,14 +112,9 @@ public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView txtGia, txtTen;
-
+    public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView txtGiaChuaKM,txtGia, txtTen;
-
         ImageView imgItem;
-        private ItemClickListener itemClickListener;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
@@ -156,16 +123,6 @@ public class SPMoiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             txtGia = itemView.findViewById(R.id.newsp_price);
             txtTen = itemView.findViewById(R.id.newsp_name);
             imgItem = itemView.findViewById(R.id.newsp_image);
-            itemView.setOnClickListener(this);
-        }
-
-        public void setItemClickListener(ItemClickListener itemClickListener) {
-            this.itemClickListener = itemClickListener;
-        }
-
-        @Override
-        public void onClick(View view) {
-            itemClickListener.onClick(view, getAdapterPosition(), false);
         }
     }
 
