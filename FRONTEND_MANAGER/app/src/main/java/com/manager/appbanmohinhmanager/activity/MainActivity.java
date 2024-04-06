@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
-    CardView cardViewProductManager, cardViewCategoryManager, cardVoucherManager;
+    CardView cardViewProductManager, cardViewCategoryManager, cardVoucherManager, cardTaiKhoan_Manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         //load user hiện tại
         Paper.init(this);
-        if (Paper.book().read("user") != null){
+        if (Paper.book().read("user") != null) {
             User user = Paper.book().read("user");
             Utils.user_current = user;
         }
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         initControll();
     }
 
-    protected void initControll(){
+    protected void initControll() {
         cardViewProductManager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +72,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        cardTaiKhoan_Manager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AccountManagerActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getToken() {
@@ -79,13 +86,15 @@ public class MainActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<String>() {
                     @Override
                     public void onSuccess(String s) {
-                        if (!TextUtils.isEmpty(s)){
+                        if (!TextUtils.isEmpty(s)) {
                             compositeDisposable.add(apiBanHang.updateToken(Utils.user_current.getAccount_id(), s)
                                     .subscribeOn(Schedulers.io())
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(
-                                            messageModel -> {},
-                                            throwable -> {}
+                                            messageModel -> {
+                                            },
+                                            throwable -> {
+                                            }
                                     ));
                         }
                     }
@@ -98,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
         cardViewCategoryManager = findViewById(R.id.cardDanhMuc_Manager);
         cardVoucherManager = findViewById(R.id.cardVoucher_Manager);
         toolbar = findViewById(R.id.toolbar_main);
+        cardTaiKhoan_Manager = findViewById(R.id.cardTaiKhoan_Manager);
         setSupportActionBar(toolbar);
     }
 
@@ -109,10 +119,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId()==R.id.menuDoiMatKhau){
+        if (item.getItemId() == R.id.menuDoiMatKhau) {
             Intent intent = new Intent(getApplicationContext(), ForgotPassActivity.class);
             startActivity(intent);
-        } else if (item.getItemId()==R.id.menuDangXuat){
+        } else if (item.getItemId() == R.id.menuDangXuat) {
             Paper.book().delete("user");
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(getApplicationContext(), LogInActivity.class);

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="green_Active_account">#64dd17</color>
+    <color name="grey_AccountDetail">#bdbdbd</color>
     <color name="main">#fbc02d</color>
+    <color name="red_Deactive_account">#dd2c00</color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">Shop Toy Manager</string>
     <string name="default_web_client_id" translatable="false">811489681826-tcflik3ebcckkehde19n2aps0nlc5ssj.apps.googleusercontent.com</string>

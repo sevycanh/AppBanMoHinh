@@ -40,6 +40,12 @@
         android:theme="@style/Theme.AppBanMoHinhManager"
         android:usesCleartextTraffic="true" >
         <activity
+            android:name="com.manager.appbanmohinhmanager.activity.AccountDetailManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.manager.appbanmohinhmanager.activity.AccountManagerActivity"
+            android:exported="false" />
+        <activity
             android:name="com.manager.appbanmohinhmanager.activity.UpdateVoucherActivity"
             android:exported="false" />
         <activity

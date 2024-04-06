@@ -1,5 +1,7 @@
 package com.manager.appbanmohinhmanager.retrofit;
 
+import com.manager.appbanmohinhmanager.model.Account;
+import com.manager.appbanmohinhmanager.model.AccountModel;
 import com.manager.appbanmohinhmanager.model.CategoryManagerModel;
 import com.manager.appbanmohinhmanager.model.ProductManagerModel;
 import com.manager.appbanmohinhmanager.model.UserModel;
@@ -80,4 +82,11 @@ public interface ApiManager {
     Observable<ProductManagerModel> hiddenProduct(
             @Field("idcategory") int id
     );
+
+    @POST("getAccountManager.php")
+    @FormUrlEncoded
+    Observable<AccountModel> getAccountManager(@Field("status") int status);
+    @POST("updateAccountStatus.php")
+    @FormUrlEncoded
+    Observable<AccountModel> updateAccountStatus(@Field("status") int status, @Field("accountid") int accountid);
 }
