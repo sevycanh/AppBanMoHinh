@@ -47,6 +47,7 @@ public class OrderFragment extends Fragment {
     private int selection = 0;
     private TextView noOrder;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,8 +62,12 @@ public class OrderFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("ThongBao", i + ""); // Log vị trí của mục được chọn
                 if (i == 0) {
-                    orderList.clear();
-                    getOrder(101);
+                    if (orderList == null) {
+                        getOrder(101);
+                    } else {
+                        orderList.clear();
+                        getOrder(101);
+                    }
                     selection = 0;
                 } else if (i == 1) {
                     getOrderByOrderStatus(101, 1);

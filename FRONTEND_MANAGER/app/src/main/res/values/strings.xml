@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Shop Toy Manager</string>
+    <string-array name="sortOrderOptions">
+        <item>Tất cả</item>
+        <item>Chưa xác nhận</item>
+        <item>Đã xác nhận</item>
+        <item>Đang giao</item>
+        <item>Giao thành công</item>
+        <item>Đã hủy</item>
+    </string-array>
+    <string name="order">Đơn hàng</string>
 </resources>

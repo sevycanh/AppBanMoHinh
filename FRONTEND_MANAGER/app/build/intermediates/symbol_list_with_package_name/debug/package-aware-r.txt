@@ -77,6 +77,7 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
+array sortOrderOptions
 attr SharedValue
 attr SharedValueId
 attr actionBarDivider
@@ -1456,6 +1457,8 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+color green
+color grey
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color m3_appbar_overlay_color
@@ -2120,6 +2123,7 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color red
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -2135,6 +2139,7 @@ color switch_thumb_normal_material_light
 color tooltip_background_dark
 color tooltip_background_light
 color white
+color yellow
 dimen _100sdp
 dimen _100ssp
 dimen _101sdp
@@ -4042,6 +4047,7 @@ id btnUpdateImgCaterogy
 id btnUpdateMinus
 id btnUpdatePlus
 id btnXacNhan_Forgot
+id btn_CancelOrder
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -4049,6 +4055,7 @@ id cancel_button
 id cardDanhMuc_Manager
 id cardDonHang_Manager
 id cardKhuyenMai_Manager
+id cardOrder
 id cardPhanHoi_Manager
 id cardQuangCao_Manager
 id cardSanPham_Manager
@@ -4193,12 +4200,17 @@ id imgAdd_Main
 id imgCategory
 id imgUpdateCategory
 id immediateStop
+id imv_Product
 id included
 id indeterminate
 id info
 id invisible
 id inward
 id italic
+id item_imgV_order_detail
+id item_productPrice_orderdetail
+id item_productname_orderdetail
+id item_quantity_detail
 id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
@@ -4211,6 +4223,7 @@ id light
 id line1
 id line3
 id linear
+id linearLayout
 id listCategory
 id listMode
 id listProduct
@@ -4292,6 +4305,7 @@ id navigation_header_container
 id never
 id neverCompleteToEnd
 id neverCompleteToStart
+id noOrder
 id noScroll
 id noState
 id none
@@ -4317,6 +4331,7 @@ id open_search_view_search_prefix
 id open_search_view_status_bar_spacer
 id open_search_view_toolbar
 id open_search_view_toolbar_container
+id order_date_detail
 id outline
 id outward
 id overshoot
@@ -4346,9 +4361,11 @@ id progressbar_Forgot
 id quantitySP
 id radio
 id ratio
+id rcv_Orders
 id rectangles
 id recyclerViewMultipleImageUpdate
 id recyclerView_MultipleImages
+id recylerView_OrderDetail
 id remove_item
 id report_drawn
 id restart
@@ -4400,6 +4417,7 @@ id snap
 id snapMargins
 id software
 id south
+id sp_sortOrder
 id spacer
 id special_effects_controller_view_tag
 id spinnerAdd
@@ -4426,6 +4444,7 @@ id submenuarrow
 id submitDataAddProduct
 id submit_area
 id supportScrollUp
+id sv_searchbyuserName
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -4440,6 +4459,8 @@ id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
 id tag_window_insets_animation_callback
+id tb_accountManager
+id tb_orderManager
 id text
 id text2
 id textEnd
@@ -4447,6 +4468,8 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView
+id textView8
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -4464,6 +4487,7 @@ id toggle
 id toolBarAddProduct
 id toolBarPM
 id toolBarTTSP
+id toolBar_OrderDetail
 id toolbarAddCategory
 id toolbarDanhMuc
 id toolbarUpdateCategory
@@ -4481,6 +4505,23 @@ id transition_transform
 id triangle
 id tvQuantity
 id tvUpdateQuantity
+id tv_accountName_detail
+id tv_address_detail
+id tv_detail
+id tv_email_detail
+id tv_firstProduct
+id tv_order_id
+id tv_order_id_detail
+id tv_order_status
+id tv_order_status_detail
+id tv_payment_method_detail
+id tv_phone_account_detail
+id tv_pricePerUnit
+id tv_productInOrder
+id tv_total
+id tv_total_detail
+id tv_total_orderdetail
+id tv_userName
 id txtAdd_Coupon
 id txtAdd_Description
 id txtAdd_NameProduct
@@ -4500,6 +4541,7 @@ id unlabeled
 id up
 id useLogo
 id vertical_only
+id view
 id view_offset_helper
 id view_transition
 id view_tree_lifecycle_owner
@@ -4633,12 +4675,15 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_account_manager
 layout activity_add_category
 layout activity_add_product
 layout activity_caterory_manager
 layout activity_forgot_pass
 layout activity_log_in
 layout activity_main
+layout activity_order_detail_manager
+layout activity_order_manager_acitvity
 layout activity_product_manager
 layout activity_splash
 layout activity_update_category
@@ -4664,6 +4709,8 @@ layout design_text_input_start_icon
 layout dp_example
 layout item_category_manager
 layout item_multiple_image
+layout item_order_detail_manager
+layout item_order_manager
 layout item_product_manager
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
@@ -4794,6 +4841,7 @@ string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
 string copy_toast_msg
+string default_web_client_id
 string error_a11y_label
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
@@ -4911,6 +4959,7 @@ string mtrl_switch_track_decoration_path
 string mtrl_switch_track_path
 string mtrl_timepicker_cancel
 string mtrl_timepicker_confirm
+string order
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through

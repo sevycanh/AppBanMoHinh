@@ -40,6 +40,15 @@
         android:theme="@style/Theme.AppBanMoHinhManager"
         android:usesCleartextTraffic="true" >
         <activity
+            android:name="com.manager.appbanmohinhmanager.activity.AccountManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.manager.appbanmohinhmanager.activity.OrderDetailManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.manager.appbanmohinhmanager.activity.OrderManagerAcitvity"
+            android:exported="false" />
+        <activity
             android:name="com.manager.appbanmohinhmanager.activity.UpdateCategoryActivity"
             android:exported="false" />
         <activity

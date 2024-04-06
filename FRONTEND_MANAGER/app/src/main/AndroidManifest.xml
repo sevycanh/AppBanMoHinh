@@ -19,6 +19,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.AccountManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.OrderDetailManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.OrderManagerAcitvity"
+            android:exported="false" />
+        <activity
             android:name=".activity.UpdateCategoryActivity"
             android:exported="false" />
         <activity
