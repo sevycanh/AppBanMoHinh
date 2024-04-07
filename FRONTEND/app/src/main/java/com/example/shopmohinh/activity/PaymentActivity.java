@@ -172,6 +172,9 @@ public class PaymentActivity extends AppCompatActivity {
                             Utils.purchases.clear();
                             iddonhang = Integer.parseInt(messageModel.getIddonhang());
                             UpdateTokenZaloApi(iddonhang, token);
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
                             finish();
                         },
                         throwable -> {

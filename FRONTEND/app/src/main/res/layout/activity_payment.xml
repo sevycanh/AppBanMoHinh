@@ -73,32 +73,32 @@
     <!--    </LinearLayout>-->
 
 
-    <View
-        android:background="@drawable/edittext_bottom_line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp">
-    </View>
+<!--    <View-->
+<!--        android:background="@drawable/edittext_bottom_line"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp">-->
+<!--    </View>-->
 
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <TextView
-            android:textSize="@dimen/_13ssp"
-            android:text="Lưu ý: "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+<!--    <LinearLayout-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        >-->
+<!--        <TextView-->
+<!--            android:textSize="@dimen/_13ssp"-->
+<!--            android:text="Lưu ý: "-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtLuuYDatHang"
-            android:textAlignment="textEnd"
-            android:textSize="@dimen/_13ssp"
-            android:hint="lời nhắn cho cửa hàng..."
-            android:background="@drawable/edittext_no_underline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/txtLuuYDatHang"-->
+<!--            android:textAlignment="textEnd"-->
+<!--            android:textSize="@dimen/_13ssp"-->
+<!--            android:hint="lời nhắn cho cửa hàng..."-->
+<!--            android:background="@drawable/edittext_no_underline"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+<!--    </LinearLayout>-->
     <View
         android:background="@drawable/edittext_bottom_line"
         android:layout_width="match_parent"
