@@ -5,7 +5,6 @@ public class Statistical {
     private String name;
     private int sum;
     private int SumMonth;
-
     private String Month;
 
     public int getProduct_id() {

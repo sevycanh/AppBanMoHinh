@@ -7,7 +7,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -26,6 +29,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
@@ -47,9 +51,11 @@ public class StatisticalActivity extends AppCompatActivity {
     BarChart barChart;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     SalesApi salesApi;
-
     TextView txtThongke;
 
+    TextView txtThongkeBarChart;
+    LinearLayout legendLayout;
+    LinearLayout legendLayoutPieChart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,106 +99,168 @@ public class StatisticalActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void getRevenueStatistical() {
-        txtThongke.setVisibility(View.GONE);
-        barChart.setVisibility(View.VISIBLE);
-        pieChart.setVisibility(View.GONE);
-        compositeDisposable.add(salesApi.getStatisticalByMonth().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(statisticalModel -> {
-                            if (statisticalModel.isSuccess()) {
-                                List<BarEntry> listData = new ArrayList<>();
-                                for (int i = 0; i < statisticalModel.getResult().size(); i++) {
-                                    int Sum = statisticalModel.getResult().get(i).getSumMonth();
-                                    String month = statisticalModel.getResult().get(i).getMonth();
-                                    listData.add(new BarEntry(Integer.parseInt(month), Sum));
-                                }
-                                BarDataSet barDataSet = new BarDataSet(listData, "Thống kê");
-                                barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-                                barDataSet.setValueTextSize(14f);
-                                barDataSet.setValueTextColor(Color.RED);
+        private void getRevenueStatistical() {
+            List<String> productNames = new ArrayList<>();
+            legendLayout.setVisibility(View.VISIBLE);
+            legendLayoutPieChart.setVisibility(View.GONE);
+            txtThongke.setVisibility(View.GONE);
+            txtThongkeBarChart.setVisibility(View.VISIBLE);
+            barChart.setVisibility(View.VISIBLE);
+            pieChart.setVisibility(View.GONE);
+            compositeDisposable.add(salesApi.getStatisticalByMonth()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            statisticalModel -> {
+                                if (statisticalModel.isSuccess()) {
+                                    List<BarEntry> listData = new ArrayList<>();
+                                    for (int i = 0; i < statisticalModel.getResult().size(); i++) {
+                                        String name = statisticalModel.getResult().get(i).getName();
+                                        int Sum = statisticalModel.getResult().get(i).getSumMonth();
+                                        String month = statisticalModel.getResult().get(i).getMonth();
+                                        listData.add(new BarEntry(Integer.parseInt(month), Sum));
+                                        productNames.add(name);
+                                    }
+    
+                                    BarDataSet barDataSet = new BarDataSet(listData, "Thống kê");
+                                    barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+                                    barDataSet.setValueTextSize(14f);
+                                    barDataSet.setValueTextColor(Color.RED);
+    
+                                    BarData data = new BarData(barDataSet);
+    
+                                   // barChart.animateXY(2000, 2000);
+                                    barChart.setData(data);
+    
+                                    // Tạo chú thích dưới biểu đồ
+                                    Legend legend = barChart.getLegend();
+                                    legend.setForm(Legend.LegendForm.SQUARE);
+                                    legend.setFormSize(12f);
+                                    legend.setTextSize(14f);
+                                    legend.setTextColor(Color.BLACK);
+                                    legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+                                    legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+                                    legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+                                    legend.setDrawInside(false);
+                                    legend.setXEntrySpace(10f);
+                                    legend.setYEntrySpace(10f);
+                                    legend.setYOffset(10f);
 
-                                BarData data = new BarData(barDataSet);
-                                barChart.animateXY(2000, 2000);
-                                barChart.setData(data);
-                                barChart.invalidate();
+                                    // Xóa các TextView hiện có trong legendLayout trước khi thêm mới
+                                    legendLayout.removeAllViews();
+
+                                    for (int i = 0; i < productNames.size(); i++) {
+                                        String productName = productNames.get(i);
+                                        int color = barDataSet.getColor(i);
+                                        String month = statisticalModel.getResult().get(i).getMonth();
+    
+                                        String text = "Tháng " +  month + " : " + productName;
+    
+                                        TextView textView = new TextView(this);
+                                        textView.setText(text);
+                                        textView.setTextColor(color);
+    
+                                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                                                LinearLayout.LayoutParams.WRAP_CONTENT,
+                                                LinearLayout.LayoutParams.WRAP_CONTENT
+                                        );
+    
+                                        layoutParams.setMargins(10, 10, 10, 10);
+                                        textView.setLayoutParams(layoutParams);
+    
+                                        legendLayout.addView(textView);
+                                    }
+                                    barChart.invalidate();
+                                }
+                            },
+                            throwable -> {
+                                Log.d("logg", throwable.getMessage());
                             }
-                        },
-                        throwable -> {
-                            Log.d("logg", throwable.getMessage());
-                        }
-                ));
-    }
+                    ));
+        }
 
     private void getDataChart() {
+        legendLayout.setVisibility(View.GONE);
+        legendLayoutPieChart.setVisibility(View.VISIBLE);
+        txtThongke.setVisibility(View.VISIBLE);
+        txtThongkeBarChart.setVisibility(View.GONE);
+        barChart.setVisibility(View.GONE);
+        pieChart.setVisibility(View.VISIBLE);
         List<PieEntry> listData = new ArrayList<>();
-        int maxNameLength = 15;
-        compositeDisposable.add(salesApi.getStatistical()
+        List<String> productNames = new ArrayList<>();
+        int maxNameLength = 20;
+
+        compositeDisposable.add(salesApi.getDataChart()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(statisticalModel -> {
                             if (statisticalModel.isSuccess()) {
                                 for (int i = 0; i < statisticalModel.getResult().size(); i++) {
+                                    int sum = statisticalModel.getResult().get(i).getSum();
                                     int productId = statisticalModel.getResult().get(i).getProduct_id();
                                     String name = statisticalModel.getResult().get(i).getName();
-
-                                    // Giới hạn độ dài của tên sản phẩm
-                                    if (name.length() > maxNameLength) {
-                                        name = name.substring(0, maxNameLength) + "...";
-                                    }
-
-                                    // Tạo chuỗi hiển thị cho nhãn
-                                    String label = "ID: " + productId + "\n" + name;
-
-                                    // Thêm dữ liệu vào list
-                                    listData.add(new PieEntry(1, label));
+                                    String id = "ID: " + productId;
+                                    listData.add(new PieEntry(sum, id));
+                                    productNames.add(name);
                                 }
 
-                                PieDataSet pieDataSet = getPieDataSet(listData);
-
-                                // Tạo PieData và đặt DataSet cho nó
+                                PieDataSet pieDataSet = new PieDataSet(listData,"");
+                                pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                                pieDataSet.setValueLineColor(Color.BLACK);
+                                pieDataSet.setValueTextSize(16f);
+                                pieDataSet.setValueFormatter(new PercentFormatter(pieChart));
                                 PieData data = new PieData(pieDataSet);
-                                data.setDrawValues(true); // Cho phép hiển thị giá trị
-                                data.setValueTextColor(Color.BLACK); // Đặt màu cho giá trị
-                                data.setValueTextSize(10f); // Đặt kích thước cho giá trị
-                                data.setValueFormatter(new ValueFormatter() {
-                                    @Override
-                                    public String getFormattedValue(float value) {
-                                        return ""; // Không hiển thị giá trị số lượng
-                                    }
-                                });
                                 pieChart.setData(data);
-
-                                pieChart.animateXY(2000, 2000);
+                                //pieChart.animateXY(2000, 2000);
+                                pieChart.setUsePercentValues(true);
                                 pieChart.getDescription().setEnabled(false);
+                                pieChart.setCenterText("Thống kê");
 
-                                // Hiển thị chú thích
-                                Legend legend = pieChart.getLegend();
-                                legend.setForm(Legend.LegendForm.CIRCLE);
-                                legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
-                                legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+                                // Tạo chú thích dưới biểu đồ
+                                Legend legend = barChart.getLegend();
+                                legend.setForm(Legend.LegendForm.SQUARE);
+                                legend.setFormSize(12f);
+                                legend.setTextSize(14f);
+                                legend.setTextColor(Color.BLACK);
+                                legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+                                legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+                                legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+                                legend.setDrawInside(false);
+                                legend.setXEntrySpace(10f);
+                                legend.setYEntrySpace(10f);
+                                legend.setYOffset(10f);
+
+                                // Xóa các TextView hiện có trong legendLayout trước khi thêm mới
+                                legendLayoutPieChart.removeAllViews();
+
+                                for (int i = 0; i < productNames.size(); i++) {
+                                    String productName = productNames.get(i);
+                                    int color = pieDataSet.getColor(i);
+
+                                    String text = "Top " +  (i + 1) + " : " + productName;
+
+                                    TextView textView = new TextView(this);
+                                    textView.setText(text);
+                                    textView.setTextColor(color);
+
+                                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                                            LinearLayout.LayoutParams.WRAP_CONTENT
+                                    );
+
+                                    layoutParams.setMargins(10, 10, 10, 10);
+                                    textView.setLayoutParams(layoutParams);
+
+                                    legendLayoutPieChart.addView(textView);
+                                }
 
                                 pieChart.invalidate();
-
                             }
                         },
                         throwable -> {
                             Log.d("logg", throwable.getMessage());
                         }
                 ));
-    }
-
-    @NonNull
-    private static PieDataSet getPieDataSet(List<PieEntry> listData) {
-        PieDataSet pieDataSet = new PieDataSet(listData, "");
-        pieDataSet.setSliceSpace(3f); // Đặt khoảng cách giữa các phần
-        pieDataSet.setSelectionShift(2f); // Đặt khoảng cách khi phần được chọn
-        pieDataSet.setValueTextSize(12f);
-        pieDataSet.setValueLineColor(Color.BLACK);
-        pieDataSet.setValueLineWidth(1f);
-        pieDataSet.setValueLinePart1Length(0.5f);
-        pieDataSet.setValueLinePart2Length(0.5f);
-        pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS); // Đặt màu cho các phần
-        return pieDataSet;
     }
 
 
@@ -210,20 +278,11 @@ public class StatisticalActivity extends AppCompatActivity {
     private void initView() {
         toolbar = findViewById(R.id.toolbar);
         barChart = findViewById(R.id.barchart);
-
         pieChart = findViewById(R.id.piechart);
-        pieChart.setUsePercentValues(true);
-        pieChart.getDescription().setEnabled(false);
-        pieChart.setExtraOffsets(5, 10, 5, 5);
-        pieChart.setDragDecelerationFrictionCoef(0.95f);
-        pieChart.setDrawHoleEnabled(true);
-        pieChart.setHoleColor(Color.WHITE);
-        pieChart.setTransparentCircleRadius(61f);
-        pieChart.setEntryLabelColor(Color.BLACK);
-        pieChart.setEntryLabelTextSize(12f);
-
-
-        txtThongke = findViewById(R.id.txtThongke);
+        txtThongke = findViewById(R.id.txtThongkePieChart);
+        txtThongkeBarChart = findViewById(R.id.txtThongkeBarChart);
+        legendLayout = findViewById(R.id.legendLayout);
+        legendLayoutPieChart = findViewById(R.id.legendLayoutPieChart);
     }
 
     @Override

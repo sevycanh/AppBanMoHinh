@@ -9,8 +9,8 @@ import retrofit2.http.POST;
 
 public interface SalesApi {
     @GET("statistical.php")
-    Observable<StatisticalModel> getStatistical();
+    Observable<StatisticalModel> getDataChart();
 
-    @GET("statistical_by_month.php")
+    @GET("statisticalByMonth.php")
     Observable<StatisticalModel> getStatisticalByMonth();
 }
