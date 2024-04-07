@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
-    CardView cardViewProductManager, cardViewCategoryManager, cardViewOrderManager, cardTaiKhoan_Manager;
-    CardView cardViewProductManager, cardViewCategoryManager, cardVoucherManager, cardTaiKhoan_Manager, cardThongBao, cartThongKeManager;
+    CardView cardViewProductManager, cardViewCategoryManager, cardViewOrderManager, cardTaiKhoan_Manager,
+    cardVoucherManager, cardThongBao, cartThongKeManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), OrderManagerAcitvity.class);
+                startActivity(intent);
+            }});
 
         cartThongKeManager.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,17 +9,13 @@
         <item>Đã hủy</item>
     </string-array>
     <color name="black">#FF000000</color>
-<<<<<<< HEAD
     <color name="green">#76ff03</color>
-    <color name="grey">#b0bec5</color>
-    <color name="main">#fbc02d</color>
-    <color name="red">#FF3333</color>
-=======
     <color name="green_Active_account">#64dd17</color>
+    <color name="grey">#b0bec5</color>
     <color name="grey_AccountDetail">#bdbdbd</color>
     <color name="main">#fbc02d</color>
+    <color name="red">#FF3333</color>
     <color name="red_Deactive_account">#dd2c00</color>
->>>>>>> develop
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#ffeb3b</color>
     <string name="app_name">Shop Toy Manager</string>

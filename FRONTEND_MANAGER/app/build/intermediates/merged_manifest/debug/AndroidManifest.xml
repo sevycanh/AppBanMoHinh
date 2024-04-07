@@ -47,10 +47,9 @@
             android:exported="false" />
         <activity
             android:name="com.manager.appbanmohinhmanager.activity.OrderManagerAcitvity"
-            android:name="com.manager.appbanmohinhmanager.activity.AccountDetailManagerActivity"
             android:exported="false" />
         <activity
-            android:name="com.manager.appbanmohinhmanager.activity.AccountManagerActivity"
+            android:name="com.manager.appbanmohinhmanager.activity.AccountDetailManagerActivity"
             android:exported="false" />
         <activity
             android:name="com.manager.appbanmohinhmanager.activity.StatisticalActivity"

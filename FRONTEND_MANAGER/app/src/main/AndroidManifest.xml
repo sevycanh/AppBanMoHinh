@@ -26,10 +26,9 @@
             android:exported="false" />
         <activity
             android:name=".activity.OrderManagerAcitvity"
-            android:name=".activity.AccountDetailManagerActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.AccountManagerActivity"
+            android:name=".activity.AccountDetailManagerActivity"
             android:exported="false" />
         <activity
             android:name=".activity.StatisticalActivity"
