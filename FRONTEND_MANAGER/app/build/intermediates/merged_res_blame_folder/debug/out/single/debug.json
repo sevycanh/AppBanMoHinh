@@ -32,8 +32,8 @@
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\ic_change_pass.xml"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_main.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_main.xml"
+        "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_baseline_email_24.xml.flat",
+        "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\baseline_email_24.xml"
     },
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_ic_add_voucher.xml.flat",

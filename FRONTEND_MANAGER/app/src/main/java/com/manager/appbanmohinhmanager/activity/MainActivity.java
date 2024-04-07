@@ -65,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        cartThongKeManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StatisticalActivity.class);
+                startActivity(intent);
+            }
+        });
         cardVoucherManager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         cardViewProductManager = findViewById(R.id.cardSanPham_Manager);
         cardViewCategoryManager = findViewById(R.id.cardDanhMuc_Manager);
+        cartThongKeManager = findViewById(R.id.cardThongKe_Manager);
         cardVoucherManager = findViewById(R.id.cardVoucher_Manager);
         cardThongBao = findViewById(R.id.cardThongBao_Manager);
         toolbar = findViewById(R.id.toolbar_main);
@@ -116,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId()==R.id.menuDoiMatKhau){
+        if (item.getItemId() == R.id.menuDoiMatKhau){
             Intent intent = new Intent(getApplicationContext(), ForgotPassActivity.class);
             startActivity(intent);
         } else if (item.getItemId()==R.id.menuDangXuat){
