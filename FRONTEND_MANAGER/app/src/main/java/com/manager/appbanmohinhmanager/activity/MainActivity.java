@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
-    CardView cardViewProductManager, cardViewCategoryManager, cardVoucherManager;
+    CardView cardViewProductManager, cardViewCategoryManager, cardVoucherManager, cardThongBao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +72,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        cardThongBao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
     }
 
     private void getToken() {
@@ -97,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         cardViewProductManager = findViewById(R.id.cardSanPham_Manager);
         cardViewCategoryManager = findViewById(R.id.cardDanhMuc_Manager);
         cardVoucherManager = findViewById(R.id.cardVoucher_Manager);
+        cardThongBao = findViewById(R.id.cardThongBao_Manager);
         toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
     }
