@@ -199,9 +199,9 @@ public class CartActivity extends AppCompatActivity {
                     }, 5000); // 5000 milliseconds = 5 giây
                 }
                 else {
-//                    Intent intent = new Intent(getApplicationContext(),PaymentActivity.class);
-//                    intent.putExtra("tongtien", tongtiensp);
-//                    startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(),PaymentActivity.class);
+                    intent.putExtra("tongtien", tongtiensp);
+                    startActivity(intent);
                 }
 
             }
