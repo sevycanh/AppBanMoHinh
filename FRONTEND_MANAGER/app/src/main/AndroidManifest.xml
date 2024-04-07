@@ -26,6 +26,7 @@
             android:exported="false" />
         <activity
             android:name=".activity.UpdateVoucherActivity"
+            android:name=".activity.StatisticalActivity"
             android:exported="false" />
         <activity
             android:name=".activity.AddVoucherActivity"

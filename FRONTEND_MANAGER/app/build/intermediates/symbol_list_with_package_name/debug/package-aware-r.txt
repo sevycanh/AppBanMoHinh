@@ -4014,6 +4014,7 @@ id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
 id automatic
+id barchart
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -4058,10 +4059,9 @@ id callMeasure
 id cancel_button
 id cardDanhMuc_Manager
 id cardDonHang_Manager
-id cardPhanHoi_Manager
-id cardQuangCao_Manager
 id cardSanPham_Manager
 id cardTaiKhoan_Manager
+id cardThongBao_Manager
 id cardThongKe_Manager
 id cardVoucher_Manager
 id carryVelocity
@@ -4214,6 +4214,7 @@ id info
 id invisible
 id inward
 id italic
+id item_statistics
 id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
@@ -4222,6 +4223,8 @@ id layout
 id left
 id leftToRight
 id legacy
+id legendLayout
+id legendLayoutPieChart
 id light
 id line1
 id line3
@@ -4233,6 +4236,7 @@ id listProduct
 id list_item
 id lottie_layer_name
 id m3_side_sheet
+id main
 id mainImageSP
 id marquee
 id masked
@@ -4347,6 +4351,7 @@ id path
 id pathRelative
 id peekHeight
 id percent
+id piechart
 id pin
 id position
 id postLayout
@@ -4373,6 +4378,7 @@ id recyclerView_MultipleImages
 id remove_item
 id report_drawn
 id restart
+id revenue_statistics
 id reverse
 id reverseSawtooth
 id right
@@ -4490,6 +4496,7 @@ id toolBarAddVoucher
 id toolBarPM
 id toolBarTTSP
 id toolBarVoucher
+id toolbar
 id toolbarAddCategory
 id toolbarDanhMuc
 id toolbarUpdateCategory
@@ -4534,6 +4541,8 @@ id txtKhoVoucher_Voucher
 id txtNgayBD_AddVoucher
 id txtNgayKT_AddVoucher
 id txtTenDanhMuc
+id txtThongkeBarChart
+id txtThongkePieChart
 id txtUpdateTenDanhMuc
 id txtUpdate_Coupon
 id txtUpdate_Description
@@ -4699,6 +4708,7 @@ layout activity_log_in
 layout activity_main
 layout activity_product_manager
 layout activity_splash
+layout activity_statistical
 layout activity_update_category
 layout activity_update_product
 layout activity_voucher_manager
@@ -4791,6 +4801,7 @@ layout sp_example
 layout ssp_example
 layout support_simple_spinner_dropdown_item
 menu menu_main
+menu menu_statistical
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description

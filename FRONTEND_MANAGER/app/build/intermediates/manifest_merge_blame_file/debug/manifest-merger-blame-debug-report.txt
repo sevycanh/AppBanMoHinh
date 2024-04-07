@@ -75,9 +75,15 @@
 41        android:usesCleartextTraffic="true" >
 41-->D:\VSCode\Android\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:19:9-44
 42        <activity
+<<<<<<< HEAD
 42-->D:\VSCode\Android\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:21:9-23:40
 43            android:name="com.manager.appbanmohinhmanager.activity.AccountDetailManagerActivity"
 43-->D:\VSCode\Android\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:22:13-66
+=======
+42-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:21:9-23:40
+43            android:name="com.manager.appbanmohinhmanager.activity.StatisticalActivity"
+43-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:22:13-57
+>>>>>>> develop
 44            android:exported="false" />
 44-->D:\VSCode\Android\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:23:13-37
 45        <activity

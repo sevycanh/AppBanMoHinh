@@ -33,6 +33,7 @@ drawable logo
 drawable minus
 drawable plus
 id animation_splash
+id barchart
 id btnAddCategory
 id btnAddImgCaterogy
 id btnCancel_Forgot
@@ -57,10 +58,9 @@ id btnXacNhan_Forgot
 id btn_ChangeStatus_AccountDetail
 id cardDanhMuc_Manager
 id cardDonHang_Manager
-id cardPhanHoi_Manager
-id cardQuangCao_Manager
 id cardSanPham_Manager
 id cardTaiKhoan_Manager
+id cardThongBao_Manager
 id cardThongKe_Manager
 id cardVoucher_Manager
 id edtEmail_Forgot
@@ -79,17 +79,25 @@ id imgAdd_Main
 id imgCategory
 id imgThemVoucher
 id imgUpdateCategory
+<<<<<<< HEAD
 id imv_account_manager
+=======
+id item_statistics
+id legendLayout
+id legendLayoutPieChart
+>>>>>>> develop
 id line1
 id linearKT
 id listCategory
 id listProduct
+id main
 id mainImageSP
 id menuDangXuat
 id menuDoiMatKhau
 id multiple_image
 id nameCategory
 id nameSP
+id piechart
 id priceSP
 id progressBarAddCategory
 id progressBarAddProduct
@@ -105,6 +113,7 @@ id rcv_account
 id recyclerViewMultipleImageUpdate
 id recyclerView_MultipleImages
 id remove_item
+id revenue_statistics
 id single_image_update
 id spinnerAdd
 id spinnerUpdateProduct
@@ -117,6 +126,7 @@ id toolBarAddVoucher
 id toolBarPM
 id toolBarTTSP
 id toolBarVoucher
+id toolbar
 id toolbarAddCategory
 id toolbarDanhMuc
 id toolbarUpdateCategory
@@ -150,6 +160,8 @@ id txtKhoVoucher_Voucher
 id txtNgayBD_AddVoucher
 id txtNgayKT_AddVoucher
 id txtTenDanhMuc
+id txtThongkeBarChart
+id txtThongkePieChart
 id txtUpdateTenDanhMuc
 id txtUpdate_Coupon
 id txtUpdate_Description
@@ -176,6 +188,7 @@ layout activity_log_in
 layout activity_main
 layout activity_product_manager
 layout activity_splash
+layout activity_statistical
 layout activity_update_category
 layout activity_update_product
 layout activity_voucher_manager
@@ -185,6 +198,7 @@ layout item_multiple_image
 layout item_product_manager
 layout item_voucher_manager
 menu menu_main
+menu menu_statistical
 mipmap ic_launcher
 mipmap ic_launcher_round
 raw animate
