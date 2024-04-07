@@ -1456,6 +1456,8 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+color green_Active_account
+color grey_AccountDetail
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color m3_appbar_overlay_color
@@ -2120,6 +2122,7 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color red_Deactive_account
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -4049,6 +4052,7 @@ id btnUpdateImgCaterogy
 id btnUpdateMinus
 id btnUpdatePlus
 id btnXacNhan_Forgot
+id btn_ChangeStatus_AccountDetail
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -4203,6 +4207,7 @@ id imgCategory
 id imgThemVoucher
 id imgUpdateCategory
 id immediateStop
+id imv_account_manager
 id included
 id indeterminate
 id info
@@ -4366,6 +4371,7 @@ id radioDanhRieng_AddVoucher
 id radioGroup_AddVoucher
 id ratio
 id rcvVoucher_Manager
+id rcv_account
 id rectangles
 id recyclerViewMultipleImageUpdate
 id recyclerView_MultipleImages
@@ -4461,6 +4467,8 @@ id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
 id tag_window_insets_animation_callback
+id tb_accountDetailManager
+id tb_accountManager
 id text
 id text2
 id textEnd
@@ -4506,6 +4514,20 @@ id transition_transform
 id triangle
 id tvQuantity
 id tvUpdateQuantity
+id tv_account_id_AccountManager
+id tv_activeAccount
+id tv_coin_AccountManager
+id tv_coin_accountDetail
+id tv_date_accountDetail
+id tv_deactiveAccount
+id tv_email_AccountManager
+id tv_email_accountDetail
+id tv_id_accountDetail
+id tv_phone_AccountManager
+id tv_phone_accountDetail
+id tv_status_AccountManager
+id tv_status_accountDetail
+id tv_username_accountDetail
 id txtAdd_Coupon
 id txtAdd_Description
 id txtAdd_NameProduct
@@ -4538,7 +4560,9 @@ id unlabeled
 id up
 id useLogo
 id vertical_only
+id viewActive
 id viewDanhRiengVoucher
+id viewDeactive
 id viewKhoVoucher
 id view_offset_helper
 id view_transition
@@ -4673,6 +4697,8 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_account_detail_manager
+layout activity_account_manager
 layout activity_add_category
 layout activity_add_product
 layout activity_add_voucher
@@ -4705,6 +4731,7 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout dp_example
+layout item_account_manager
 layout item_category_manager
 layout item_multiple_image
 layout item_product_manager

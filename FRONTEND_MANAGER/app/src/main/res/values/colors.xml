@@ -3,4 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main">#fbc02d</color>
+    <color name="red_Deactive_account">#dd2c00</color>
+    <color name="green_Active_account">#64dd17</color>
+    <color name="grey_AccountDetail">#bdbdbd</color>
 </resources>

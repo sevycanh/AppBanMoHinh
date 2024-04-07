@@ -19,6 +19,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.AccountDetailManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AccountManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UpdateVoucherActivity"
             android:name=".activity.StatisticalActivity"
             android:exported="false" />
         <activity

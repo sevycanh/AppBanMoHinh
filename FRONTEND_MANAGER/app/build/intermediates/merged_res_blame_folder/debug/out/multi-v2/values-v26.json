@@ -4,7 +4,11 @@
             "outputFile": "com.manager.appbanmohinhmanager.app-mergeDebugResources-39:/values-v26/values-v26.xml",
             "map": [
                 {
+<<<<<<< HEAD
+                    "source": "C:\\Users\\ASUS P2451FA-102B\\.gradle\\caches\\transforms-3\\d41211f0e3554fbc0c69d1b435092397\\transformed\\appcompat-1.6.1\\res\\values-v26\\values-v26.xml",
+=======
                     "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\d41211f0e3554fbc0c69d1b435092397\\transformed\\appcompat-1.6.1\\res\\values-v26\\values-v26.xml",
+>>>>>>> develop
                     "from": {
                         "startLines": "2,3,4,8,12,16",
                         "startColumns": "4,4,4,4,4,4",
