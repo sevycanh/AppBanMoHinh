@@ -4053,10 +4053,9 @@ int id callMeasure 0x7f080082
 int id cancel_button 0x7f080083
 int id cardDanhMuc_Manager 0x7f080084
 int id cardDonHang_Manager 0x7f080085
-int id cardPhanHoi_Manager 0x7f080086
-int id cardQuangCao_Manager 0x7f080087
 int id cardSanPham_Manager 0x7f080088
 int id cardTaiKhoan_Manager 0x7f080089
+int id cardThongBao_Manager 0x7f080276
 int id cardThongKe_Manager 0x7f08008a
 int id cardVoucher_Manager 0x7f08008b
 int id carryVelocity 0x7f08008c

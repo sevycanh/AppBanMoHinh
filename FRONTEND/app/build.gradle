@@ -94,4 +94,6 @@ dependencies {
     //login google
     implementation("com.google.android.gms:play-services-auth:21.0.0")
 
+    //maps
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
 }
