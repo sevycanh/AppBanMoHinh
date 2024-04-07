@@ -233,13 +233,13 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
-//        couponSelect.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(),CouponSelectActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        couponSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),CouponSelectActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

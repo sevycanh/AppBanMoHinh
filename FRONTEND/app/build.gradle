@@ -43,6 +43,7 @@ dependencies {
     implementation fileTree(dir: 'C:\\Users\\Admin\\AndroidStudioProjects\\AppBanMoHinh\\FRONTEND\\app\\src\\main\\libs', include: ['*.aar', '*.jar'], exclude: [])
 
     implementation 'com.google.firebase:firebase-storage:20.3.0'
+    implementation fileTree(dir: 'D:\\2024\\Android\\AppBanMoHinh\\FRONTEND\\app\\src\\main\\libs', include: ['*.aar', '*.jar'], exclude: [])
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
