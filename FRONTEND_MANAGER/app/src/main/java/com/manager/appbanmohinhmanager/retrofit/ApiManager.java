@@ -1,5 +1,7 @@
 package com.manager.appbanmohinhmanager.retrofit;
 
+import com.manager.appbanmohinhmanager.model.Account;
+import com.manager.appbanmohinhmanager.model.AccountModel;
 import com.manager.appbanmohinhmanager.model.CategoryManagerModel;
 import com.manager.appbanmohinhmanager.model.InforDetailManagerModel;
 import com.manager.appbanmohinhmanager.model.ItemOrderDetailManagerModel;
@@ -98,4 +100,10 @@ public interface ApiManager {
 
     @GET("searchOrderbyID.php")
     Observable<OrderManagerModel> searchOrderbyID(@Query("order_status") int order_status, @Query("order_id") String order_id);
+    @POST("getAccountManager.php")
+    @FormUrlEncoded
+    Observable<AccountModel> getAccountManager(@Field("status") int status);
+    @POST("updateAccountStatus.php")
+    @FormUrlEncoded
+    Observable<AccountModel> updateAccountStatus(@Field("status") int status, @Field("accountid") int accountid);
 }

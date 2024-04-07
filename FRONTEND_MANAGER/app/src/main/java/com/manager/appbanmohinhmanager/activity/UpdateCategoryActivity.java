@@ -48,10 +48,11 @@ public class UpdateCategoryActivity extends AppCompatActivity {
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     StorageReference storageReference;
-    Uri imageUri;
+    Uri imageUri = null;
     ApiManager apiManager;
 
     private static final int PICK_IMAGE = 1;
+    boolean checkChange = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,11 +96,15 @@ public class UpdateCategoryActivity extends AppCompatActivity {
                 if (txtNameCategory.getText().toString().isEmpty()) {
                     txtNameCategory.requestFocus();
                     Toast.makeText(UpdateCategoryActivity.this, "Vui lòng nhập tên", Toast.LENGTH_SHORT).show();
-                } else if (imageUri == null) {
-                    Toast.makeText(UpdateCategoryActivity.this, "Vui lòng chọn hình đại diện", Toast.LENGTH_SHORT).show();
-                } else {
+                }  else {
                     final String randomName = UUID.randomUUID().toString();
-                    uploadToFirebase(imageUri, randomName, bundle);
+                    if (imageUri != null){
+                        uploadToFirebase(imageUri, randomName, bundle);
+                    }
+                    else {
+                        String nameCategory = String.valueOf(txtNameCategory.getText());
+                        updateCategory(nameCategory, bundle.getString("nameImg"), bundle);
+                    }
                 }
             }
         });
@@ -151,10 +156,9 @@ public class UpdateCategoryActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         String nameCategory = String.valueOf(txtNameCategory.getText());
-                        updateCategory(nameCategory, randomName, bundle);
                         DeleteToFirebase(bundle.getString("nameImg"));
+                        updateCategory(nameCategory, randomName, bundle);
                         progressBar.setVisibility(View.GONE);
-                        finish();
                     }
                 })
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -209,7 +213,6 @@ public class UpdateCategoryActivity extends AppCompatActivity {
 
     private void updateCategory(String nameCategory, String randomName, Bundle bundle) {
         int idCategory = bundle.getInt("id");
-//        Toast.makeText(this, idCategory +"_"+ nameCategory +"_"+ randomName, Toast.LENGTH_SHORT).show();
         compositeDisposable.add(apiManager.updateDataCategory(idCategory, nameCategory, randomName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -217,6 +220,7 @@ public class UpdateCategoryActivity extends AppCompatActivity {
                         CategoryManagerModel -> {
                             if (CategoryManagerModel.isSuccess()) {
                                 Toast.makeText(this, "Cập Nhật Dữ Liệu Thành Công", Toast.LENGTH_SHORT).show();
+                                finish();
                             } else {
                                 Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show();
                             }

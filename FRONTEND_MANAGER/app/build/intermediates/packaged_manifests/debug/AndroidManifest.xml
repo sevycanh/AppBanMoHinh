@@ -47,6 +47,19 @@
             android:exported="false" />
         <activity
             android:name="com.manager.appbanmohinhmanager.activity.OrderManagerAcitvity"
+            android:name="com.manager.appbanmohinhmanager.activity.AccountDetailManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.manager.appbanmohinhmanager.activity.AccountManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.manager.appbanmohinhmanager.activity.StatisticalActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.manager.appbanmohinhmanager.activity.AddVoucherActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.manager.appbanmohinhmanager.activity.VoucherManagerActivity"
             android:exported="false" />
         <activity
             android:name="com.manager.appbanmohinhmanager.activity.UpdateCategoryActivity"

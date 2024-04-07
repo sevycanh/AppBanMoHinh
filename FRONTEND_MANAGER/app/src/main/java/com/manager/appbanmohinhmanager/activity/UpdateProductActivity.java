@@ -282,6 +282,9 @@ public class UpdateProductActivity extends AppCompatActivity {
                     }
                     Log.d("mainImg", ImgMain);
                     updateDataProduct(id, nameProduct, priceProduct, quantity, descriptionProduct, ImgMain, subImg, couponProduct, idcategory, 1);
+                    if (listImgSub.size() == 0 && ImgMain_New == null){
+                        finish();
+                    }
                 }
             }
         });

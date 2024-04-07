@@ -7,4 +7,7 @@
     <color name="yellow">#ffeb3b</color>
     <color name="grey">#b0bec5</color>
     <color name="red">#FF3333</color>
+    <color name="red_Deactive_account">#dd2c00</color>
+    <color name="green_Active_account">#64dd17</color>
+    <color name="grey_AccountDetail">#bdbdbd</color>
 </resources>

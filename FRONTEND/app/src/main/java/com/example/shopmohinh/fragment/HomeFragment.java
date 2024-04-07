@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.shopmohinh.R;
 
 import com.example.shopmohinh.activity.CheckInActivity;
+import com.example.shopmohinh.activity.CouponActivity;
 import com.example.shopmohinh.adapter.SPMoiAdapter;
 import com.example.shopmohinh.activity.MiniGameActivity;
 import com.example.shopmohinh.activity.SpinCouponActivity;
@@ -63,6 +65,8 @@ public class HomeFragment extends Fragment {
     int page = 1;
     List<LoaiSP> mangLoaiSp;
     CardView cardWheel_Coupon, cardMiniGame, cardCheckIn;
+
+    ImageView imageCouponHome;
 
     @Nullable
     @Override
@@ -110,7 +114,7 @@ public class HomeFragment extends Fragment {
                 page = page + 1;
                 getSanPhamMoi(page);
                 isLoading = false;
-                spMoiAdapter.notifyDataSetChanged();
+//                spMoiAdapter.notifyDataSetChanged();
             }
         },2500);
     }
@@ -136,6 +140,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), CheckInActivity.class);
+                startActivity(intent);
+            }
+        });
+        imageCouponHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CouponActivity.class);
                 startActivity(intent);
             }
         });
@@ -199,6 +210,7 @@ public class HomeFragment extends Fragment {
         cardWheel_Coupon = rootView.findViewById(R.id.cardWheel_coupon);
         cardMiniGame = rootView.findViewById(R.id.cardMiniGame);
         cardCheckIn = rootView.findViewById(R.id.cardCheckIn_HomeFragment);
+        imageCouponHome = rootView.findViewById(R.id.imageCoupon_HomeFragment);
     }
 
     private void getSanPhamMoi(int page) {
@@ -222,9 +234,8 @@ public class HomeFragment extends Fragment {
                                 }
                             }
                             else {
-                                int position = mangSanPhamMoi.size()-1;
-                                mangSanPhamMoi.remove(position);
-                                spMoiAdapter.notifyItemRemoved(position);
+//                                int position = mangSanPhamMoi.size()-1;
+//                                spMoiAdapter.notifyItemRemoved(position);
                                 Toast.makeText(getActivity(),"Đã hết sản phẩm", Toast.LENGTH_LONG).show();
                             }
                         },throwable -> {

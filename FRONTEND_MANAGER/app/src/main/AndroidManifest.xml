@@ -26,6 +26,19 @@
             android:exported="false" />
         <activity
             android:name=".activity.OrderManagerAcitvity"
+            android:name=".activity.AccountDetailManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AccountManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.StatisticalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AddVoucherActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.VoucherManagerActivity"
             android:exported="false" />
         <activity
             android:name=".activity.UpdateCategoryActivity"

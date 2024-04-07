@@ -165,38 +165,43 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_8sdp"
             android:orientation="horizontal"
-            android:weightSum="3"
-            android:layout_gravity="bottom">
+            android:weightSum="3">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <Button
                 android:id="@+id/btnChangeProfile"
-                android:background="#FFA726"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
                 android:layout_margin="@dimen/_3sdp"
                 android:layout_weight="1"
-                android:text="Sửa Thông Tin" />
+                android:text="Sửa Thông Tin"
+                android:backgroundTint="@color/main"
+                app:cornerRadius = "@dimen/_20sdp"
+                android:textColor="@color/black"
+                />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <Button
                 android:id="@+id/btnChangePasswordProfile"
-                android:background="#1976D2"
+                android:backgroundTint="#1976D2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/_3sdp"
                 android:layout_weight="1"
-                android:text="Đổi Mật Khẩu" />
+                android:text="Đổi Mật Khẩu"
+                app:cornerRadius = "@dimen/_20sdp"
+                android:textColor="@color/black"/>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <Button
                 android:id="@+id/btnSignOut"
-                android:background="#FF4081"
+                android:backgroundTint="#FF4081"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/_3sdp"
                 android:layout_weight="1"
-                android:text="Đăng Xuất" />
+                android:text="Đăng Xuất"
+                app:cornerRadius = "@dimen/_20sdp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
 
