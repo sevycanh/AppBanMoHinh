@@ -4,12 +4,12 @@
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_baseline_lock_24.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\baseline_lock_24.xml"
-    },
-    {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_baseline_lock_24.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\baseline_lock_24.xml"
     },
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_background.jpg.flat",
@@ -32,24 +32,28 @@
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\ic_change_pass.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_bg_main.jpg.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\bg_main.jpg"
+        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_main.xml.flat",
+        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_main.xml"
     },
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_ic_add_voucher.xml.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\ic_add_voucher.xml"
     },
     {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_bg_main.jpg.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\bg_main.jpg"
+    },
+    {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_quang_cao.png.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\icon_quang_cao.png"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_item_voucher_manager.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\item_voucher_manager.xml"
-    },
-    {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-mdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_item_voucher_manager.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\item_voucher_manager.xml"
     },
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_ic_launcher_foreground.xml.flat",
@@ -206,10 +210,6 @@
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-xhdpi\\ic_launcher_round.webp"
-    },
-    {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_add_category.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_add_category.xml"
     },
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_don_hang.png.flat",

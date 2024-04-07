@@ -53,10 +53,9 @@ id btnUpdatePlus
 id btnXacNhan_Forgot
 id cardDanhMuc_Manager
 id cardDonHang_Manager
-id cardPhanHoi_Manager
-id cardQuangCao_Manager
 id cardSanPham_Manager
 id cardTaiKhoan_Manager
+id cardThongBao_Manager
 id cardThongKe_Manager
 id cardVoucher_Manager
 id edtEmail_Forgot
