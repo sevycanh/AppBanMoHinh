@@ -4,7 +4,16 @@ import java.util.List;
 
 public class ProductModel {
     boolean success;
+    String message;
     List<Product> result;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public boolean isSuccess() {
         return success;

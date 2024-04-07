@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -19,7 +18,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -34,13 +32,10 @@ import com.example.shopmohinh.adapter.SPMoiAdapter;
 import com.example.shopmohinh.activity.MiniGameActivity;
 import com.example.shopmohinh.activity.SpinCouponActivity;
 import com.example.shopmohinh.model.LoaiSP;
-import com.example.shopmohinh.model.SanPhamMoi;
+import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
-import com.google.android.material.navigation.NavigationView;
-
-import org.objectweb.asm.Handle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +49,7 @@ public class HomeFragment extends Fragment {
     DrawerLayout drawerLayout;
     ImageSlider imageSlider;
     SearchView searchView;
-    List<SanPhamMoi> mangSanPhamMoi;
+    List<Product> mangSanPhamMoi;
     SPMoiAdapter spMoiAdapter;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;

@@ -28,6 +28,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -51,6 +52,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +76,9 @@ public class MainActivity extends AppCompatActivity {
     FrameLayout frameLayout;
     Boolean checkViewSearch = true;
 
+    NotificationBadge badge_main;
+    ImageView imgCart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,9 +96,9 @@ public class MainActivity extends AppCompatActivity {
         handleSearchClicked();
         getLoaiSanPham();
         loadBottomNavView();
-
         getToken();
         checkIn();
+        initControl();
 
         if (isConnected(this)) {
             getLoaiSanPham();
@@ -128,6 +133,20 @@ public class MainActivity extends AppCompatActivity {
 
         });
         }
+
+    private void initControl() {
+        imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewCart();
+            }
+        });
+    }
+
+    private void viewCart() {
+        Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+        startActivity(intent);
+    }
 
     private void handleSearchClicked(){
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
@@ -204,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Anhxa() {
+        imgCart = findViewById(R.id.imgCart_main);
         toolBar = findViewById(R.id.toolBarHomePage);
         navigationView = findViewById(R.id.navigationHomePage);
         listView = findViewById(R.id.listViewHomePage);
@@ -213,9 +233,17 @@ public class MainActivity extends AppCompatActivity {
         mangLoaiSp = new ArrayList<>();
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-
+        badge_main = findViewById(R.id.menu_quantity_main);
+        if(Utils.carts!=null){
+            badge_main.setText(String.valueOf(Utils.carts.size()));
+        }
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        badge_main.setText(String.valueOf(Utils.carts.size()));
+    }
 
     private boolean isConnected(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

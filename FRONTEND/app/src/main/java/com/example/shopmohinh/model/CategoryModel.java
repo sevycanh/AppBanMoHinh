@@ -4,6 +4,7 @@ import java.util.List;
 
 public class CategoryModel {
     boolean success;
+    String message;
     List<Category> result;
 
     public boolean isSuccess() {
@@ -20,5 +21,13 @@ public class CategoryModel {
 
     public void setResult(List<Category> result) {
         this.result = result;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

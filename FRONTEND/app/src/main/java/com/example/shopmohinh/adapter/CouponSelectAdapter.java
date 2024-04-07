@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shopmohinh.Interface.IImageClickListener;
 import com.example.shopmohinh.Interface.OnItemClickListener;
 import com.example.shopmohinh.R;
-import com.example.shopmohinh.activity.PaymentActivity;
+//import com.example.shopmohinh.activity.PaymentActivity;
 import com.example.shopmohinh.model.Coupon;
 
 import java.text.ParseException;
