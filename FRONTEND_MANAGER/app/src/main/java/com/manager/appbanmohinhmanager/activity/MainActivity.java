@@ -32,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
-    CardView cardViewProductManager, cardViewCategoryManager, cardVoucherManager, cardTaiKhoan_Manager;
-    CardView cardViewProductManager, cardViewCategoryManager, cardVoucherManager, cardThongBao, cartThongKeManager;
+    CardView cardViewProductManager, cardViewCategoryManager, cardVoucherManager, cardTaiKhoan_Manager, cardThongBao, cartThongKeManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,10 +85,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AccountManagerActivity.class);
                 startActivity(intent);
+            }
+        });
         cardThongBao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
             }
         });
     }
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.menuDoiMatKhau){
+        if (item.getItemId() == R.id.menuDoiMatKhau) {
             Intent intent = new Intent(getApplicationContext(), ForgotPassActivity.class);
             startActivity(intent);
         } else if (item.getItemId() == R.id.menuDangXuat) {

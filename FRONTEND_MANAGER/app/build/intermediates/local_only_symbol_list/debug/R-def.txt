@@ -79,13 +79,10 @@ id imgAdd_Main
 id imgCategory
 id imgThemVoucher
 id imgUpdateCategory
-<<<<<<< HEAD
 id imv_account_manager
-=======
 id item_statistics
 id legendLayout
 id legendLayoutPieChart
->>>>>>> develop
 id line1
 id linearKT
 id listCategory

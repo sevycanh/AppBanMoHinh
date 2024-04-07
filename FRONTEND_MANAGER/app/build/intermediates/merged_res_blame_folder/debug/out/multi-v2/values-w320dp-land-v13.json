@@ -4,11 +4,7 @@
             "outputFile": "com.manager.appbanmohinhmanager.app-mergeDebugResources-39:/values-w320dp-land-v13/values-w320dp-land-v13.xml",
             "map": [
                 {
-<<<<<<< HEAD
-                    "source": "C:\\Users\\ASUS P2451FA-102B\\.gradle\\caches\\transforms-3\\d9f1408602df15d416656c30b99e7681\\transformed\\material-1.11.0\\res\\values-w320dp-land-v13\\values-w320dp-land-v13.xml",
-=======
                     "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\d9f1408602df15d416656c30b99e7681\\transformed\\material-1.11.0\\res\\values-w320dp-land-v13\\values-w320dp-land-v13.xml",
->>>>>>> develop
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
