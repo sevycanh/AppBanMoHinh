@@ -20,7 +20,6 @@
         tools:targetApi="31">
         <activity
             android:name=".activity.StatisticalActivity"
-            android:name=".activity.UpdateVoucherActivity"
             android:exported="false" />
         <activity
             android:name=".activity.AddVoucherActivity"

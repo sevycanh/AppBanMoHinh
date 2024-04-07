@@ -4218,6 +4218,8 @@ id layout
 id left
 id leftToRight
 id legacy
+id legendLayout
+id legendLayoutPieChart
 id light
 id line1
 id line3
@@ -4485,8 +4487,8 @@ id toolBarAddProduct
 id toolBarAddVoucher
 id toolBarPM
 id toolBarTTSP
-id toolbar
 id toolBarVoucher
+id toolbar
 id toolbarAddCategory
 id toolbarDanhMuc
 id toolbarUpdateCategory
@@ -4517,7 +4519,8 @@ id txtKhoVoucher_Voucher
 id txtNgayBD_AddVoucher
 id txtNgayKT_AddVoucher
 id txtTenDanhMuc
-id txtThongke
+id txtThongkeBarChart
+id txtThongkePieChart
 id txtUpdateTenDanhMuc
 id txtUpdate_Coupon
 id txtUpdate_Description

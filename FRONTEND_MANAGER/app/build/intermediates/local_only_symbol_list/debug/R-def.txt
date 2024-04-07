@@ -76,6 +76,8 @@ id imgCategory
 id imgThemVoucher
 id imgUpdateCategory
 id item_statistics
+id legendLayout
+id legendLayoutPieChart
 id line1
 id linearKT
 id listCategory
@@ -112,8 +114,8 @@ id toolBarAddProduct
 id toolBarAddVoucher
 id toolBarPM
 id toolBarTTSP
-id toolbar
 id toolBarVoucher
+id toolbar
 id toolbarAddCategory
 id toolbarDanhMuc
 id toolbarUpdateCategory
@@ -133,7 +135,8 @@ id txtKhoVoucher_Voucher
 id txtNgayBD_AddVoucher
 id txtNgayKT_AddVoucher
 id txtTenDanhMuc
-id txtThongke
+id txtThongkeBarChart
+id txtThongkePieChart
 id txtUpdateTenDanhMuc
 id txtUpdate_Coupon
 id txtUpdate_Description

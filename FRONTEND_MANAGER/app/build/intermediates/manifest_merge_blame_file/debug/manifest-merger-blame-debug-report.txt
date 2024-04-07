@@ -9,107 +9,107 @@
 9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-11-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:5:5-81
-11-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:5:22-78
+11-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:5:5-81
+11-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:5:22-78
 12    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-12-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:6:5-80
-12-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:6:22-77
+12-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:6:5-80
+12-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:6:22-77
 13    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-13-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:7:5-82
-13-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:7:22-79
+13-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:7:5-82
+13-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:7:22-79
 14    <uses-permission android:name="android.permission.INTERNET" />
-14-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\ADMIN\.gradle\caches\transforms-3\624d35b3586adc18a39f1298d262fa09\transformed\firebase-auth-22.3.1\AndroidManifest.xml:25:5-67
-14-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\ADMIN\.gradle\caches\transforms-3\624d35b3586adc18a39f1298d262fa09\transformed\firebase-auth-22.3.1\AndroidManifest.xml:25:22-64
+14-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\Admin\.gradle\caches\transforms-3\624d35b3586adc18a39f1298d262fa09\transformed\firebase-auth-22.3.1\AndroidManifest.xml:25:5-67
+14-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\Admin\.gradle\caches\transforms-3\624d35b3586adc18a39f1298d262fa09\transformed\firebase-auth-22.3.1\AndroidManifest.xml:25:22-64
 15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\ADMIN\.gradle\caches\transforms-3\624d35b3586adc18a39f1298d262fa09\transformed\firebase-auth-22.3.1\AndroidManifest.xml:26:5-79
-15-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\ADMIN\.gradle\caches\transforms-3\624d35b3586adc18a39f1298d262fa09\transformed\firebase-auth-22.3.1\AndroidManifest.xml:26:22-76
+15-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\Admin\.gradle\caches\transforms-3\624d35b3586adc18a39f1298d262fa09\transformed\firebase-auth-22.3.1\AndroidManifest.xml:26:5-79
+15-->[com.google.firebase:firebase-auth:22.3.1] C:\Users\Admin\.gradle\caches\transforms-3\624d35b3586adc18a39f1298d262fa09\transformed\firebase-auth-22.3.1\AndroidManifest.xml:26:22-76
 16    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-16-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\ADMIN\.gradle\caches\transforms-3\35bdef8256c40e5059b77aad3335071a\transformed\firebase-messaging-23.4.1\AndroidManifest.xml:23:5-77
-16-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\ADMIN\.gradle\caches\transforms-3\35bdef8256c40e5059b77aad3335071a\transformed\firebase-messaging-23.4.1\AndroidManifest.xml:23:22-74
+16-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\Admin\.gradle\caches\transforms-3\35bdef8256c40e5059b77aad3335071a\transformed\firebase-messaging-23.4.1\AndroidManifest.xml:23:5-77
+16-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\Admin\.gradle\caches\transforms-3\35bdef8256c40e5059b77aad3335071a\transformed\firebase-messaging-23.4.1\AndroidManifest.xml:23:22-74
 17    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
-17-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\ADMIN\.gradle\caches\transforms-3\35bdef8256c40e5059b77aad3335071a\transformed\firebase-messaging-23.4.1\AndroidManifest.xml:24:5-68
-17-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\ADMIN\.gradle\caches\transforms-3\35bdef8256c40e5059b77aad3335071a\transformed\firebase-messaging-23.4.1\AndroidManifest.xml:24:22-65
+17-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\Admin\.gradle\caches\transforms-3\35bdef8256c40e5059b77aad3335071a\transformed\firebase-messaging-23.4.1\AndroidManifest.xml:24:5-68
+17-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\Admin\.gradle\caches\transforms-3\35bdef8256c40e5059b77aad3335071a\transformed\firebase-messaging-23.4.1\AndroidManifest.xml:24:22-65
 18    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-18-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\ADMIN\.gradle\caches\transforms-3\35bdef8256c40e5059b77aad3335071a\transformed\firebase-messaging-23.4.1\AndroidManifest.xml:26:5-82
-18-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\ADMIN\.gradle\caches\transforms-3\35bdef8256c40e5059b77aad3335071a\transformed\firebase-messaging-23.4.1\AndroidManifest.xml:26:22-79
+18-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\Admin\.gradle\caches\transforms-3\35bdef8256c40e5059b77aad3335071a\transformed\firebase-messaging-23.4.1\AndroidManifest.xml:26:5-82
+18-->[com.google.firebase:firebase-messaging:23.4.1] C:\Users\Admin\.gradle\caches\transforms-3\35bdef8256c40e5059b77aad3335071a\transformed\firebase-messaging-23.4.1\AndroidManifest.xml:26:22-79
 19    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-19-->[com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\ADMIN\.gradle\caches\transforms-3\7368e8f00072e71c7a0d4f72f37cb439\transformed\recaptcha-18.4.0\AndroidManifest.xml:9:5-98
-19-->[com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\ADMIN\.gradle\caches\transforms-3\7368e8f00072e71c7a0d4f72f37cb439\transformed\recaptcha-18.4.0\AndroidManifest.xml:9:22-95
+19-->[com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\Admin\.gradle\caches\transforms-3\7368e8f00072e71c7a0d4f72f37cb439\transformed\recaptcha-18.4.0\AndroidManifest.xml:9:5-98
+19-->[com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\Admin\.gradle\caches\transforms-3\7368e8f00072e71c7a0d4f72f37cb439\transformed\recaptcha-18.4.0\AndroidManifest.xml:9:22-95
 20
 21    <permission
-21-->[androidx.core:core:1.9.0] C:\Users\ADMIN\.gradle\caches\transforms-3\9f6c07950173d1c9ab5fe3485bf6972c\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+21-->[androidx.core:core:1.9.0] C:\Users\Admin\.gradle\caches\transforms-3\9f6c07950173d1c9ab5fe3485bf6972c\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
 22        android:name="com.manager.appbanmohinhmanager.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-22-->[androidx.core:core:1.9.0] C:\Users\ADMIN\.gradle\caches\transforms-3\9f6c07950173d1c9ab5fe3485bf6972c\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+22-->[androidx.core:core:1.9.0] C:\Users\Admin\.gradle\caches\transforms-3\9f6c07950173d1c9ab5fe3485bf6972c\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
 23        android:protectionLevel="signature" />
-23-->[androidx.core:core:1.9.0] C:\Users\ADMIN\.gradle\caches\transforms-3\9f6c07950173d1c9ab5fe3485bf6972c\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+23-->[androidx.core:core:1.9.0] C:\Users\Admin\.gradle\caches\transforms-3\9f6c07950173d1c9ab5fe3485bf6972c\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
 24
 25    <uses-permission android:name="com.manager.appbanmohinhmanager.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-25-->[androidx.core:core:1.9.0] C:\Users\ADMIN\.gradle\caches\transforms-3\9f6c07950173d1c9ab5fe3485bf6972c\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
-25-->[androidx.core:core:1.9.0] C:\Users\ADMIN\.gradle\caches\transforms-3\9f6c07950173d1c9ab5fe3485bf6972c\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+25-->[androidx.core:core:1.9.0] C:\Users\Admin\.gradle\caches\transforms-3\9f6c07950173d1c9ab5fe3485bf6972c\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+25-->[androidx.core:core:1.9.0] C:\Users\Admin\.gradle\caches\transforms-3\9f6c07950173d1c9ab5fe3485bf6972c\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 26
 27    <application
 27-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:9:5-66:19
 28        android:allowBackup="true"
-28-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:10:9-35
+28-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:10:9-35
 29        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-29-->[androidx.core:core:1.9.0] C:\Users\ADMIN\.gradle\caches\transforms-3\9f6c07950173d1c9ab5fe3485bf6972c\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+29-->[androidx.core:core:1.9.0] C:\Users\Admin\.gradle\caches\transforms-3\9f6c07950173d1c9ab5fe3485bf6972c\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 30        android:dataExtractionRules="@xml/data_extraction_rules"
-30-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:11:9-65
+30-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:11:9-65
 31        android:debuggable="true"
 32        android:extractNativeLibs="false"
 33        android:fullBackupContent="@xml/backup_rules"
-33-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:12:9-54
+33-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:12:9-54
 34        android:icon="@mipmap/ic_launcher"
-34-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:13:9-43
+34-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:13:9-43
 35        android:label="@string/app_name"
-35-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:14:9-41
+35-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:14:9-41
 36        android:largeHeap="true"
-36-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:15:9-33
+36-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:15:9-33
 37        android:roundIcon="@mipmap/ic_launcher_round"
-37-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:16:9-54
+37-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:16:9-54
 38        android:supportsRtl="true"
-38-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:17:9-35
+38-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:17:9-35
 39        android:testOnly="true"
 40        android:theme="@style/Theme.AppBanMoHinhManager"
-40-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:18:9-57
+40-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:18:9-57
 41        android:usesCleartextTraffic="true" >
-41-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:19:9-44
+41-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:19:9-44
 42        <activity
 42-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:21:9-23:40
-43            android:name="com.manager.appbanmohinhmanager.activity.UpdateVoucherActivity"
-43-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:22:13-59
+43            android:name="com.manager.appbanmohinhmanager.activity.StatisticalActivity"
+43-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:22:13-57
 44            android:exported="false" />
-44-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:23:13-37
+44-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:23:13-37
 45        <activity
 45-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:24:9-26:40
 46            android:name="com.manager.appbanmohinhmanager.activity.AddVoucherActivity"
 46-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:25:13-56
 47            android:exported="false" />
-47-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:26:13-37
+47-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:26:13-37
 48        <activity
 48-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:27:9-29:40
 49            android:name="com.manager.appbanmohinhmanager.activity.VoucherManagerActivity"
 49-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:28:13-60
 50            android:exported="false" />
-50-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:29:13-37
+50-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:29:13-37
 51        <activity
 51-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:30:9-32:40
 52            android:name="com.manager.appbanmohinhmanager.activity.UpdateCategoryActivity"
 52-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:31:13-60
 53            android:exported="false" />
-53-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:32:13-37
+53-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:32:13-37
 54        <activity
 54-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:33:9-35:40
 55            android:name="com.manager.appbanmohinhmanager.activity.AddCategoryActivity"
 55-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:34:13-57
 56            android:exported="false" />
-56-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:35:13-37
+56-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:35:13-37
 57        <activity
 57-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:36:9-38:40
 58            android:name="com.manager.appbanmohinhmanager.activity.CateroryManagerActivity"
 58-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:37:13-61
 59            android:exported="false" />
-59-->C:\Users\ADMIN\Desktop\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:38:13-37
+59-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:38:13-37
 60        <activity
 60-->C:\Users\Admin\AndroidStudioProjects\AppBanMoHinh\FRONTEND_MANAGER\app\src\main\AndroidManifest.xml:39:9-41:40
 61            android:name="com.manager.appbanmohinhmanager.activity.UpdateProductActivity"

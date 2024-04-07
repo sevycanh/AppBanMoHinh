@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
-    CardView cardViewProductManager, cardViewCategoryManager, cardVoucherManager, cardThongBao;
+    CardView cardViewProductManager, cardViewCategoryManager, cardVoucherManager, cardThongBao, cartThongKeManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

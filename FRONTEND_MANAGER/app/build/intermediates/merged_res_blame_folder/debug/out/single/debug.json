@@ -32,16 +32,16 @@
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\ic_change_pass.xml"
     },
     {
-        "merged": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_baseline_email_24.xml.flat",
-        "source": "C:\\Users\\ADMIN\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\baseline_email_24.xml"
-    },
-    {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_ic_add_voucher.xml.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\ic_add_voucher.xml"
     },
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_bg_main.jpg.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\bg_main.jpg"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\menu_menu_statistical.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\menu\\menu_statistical.xml"
     },
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_quang_cao.png.flat",
@@ -86,6 +86,10 @@
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_splash.xml.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_splash.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_statistical.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_statistical.xml"
     },
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\xml_backup_rules.xml.flat",
@@ -162,6 +166,10 @@
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_update_product.xml.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_update_product.xml"
+    },
+    {
+        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_statistical.xml.flat",
+        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_statistical.xml"
     },
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_vong_quay.png.flat",
