@@ -1,15 +1,25 @@
 package com.example.shopmohinh.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
 import com.bumptech.glide.Glide;
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.model.Category;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -52,12 +62,13 @@ public class CategoryAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         viewHolder.textName.setText(listCategory.get(i).getName());
-        Glide.with(context).load(listCategory.get(i).getImage()).into(viewHolder.imageView);
+        Glide.with(context).load(listCategory.get(i).getImage()).load(viewHolder.imageView);
         return view;
     }
 
     public class ViewHolder {
         TextView textName;
         ImageView imageView;
+
     }
 }

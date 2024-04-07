@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.PaymentActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBarPayment"
-        app:title="Thanh toán"
-        android:background="@color/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:background="@color/main"
+        app:title="Thanh toán" />
 
     <LinearLayout
         android:id="@+id/btnChangeAddress"
@@ -137,39 +138,41 @@
         android:layout_height="1dp">
     </View>
     <LinearLayout
-        android:id="@+id/btnChangePaymentMethod"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
-            android:src="@drawable/ic_money"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_money" />
         <TextView
             android:textSize="@dimen/_13ssp"
             android:text="Phương thức thanh toán"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="7dp"/>
-        <TextView
-            android:id="@+id/txtPTThanhToan"
-            android:layout_weight="1"
-            android:textSize="@dimen/_13ssp"
-            android:textAlignment="textEnd"
-            android:text="COD"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
         <LinearLayout
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:id="@+id/btnChangePaymentMethod"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="1"
+                android:textAlignment="textEnd"
+                android:id="@+id/txtPTThanhToan"
+                android:textSize="@dimen/_13ssp"
+                android:text="COD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <ImageView
                 android:src="@drawable/ic_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
+
     </LinearLayout>
     <View
         android:background="@drawable/edittext_bottom_line"

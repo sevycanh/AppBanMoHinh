@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,12 +41,13 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CartActivity extends AppCompatActivity {
-    TextView giohangtrong, tongtien;
+    TextView giohangtrong, tongtien, txtCouponSelect;
     Toolbar toolbar;
     RecyclerView recyclerViewGioHang;
     Button btnMuaHang, btnDeleteGioHang;
     CartAdapter gioHangAdapter;
     SwipeHelper swipeHelper;
+    LinearLayout couponSelect;
     long tongtiensp;
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -144,6 +146,10 @@ public class CartActivity extends AppCompatActivity {
             for(int i =0;i <Utils.purchases.size();i++){
                 tongtiensp = tongtiensp + (Utils.purchases.get(i).getPrice() * Utils.purchases.get(i).getQuantity());
             }
+            if(Utils.coupon != null) {
+                long discount = tongtiensp * Utils.coupon.getDiscount() / 100;
+                tongtiensp = tongtiensp - discount;
+            }
             DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
             symbols.setGroupingSeparator('.'); // Dấu phân tách hàng nghìn
             DecimalFormat decimalFormat = new DecimalFormat("###,###,###", symbols);
@@ -160,6 +166,7 @@ public class CartActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Utils.coupon = null;
                 finish();
             }
         });
@@ -224,6 +231,14 @@ public class CartActivity extends AppCompatActivity {
                 builder.show();
             }
         });
+
+        couponSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),CouponSelectActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -234,7 +249,18 @@ public class CartActivity extends AppCompatActivity {
         recyclerViewGioHang = findViewById(R.id.recyclerViewGioHang);
         btnMuaHang = findViewById(R.id.btnMuaHang);
         btnDeleteGioHang = findViewById(R.id.btnDeleteGioHang);
+        couponSelect = findViewById(R.id.CouponSelect);
+        txtCouponSelect = findViewById(R.id.txtCouponSelect);
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        gioHangAdapter.notifyDataSetChanged();
+        TinhTongTien();
+        if(Utils.coupon != null && Utils.coupon.getDiscount() > 0){
+            txtCouponSelect.setText(Utils.coupon.getDiscount() + "%");
+        }
     }
 
     @Override

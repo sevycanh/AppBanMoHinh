@@ -1,6 +1,8 @@
 package com.example.shopmohinh.utils;
 
 import com.example.shopmohinh.model.Cart;
+import com.example.shopmohinh.model.Coupon;
+import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.model.User;
 
 import java.util.ArrayList;
@@ -18,4 +20,8 @@ public class Utils {
     public static User user_current = new User();
     public static List<Cart> carts = new ArrayList<>();
     public static List<Cart> purchases = new ArrayList<>();
+
+    public static Coupon coupon = new Coupon();
+    public static Product product = new Product();
+    public static String method_payment = "COD";
 }

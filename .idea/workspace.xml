@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5d4eda0-b72e-4142-9877-38da8a04f5a1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/ProductActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/ProductActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/ProductDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/activity/ProductDetailActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/ProductAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/adapter/ProductAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/utils/NumberWithDotSeparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/java/com/example/shopmohinh/utils/NumberWithDotSeparator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/item_product.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/layout/item_product.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FRONTEND/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/FRONTEND/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +38,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/ADMIN/Desktop/AppBanMoHinh",
+    "last_opened_file_path": "C:/Users/Admin/AndroidStudioProjects/AppBanMoHinh/FRONTEND",
     "settings.editor.selected.configurable": "AndroidSdkUpdater"
   }
 }]]></component>

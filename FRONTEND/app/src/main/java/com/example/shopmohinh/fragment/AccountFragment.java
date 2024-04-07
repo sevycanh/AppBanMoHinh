@@ -3,12 +3,12 @@ package com.example.shopmohinh.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.shopmohinh.R;
@@ -18,6 +18,10 @@ import com.example.shopmohinh.activity.LogInActivity;
 import com.example.shopmohinh.activity.SplashActivity;
 import com.example.shopmohinh.model.User;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApi;
 import com.google.firebase.auth.FirebaseAuth;
 
 import io.paperdb.Paper;
@@ -26,7 +30,7 @@ import io.paperdb.Paper;
 public class AccountFragment extends Fragment {
     TextView txtUserNameProfile, txtUserPhoneProfile, txtUserEmailProfile,txtUserAddressProfile;
 
-    AppCompatButton btnChangeProfile, btnChangePasswordProfile,btnSignOut;
+    Button btnChangeProfile, btnChangePasswordProfile,btnSignOut;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,7 +84,9 @@ public class AccountFragment extends Fragment {
                 Utils.user_current = new User();
                 Paper.book().delete("user");
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getContext(), SplashActivity.class);
+                GoogleSignIn.getClient(getActivity(), new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build())
+                        .signOut();
+                Intent intent = new Intent(getContext(), LogInActivity.class);
                 startActivity(intent);
             }
         });
