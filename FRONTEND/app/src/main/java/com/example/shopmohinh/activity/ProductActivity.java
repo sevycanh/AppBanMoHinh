@@ -76,7 +76,7 @@ public class ProductActivity extends AppCompatActivity {
             User user = Paper.book().read("user");
             Utils.user_current = user;
         }
-        initCart();
+//        initCart();
         clearButtonView();
         handleButtonBar();
         initControl();
