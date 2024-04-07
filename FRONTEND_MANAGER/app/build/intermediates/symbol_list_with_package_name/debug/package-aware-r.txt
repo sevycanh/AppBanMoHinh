@@ -77,6 +77,7 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
+array sortOrderOptions
 attr SharedValue
 attr SharedValueId
 attr actionBarDivider
@@ -1456,8 +1457,13 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+<<<<<<< HEAD
+color green
+color grey
+=======
 color green_Active_account
 color grey_AccountDetail
+>>>>>>> develop
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color m3_appbar_overlay_color
@@ -2122,7 +2128,11 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+<<<<<<< HEAD
+color red
+=======
 color red_Deactive_account
+>>>>>>> develop
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -2138,6 +2148,7 @@ color switch_thumb_normal_material_light
 color tooltip_background_dark
 color tooltip_background_light
 color white
+color yellow
 dimen _100sdp
 dimen _100ssp
 dimen _101sdp
@@ -4052,13 +4063,24 @@ id btnUpdateImgCaterogy
 id btnUpdateMinus
 id btnUpdatePlus
 id btnXacNhan_Forgot
+<<<<<<< HEAD
+id btn_CancelOrder
+=======
 id btn_ChangeStatus_AccountDetail
+>>>>>>> develop
 id buttonPanel
 id cache_measures
 id callMeasure
 id cancel_button
 id cardDanhMuc_Manager
 id cardDonHang_Manager
+<<<<<<< HEAD
+id cardKhuyenMai_Manager
+id cardOrder
+id cardPhanHoi_Manager
+id cardQuangCao_Manager
+=======
+>>>>>>> develop
 id cardSanPham_Manager
 id cardTaiKhoan_Manager
 id cardThongBao_Manager
@@ -4207,14 +4229,25 @@ id imgCategory
 id imgThemVoucher
 id imgUpdateCategory
 id immediateStop
+<<<<<<< HEAD
+id imv_Product
+=======
 id imv_account_manager
+>>>>>>> develop
 id included
 id indeterminate
 id info
 id invisible
 id inward
 id italic
+<<<<<<< HEAD
+id item_imgV_order_detail
+id item_productPrice_orderdetail
+id item_productname_orderdetail
+id item_quantity_detail
+=======
 id item_statistics
+>>>>>>> develop
 id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
@@ -4229,7 +4262,11 @@ id light
 id line1
 id line3
 id linear
+<<<<<<< HEAD
+id linearLayout
+=======
 id linearKT
+>>>>>>> develop
 id listCategory
 id listMode
 id listProduct
@@ -4312,6 +4349,7 @@ id navigation_header_container
 id never
 id neverCompleteToEnd
 id neverCompleteToStart
+id noOrder
 id noScroll
 id noState
 id none
@@ -4337,6 +4375,7 @@ id open_search_view_search_prefix
 id open_search_view_status_bar_spacer
 id open_search_view_toolbar
 id open_search_view_toolbar_container
+id order_date_detail
 id outline
 id outward
 id overshoot
@@ -4370,11 +4409,16 @@ id radioCongKhai_AddVoucher
 id radioDanhRieng_AddVoucher
 id radioGroup_AddVoucher
 id ratio
+<<<<<<< HEAD
+id rcv_Orders
+=======
 id rcvVoucher_Manager
 id rcv_account
+>>>>>>> develop
 id rectangles
 id recyclerViewMultipleImageUpdate
 id recyclerView_MultipleImages
+id recylerView_OrderDetail
 id remove_item
 id report_drawn
 id restart
@@ -4427,6 +4471,7 @@ id snap
 id snapMargins
 id software
 id south
+id sp_sortOrder
 id spacer
 id special_effects_controller_view_tag
 id spinnerAdd
@@ -4453,6 +4498,7 @@ id submenuarrow
 id submitDataAddProduct
 id submit_area
 id supportScrollUp
+id sv_searchbyuserName
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -4467,8 +4513,13 @@ id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
 id tag_window_insets_animation_callback
+<<<<<<< HEAD
+id tb_accountManager
+id tb_orderManager
+=======
 id tb_accountDetailManager
 id tb_accountManager
+>>>>>>> develop
 id text
 id text2
 id textEnd
@@ -4476,6 +4527,8 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView
+id textView8
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -4495,8 +4548,12 @@ id toolBarAddProduct
 id toolBarAddVoucher
 id toolBarPM
 id toolBarTTSP
+<<<<<<< HEAD
+id toolBar_OrderDetail
+=======
 id toolBarVoucher
 id toolbar
+>>>>>>> develop
 id toolbarAddCategory
 id toolbarDanhMuc
 id toolbarUpdateCategory
@@ -4514,6 +4571,25 @@ id transition_transform
 id triangle
 id tvQuantity
 id tvUpdateQuantity
+<<<<<<< HEAD
+id tv_accountName_detail
+id tv_address_detail
+id tv_detail
+id tv_email_detail
+id tv_firstProduct
+id tv_order_id
+id tv_order_id_detail
+id tv_order_status
+id tv_order_status_detail
+id tv_payment_method_detail
+id tv_phone_account_detail
+id tv_pricePerUnit
+id tv_productInOrder
+id tv_total
+id tv_total_detail
+id tv_total_orderdetail
+id tv_userName
+=======
 id tv_account_id_AccountManager
 id tv_activeAccount
 id tv_coin_AccountManager
@@ -4528,6 +4604,7 @@ id tv_phone_accountDetail
 id tv_status_AccountManager
 id tv_status_accountDetail
 id tv_username_accountDetail
+>>>>>>> develop
 id txtAdd_Coupon
 id txtAdd_Description
 id txtAdd_NameProduct
@@ -4560,10 +4637,14 @@ id unlabeled
 id up
 id useLogo
 id vertical_only
+<<<<<<< HEAD
+id view
+=======
 id viewActive
 id viewDanhRiengVoucher
 id viewDeactive
 id viewKhoVoucher
+>>>>>>> develop
 id view_offset_helper
 id view_transition
 id view_tree_lifecycle_owner
@@ -4697,7 +4778,10 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+<<<<<<< HEAD
+=======
 layout activity_account_detail_manager
+>>>>>>> develop
 layout activity_account_manager
 layout activity_add_category
 layout activity_add_product
@@ -4706,6 +4790,8 @@ layout activity_caterory_manager
 layout activity_forgot_pass
 layout activity_log_in
 layout activity_main
+layout activity_order_detail_manager
+layout activity_order_manager_acitvity
 layout activity_product_manager
 layout activity_splash
 layout activity_statistical
@@ -4734,6 +4820,8 @@ layout dp_example
 layout item_account_manager
 layout item_category_manager
 layout item_multiple_image
+layout item_order_detail_manager
+layout item_order_manager
 layout item_product_manager
 layout item_voucher_manager
 layout m3_alert_dialog
@@ -4984,6 +5072,7 @@ string mtrl_switch_track_decoration_path
 string mtrl_switch_track_path
 string mtrl_timepicker_cancel
 string mtrl_timepicker_confirm
+string order
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through

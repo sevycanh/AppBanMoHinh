@@ -47,6 +47,7 @@ public class OrderFragment extends Fragment {
     private int selection = 0;
     private TextView noOrder;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

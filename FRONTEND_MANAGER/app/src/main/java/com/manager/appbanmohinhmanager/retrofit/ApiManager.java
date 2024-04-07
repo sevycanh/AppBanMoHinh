@@ -3,15 +3,17 @@ package com.manager.appbanmohinhmanager.retrofit;
 import com.manager.appbanmohinhmanager.model.Account;
 import com.manager.appbanmohinhmanager.model.AccountModel;
 import com.manager.appbanmohinhmanager.model.CategoryManagerModel;
+import com.manager.appbanmohinhmanager.model.InforDetailManagerModel;
+import com.manager.appbanmohinhmanager.model.ItemOrderDetailManagerModel;
+import com.manager.appbanmohinhmanager.model.OrderManagerModel;
 import com.manager.appbanmohinhmanager.model.ProductManagerModel;
-import com.manager.appbanmohinhmanager.model.UserModel;
 
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiManager {
 
@@ -83,6 +85,21 @@ public interface ApiManager {
             @Field("idcategory") int id
     );
 
+    @GET("getOrderInOrderManager.php")
+    Observable<OrderManagerModel> getOrderInOrderManager();
+
+    @GET("xemdonhang.php")
+    Observable<InforDetailManagerModel> getInforDetail(@Query("orderId") int orderID);
+
+    @POST("updateOrderStatus.php")
+    @FormUrlEncoded
+    Observable<InforDetailManagerModel> updateOrderStatus(@Field("orderId") int orderID);
+
+    @GET("getItemOrderDetail.php")
+    Observable<ItemOrderDetailManagerModel> getItemOrderDetail(@Query("orderId") int orderID);
+
+    @GET("searchOrderbyID.php")
+    Observable<OrderManagerModel> searchOrderbyID(@Query("order_status") int order_status, @Query("order_id") String order_id);
     @POST("getAccountManager.php")
     @FormUrlEncoded
     Observable<AccountModel> getAccountManager(@Field("status") int status);
