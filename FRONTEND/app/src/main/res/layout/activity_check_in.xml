@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_wheel"
     tools:context=".activity.CheckInActivity">
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarCheckIn"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView_CheckIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                 android:text="999999999"
                 android:textSize="@dimen/_15ssp" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
     <TextView
         android:id="@+id/txtCheckIn"
         app:layout_constraintTop_toBottomOf="@+id/cardView_CheckIn"

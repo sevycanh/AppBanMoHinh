@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.retrofit.RetrofitClientNoti;
 import com.example.shopmohinh.utils.Utils;
 import com.example.shopmohinh.zalo.CreateOrder;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -44,9 +46,9 @@ import vn.zalopay.sdk.listeners.PayOrderListener;
 
 public class PaymentActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     //    RecyclerView recyclerViewDatHang;
-    AppCompatButton btnDatHang;
+    Button btnDatHang;
     TextView txtTongTienDatHang, txtThongTinKH, txtDiaChiKH, txtPTThanhToan;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     long tongtien;
@@ -177,12 +179,13 @@ public class PaymentActivity extends AppCompatActivity {
                             Utils.purchases.clear();
                             iddonhang = Integer.parseInt(messageModel.getIddonhang());
                             UpdateTokenZaloApi(iddonhang, token);
+
+                            pushNotiToAdmin();
+
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                             finish();
-
-                            pushNotiToAdmin();
                         },
                         throwable -> {
                             Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();

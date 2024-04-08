@@ -24,6 +24,7 @@ import com.example.shopmohinh.model.Coupon;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class CouponActivity extends AppCompatActivity {
     Button btnPublicCoupon, btnPrivateCoupon;
     RecyclerView recyclerViewCoupon;
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
 
     View viewPrivateVoucher, viewPublicVoucher;
 

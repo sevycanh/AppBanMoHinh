@@ -25,6 +25,7 @@ import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.text.DecimalFormat;
@@ -41,7 +42,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     ImageView imgCart;
     TextView txtName, txtPrice, txtSalePrice, tvStock, txtDescription,txtQuantity;
     Button btnDecrease, btnIncrease, btnAddToCart;
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     ViewPager imageViewPager;
     private CircleIndicator circleIndicator;
     Product product;

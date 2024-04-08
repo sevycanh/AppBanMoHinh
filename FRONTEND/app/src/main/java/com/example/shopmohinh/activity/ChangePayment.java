@@ -15,13 +15,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class ChangePayment extends AppCompatActivity {
     RadioButton radioButtonZalo, radioButtonCash;
 
     Button saveButtonPayment;
 
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

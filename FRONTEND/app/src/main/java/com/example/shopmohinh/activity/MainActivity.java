@@ -53,6 +53,7 @@ import com.example.shopmohinh.retrofit.ApiBanHang;
 
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,7 +69,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
-    Toolbar toolBar;
+    MaterialToolbar toolBar;
     NavigationView navigationView;
     ListView listView;
     DrawerLayout drawerLayout;

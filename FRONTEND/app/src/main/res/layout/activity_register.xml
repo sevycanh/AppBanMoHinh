@@ -11,7 +11,8 @@
     android:background="@drawable/background"
     tools:context=".activity.MainActivity">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
+        android:backgroundTint="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_20sdp"
@@ -41,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_2sdp"/>
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:id="@+id/edtEmail_signUp"
@@ -54,7 +55,7 @@
                 android:textColorHighlight="@color/cardview_dark_background"
                 android:layout_marginTop="@dimen/_20sdp"/>
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:id="@+id/edtPassword_signUp"
@@ -68,7 +69,7 @@
                 android:textColorHighlight="@color/cardview_dark_background"
                 android:layout_marginTop="@dimen/_20sdp"/>
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:id="@+id/edtRePassword_signUp"
@@ -93,7 +94,7 @@
                 app:cornerRadius = "@dimen/_20sdp"/>
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout
         android:orientation="horizontal"

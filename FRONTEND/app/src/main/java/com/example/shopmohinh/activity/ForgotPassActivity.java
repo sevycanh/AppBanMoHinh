@@ -11,12 +11,14 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.shopmohinh.R;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgotPassActivity extends AppCompatActivity {
-    EditText edtEmail;
+    TextInputEditText edtEmail;
     Button btnXacNhan, btnQuayLai;
-    ProgressBar progressBar;
+    CircularProgressIndicator progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

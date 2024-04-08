@@ -24,6 +24,7 @@ import com.example.shopmohinh.model.SanPhamSearch;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SearchActivity extends AppCompatActivity {
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     LinearLayout linearLayout;
     RecyclerView recyclerView;
     SearchView searchView;

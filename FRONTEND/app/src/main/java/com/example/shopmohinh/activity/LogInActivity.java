@@ -34,6 +34,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -50,7 +51,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class LogInActivity extends AppCompatActivity {
-    EditText edtEmail, edtPass;
+    TextInputEditText edtEmail, edtPass;
     Button btnSignIn;
     TextView txtForgot, txtSignUp, txtSaiThongTin;
     CircleImageView circleImageView;

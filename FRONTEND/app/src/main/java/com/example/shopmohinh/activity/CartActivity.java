@@ -28,6 +28,7 @@ import com.example.shopmohinh.model.EventBus.TinhTongEvent;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -42,7 +43,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CartActivity extends AppCompatActivity {
     TextView giohangtrong, tongtien, txtCouponSelect;
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     RecyclerView recyclerViewGioHang;
     Button btnMuaHang, btnDeleteGioHang;
     CartAdapter gioHangAdapter;

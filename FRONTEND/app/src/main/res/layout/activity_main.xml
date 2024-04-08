@@ -27,7 +27,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.Toolbar
+                <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolBarHomePage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -61,7 +61,7 @@
                             android:src="@drawable/baseline_shopping_cart_24">
                         </ImageView>
                     </FrameLayout>
-                </androidx.appcompat.widget.Toolbar>
+                </com.google.android.material.appbar.MaterialToolbar>
 
             </com.google.android.material.appbar.AppBarLayout>
             <FrameLayout

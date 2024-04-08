@@ -28,6 +28,7 @@ import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.retrofit.SalesApi;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ProductActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     RecyclerView recyclerView;
     SalesApi salesApi;
     CompositeDisposable compositeDisposable = new CompositeDisposable();

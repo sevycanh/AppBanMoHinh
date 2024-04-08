@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.ProductDetailActivity">
 
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarProductDetail"
         app:title="Chi tiết sản phẩm"
         android:background="#fbc02d"
@@ -34,7 +34,7 @@
                 android:layout_height="@dimen/_25sdp"
                 android:src="@drawable/baseline_shopping_cart_24"></ImageView>
         </FrameLayout>
-    </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <LinearLayout
         android:id="@+id/linearContainer"
