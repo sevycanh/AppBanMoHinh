@@ -103,10 +103,11 @@ public class MainActivity extends AppCompatActivity {
         cartThongKeManager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), StatisticalActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ThongKeActivity.class);
                 startActivity(intent);
             }
         });
+
         cardVoucherManager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
