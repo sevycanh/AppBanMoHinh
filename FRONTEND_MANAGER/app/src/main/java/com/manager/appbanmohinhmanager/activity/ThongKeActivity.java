@@ -45,21 +45,19 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class StatisticalActivity extends AppCompatActivity {
+public class ThongKeActivity extends AppCompatActivity {
     Toolbar toolbar;
     PieChart pieChart;
     BarChart barChart;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     SalesApi salesApi;
     TextView txtThongke;
-
     TextView txtThongkeBarChart;
     LinearLayout legendLayout;
     LinearLayout legendLayoutPieChart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_statistical);
         salesApi = RetrofitClient.getInstance(Utils.BASE_URL).create(SalesApi.class);
         initView();
@@ -67,117 +65,6 @@ public class StatisticalActivity extends AppCompatActivity {
         getDataChart();
         settingBarChart();
     }
-
-    private void settingBarChart() {
-        barChart.getDescription().setEnabled(false);
-        barChart.setDrawValueAboveBar(false);
-        XAxis xAxis = barChart.getXAxis();
-        xAxis.setAxisMinimum(1);
-        xAxis.setAxisMaximum(12);
-        YAxis yAxisRight = barChart.getAxisRight();
-        yAxisRight.setAxisMinimum(0);
-        YAxis yAxisLeft = barChart.getAxisLeft();
-        yAxisLeft.setAxisMinimum(0);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_statistical, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.revenue_statistics) {
-            getRevenueStatistical();
-            return true;
-        } else if (item.getItemId() == R.id.item_statistics) {
-            getDataChart();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-        private void getRevenueStatistical() {
-            List<String> productNames = new ArrayList<>();
-            legendLayout.setVisibility(View.VISIBLE);
-            legendLayoutPieChart.setVisibility(View.GONE);
-            txtThongke.setVisibility(View.GONE);
-            txtThongkeBarChart.setVisibility(View.VISIBLE);
-            barChart.setVisibility(View.VISIBLE);
-            pieChart.setVisibility(View.GONE);
-            compositeDisposable.add(salesApi.getStatisticalByMonth()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            statisticalModel -> {
-                                if (statisticalModel.isSuccess()) {
-                                    List<BarEntry> listData = new ArrayList<>();
-                                    for (int i = 0; i < statisticalModel.getResult().size(); i++) {
-                                        String name = statisticalModel.getResult().get(i).getName();
-                                        int Sum = statisticalModel.getResult().get(i).getSumMonth();
-                                        String month = statisticalModel.getResult().get(i).getMonth();
-                                        listData.add(new BarEntry(Integer.parseInt(month), Sum));
-                                        productNames.add(name);
-                                    }
-    
-                                    BarDataSet barDataSet = new BarDataSet(listData, "Thống kê");
-                                    barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-                                    barDataSet.setValueTextSize(14f);
-                                    barDataSet.setValueTextColor(Color.RED);
-    
-                                    BarData data = new BarData(barDataSet);
-    
-                                   // barChart.animateXY(2000, 2000);
-                                    barChart.setData(data);
-    
-                                    // Tạo chú thích dưới biểu đồ
-                                    Legend legend = barChart.getLegend();
-                                    legend.setForm(Legend.LegendForm.SQUARE);
-                                    legend.setFormSize(12f);
-                                    legend.setTextSize(14f);
-                                    legend.setTextColor(Color.BLACK);
-                                    legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
-                                    legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-                                    legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-                                    legend.setDrawInside(false);
-                                    legend.setXEntrySpace(10f);
-                                    legend.setYEntrySpace(10f);
-                                    legend.setYOffset(10f);
-
-                                    // Xóa các TextView hiện có trong legendLayout trước khi thêm mới
-                                    legendLayout.removeAllViews();
-
-                                    for (int i = 0; i < productNames.size(); i++) {
-                                        String productName = productNames.get(i);
-                                        int color = barDataSet.getColor(i);
-                                        String month = statisticalModel.getResult().get(i).getMonth();
-    
-                                        String text = "Tháng " +  month + " : " + productName;
-    
-                                        TextView textView = new TextView(this);
-                                        textView.setText(text);
-                                        textView.setTextColor(color);
-    
-                                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                                                LinearLayout.LayoutParams.WRAP_CONTENT,
-                                                LinearLayout.LayoutParams.WRAP_CONTENT
-                                        );
-    
-                                        layoutParams.setMargins(10, 10, 10, 10);
-                                        textView.setLayoutParams(layoutParams);
-    
-                                        legendLayout.addView(textView);
-                                    }
-                                    barChart.invalidate();
-                                }
-                            },
-                            throwable -> {
-                                Log.d("logg", throwable.getMessage());
-                            }
-                    ));
-        }
 
     private void getDataChart() {
         legendLayout.setVisibility(View.GONE);
@@ -263,6 +150,18 @@ public class StatisticalActivity extends AppCompatActivity {
                 ));
     }
 
+    private void settingBarChart() {
+        barChart.getDescription().setEnabled(false);
+        barChart.setDrawValueAboveBar(false);
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setAxisMinimum(1);
+        xAxis.setAxisMaximum(12);
+        YAxis yAxisRight = barChart.getAxisRight();
+        yAxisRight.setAxisMinimum(0);
+        YAxis yAxisLeft = barChart.getAxisLeft();
+        yAxisLeft.setAxisMinimum(0);
+    }
+
 
     private void ActionToolBar() {
         setSupportActionBar(toolbar);
@@ -286,8 +185,106 @@ public class StatisticalActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        compositeDisposable.clear();
-        super.onDestroy();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_statistical, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.revenue_statistics) {
+            getRevenueStatistical();
+            return true;
+        } else if (item.getItemId() == R.id.item_statistics) {
+            getDataChart();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void getRevenueStatistical() {
+        List<String> productSumMoney = new ArrayList<>();
+        legendLayout.setVisibility(View.VISIBLE);
+        legendLayoutPieChart.setVisibility(View.GONE);
+        txtThongke.setVisibility(View.GONE);
+        txtThongkeBarChart.setVisibility(View.VISIBLE);
+        barChart.setVisibility(View.VISIBLE);
+        pieChart.setVisibility(View.GONE);
+        compositeDisposable.add(salesApi.getStatisticalByMonth()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        statisticalModel -> {
+                            if (statisticalModel.isSuccess()) {
+                                List<BarEntry> listData = new ArrayList<>();
+                                for (int i = 0; i < statisticalModel.getResult().size(); i++) {
+                                    String name = statisticalModel.getResult().get(i).getName();
+                                    int Sum = statisticalModel.getResult().get(i).getSumMonth();
+                                    String month = statisticalModel.getResult().get(i).getMonth();
+                                    listData.add(new BarEntry(Integer.parseInt(month), Sum));
+                                    productSumMoney.add(Sum + "");
+                                }
+
+                                BarDataSet barDataSet = new BarDataSet(listData, "Thống kê");
+                                barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+                                barDataSet.setValueTextSize(14f);
+                                barDataSet.setValueTextColor(Color.RED);
+
+                                BarData data = new BarData(barDataSet);
+
+                                // barChart.animateXY(2000, 2000);
+                                barChart.setData(data);
+
+                                // Tạo chú thích dưới biểu đồ
+                                Legend legend = barChart.getLegend();
+                                legend.setForm(Legend.LegendForm.SQUARE);
+                                legend.setFormSize(12f);
+                                legend.setTextSize(14f);
+                                legend.setTextColor(Color.BLACK);
+                                legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+                                legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+                                legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+                                legend.setDrawInside(false);
+                                legend.setXEntrySpace(10f);
+                                legend.setYEntrySpace(10f);
+                                legend.setYOffset(10f);
+
+                                // Xóa các TextView hiện có trong legendLayout trước khi thêm mới
+                                legendLayout.removeAllViews();
+
+                                for (int i = 0; i < productSumMoney.size(); i++) {
+                                    String productSum = productSumMoney.get(i);
+                                    int color = barDataSet.getColor(i);
+                                    String month = statisticalModel.getResult().get(i).getMonth();
+                                    String covertSum = formatNumberWithDotSeparator(Integer.parseInt(productSum));
+                                    String text = " Tổng doanh thu của tháng " +  month +  " là : " + covertSum + " VNĐ";
+
+                                    TextView textView = new TextView(this);
+                                    textView.setText(text);
+                                    textView.setTextColor(color);
+
+                                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                                            LinearLayout.LayoutParams.WRAP_CONTENT
+                                    );
+
+                                    layoutParams.setMargins(10, 10, 10, 10);
+                                    textView.setLayoutParams(layoutParams);
+
+                                    legendLayout.addView(textView);
+                                }
+                                barChart.invalidate();
+                            }
+                        },
+                        throwable -> {
+                            Log.d("logg", throwable.getMessage());
+                        }
+                ));
+    }
+
+    public String formatNumberWithDotSeparator(int number) {
+        String formattedNumber = String.format("%,d", number);
+        return formattedNumber.replace(",", ".");
     }
 }
