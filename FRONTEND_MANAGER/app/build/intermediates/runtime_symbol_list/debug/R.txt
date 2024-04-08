@@ -3786,6 +3786,7 @@ int drawable avd_show_password 0x7f08007b
 int drawable background 0x7f08007c
 int drawable baseline_email_24 0x7f08007d
 int drawable baseline_lock_24 0x7f08007e
+int drawable baseline_notifications_active_24 0x7f08010c
 int drawable baseline_output_24 0x7f08007f
 int drawable bg_main 0x7f080080
 int drawable btn_checkbox_checked_mtrl 0x7f080081
@@ -4145,9 +4146,11 @@ int id edit_query 0x7f0900d6
 int id edtEmail_Forgot 0x7f0900d7
 int id edtEmail_signIn 0x7f0900d8
 int id edtID_AddVoucher 0x7f0900d9
+int id edtNoiDungTB 0x7f0902b7
 int id edtPassword_signIn 0x7f0900da
 int id edtPhanTramGiam_AddVoucher 0x7f0900db
 int id edtSoLuong_AddVoucher 0x7f0900dc
+int id edtTenTB 0x7f0902b8
 int id edtTenVoucher_AddVoucher 0x7f0900dd
 int id elastic 0x7f0900de
 int id embed 0x7f0900df
@@ -4491,6 +4494,8 @@ int id tb_orderManager 0x7f090230
 int id text 0x7f090231
 int id text2 0x7f090232
 int id textEnd 0x7f090233
+int id textInputLayout1 0x7f0902b9
+int id textInputLayout2 0x7f0902ba
 int id textSpacerNoButtons 0x7f090234
 int id textSpacerNoTitle 0x7f090235
 int id textStart 0x7f090236
@@ -4772,6 +4777,7 @@ int layout design_navigation_menu 0x7f0c003b
 int layout design_navigation_menu_item 0x7f0c003c
 int layout design_text_input_end_icon 0x7f0c003d
 int layout design_text_input_start_icon 0x7f0c003e
+int layout dialog_notify 0x7f0c0087
 int layout dp_example 0x7f0c003f
 int layout item_account_manager 0x7f0c0040
 int layout item_category_manager 0x7f0c0041

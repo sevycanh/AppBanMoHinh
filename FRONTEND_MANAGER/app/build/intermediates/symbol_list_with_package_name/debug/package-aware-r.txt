@@ -3787,6 +3787,7 @@ drawable avd_show_password
 drawable background
 drawable baseline_email_24
 drawable baseline_lock_24
+drawable baseline_notifications_active_24
 drawable baseline_output_24
 drawable bg_main
 drawable btn_checkbox_checked_mtrl
@@ -4146,9 +4147,11 @@ id edit_query
 id edtEmail_Forgot
 id edtEmail_signIn
 id edtID_AddVoucher
+id edtNoiDungTB
 id edtPassword_signIn
 id edtPhanTramGiam_AddVoucher
 id edtSoLuong_AddVoucher
+id edtTenTB
 id edtTenVoucher_AddVoucher
 id elastic
 id embed
@@ -4492,6 +4495,8 @@ id tb_orderManager
 id text
 id text2
 id textEnd
+id textInputLayout1
+id textInputLayout2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
@@ -4773,6 +4778,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_notify
 layout dp_example
 layout item_account_manager
 layout item_category_manager

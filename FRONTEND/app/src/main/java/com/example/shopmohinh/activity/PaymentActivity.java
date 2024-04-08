@@ -19,15 +19,20 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.model.Cart;
+import com.example.shopmohinh.model.NotiSendData;
 import com.example.shopmohinh.retrofit.ApiBanHang;
+import com.example.shopmohinh.retrofit.ApiPushNotification;
 import com.example.shopmohinh.retrofit.RetrofitClient;
+import com.example.shopmohinh.retrofit.RetrofitClientNoti;
 import com.example.shopmohinh.utils.Utils;
 import com.example.shopmohinh.zalo.CreateOrder;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -176,11 +181,45 @@ public class PaymentActivity extends AppCompatActivity {
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                             finish();
+
+                            pushNotiToAdmin();
                         },
                         throwable -> {
                             Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                 ));
+    }
+
+    private void pushNotiToAdmin() {
+            //getToken
+            compositeDisposable.add(apiBanHang.getRole(0)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            userModel -> {
+                                if (userModel.isSuccess()){
+                                    for (int i=0; i<userModel.getResult().size(); i++){
+                                        Map<String, String> data = new HashMap<>();
+                                        data.put("title", "Thông báo");
+                                        data.put("body", "Bạn có đơn hàng mới");
+                                        NotiSendData notiSendData = new NotiSendData(userModel.getResult().get(i).getToken(), data);
+                                        ApiPushNotification apiPushNotification = RetrofitClientNoti.getInstance().create(ApiPushNotification.class);
+                                        compositeDisposable.add(apiPushNotification.sendNotification(notiSendData)
+                                                .subscribeOn(Schedulers.io())
+                                                .observeOn(AndroidSchedulers.mainThread())
+                                                .subscribe(
+                                                        notiResponse -> {},
+                                                        throwable -> {
+                                                            Log.d("Logg", throwable.getMessage());
+                                                        }
+                                                ));
+                                    }
+                                }
+                            },
+                            throwable -> {
+                                Log.d("logg", throwable.getMessage());
+                            }
+                    ));
     }
 
     private void UpdateCouponApi(int id, int count){
