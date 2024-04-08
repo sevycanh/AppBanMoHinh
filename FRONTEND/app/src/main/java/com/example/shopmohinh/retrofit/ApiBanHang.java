@@ -98,6 +98,12 @@ public interface ApiBanHang {
             @Field("token") String token
     );
 
+    @POST("getrole.php")
+    @FormUrlEncoded
+    Observable<UserModel> getRole(
+            @Field("role") int role
+    );
+
     @POST("getcoin.php")
     @FormUrlEncoded
     Observable<UserModel> getCoin(

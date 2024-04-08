@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shopmohinh.R;
+import com.example.shopmohinh.model.Cart;
+import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
@@ -38,6 +40,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
@@ -138,7 +142,8 @@ public class LogInActivity extends AppCompatActivity {
         });
     }
 
-    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+    private final ActivityResultLauncher<Intent> activityResultLauncher
+            = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult o) {
 
@@ -174,6 +179,9 @@ public class LogInActivity extends AppCompatActivity {
                         userModel -> {
                             if (userModel.isSuccess()){
                                 Utils.user_current = userModel.getResult().get(0);
+                                if (Utils.carts.isEmpty()){
+                                    initCart();
+                                }
                                 //Luu lai thong tin nguoi dung
                                 Paper.book().write("user", userModel.getResult().get(0));
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -219,6 +227,10 @@ public class LogInActivity extends AppCompatActivity {
                                 Utils.user_current = userModel.getResult().get(0);
                                 //Luu lai thong tin nguoi dung
                                 Paper.book().write("user", userModel.getResult().get(0));
+
+                                if(Utils.carts.isEmpty()){
+                                    initCart();
+                                }
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -230,6 +242,36 @@ public class LogInActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                 ));
+    }
+    private void initCart() {
+        compositeDisposable.add(apiBanHang.getShoppingCart(Utils.user_current.getAccount_id())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        productModel -> {
+                            if (productModel.isSuccess()) {
+                                List<Product> productList = productModel.getResult();
+                                productToCart(productList);
+                            }
+                        },
+                        throwable -> {
+                            Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
+    }
+
+    private void productToCart(List<Product> productList) {
+        for (int i = 0; i < productList.size(); i++) {
+            Product productTemp = productList.get(i);
+            Cart cartTemp = new Cart();
+            cartTemp.setIdProduct(productTemp.getProduct_id());
+            cartTemp.setQuantity(productTemp.getQuantity());
+            cartTemp.setName(productTemp.getName());
+            int finalPrice = productTemp.getPrice() - (productTemp.getPrice() * productTemp.getCoupon() / 100);
+            cartTemp.setPrice(finalPrice);
+            cartTemp.setImage(productTemp.getMain_image());
+            Utils.carts.add(cartTemp);
+        }
     }
 
     @Override
