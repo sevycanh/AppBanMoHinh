@@ -142,7 +142,8 @@ public class LogInActivity extends AppCompatActivity {
         });
     }
 
-    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+    private final ActivityResultLauncher<Intent> activityResultLauncher
+            = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult o) {
 
@@ -178,6 +179,9 @@ public class LogInActivity extends AppCompatActivity {
                         userModel -> {
                             if (userModel.isSuccess()){
                                 Utils.user_current = userModel.getResult().get(0);
+                                if (Utils.carts.isEmpty()){
+                                    initCart();
+                                }
                                 //Luu lai thong tin nguoi dung
                                 Paper.book().write("user", userModel.getResult().get(0));
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

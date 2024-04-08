@@ -48,4 +48,10 @@ public interface ApiBanHang {
     Observable<MessageModel> deleteVoucher(
             @Field("id") int id
     );
+
+    @POST("getrole.php")
+    @FormUrlEncoded
+    Observable<UserModel> getRole(
+            @Field("role") int role
+    );
 }

@@ -150,8 +150,9 @@ public class HomeFragment extends Fragment {
     private void ActionViewFlipper() {
         List<SlideModel> ArrayQuangCao = new ArrayList<>();
         ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-42.jpg", null));
-        ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-40.jpg", null));
-        ArrayQuangCao.add(new SlideModel("https://treobangron.com.vn/wp-content/uploads/2022/09/banner-khuyen-mai-23.jpg", null));
+        ArrayQuangCao.add(new SlideModel("https://img.ws.mms.shopee.vn/d3dd580878c5f4a0835f1d5be95641a7", null));
+        ArrayQuangCao.add(new SlideModel("https://top10tphcm.com/wp-content/uploads/2023/02/shop-ban-mo-hinh-Figure-Store.jpg", null));
+        ArrayQuangCao.add(new SlideModel("https://dongnaireview.com/wp-content/uploads/2020/11/kp-figure.jpg", null));
         imageSlider.setImageList(ArrayQuangCao, ScaleTypes.CENTER_CROP);
         imageSlider.setOnTouchListener(touchListener);
     }

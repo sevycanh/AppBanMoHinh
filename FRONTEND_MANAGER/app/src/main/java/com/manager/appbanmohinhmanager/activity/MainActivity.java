@@ -4,23 +4,38 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.manager.appbanmohinhmanager.R;
+import com.manager.appbanmohinhmanager.model.NotiSendData;
 import com.manager.appbanmohinhmanager.model.User;
 import com.manager.appbanmohinhmanager.retrofit.ApiBanHang;
+import com.manager.appbanmohinhmanager.retrofit.ApiPushNotification;
 import com.manager.appbanmohinhmanager.retrofit.RetrofitClient;
+import com.manager.appbanmohinhmanager.retrofit.RetrofitClientNoti;
 import com.manager.appbanmohinhmanager.utils.Utils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -46,9 +61,21 @@ public class MainActivity extends AppCompatActivity {
             User user = Paper.book().read("user");
             Utils.user_current = user;
         }
+        allows();
         getToken();
         initView();
         initControll();
+    }
+
+    private void allows() {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+                if (ContextCompat.checkSelfPermission(MainActivity.this,
+                        Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{
+                            Manifest.permission.POST_NOTIFICATIONS
+                    }, 101);
+                }
+            }
     }
 
     protected void initControll() {
@@ -97,8 +124,65 @@ public class MainActivity extends AppCompatActivity {
         cardThongBao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showDialog();
             }
         });
+    }
+
+    private void showDialog() {
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_notify, null);
+        builder.setView(dialogView);
+        builder.setTitle("Thiết lập thông báo");
+        builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                TextInputEditText edtTitle = dialogView.findViewById(R.id.edtTenTB);
+                TextInputEditText edtContent = dialogView.findViewById(R.id.edtNoiDungTB);
+                String title = edtTitle.getText().toString();
+                String content = edtContent.getText().toString();
+
+                notifyToUser(title, content);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    private void notifyToUser(String title, String content) {
+        compositeDisposable.add(apiBanHang.getRole(1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        userModel -> {
+                            if (userModel.isSuccess()){
+                                for (int i=0; i<userModel.getResult().size(); i++){
+                                    Map<String, String> data = new HashMap<>();
+                                    data.put("title", title);
+                                    data.put("body", content);
+                                    NotiSendData notiSendData = new NotiSendData(userModel.getResult().get(i).getToken(), data);
+                                    ApiPushNotification apiPushNotification = RetrofitClientNoti.getInstance().create(ApiPushNotification.class);
+                                    compositeDisposable.add(apiPushNotification.sendNotification(notiSendData)
+                                            .subscribeOn(Schedulers.io())
+                                            .observeOn(AndroidSchedulers.mainThread())
+                                            .subscribe(
+                                                    notiResponse -> {},
+                                                    throwable -> {
+                                                        Log.d("Logg", throwable.getMessage());
+                                                    }
+                                            ));
+                                }
+                            }
+                        },
+                        throwable -> {
+                            Log.d("logg", throwable.getMessage());
+                        }
+                ));
     }
 
     private void getToken() {
