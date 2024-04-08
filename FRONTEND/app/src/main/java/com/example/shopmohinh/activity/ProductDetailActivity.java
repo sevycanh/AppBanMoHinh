@@ -133,14 +133,17 @@ public class ProductDetailActivity extends AppCompatActivity {
         imgCart = findViewById(R.id.imgCart_CTSP);
         product = (Product) getIntent().getSerializableExtra("productDetail");
         txtName.setText(product.getName());
-        txtPrice.setText(String.valueOf(formatNumberWithDotSeparator(product.getPrice())) + " VNĐ");
 
         //Calculator present product * price product
         int price = product.getPrice();
         int discount = product.getPrice() * product.getCoupon() / 100;
         int finalPrice = price - discount;
-
-        txtSalePrice.setText(formatNumberWithDotSeparator(finalPrice)  + " VNĐ");
+        txtSalePrice.setText(formatNumberWithDotSeparator(finalPrice) + " VNĐ");
+        if (product.getCoupon() > 0) {
+            txtPrice.setText(String.valueOf(formatNumberWithDotSeparator(product.getPrice())) + " VNĐ");
+        } else {
+            txtPrice.setText("");
+        }
         tvStock.setText(String.valueOf(product.getQuantity()));
         txtDescription.setText(product.getDescription());
 
