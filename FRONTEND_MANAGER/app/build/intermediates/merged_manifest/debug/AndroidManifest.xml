@@ -39,9 +39,7 @@
         android:testOnly="true"
         android:theme="@style/Theme.AppBanMoHinhManager"
         android:usesCleartextTraffic="true" >
-        <activity
-            android:name="com.manager.appbanmohinhmanager.activity.NotifyActivity"
-            android:exported="false" />
+        <activity android:name="com.manager.appbanmohinhmanager.activity.ThongKeActivity" />
         <activity
             android:name="com.manager.appbanmohinhmanager.activity.AccountManagerActivity"
             android:exported="false" />
@@ -53,9 +51,6 @@
             android:exported="false" />
         <activity
             android:name="com.manager.appbanmohinhmanager.activity.AccountDetailManagerActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.manager.appbanmohinhmanager.activity.StatisticalActivity"
             android:exported="false" />
         <activity
             android:name="com.manager.appbanmohinhmanager.activity.AddVoucherActivity"

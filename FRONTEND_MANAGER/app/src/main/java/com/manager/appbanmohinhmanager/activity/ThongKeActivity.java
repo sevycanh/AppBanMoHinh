@@ -219,7 +219,6 @@ public class ThongKeActivity extends AppCompatActivity {
                             if (statisticalModel.isSuccess()) {
                                 List<BarEntry> listData = new ArrayList<>();
                                 for (int i = 0; i < statisticalModel.getResult().size(); i++) {
-                                    String name = statisticalModel.getResult().get(i).getName();
                                     int Sum = statisticalModel.getResult().get(i).getSumMonth();
                                     String month = statisticalModel.getResult().get(i).getMonth();
                                     listData.add(new BarEntry(Integer.parseInt(month), Sum));
@@ -275,10 +274,12 @@ public class ThongKeActivity extends AppCompatActivity {
                                     legendLayout.addView(textView);
                                 }
                                 barChart.invalidate();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Lỗi tải dữ liệu", Toast.LENGTH_SHORT).show();
                             }
                         },
                         throwable -> {
-                            Log.d("logg", throwable.getMessage());
+                            Log.d("thongke", throwable.getMessage());
                         }
                 ));
     }

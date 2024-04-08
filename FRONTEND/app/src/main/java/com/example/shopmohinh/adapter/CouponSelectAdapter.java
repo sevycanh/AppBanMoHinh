@@ -17,6 +17,7 @@ import com.example.shopmohinh.Interface.OnItemClickListener;
 import com.example.shopmohinh.R;
 //import com.example.shopmohinh.activity.PaymentActivity;
 import com.example.shopmohinh.model.Coupon;
+import com.google.android.material.card.MaterialCardView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -88,7 +89,7 @@ public class CouponSelectAdapter extends RecyclerView.Adapter<CouponSelectAdapte
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        CardView coupon_item;
+        MaterialCardView coupon_item;
         TextView txtCouponName_Item;
         TextView txtCouponPercent_Item;
         TextView txtCouponExpireDate_Item;

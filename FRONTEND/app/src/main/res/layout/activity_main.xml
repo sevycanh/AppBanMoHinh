@@ -36,7 +36,7 @@
 
                     <SearchView
                         android:id="@+id/searchHomePage"
-                        android:layout_width="@dimen/_220sdp"
+                        android:layout_width="@dimen/_200sdp"
                         android:layout_height="wrap_content"
                         android:background="@color/main"
                         android:iconifiedByDefault="false"

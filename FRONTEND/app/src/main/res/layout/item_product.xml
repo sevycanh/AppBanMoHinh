@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="@dimen/_130sdp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/_10sdp"
     android:layout_marginTop="@dimen/_10sdp"
-    android:layout_marginRight="@dimen/_10sdp"
     android:elevation="8dp"
     app:cardCornerRadius="5dp">
 
@@ -20,13 +19,14 @@
 
             <ImageView
                 android:id="@+id/item_image"
-                android:layout_width="@dimen/_130sdp"
-                android:layout_height="140dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
                 android:padding="@dimen/_5sdp"
                 android:src="@drawable/ic_launcher_background" />
 
             <TextView
                 android:id="@+id/item_id"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -74,4 +74,4 @@
     </FrameLayout>
 
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

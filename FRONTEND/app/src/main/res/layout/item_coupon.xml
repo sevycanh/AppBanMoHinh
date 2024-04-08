@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/_5sdp"
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_3sdp"
                 android:text="Coupon Giam 15% Don Hang"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_10sdp"
                 android:textStyle="bold"/>
 
             <TextView
@@ -62,8 +62,5 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
-
-
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

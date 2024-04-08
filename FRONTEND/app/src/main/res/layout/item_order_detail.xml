@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_100sdp"
+    android:layout_height="@dimen/_80sdp"
     android:layout_margin="@dimen/_2sdp">
 
     <LinearLayout
@@ -12,7 +12,7 @@
         <ImageView
             android:id="@+id/item_imgV_order_detail"
             android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_90sdp"
+            android:layout_height="@dimen/_70sdp"
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_3sdp"
             android:src="@drawable/logo" />
@@ -27,8 +27,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
+                android:maxLines="2"
                 android:text="productName"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_10ssp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -42,14 +43,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Số lượng: "
-                    android:textSize="@dimen/_10sdp" />
+                    android:textSize="@dimen/_10ssp" />
 
                 <TextView
                     android:id="@+id/item_quantity_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="X"
-                    android:textSize="@dimen/_10sdp" />
+                    android:textSize="@dimen/_10ssp" />
             </LinearLayout>
 
             <LinearLayout
@@ -60,8 +61,8 @@
                 <TextView
                     android:id="@+id/item_productPrice_orderdetail"
                     android:layout_width="match_parent"
+                    android:visibility="invisible"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_12sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:gravity="end"
                     android:text="XXXXXXXX VND" />
@@ -70,7 +71,6 @@
                     android:id="@+id/tv_total_orderdetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_12sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:gravity="end"
                     android:text="XXXXXXXX VND"
@@ -78,4 +78,4 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

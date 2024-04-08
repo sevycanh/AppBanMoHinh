@@ -28,6 +28,7 @@ import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -132,7 +133,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView tv_order_id, tv_total, tv_detail, tv_order_status, tv_product_name, tv_price, tv_productInOrder;
-        private CardView cardOrder;
+        private MaterialCardView cardOrder;
         private ImageView imv_Product;
 
         public MyViewHolder(@NonNull View itemView) {

@@ -170,9 +170,6 @@
             android:id="@+id/recycleview_phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp" />
-
+            android:layout_marginEnd="@dimen/_10sdp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
