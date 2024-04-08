@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_wheel"
     tools:context=".activity.SpinCouponActivity">
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarSpinCoupon"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -14,7 +14,7 @@
         app:title="Vòng quay coupon"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         app:cardCornerRadius="@dimen/_18ssp"
         app:layout_constraintTop_toBottomOf="@id/toolbarSpinCoupon"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <ImageView
         android:id="@+id/imgSpinCoupon"

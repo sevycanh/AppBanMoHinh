@@ -1,7 +1,10 @@
 package com.example.shopmohinh.activity;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +14,8 @@ import com.example.shopmohinh.R;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -28,6 +33,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -47,10 +53,12 @@ import com.example.shopmohinh.retrofit.ApiBanHang;
 
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +69,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
-    Toolbar toolBar;
+    MaterialToolbar toolBar;
     NavigationView navigationView;
     ListView listView;
     DrawerLayout drawerLayout;
@@ -74,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
     FrameLayout frameLayout;
     Boolean checkViewSearch = true;
 
+    NotificationBadge badge_main;
+    ImageView imgCart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,15 +96,20 @@ public class MainActivity extends AppCompatActivity {
             User user = Paper.book().read("user");
             Utils.user_current = user;
         }
+
+        allows(); // cap quyen
         Anhxa();
         ActionBar();
         setSearchView();
         handleSearchClicked();
         getLoaiSanPham();
         loadBottomNavView();
-
         getToken();
         checkIn();
+        initControl();
+        if(Utils.carts!=null){
+            badge_main.setText(String.valueOf(Utils.carts.size()));
+        }
 
         if (isConnected(this)) {
             getLoaiSanPham();
@@ -102,7 +118,19 @@ public class MainActivity extends AppCompatActivity {
         }
         loadFragment(new HomeFragment(), true);
     }
-        private void loadBottomNavView(){
+
+    private void allows() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            if (ContextCompat.checkSelfPermission(MainActivity.this,
+                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{
+                        Manifest.permission.POST_NOTIFICATIONS
+                }, 101);
+            }
+        }
+    }
+
+    private void loadBottomNavView(){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -128,6 +156,20 @@ public class MainActivity extends AppCompatActivity {
 
         });
         }
+
+    private void initControl() {
+        imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewCart();
+            }
+        });
+    }
+
+    private void viewCart() {
+        Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+        startActivity(intent);
+    }
 
     private void handleSearchClicked(){
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
@@ -171,19 +213,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-//        compositeDisposable.add(apiBanHang.gettoken(1)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(
-//                        userModel -> {
-//                            if (userModel.isSuccess()){
-//                                Utils.ID_RECEIVED = String.valueOf(userModel.getResult().get(0).getId());
-//                            }
-//                        }, throwable -> {
-//
-//                        }
-//                ));
     }
 
     private void setSearchView() {
@@ -204,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Anhxa() {
+        imgCart = findViewById(R.id.imgCart_main);
         toolBar = findViewById(R.id.toolBarHomePage);
         navigationView = findViewById(R.id.navigationHomePage);
         listView = findViewById(R.id.listViewHomePage);
@@ -213,9 +243,17 @@ public class MainActivity extends AppCompatActivity {
         mangLoaiSp = new ArrayList<>();
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-
+        badge_main = findViewById(R.id.menu_quantity_main);
+        if(Utils.carts!=null){
+            badge_main.setText(String.valueOf(Utils.carts.size()));
+        }
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        badge_main.setText(String.valueOf(Utils.carts.size()));
+    }
 
     private boolean isConnected(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

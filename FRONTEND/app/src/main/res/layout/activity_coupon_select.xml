@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".activity.CouponSelectActivity">
 
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarCouponSelect"
         app:title="Voucher Select"
         android:background="@color/main"

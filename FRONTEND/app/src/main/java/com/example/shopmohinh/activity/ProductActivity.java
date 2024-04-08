@@ -8,12 +8,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -26,6 +28,8 @@ import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.retrofit.SalesApi;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +41,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ProductActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     RecyclerView recyclerView;
     SalesApi salesApi;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -48,17 +52,16 @@ public class ProductActivity extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     Handler handler = new Handler();
     boolean isLoading = false;
-
     ApiBanHang apiBanHang;
-
     Product productTemp;
-
     LinearLayout linearLayout;
     Button btnLienQuan, btnMoiNhat, btnKhuyenMai, btnGia;
     View viewLienQuan, viewMoiNhat, viewKhuyenMai, viewGia;
     Drawable icon_down, icon_up, icon_default;
     String typeGlobal = "lienquan";
     String sortGlobal = "";
+    NotificationBadge badge_product;
+    ImageView imgCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +77,24 @@ public class ProductActivity extends AppCompatActivity {
             User user = Paper.book().read("user");
             Utils.user_current = user;
         }
-        initCart();
+//        initCart();
         clearButtonView();
         handleButtonBar();
+        initControl();
+    }
+
+    private void initControl() {
+        imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewCart();
+            }
+        });
+    }
+
+    private void viewCart() {
+        Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+        startActivity(intent);
     }
 
     private void clearButtonView() {
@@ -280,6 +298,7 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     private void Mapping() {
+        imgCart = findViewById(R.id.imgCart_SP);
         toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.recycleview_phone);
         linearLayoutManager = new GridLayoutManager(this, 2);
@@ -300,12 +319,21 @@ public class ProductActivity extends AppCompatActivity {
         viewMoiNhat = findViewById(R.id.viewMoiNhatProduct);
         viewKhuyenMai = findViewById(R.id.viewKhuyenMaiProduct);
         viewGia = findViewById(R.id.viewGiaProduct);
-
+        badge_product = findViewById(R.id.menu_quantity_product);
+        if(Utils.carts!=null){
+            badge_product.setText(String.valueOf(Utils.carts.size()));
+        }
     }
 
     @Override
     protected void onDestroy() {
         compositeDisposable.clear();
         super.onDestroy();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        badge_product.setText(String.valueOf(Utils.carts.size()));
     }
 }

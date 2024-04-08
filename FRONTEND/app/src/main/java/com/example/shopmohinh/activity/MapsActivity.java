@@ -17,9 +17,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.appbar.MaterialToolbar;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     GoogleMap googleMap;
     SupportMapFragment mapFragment;
     Button btnXemMap;

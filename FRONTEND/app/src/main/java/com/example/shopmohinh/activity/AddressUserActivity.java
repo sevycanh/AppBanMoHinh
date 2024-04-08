@@ -16,6 +16,7 @@ import com.example.shopmohinh.R;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import io.paperdb.Paper;
@@ -24,7 +25,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AddressUserActivity extends AppCompatActivity {
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     TextInputEditText edtUsername_Order,edtPhone_Order,edtAddress_Order;
     Button btnSaveAddress;
 
@@ -81,7 +82,12 @@ public class AddressUserActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         messageModel -> {
-                            Toast.makeText(getApplicationContext(), messageModel.getMessage(), Toast.LENGTH_SHORT).show();
+                            if (messageModel.isSuccess()){
+                                Toast.makeText(getApplicationContext(), "Thành công", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Sửa thất bại", Toast.LENGTH_SHORT).show();
+                            }
+//                            Toast.makeText(getApplicationContext(), messageModel.getMessage(), Toast.LENGTH_SHORT).show();
                             finish();
                         },
                         throwable -> {

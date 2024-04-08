@@ -33,13 +33,14 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CheckInActivity extends AppCompatActivity {
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     TextView txtCoin, txtCheckIn;
     Button btnCheckIn;
     CompositeDisposable compositeDisposable = new CompositeDisposable();

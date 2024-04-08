@@ -1,11 +1,11 @@
-package com.example.shopmohinh.model;
+package com.manager.appbanmohinhmanager.model;
 
 import java.util.List;
 
-public class SanPhamMoiModel {
+public class ItemOrderDetailManagerModel {
     boolean success;
     String message;
-    List<SanPhamMoi> result;
+    List<ItemOrderDetailManager> result;
 
     public boolean isSuccess() {
         return success;
@@ -23,11 +23,11 @@ public class SanPhamMoiModel {
         this.message = message;
     }
 
-    public List<SanPhamMoi> getResult() {
+    public List<ItemOrderDetailManager> getResult() {
         return result;
     }
 
-    public void setResult(List<SanPhamMoi> result) {
+    public void setResult(List<ItemOrderDetailManager> result) {
         this.result = result;
     }
 }

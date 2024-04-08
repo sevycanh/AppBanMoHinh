@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +20,25 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+
             android:name=".activity.ThongKeActivity"
+
+            android:name=".activity.NotifyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AccountManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.OrderDetailManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.OrderManagerAcitvity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AccountDetailManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.StatisticalActivity"
             android:exported="false" />
         <activity
             android:name=".activity.AddVoucherActivity"
@@ -63,6 +82,14 @@
         <activity
             android:name=".activity.SplashActivity"
             android:exported="true" />
+
+        <service
+            android:name=".service.FirebaseMessagerReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

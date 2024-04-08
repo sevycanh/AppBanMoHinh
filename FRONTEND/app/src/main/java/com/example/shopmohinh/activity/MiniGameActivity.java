@@ -29,6 +29,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.Random;
 
@@ -37,7 +38,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MiniGameActivity extends AppCompatActivity {
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     TextView txtCoin, txtLuckyBox;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;

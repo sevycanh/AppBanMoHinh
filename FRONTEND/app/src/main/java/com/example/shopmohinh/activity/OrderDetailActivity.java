@@ -23,6 +23,7 @@ import com.example.shopmohinh.model.ItemOrderDetail;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.material.appbar.MaterialToolbar;
 
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class OrderDetailActivity extends AppCompatActivity {
-    Toolbar toolBar_OrderDetail;
+    MaterialToolbar toolBar_OrderDetail;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
 

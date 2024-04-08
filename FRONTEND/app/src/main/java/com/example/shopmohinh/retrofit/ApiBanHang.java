@@ -2,12 +2,10 @@ package com.example.shopmohinh.retrofit;
 
 import com.example.shopmohinh.model.CartModel;
 import com.example.shopmohinh.model.CouponModel;
-import com.example.shopmohinh.model.InforDetail;
 import com.example.shopmohinh.model.InforDetailModel;
 import com.example.shopmohinh.model.ItemOrderDetailModel;
 import com.example.shopmohinh.model.MessageModel;
 
-import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -15,24 +13,12 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 import com.example.shopmohinh.model.LoaiSPModel;
-import com.example.shopmohinh.model.MessageModel;
-import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.model.ProductModel;
-import com.example.shopmohinh.model.Order;
 import com.example.shopmohinh.model.OrderModel;
-import com.example.shopmohinh.model.SanPhamMoiModel;
-
-import io.reactivex.rxjava3.core.Observable;
-import retrofit2.http.GET;
 
 import com.example.shopmohinh.model.SanPhamSearchModel;
 import com.example.shopmohinh.model.UserModel;
 
-import java.sql.Date;
-
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ApiBanHang {
@@ -112,6 +98,12 @@ public interface ApiBanHang {
             @Field("token") String token
     );
 
+    @POST("getrole.php")
+    @FormUrlEncoded
+    Observable<UserModel> getRole(
+            @Field("role") int role
+    );
+
     @POST("getcoin.php")
     @FormUrlEncoded
     Observable<UserModel> getCoin(
@@ -179,17 +171,16 @@ public interface ApiBanHang {
 
     @POST("getsanphammoi.php")
     @FormUrlEncoded
-    Observable<SanPhamMoiModel> getSanPhamMoi(
+    Observable<ProductModel> getSanPhamMoi(
             @Field("page") int page
     );
 
     @POST("searchsp.php")
     @FormUrlEncoded
-    Observable<SanPhamSearchModel> searchSp(
+    Observable<ProductModel> searchSp(
             @Field("type") String type,
             @Field("tensp") String tensp
     );
-
 
     @POST("get_coupon.php")
     @FormUrlEncoded

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.icu.text.DecimalFormat;
 import android.icu.text.DecimalFormatSymbols;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,10 @@ import com.example.shopmohinh.model.User;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -63,7 +68,26 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Cart gioHang = gioHangList.get(position);
         holder.txtTenSanPhamGioHang.setText(gioHang.getName());
-        Glide.with(context).load(gioHang.getImage()).into(holder.imageSanPhamGioHang);
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageReference = storage.getReference()
+                .child("/images")
+                .child(gioHang.getImage());
+
+        storageReference.getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Glide.with(context)
+                                .load(uri)
+                                .into(holder.imageSanPhamGioHang);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Download Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
         holder.txtSoLuongSanPhamGioHang.setText(gioHang.getQuantity() +"");
 
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());

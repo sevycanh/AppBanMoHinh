@@ -3,6 +3,7 @@ package com.example.shopmohinh.adapter;
 import static com.example.shopmohinh.utils.NumberWithDotSeparator.formatNumberWithDotSeparator;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -16,20 +17,24 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.shopmohinh.Interface.ItemClickListener;
 import com.example.shopmohinh.R;
+import com.example.shopmohinh.activity.ProductDetailActivity;
+import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.model.SanPhamSearch;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class SpSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    List<SanPhamSearch> array;
+    List<Product> array;
 
-    public SpSearchAdapter(Context context, List<SanPhamSearch> array) {
+    public SpSearchAdapter(Context context, List<Product> array) {
         this.context = context;
         this.array = array;
     }
@@ -41,11 +46,10 @@ public class SpSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return new MyViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         MyViewHolder myViewHolder = (MyViewHolder) holder;
-        SanPhamSearch sanPhamSearch = array.get(position);
+        Product sanPhamSearch = array.get(position);
         myViewHolder.txtTen.setText(String.valueOf(sanPhamSearch.getName()));
         if (sanPhamSearch.getCoupon() > 0){
             myViewHolder.txtGiaChuaKM.setText(formatNumberWithDotSeparator(sanPhamSearch.getPrice()) + " VNĐ");
@@ -77,6 +81,18 @@ public class SpSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         Toast.makeText(context, "Download Failed", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+        myViewHolder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onClick(View view, int pos, boolean isLongClick) {
+                if (!isLongClick) {
+                    Intent intent = new Intent(context, ProductDetailActivity.class);
+                    intent.putExtra("productDetail", (Serializable) sanPhamSearch);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override
@@ -84,9 +100,11 @@ public class SpSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return array.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView txtGiaChuaKM, txtGia, txtTen;
         ImageView imgItem;
+
+        private ItemClickListener itemClickListener;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -95,6 +113,16 @@ public class SpSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             txtGia = itemView.findViewById(R.id.sp_price_search);
             txtTen = itemView.findViewById(R.id.sp_name_search);
             imgItem = itemView.findViewById(R.id.sp_image_search);
+            itemView.setOnClickListener(this);
+        }
+
+        public void setItemClickListener(ItemClickListener itemClickListener) {
+            this.itemClickListener = itemClickListener;
+        }
+
+        @Override
+        public void onClick(View view) {
+            itemClickListener.onClick(view, getAdapterPosition(), false);
         }
     }
 }

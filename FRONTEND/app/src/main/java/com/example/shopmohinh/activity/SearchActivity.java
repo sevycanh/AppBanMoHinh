@@ -12,16 +12,20 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.adapter.SpSearchAdapter;
+import com.example.shopmohinh.model.Product;
 import com.example.shopmohinh.model.SanPhamSearch;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.nex3z.notificationbadge.NotificationBadge;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +35,12 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SearchActivity extends AppCompatActivity {
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     LinearLayout linearLayout;
     RecyclerView recyclerView;
     SearchView searchView;
     SpSearchAdapter searchAdapter;
-    List<SanPhamSearch> mangSpSearch;
+    List<Product> mangSpSearch;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiBanHang apiBanHang;
     GridLayoutManager gridLayoutManager;
@@ -46,7 +50,8 @@ public class SearchActivity extends AppCompatActivity {
     Button btnLienQuan, btnMoiNhat, btnKhuyenMai, btnGia;
     View viewLienQuan, viewMoiNhat, viewKhuyenMai, viewGia;
     Drawable icon_down, icon_up, icon_default;
-
+    NotificationBadge badge_search;
+    ImageView imgCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,7 @@ public class SearchActivity extends AppCompatActivity {
         actionToolBar();
         searchView.requestFocus();
         handleSearch();
+        initControl();
     }
     private void clearButtonView(){
         btnGia.setCompoundDrawablesWithIntrinsicBounds(null, null, icon_default, null);
@@ -68,6 +74,20 @@ public class SearchActivity extends AppCompatActivity {
         btnKhuyenMai.setTextColor(Color.BLACK);
         viewGia.setVisibility(View.GONE);
         btnGia.setTextColor(Color.BLACK);
+    }
+
+    private void initControl() {
+        imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewCart();
+            }
+        });
+    }
+
+    private void viewCart() {
+        Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+        startActivity(intent);
     }
 
     private void handleSearch(){
@@ -156,6 +176,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void AnhXa(){
+        imgCart = findViewById(R.id.imgCart_search);
         icon_default = getResources().getDrawable(R.drawable.default_arrow);
         icon_down = getResources().getDrawable(R.drawable.arrow_down);
         icon_up = getResources().getDrawable(R.drawable.arrow_up);
@@ -174,10 +195,20 @@ public class SearchActivity extends AppCompatActivity {
         gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         mangSpSearch = new ArrayList<>();
+        badge_search = findViewById(R.id.menu_quantity_search);
+        if(Utils.carts!=null){
+            badge_search.setText(String.valueOf(Utils.carts.size()));
+        }
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
     }
 
-    private void getSanPhamSearch(String type, String tensp){
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        badge_search.setText(String.valueOf(Utils.carts.size()));
+    }
+
+    private void getSanPhamSearch(String type, String tensp) {
         compositeDisposable.add(apiBanHang.searchSp(type, tensp)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
