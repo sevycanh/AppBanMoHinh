@@ -62,6 +62,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void initCart() {
+        Utils.carts.clear();
         compositeDisposable.add(apiBanHang.getShoppingCart(Utils.user_current.getAccount_id())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
