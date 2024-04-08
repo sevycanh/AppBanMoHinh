@@ -1,5 +1,6 @@
 R_DEF: Internal format may change without notice
 local
+array changeOrderStatus
 array sortOrderOptions
 color black
 color green
@@ -129,6 +130,7 @@ id recylerView_OrderDetail
 id remove_item
 id revenue_statistics
 id single_image_update
+id sp_order_status_detail
 id sp_sortOrder
 id spinnerAdd
 id spinnerUpdateProduct
@@ -239,6 +241,7 @@ layout item_order_detail_manager
 layout item_order_manager
 layout item_product_manager
 layout item_voucher_manager
+layout spinner_status
 menu menu_main
 menu menu_statistical
 mipmap ic_launcher

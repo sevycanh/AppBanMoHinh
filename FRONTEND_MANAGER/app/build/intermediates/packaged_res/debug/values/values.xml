@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="changeOrderStatus">
+        <item>Chưa xác nhận</item>
+        <item>Đã xác nhận</item>
+        <item>Đang giao</item>
+        <item>Giao thành công</item>
+        <item>Hủy đơn</item>
+    </string-array>
     <string-array name="sortOrderOptions">
         <item>Tất cả</item>
         <item>Chưa xác nhận</item>

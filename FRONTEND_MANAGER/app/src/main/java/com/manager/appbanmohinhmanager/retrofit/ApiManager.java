@@ -91,18 +91,20 @@ public interface ApiManager {
     @GET("xemdonhang.php")
     Observable<InforDetailManagerModel> getInforDetail(@Query("orderId") int orderID);
 
-    @POST("updateOrderStatus.php")
+    @POST("updateOrderStatusManger.php")
     @FormUrlEncoded
-    Observable<InforDetailManagerModel> updateOrderStatus(@Field("orderId") int orderID);
+    Observable<InforDetailManagerModel> updateOrderStatusManager(@Field("orderId") int orderID, @Field("order_status") int order_status);
 
     @GET("getItemOrderDetail.php")
     Observable<ItemOrderDetailManagerModel> getItemOrderDetail(@Query("orderId") int orderID);
 
     @GET("searchOrderbyID.php")
     Observable<OrderManagerModel> searchOrderbyID(@Query("order_status") int order_status, @Query("order_id") String order_id);
+
     @POST("getAccountManager.php")
     @FormUrlEncoded
     Observable<AccountModel> getAccountManager(@Field("status") int status);
+
     @POST("updateAccountStatus.php")
     @FormUrlEncoded
     Observable<AccountModel> updateAccountStatus(@Field("status") int status, @Field("accountid") int accountid);
