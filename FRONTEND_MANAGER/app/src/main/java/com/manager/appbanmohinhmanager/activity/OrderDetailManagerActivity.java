@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +42,10 @@ public class OrderDetailManagerActivity extends AppCompatActivity {
     private List<ItemOrderDetailManager> itemOrderDetailList;
     private OrderDetailManagerAdapter orderDetailAdapter;
     private RecyclerView orderDetailRecylerView;
-    private Button btn_CancelOrder;
+    private Button btn_changeStatus;
+    private Spinner sp_order_detail;
+    private int status;
+    private int order_id_Detail;
 
 
     @Override
@@ -49,12 +55,12 @@ public class OrderDetailManagerActivity extends AppCompatActivity {
         AnhXa();
         actionToolBar_OrderDetail();
         setDetailInformation();
-        btn_CancelOrder.setOnClickListener(new View.OnClickListener() {
+        btn_changeStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
                 int order_id_Detail = Integer.parseInt(intent.getStringExtra("order_id"));
-                cancelOrder(order_id_Detail);
+                changeStatus(order_id_Detail, status);
             }
         });
     }
@@ -71,8 +77,9 @@ public class OrderDetailManagerActivity extends AppCompatActivity {
         tv_payment_detail = findViewById(R.id.tv_payment_method_detail);
         tv_total_detail = findViewById(R.id.tv_total_detail);
         orderDetailRecylerView = findViewById(R.id.recylerView_OrderDetail);
-        btn_CancelOrder = findViewById(R.id.btn_CancelOrder);
+        btn_changeStatus = findViewById(R.id.btn_CancelOrder);
         tv_email = findViewById(R.id.tv_email_detail);
+        sp_order_detail = findViewById(R.id.sp_order_status_detail);
     }
 
     private void actionToolBar_OrderDetail() {
@@ -89,7 +96,7 @@ public class OrderDetailManagerActivity extends AppCompatActivity {
 
     private void setDetailInformation() {
         Intent intent = getIntent();
-        int order_id_Detail = Integer.parseInt(intent.getStringExtra("order_id"));
+        order_id_Detail = Integer.parseInt(intent.getStringExtra("order_id"));
         getItemOrderDetail(order_id_Detail);
         String name = intent.getStringExtra("account_name");
         int order_status = Integer.parseInt(intent.getStringExtra("order_status"));
@@ -98,11 +105,10 @@ public class OrderDetailManagerActivity extends AppCompatActivity {
         String date = intent.getStringExtra("date");
         String phone = intent.getStringExtra("phone");
         String total = intent.getStringExtra("total");
-        String email =  intent.getStringExtra("email");
+        String email = intent.getStringExtra("email");
         tv_order_id_detail.setText(String.valueOf(order_id_Detail));
         tv_name_detail.setText(name);
         checkOrderStatus(order_status);
-        tv_order_status_detail.setText(checkOrderStatus(order_status));
         tv_payment_detail.setText(payment);
         tv_address_detail.setText(address);
         tv_date_detail.setText(date);
@@ -111,35 +117,41 @@ public class OrderDetailManagerActivity extends AppCompatActivity {
         tv_email.setText(email);
     }
 
-    private String checkOrderStatus(int order_status) {
-        String status = "";
+    private void checkOrderStatus(int order_status) {
         if (order_status == 1) {
-            status = "Chưa xác nhận";
-            tv_order_status_detail.setTextColor(ContextCompat.getColor(this, R.color.grey));
+            tv_order_status_detail.setText("Chưa xác nhận");
+            tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.grey));
+            enableBtn();
         } else if (order_status == 2) {
-            status = "Đã xác nhận";
-            shutdownBtnCancel();
+            tv_order_status_detail.setText("Đã xác nhận");
+            tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
+            enableBtn();
         } else if (order_status == 3) {
-            status = "Đang giao";
-            tv_order_status_detail.setTextColor(ContextCompat.getColor(this, R.color.yellow));
-            shutdownBtnCancel();
-
+            tv_order_status_detail.setText("Đang giao");
+            tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow));
+            enableBtn();
         } else if (order_status == 4) {
-            status = "Giao thành công";
-            tv_order_status_detail.setTextColor(ContextCompat.getColor(this, R.color.green));
-            shutdownBtnCancel();
-
+            tv_order_status_detail.setText("Giao thành công");
+            tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+            enableBtn();
         } else if (order_status == 5) {
-            status = "Đã hủy";
-            tv_order_status_detail.setTextColor(ContextCompat.getColor(this, R.color.red));
-            shutdownBtnCancel();
+            tv_order_status_detail.setText("Đã hủy");
+            tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
+            shutdownBtn();
         }
-        return status;
     }
 
-    private void shutdownBtnCancel() {
-        btn_CancelOrder.setEnabled(false);
-        btn_CancelOrder.setBackgroundColor(ContextCompat.getColor(this, R.color.grey));
+
+    private void shutdownBtn() {
+        btn_changeStatus.setText("Chuyển trạng thái");
+        btn_changeStatus.setEnabled(false);
+        btn_changeStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.grey));
+    }
+
+    private void enableBtn() {
+        btn_changeStatus.setText("Chuyển trạng thái");
+        btn_changeStatus.setEnabled(true);
+        btn_changeStatus.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
     }
 
     private void getItemOrderDetail(int orderId) {
@@ -160,18 +172,33 @@ public class OrderDetailManagerActivity extends AppCompatActivity {
                 ));
     }
 
-    private void cancelOrder(int order_id) {
+    private void changeStatus(int order_id, int status) {
         AlertDialog.Builder builder = new AlertDialog.Builder(OrderDetailManagerActivity.this);
-        builder.setTitle("Xác nhận hủy đơn hàng");
-        builder.setMessage("Bạn có chắc muốn hủy đơn hàng không ?");
+        View dialogView = getLayoutInflater().inflate(R.layout.spinner_status, null);
+        builder.setView(dialogView);
+        builder.setTitle("Thay đổi trạng thái đơn hàng");
+        builder.setMessage("Bạn có muốn thay đổi không?");
         builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-//                Toast.makeText(OrderDetailManagerActivity.this, "Đồng ý hủy đơn hàng :" + order_id, Toast.LENGTH_SHORT).show();
-                updateOrderStatus(order_id);
-                tv_order_status_detail.setText("Đã hủy");
-                tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
-                shutdownBtnCancel();
+                // Lấy trạng thái mới từ Spinner
+                Spinner spinnerStatus = dialogView.findViewById(R.id.sp_order_status_detail);
+                int newStatus = spinnerStatus.getSelectedItemPosition();
+                newStatus = newStatus + 1;
+                Toast.makeText(OrderDetailManagerActivity.this, "orderid:" + order_id_Detail + "status: " + newStatus, Toast.LENGTH_SHORT).show();
+                updateOrderStatusManager(order_id_Detail, newStatus);
+                tv_order_status_detail.setText(spinnerStatus.getSelectedItem().toString());
+                if (newStatus == 1) {
+                    tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.grey));
+                } else if (newStatus == 2) {
+                    tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
+                } else if (newStatus == 3) {
+                    tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow));
+                } else if (newStatus == 4) {
+                    tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+                } else if (newStatus == 5) {
+                    tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
+                }
             }
         });
         builder.setNegativeButton("Hủy bỏ", new DialogInterface.OnClickListener() {
@@ -182,23 +209,30 @@ public class OrderDetailManagerActivity extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+
+        // Thiết lập dữ liệu cho Spinner
+        Spinner spinnerStatus = dialogView.findViewById(R.id.sp_order_status_detail);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.changeOrderStatus, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerStatus.setAdapter(adapter);
     }
 
-    private void updateOrderStatus(int orderId) {
-        compositeDisposable.add(apiManager.updateOrderStatus(orderId)
+
+    private void updateOrderStatusManager(int orderId, int order_status) {
+        compositeDisposable.add(apiManager.updateOrderStatusManager(orderId, order_status)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         inforDetailModel -> {
                             // Xử lý kết quả ở đây nếu cần
                             if (inforDetailModel.isSuccess()) {
-
+                                Toast.makeText(this, "Update status success", Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(OrderDetailManagerActivity.this, "Hủy thất bại", Toast.LENGTH_SHORT).show();
                             }
                         },
                         throwable -> {
-                            Log.d("Loi xoa san pham", throwable.getMessage());
+                            Log.d("Loi update status", throwable.getMessage());
                         }
                 ));
     }

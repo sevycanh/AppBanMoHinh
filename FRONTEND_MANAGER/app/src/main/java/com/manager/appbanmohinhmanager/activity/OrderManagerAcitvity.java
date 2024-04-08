@@ -198,7 +198,6 @@ public class OrderManagerAcitvity extends AppCompatActivity {
                             Log.d("Loi getSort", throwable.getMessage());
                         }
                 ));
-
     }
 
 

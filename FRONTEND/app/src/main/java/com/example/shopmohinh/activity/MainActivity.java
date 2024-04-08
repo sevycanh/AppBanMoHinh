@@ -1,7 +1,10 @@
 package com.example.shopmohinh.activity;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +14,8 @@ import com.example.shopmohinh.R;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -90,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
             User user = Paper.book().read("user");
             Utils.user_current = user;
         }
+
+        allows(); // cap quyen
         Anhxa();
         ActionBar();
         setSearchView();
@@ -110,7 +117,19 @@ public class MainActivity extends AppCompatActivity {
         }
         loadFragment(new HomeFragment(), true);
     }
-        private void loadBottomNavView(){
+
+    private void allows() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            if (ContextCompat.checkSelfPermission(MainActivity.this,
+                    Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{
+                        Manifest.permission.POST_NOTIFICATIONS
+                }, 101);
+            }
+        }
+    }
+
+    private void loadBottomNavView(){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -193,19 +212,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-//        compositeDisposable.add(apiBanHang.gettoken(1)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(
-//                        userModel -> {
-//                            if (userModel.isSuccess()){
-//                                Utils.ID_RECEIVED = String.valueOf(userModel.getResult().get(0).getId());
-//                            }
-//                        }, throwable -> {
-//
-//                        }
-//                ));
     }
 
     private void setSearchView() {

@@ -1,5 +1,6 @@
 R_DEF: Internal format may change without notice
 local
+array changeOrderStatus
 array sortOrderOptions
 color black
 color green
@@ -16,6 +17,7 @@ drawable add_product
 drawable background
 drawable baseline_email_24
 drawable baseline_lock_24
+drawable baseline_notifications_active_24
 drawable baseline_output_24
 drawable bg_main
 drawable custom_edittext_login
@@ -73,9 +75,11 @@ id cardVoucher_Manager
 id edtEmail_Forgot
 id edtEmail_signIn
 id edtID_AddVoucher
+id edtNoiDungTB
 id edtPassword_signIn
 id edtPhanTramGiam_AddVoucher
 id edtSoLuong_AddVoucher
+id edtTenTB
 id edtTenVoucher_AddVoucher
 id getMainPicture
 id getMainUpdatePicture
@@ -129,6 +133,7 @@ id recylerView_OrderDetail
 id remove_item
 id revenue_statistics
 id single_image_update
+id sp_order_status_detail
 id sp_sortOrder
 id spinnerAdd
 id spinnerUpdateProduct
@@ -137,6 +142,8 @@ id sv_searchbyuserName
 id tb_accountDetailManager
 id tb_accountManager
 id tb_orderManager
+id textInputLayout1
+id textInputLayout2
 id textView
 id textView8
 id tl_id_AddVoucher
@@ -232,6 +239,7 @@ layout activity_statistical
 layout activity_update_category
 layout activity_update_product
 layout activity_voucher_manager
+layout dialog_notify
 layout item_account_manager
 layout item_category_manager
 layout item_multiple_image
@@ -239,6 +247,7 @@ layout item_order_detail_manager
 layout item_order_manager
 layout item_product_manager
 layout item_voucher_manager
+layout spinner_status
 menu menu_main
 menu menu_statistical
 mipmap ic_launcher

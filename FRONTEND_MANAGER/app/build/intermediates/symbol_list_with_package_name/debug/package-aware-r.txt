@@ -77,6 +77,7 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
+array changeOrderStatus
 array sortOrderOptions
 attr SharedValue
 attr SharedValueId
@@ -3787,6 +3788,7 @@ drawable avd_show_password
 drawable background
 drawable baseline_email_24
 drawable baseline_lock_24
+drawable baseline_notifications_active_24
 drawable baseline_output_24
 drawable bg_main
 drawable btn_checkbox_checked_mtrl
@@ -4146,9 +4148,11 @@ id edit_query
 id edtEmail_Forgot
 id edtEmail_signIn
 id edtID_AddVoucher
+id edtNoiDungTB
 id edtPassword_signIn
 id edtPhanTramGiam_AddVoucher
 id edtSoLuong_AddVoucher
+id edtTenTB
 id edtTenVoucher_AddVoucher
 id elastic
 id embed
@@ -4444,6 +4448,7 @@ id snap
 id snapMargins
 id software
 id south
+id sp_order_status_detail
 id sp_sortOrder
 id spacer
 id special_effects_controller_view_tag
@@ -4492,6 +4497,8 @@ id tb_orderManager
 id text
 id text2
 id textEnd
+id textInputLayout1
+id textInputLayout2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
@@ -4773,6 +4780,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_notify
 layout dp_example
 layout item_account_manager
 layout item_category_manager
@@ -4843,6 +4851,7 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout sp_example
+layout spinner_status
 layout ssp_example
 layout support_simple_spinner_dropdown_item
 menu menu_main

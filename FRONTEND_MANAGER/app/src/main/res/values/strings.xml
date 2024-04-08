@@ -9,4 +9,11 @@
         <item>Đã hủy</item>
     </string-array>
     <string name="order">Đơn hàng</string>
+    <string-array name="changeOrderStatus">
+        <item>Chưa xác nhận</item>
+        <item>Đã xác nhận</item>
+        <item>Đang giao</item>
+        <item>Giao thành công</item>
+        <item>Hủy đơn</item>
+    </string-array>
 </resources>
