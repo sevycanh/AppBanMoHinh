@@ -106,6 +106,9 @@ public class MainActivity extends AppCompatActivity {
         getToken();
         checkIn();
         initControl();
+        if(Utils.carts!=null){
+            badge_main.setText(String.valueOf(Utils.carts.size()));
+        }
 
         if (isConnected(this)) {
             getLoaiSanPham();

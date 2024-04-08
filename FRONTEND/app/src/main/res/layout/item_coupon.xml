@@ -15,7 +15,8 @@
             android:layout_height="match_parent"
             >
             <ImageView
-                android:src="@drawable/ic_account"
+                android:padding="@dimen/_8sdp"
+                android:src="@drawable/ic_coupon"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
                 android:layout_width="95dp"

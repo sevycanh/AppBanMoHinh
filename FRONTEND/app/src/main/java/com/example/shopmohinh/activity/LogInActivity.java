@@ -184,9 +184,20 @@ public class LogInActivity extends AppCompatActivity {
                                 }
                                 //Luu lai thong tin nguoi dung
                                 Paper.book().write("user", userModel.getResult().get(0));
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(intent);
-                                finish();
+                                initCart();
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }, 100);
+
+//                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                                startActivity(intent);
+//                                finish();
                             } else {
                                 Toast.makeText(getApplicationContext(),userModel.getMessage(), Toast.LENGTH_SHORT).show();
                             }
@@ -227,13 +238,17 @@ public class LogInActivity extends AppCompatActivity {
                                 Utils.user_current = userModel.getResult().get(0);
                                 //Luu lai thong tin nguoi dung
                                 Paper.book().write("user", userModel.getResult().get(0));
+                                initCart();
 
-                                if(Utils.carts.isEmpty()){
-                                    initCart();
-                                }
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(intent);
-                                finish();
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }, 100);
                             } else {
                                 txtSaiThongTin.setVisibility(View.VISIBLE);
                             }
@@ -244,6 +259,8 @@ public class LogInActivity extends AppCompatActivity {
                 ));
     }
     private void initCart() {
+        long startTime = System.currentTimeMillis();
+        Utils.carts.clear();
         compositeDisposable.add(apiBanHang.getShoppingCart(Utils.user_current.getAccount_id())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -252,6 +269,9 @@ public class LogInActivity extends AppCompatActivity {
                             if (productModel.isSuccess()) {
                                 List<Product> productList = productModel.getResult();
                                 productToCart(productList);
+                                long endTime = System.currentTimeMillis();
+                                long executionTime = endTime - startTime;
+                                Log.d("ExecutionTime", "Time taken: " + executionTime + "ms");
                             }
                         },
                         throwable -> {
