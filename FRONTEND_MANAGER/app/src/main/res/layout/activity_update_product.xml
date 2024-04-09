@@ -51,10 +51,11 @@
                 android:src="@drawable/minus"
                 app:tint="@color/main" />
 
-            <TextView
-                android:id="@+id/tvUpdateQuantity"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtUpdateQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:padding="8dp"
                 android:text="0"
                 android:textSize="24sp" />
@@ -94,6 +95,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtUpdate_Price"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -106,6 +108,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtUpdate_Coupon"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
