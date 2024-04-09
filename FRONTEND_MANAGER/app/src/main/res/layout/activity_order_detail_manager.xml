@@ -94,21 +94,11 @@
                     android:textSize="@dimen/_15sdp" />
             </LinearLayout>
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="start"
-                android:orientation="horizontal">
-
-
-            </LinearLayout>
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal">
 

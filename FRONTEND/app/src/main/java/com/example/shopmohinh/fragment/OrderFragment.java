@@ -150,9 +150,9 @@ public class OrderFragment extends Fragment {
     public void onResume() {
         if (selection != 0) {
             orderStatusSpinner.setSelection(selection);
-            getOrderByOrderStatus(101, selection);
+            getOrderByOrderStatus(Utils.user_current.getAccount_id(), selection);
         } else {
-            getOrder(101);
+            getOrder(Utils.user_current.getAccount_id());
         }
         super.onResume();
     }

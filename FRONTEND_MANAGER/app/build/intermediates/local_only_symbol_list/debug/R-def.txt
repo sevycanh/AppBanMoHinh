@@ -159,8 +159,6 @@ id toolbarAddCategory
 id toolbarDanhMuc
 id toolbarUpdateCategory
 id toolbar_main
-id tvQuantity
-id tvUpdateQuantity
 id tv_accountName_detail
 id tv_account_id_AccountManager
 id tv_activeAccount
@@ -204,9 +202,11 @@ id txtIdVoucher
 id txtKhoVoucher_Voucher
 id txtNgayBD_AddVoucher
 id txtNgayKT_AddVoucher
+id txtQuantity
 id txtTenDanhMuc
 id txtThongkeBarChart
 id txtThongkePieChart
+id txtUpdateQuantity
 id txtUpdateTenDanhMuc
 id txtUpdate_Coupon
 id txtUpdate_Description

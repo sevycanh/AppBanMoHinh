@@ -4542,8 +4542,6 @@ int id transition_position 0x7f090260
 int id transition_scene_layoutid_cache 0x7f090261
 int id transition_transform 0x7f090262
 int id triangle 0x7f090263
-int id tvQuantity 0x7f090264
-int id tvUpdateQuantity 0x7f090265
 int id tv_accountName_detail 0x7f090266
 int id tv_account_id_AccountManager 0x7f090267
 int id tv_activeAccount 0x7f090268
@@ -4587,9 +4585,11 @@ int id txtIdVoucher 0x7f09028d
 int id txtKhoVoucher_Voucher 0x7f09028e
 int id txtNgayBD_AddVoucher 0x7f09028f
 int id txtNgayKT_AddVoucher 0x7f090290
+int id txtQuantity 0x7f0902bd
 int id txtTenDanhMuc 0x7f090291
 int id txtThongkeBarChart 0x7f090292
 int id txtThongkePieChart 0x7f090293
+int id txtUpdateQuantity 0x7f0902be
 int id txtUpdateTenDanhMuc 0x7f090294
 int id txtUpdate_Coupon 0x7f090295
 int id txtUpdate_Description 0x7f090296
