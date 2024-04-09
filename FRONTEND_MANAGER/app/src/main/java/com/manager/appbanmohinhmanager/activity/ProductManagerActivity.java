@@ -67,7 +67,12 @@ public class ProductManagerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddProductActivity.class);
                 Bundle bundle = new Bundle();
-                int nextid = mangSP.get(mangSP.size()-1).getProduct_id();
+                int nextid;
+                if (mangSP.size() == 0){
+                    nextid = 0;
+                }else {
+                    nextid = mangSP.get(mangSP.size()-1).getProduct_id();
+                }
                 bundle.putInt("nextid", nextid);
                 intent.putExtras(bundle);
                 startActivity(intent);

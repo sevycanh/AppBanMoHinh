@@ -59,10 +59,11 @@
                     android:src="@drawable/minus"
                     app:tint="@color/main" />
 
-                <TextView
-                    android:id="@+id/tvQuantity"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtQuantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:padding="8dp"
                     android:text="0"
                     android:textSize="24sp" />
