@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.manager.appbanmohinhmanager.R;
 import com.manager.appbanmohinhmanager.adapter.ProductManagerAdapter;
 import com.manager.appbanmohinhmanager.model.ProductManager;
@@ -36,7 +37,7 @@ public class ProductManagerActivity extends AppCompatActivity {
     ApiManager apiManager;
     ProductManagerAdapter productManagerAdapter;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
 
 
     @Override
@@ -66,13 +67,7 @@ public class ProductManagerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddProductActivity.class);
                 Bundle bundle = new Bundle();
-                int nextid;
-                if (mangSP.size() == 0){
-                    nextid = 0;
-                }
-                else {
-                    nextid = mangSP.get(mangSP.size()-1).getProduct_id();
-                }
+                int nextid = mangSP.get(mangSP.size()-1).getProduct_id();
                 bundle.putInt("nextid", nextid);
                 intent.putExtras(bundle);
                 startActivity(intent);

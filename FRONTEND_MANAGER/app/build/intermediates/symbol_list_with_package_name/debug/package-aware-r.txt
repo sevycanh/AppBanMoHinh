@@ -4357,6 +4357,7 @@ id open_search_view_toolbar
 id open_search_view_toolbar_container
 id order_date_detail
 id outline
+id outlinedTextField
 id outward
 id overshoot
 id packed
@@ -4542,6 +4543,7 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tvQuantity
 id tvUpdateQuantity
 id tv_accountName_detail
 id tv_account_id_AccountManager
@@ -4586,7 +4588,6 @@ id txtIdVoucher
 id txtKhoVoucher_Voucher
 id txtNgayBD_AddVoucher
 id txtNgayKT_AddVoucher
-id txtQuantity
 id txtTenDanhMuc
 id txtThongkeBarChart
 id txtThongkePieChart

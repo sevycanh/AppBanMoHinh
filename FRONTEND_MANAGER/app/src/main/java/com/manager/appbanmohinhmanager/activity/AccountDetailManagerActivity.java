@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.manager.appbanmohinhmanager.R;
 import com.manager.appbanmohinhmanager.retrofit.ApiManager;
 import com.manager.appbanmohinhmanager.retrofit.RetrofitClient;
@@ -25,7 +26,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AccountDetailManagerActivity extends AppCompatActivity {
-    Toolbar tb_accountDetailManager;
+    MaterialToolbar tb_accountDetailManager;
     int id, status, coin;
     String username, date, phone, email;
     TextView tv_id, tv_status, tv_coin, tv_username, tv_date, tv_phone, tv_email;

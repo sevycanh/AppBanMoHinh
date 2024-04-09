@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.manager.appbanmohinhmanager.R;
 import com.manager.appbanmohinhmanager.adapter.OrderManagerAdapter;
 import com.manager.appbanmohinhmanager.model.OrderManager;
@@ -31,7 +32,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class OrderManagerAcitvity extends AppCompatActivity {
-    Toolbar tb_orderManager;
+    MaterialToolbar tb_orderManager;
     Spinner sp_sortOrder;
     RecyclerView rcv_Orders;
     CompositeDisposable compositeDisposable = new CompositeDisposable();

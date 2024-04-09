@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.manager.appbanmohinhmanager.R;
 import com.manager.appbanmohinhmanager.adapter.CategoryManagerAdapter;
 import com.manager.appbanmohinhmanager.model.CategoryManager;
@@ -27,7 +28,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CateroryManagerActivity extends AppCompatActivity {
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     ImageView btnAdd;
     RecyclerView recyclerView;
     List<CategoryManager> mangDanhMuc;

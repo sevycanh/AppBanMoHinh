@@ -113,6 +113,7 @@ id nameCategory
 id nameSP
 id noOrder
 id order_date_detail
+id outlinedTextField
 id piechart
 id priceSP
 id progressBarAddCategory
@@ -158,6 +159,7 @@ id toolbarAddCategory
 id toolbarDanhMuc
 id toolbarUpdateCategory
 id toolbar_main
+id tvQuantity
 id tvUpdateQuantity
 id tv_accountName_detail
 id tv_account_id_AccountManager
@@ -202,7 +204,6 @@ id txtIdVoucher
 id txtKhoVoucher_Voucher
 id txtNgayBD_AddVoucher
 id txtNgayKT_AddVoucher
-id txtQuantity
 id txtTenDanhMuc
 id txtThongkeBarChart
 id txtThongkePieChart
