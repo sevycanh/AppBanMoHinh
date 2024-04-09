@@ -56,7 +56,7 @@ public class UpdateProductActivity extends AppCompatActivity {
     Button btnSave, btnDelele;
     RecyclerView recyclerViewUpdate;
     MaterialToolbar toolbar;
-    TextInputEditText txtNameProduct, txtDescriptionProduct, txtPriceProduct, txtCouponProduct;
+    TextInputEditText txtNameProduct, txtDescriptionProduct, txtPriceProduct, txtCouponProduct, txtQuantity;
     ImageView mainImg;
     Button btn_multiple_img;
     Button btn_single_img;
@@ -75,7 +75,6 @@ public class UpdateProductActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
     String typechoose = "";
 
-    TextView tvQuantity;
     int quantity;
     ImageView btnMinus, btnPlus;
 
@@ -336,7 +335,7 @@ public class UpdateProductActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (quantity > 0) {
                     quantity--;
-                    tvQuantity.setText(String.valueOf(quantity));
+                    txtQuantity.setText(String.valueOf(quantity));
                 }
             }
         });
@@ -344,7 +343,7 @@ public class UpdateProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 quantity++;
-                tvQuantity.setText(String.valueOf(quantity));
+                txtQuantity.setText(String.valueOf(quantity));
             }
         });
     }
@@ -355,7 +354,7 @@ public class UpdateProductActivity extends AppCompatActivity {
         txtDescriptionProduct.setText(bundle.getString("description"));
         txtPriceProduct.setText(String.valueOf(bundle.getInt("price")));
         quantity = bundle.getInt("quantity");
-        tvQuantity.setText(String.valueOf(quantity));
+        txtQuantity.setText(String.valueOf(quantity));
         txtCouponProduct.setText(String.valueOf(bundle.getInt("coupon")));
         String mang[] = bundle.getString("subImg").split(",");
         for (int i = 0; i < mang.length; i++) {
@@ -536,7 +535,7 @@ public class UpdateProductActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinnerUpdateProduct);
         apiManager = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiManager.class);
         arrayCategory = new ArrayList<>();
-        tvQuantity = findViewById(R.id.tvUpdateQuantity);
+        txtQuantity = findViewById(R.id.txtUpdateQuantity);
         btnMinus = findViewById(R.id.btnUpdateMinus);
         btnPlus = findViewById(R.id.btnUpdatePlus);
         txtNameProduct = findViewById(R.id.txtUpdate_NameProduct);
