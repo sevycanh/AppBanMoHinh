@@ -139,6 +139,7 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = client.getSignInIntent();
                 activityResultLauncher.launch(i);
+
             }
         });
     }
@@ -148,29 +149,27 @@ public class LogInActivity extends AppCompatActivity {
         @Override
         public void onActivityResult(ActivityResult o) {
 
-                if (o.getResultCode() == RESULT_OK){
-                    Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(o.getData());
-                    try {
-                        GoogleSignInAccount account = task.getResult(ApiException.class);
-                        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
-                        firebaseAuth.signInWithCredential(credential)
-                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (task.isSuccessful()){
-                                            signInGoogle(firebaseAuth.getCurrentUser().getEmail());
-                                        } else {
-                                            Toast.makeText(LogInActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                        }
+            if (o.getResultCode() == RESULT_OK){
+                Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(o.getData());
+                try {
+                    GoogleSignInAccount account = task.getResult(ApiException.class);
+                    AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+                    firebaseAuth.signInWithCredential(credential)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()){
+                                        signInGoogle(firebaseAuth.getCurrentUser().getEmail());
+                                    } else {
+                                        Toast.makeText(LogInActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                     }
-                                });
-                    } catch (ApiException e){
-                        e.printStackTrace();
-                    }
+                                }
+                            });
+                } catch (ApiException e){
+                    e.printStackTrace();
                 }
             }
-
-    });
+        }
 
     private void signInGoogle(String email){
         compositeDisposable.add(apiBanHang.dangNhapGoogle(email)

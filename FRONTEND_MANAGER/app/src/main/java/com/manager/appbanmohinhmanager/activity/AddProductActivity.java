@@ -80,7 +80,7 @@ public class AddProductActivity extends AppCompatActivity {
 
     List<ProductManager> MangProduct;
 
-    TextView tvQuantity;
+    EditText txtQuantity;
     int quantity;
     ImageView btnMinus, btnPlus;
 
@@ -107,7 +107,7 @@ public class AddProductActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (quantity > 0) {
                     quantity--;
-                    tvQuantity.setText(String.valueOf(quantity));
+                    txtQuantity.setText(String.valueOf(quantity));
                 }
             }
         });
@@ -115,7 +115,7 @@ public class AddProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 quantity++;
-                tvQuantity.setText(String.valueOf(quantity));
+                txtQuantity.setText(String.valueOf(quantity));
             }
         });
     }
@@ -363,7 +363,7 @@ public class AddProductActivity extends AppCompatActivity {
             spinner = findViewById(R.id.spinnerAdd);
             apiManager = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiManager.class);
             arrayCategory = new ArrayList<>();
-            tvQuantity = findViewById(R.id.tvQuantity);
+            txtQuantity = findViewById(R.id.txtQuantity);
             btnMinus = findViewById(R.id.btnMinus);
             btnPlus = findViewById(R.id.btnPlus);
             txtNameProduct = findViewById(R.id.txtAdd_NameProduct);
