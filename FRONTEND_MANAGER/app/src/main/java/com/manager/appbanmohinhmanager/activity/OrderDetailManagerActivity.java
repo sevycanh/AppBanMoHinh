@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.google.android.material.appbar.MaterialToolbar;
 import com.manager.appbanmohinhmanager.R;
 import com.manager.appbanmohinhmanager.adapter.OrderDetailManagerAdapter;
 import com.manager.appbanmohinhmanager.model.ItemOrderDetailManager;
@@ -35,7 +34,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class OrderDetailManagerActivity extends AppCompatActivity {
-    MaterialToolbar toolBar_OrderDetail;
+    Toolbar toolBar_OrderDetail;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiManager apiManager;
 

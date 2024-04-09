@@ -8,9 +8,14 @@
         "source": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\minus.png"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_menu.png.flat",
         "source": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\icon_menu.png"
 >>>>>>> Stashed changes
+=======
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_baseline_lock_24.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\baseline_lock_24.xml"
+>>>>>>> parent of 23e8865 (update UI develop)
     },
     {
         "merged": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_add_product.png.flat",
@@ -22,16 +27,8 @@
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_baseline_lock_24.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\baseline_lock_24.xml"
-    },
-    {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_background.jpg.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\background.jpg"
-    },
-    {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\menu_menu_main.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\menu\\menu_main.xml"
     },
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_account_detail_manager.xml.flat",
@@ -41,9 +38,14 @@
         "source": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_update_product.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
 >>>>>>> Stashed changes
+=======
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\menu_menu_main.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\menu\\menu_main.xml"
+>>>>>>> parent of 23e8865 (update UI develop)
     },
     {
         "merged": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_danh_muc.png.flat",
@@ -66,6 +68,7 @@
         "source": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\ic_launcher_foreground.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_voucher_manager.xml.flat",
         "source": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_voucher_manager.xml"
     },
@@ -84,6 +87,8 @@
     },
     {
 <<<<<<< Updated upstream
+=======
+>>>>>>> parent of 23e8865 (update UI develop)
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_item_order_detail_manager.xml.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\item_order_detail_manager.xml"
     },
@@ -99,6 +104,7 @@
         "source": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\ic_add_voucher.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_statistical.xml.flat",
         "source": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_statistical.xml"
     },
@@ -121,6 +127,8 @@
     },
     {
 <<<<<<< Updated upstream
+=======
+>>>>>>> parent of 23e8865 (update UI develop)
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_ic_add_voucher.xml.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\ic_add_voucher.xml"
     },
@@ -176,6 +184,7 @@
         "source": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_add_product.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_item_product_manager.xml.flat",
         "source": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\item_product_manager.xml"
     },
@@ -198,6 +207,8 @@
     },
     {
 <<<<<<< Updated upstream
+=======
+>>>>>>> parent of 23e8865 (update UI develop)
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_item_category_manager.xml.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\item_category_manager.xml"
     },
@@ -302,11 +313,14 @@
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\xml\\data_extraction_rules.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
 <<<<<<< Updated upstream
+=======
+>>>>>>> parent of 23e8865 (update UI develop)
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_add_product.png.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\add_product.png"
     },
@@ -347,12 +361,12 @@
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\spinner_status.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_add_voucher.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_add_voucher.xml"
-    },
-    {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_add_category.png.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\add_category.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_add_voucher.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_add_voucher.xml"
     },
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_order_detail_manager.xml.flat",
@@ -475,6 +489,7 @@
         "source": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_forgot_pass.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_item_voucher_manager.xml.flat",
         "source": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\item_voucher_manager.xml"
     },
@@ -489,16 +504,18 @@
     },
     {
 <<<<<<< Updated upstream
+=======
+>>>>>>> parent of 23e8865 (update UI develop)
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_icon_thong_ke.png.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\icon_thong_ke.png"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_add_product.xml.flat",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_add_product.xml"
-    },
-    {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_dialog_notify.xml.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\dialog_notify.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\layout_activity_add_product.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\layout\\activity_add_product.xml"
     },
     {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\mipmap-xxhdpi_ic_launcher.webp.flat",
@@ -529,16 +546,9 @@
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_update_category.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_update_category.xml"
-    },
-    {
-        "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_activity_update_product.xml.flat",
-        "source": "com.manager.appbanmohinhmanager.app-main-43:/layout/activity_update_product.xml"
-    },
-    {
         "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_baseline_email_24.xml.flat",
         "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\baseline_email_24.xml"
+<<<<<<< HEAD
     },
     {
         "merged": "com.manager.appbanmohinhmanager.app-merged_res-41:/layout_item_voucher_manager.xml.flat",
@@ -567,5 +577,7 @@
         "merged": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-merged_res-41:\\drawable_baseline_lock_24.xml.flat",
         "source": "C:\\Users\\dung3\\.gradle\\daemon\\8.2\\com.manager.appbanmohinhmanager.app-main-43:\\drawable\\baseline_lock_24.xml"
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 23e8865 (update UI develop)
     }
 ]

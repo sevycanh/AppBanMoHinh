@@ -7,7 +7,7 @@
     android:background="@drawable/background"
     tools:context=".activity.ForgotPassActivity">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         app:cardCornerRadius="@dimen/_10sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,13 +16,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
+        <ProgressBar
             android:id="@+id/progressbar_Forgot"
             android:visibility="gone"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <LinearLayout
             android:padding="@dimen/_10sdp"
             android:layout_width="match_parent"
@@ -56,24 +55,24 @@
                 android:text="*Lưu ý: Vui lòng kiểm tra tin nhắn gmail của bạn sau khi ấn XÁC NHẬN để cập nhật mật khẩu mới."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnXacNhan_Forgot"
                 android:backgroundTint="@color/main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="XÁC NHẬN"
+                android:text="Xác nhận"
                 app:layout_constraintTop_toBottomOf="@+id/line1" />
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCancel_Forgot"
                 android:backgroundTint="#A8A8A8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_50sdp"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:text="QUAY LẠI"
+                android:text="Quay lại"
                 app:layout_constraintTop_toBottomOf="@+id/line1" />
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

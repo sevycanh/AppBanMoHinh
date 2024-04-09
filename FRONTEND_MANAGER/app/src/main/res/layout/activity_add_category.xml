@@ -10,26 +10,31 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
-        <com.google.android.material.appbar.MaterialToolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarAddCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/main"
             app:title="Thêm Danh Mục Mới">
-        </com.google.android.material.appbar.MaterialToolbar>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outlinedTextField"
+        </androidx.appcompat.widget.Toolbar>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:hint="Tên danh mục">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtTenDanhMuc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/_5sdp"
+            android:textSize="@dimen/_15sdp"
+            android:text="Tên Danh Mục:"/>
+        <EditText
+            android:id="@+id/txtTenDanhMuc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:hint="Nhập tên danh mục ..."/>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,18 +61,16 @@
             android:layout_height="@dimen/_60sdp"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_5sdp"/>
+        <Button
+            android:id="@+id/btnSubmitAddCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Thêm Danh Mục"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/main"/>
     </LinearLayout>
-    <Button
-        android:id="@+id/btnSubmitAddCategory"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Thêm Danh Mục"
-        android:backgroundTint="@color/main"/>
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:indeterminate="true"
+    <ProgressBar
         android:id="@+id/progressBarAddCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

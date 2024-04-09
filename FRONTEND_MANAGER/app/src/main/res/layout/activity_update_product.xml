@@ -11,24 +11,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.material.appbar.MaterialToolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBarTTSP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/main"
-            app:title="Thông Tin Sản Phẩm"/>
+            app:title="Thông Tin Sản Phẩm"></androidx.appcompat.widget.Toolbar>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:hint="Tên sản phẩm">
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên:"
+                android:textStyle="bold" />
+
+            <EditText
                 android:id="@+id/txtUpdate_NameProduct"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="Nhập tên sản phẩm ..." />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,53 +75,54 @@
                 app:tint="@color/main" />
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:hint="Mô tả sản phẩm">
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mô Tả:"
+                android:textStyle="bold" />
+
+            <EditText
                 android:id="@+id/txtUpdate_Description"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <LinearLayout
-            android:layout_margin="@dimen/_10sdp"
-            android:weightSum="3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_weight="2"
-                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:hint="Giá sản phẩm (VNĐ)">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtUpdate_Price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:hint="% Giảm giá">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtUpdate_Coupon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Nhập Mô Tả Sản Phẩm ..." />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giá:"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/txtUpdate_Price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Nhập giá sản phẩm..." />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="đ"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5sdp"
             android:orientation="horizontal">
 
             <TextView
@@ -145,7 +153,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
             android:orientation="horizontal">
 
             <TextView
@@ -182,13 +190,37 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Khuyến Mãi:"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/txtUpdate_Coupon"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Loại Sản Phẩm:"
                 android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spinnerUpdateProduct"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"></Spinner>
         </LinearLayout>
 
         <LinearLayout
@@ -217,11 +249,10 @@
                 android:textColor="@color/black" />
         </LinearLayout>
     </LinearLayout>
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
+    <ProgressBar
         android:id="@+id/progressBarUpdateProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

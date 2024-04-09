@@ -7,14 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".activity.ThongKeActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="Thống kê"
         android:background="@color/main"
         tools:ignore="MissingConstraints">
-    </com.google.android.material.appbar.MaterialToolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/txtThongkeBarChart"

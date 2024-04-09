@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 #Tue Apr 09 07:47:05 ICT 2024
+=======
+#Mon Apr 08 23:11:16 ICT 2024
+>>>>>>> parent of 23e8865 (update UI develop)
 base.0=C\:\\Users\\Admin\\AndroidStudioProjects\\AppBanMoHinh\\FRONTEND_MANAGER\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\Admin\\AndroidStudioProjects\\AppBanMoHinh\\FRONTEND_MANAGER\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\Admin\\AndroidStudioProjects\\AppBanMoHinh\\FRONTEND_MANAGER\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex

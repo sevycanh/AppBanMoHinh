@@ -113,7 +113,6 @@ id nameCategory
 id nameSP
 id noOrder
 id order_date_detail
-id outlinedTextField
 id piechart
 id priceSP
 id progressBarAddCategory

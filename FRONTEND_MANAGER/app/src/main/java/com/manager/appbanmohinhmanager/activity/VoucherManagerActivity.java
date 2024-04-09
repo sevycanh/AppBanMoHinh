@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.appbar.MaterialToolbar;
 import com.manager.appbanmohinhmanager.R;
 import com.manager.appbanmohinhmanager.adapter.ProductManagerAdapter;
 import com.manager.appbanmohinhmanager.adapter.VoucherManagerAdapter;
@@ -36,7 +35,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class VoucherManagerActivity extends AppCompatActivity {
-    MaterialToolbar toolbar;
+    Toolbar toolbar;
     TextView txtKho, txtRieng;
     View viewKho, viewRieng;
     ImageView imgThemVoucher;

@@ -12,7 +12,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -34,7 +33,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AddVoucherActivity extends AppCompatActivity {
-    MaterialToolbar toolbar;
+    Toolbar toolbar;
     Button btnNgayBD, btnNgayKT, btnGioBD, btnGioKT, btnThem;
     TextView txtNgayBD, txtNgayKT, txtGioBD, txtGioKT;
     RadioGroup radioGroup;
