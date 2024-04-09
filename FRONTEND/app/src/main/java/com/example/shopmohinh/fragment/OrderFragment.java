@@ -114,6 +114,7 @@ public class OrderFragment extends Fragment {
                                 orderRecylerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
                             }
                         }, throwable -> {
+                            Log.d("order", throwable.getMessage());
                             Toast.makeText(getActivity(), throwable.getMessage(), Toast.LENGTH_LONG).show();
                         }
                 ));
@@ -129,7 +130,7 @@ public class OrderFragment extends Fragment {
                                 orderAdapter.notifyDataSetChanged();
                                 noOrder.setVisibility(View.INVISIBLE);
                             } else {
-                                Toast.makeText(getContext(), "khong co du lieu", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Không có dữ liệu", Toast.LENGTH_SHORT).show();
                                 orderList.clear();
                                 orderAdapter.notifyDataSetChanged();
                                 noOrder.setVisibility(View.VISIBLE);

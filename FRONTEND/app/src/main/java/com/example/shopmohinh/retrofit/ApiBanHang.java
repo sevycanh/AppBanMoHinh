@@ -206,7 +206,7 @@ public interface ApiBanHang {
             @Field("quantity") int quantity
     );
 
-    @GET("getOrder.php")
+    @GET("getorder.php")
     Observable<OrderModel> getOrder(@Query("accountId") int accountID);
 
     @GET("getOrderByOrderStatus.php")

@@ -119,7 +119,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Mã đơn hàng: " + order.getOrder_id() + " của userID:" + order.getAccount_id(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(view.getContext(), "Mã đơn hàng: " + order.getOrder_id() + " của userID:" + order.getAccount_id(), Toast.LENGTH_SHORT).show();
                 getInforDetail(order.getOrder_id());
             }
         });

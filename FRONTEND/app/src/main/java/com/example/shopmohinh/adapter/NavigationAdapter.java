@@ -46,7 +46,7 @@ public class NavigationAdapter extends ArrayAdapter<Item> {
             @Override
             public void onClick(View v) {
                 // Hiển thị tên của mục bằng Toast
-                Toast.makeText(mContext,"ban da chon " + currentItem.getName(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mContext,"ban da chon " + currentItem.getName(), Toast.LENGTH_SHORT).show();
             }
         });
         return listItem;

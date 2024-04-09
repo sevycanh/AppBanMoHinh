@@ -156,7 +156,7 @@ public class ProductManagerActivity extends AppCompatActivity {
                                         if (position == 0){
                                             getDataProductManager();
                                         }else {
-                                            Toast.makeText(ProductManagerActivity.this, String.valueOf(arrayCategory.get(position-1).getCategory_id()), Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(ProductManagerActivity.this, String.valueOf(arrayCategory.get(position-1).getCategory_id()), Toast.LENGTH_SHORT).show();
                                             idcategory = arrayCategory.get(position-1).getCategory_id();
                                             getDataProductManagerFindByCategory(idcategory);
                                         }

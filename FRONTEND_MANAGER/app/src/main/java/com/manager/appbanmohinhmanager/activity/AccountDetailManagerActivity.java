@@ -50,7 +50,7 @@ public class AccountDetailManagerActivity extends AppCompatActivity {
                 } else {
                     status = 1;
                 }
-                Toast.makeText(AccountDetailManagerActivity.this, status + " " + id, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(AccountDetailManagerActivity.this, status + " " + id, Toast.LENGTH_SHORT).show();
                 cancelOrder(status, id);
             }
         });
@@ -128,12 +128,12 @@ public class AccountDetailManagerActivity extends AppCompatActivity {
                 .subscribe(
                         accountModel -> {
                             if (accountModel.isSuccess()) {
-                                Toast.makeText(this, "update thanh cong", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "Update thành công", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(this, "update that bai", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "Update thất bại", Toast.LENGTH_SHORT).show();
                             }
                         }, throwable -> {
-                            Log.d("Loi update Account Status", throwable.getMessage());
+                            Log.d("Lỗi update Account Status", throwable.getMessage());
                         }
                 ));
     }

@@ -12,7 +12,7 @@
         android:layout_height="match_parent"/>
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarMaps"
-        app:title="Địa chỉ của hàng"
+        app:title="Địa chỉ cửa hàng"
         android:background="#fbc02d"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"

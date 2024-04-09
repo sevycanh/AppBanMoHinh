@@ -68,7 +68,7 @@ public class AccountManagerAdapter extends RecyclerView.Adapter<AccountManagerAd
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, account.getAccount_id() + "", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, account.getAccount_id() + "", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, AccountDetailManagerActivity.class);
                 id = String.valueOf(account.getAccount_id());
                 email = account.getEmail();

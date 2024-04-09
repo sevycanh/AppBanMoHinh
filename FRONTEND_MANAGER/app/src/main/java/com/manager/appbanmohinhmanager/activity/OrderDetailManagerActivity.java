@@ -186,7 +186,7 @@ public class OrderDetailManagerActivity extends AppCompatActivity {
                 Spinner spinnerStatus = dialogView.findViewById(R.id.sp_order_status_detail);
                 int newStatus = spinnerStatus.getSelectedItemPosition();
                 newStatus = newStatus + 1;
-                Toast.makeText(OrderDetailManagerActivity.this, "orderid:" + order_id_Detail + "status: " + newStatus, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(OrderDetailManagerActivity.this, "orderid:" + order_id_Detail + "status: " + newStatus, Toast.LENGTH_SHORT).show();
                 updateOrderStatusManager(order_id_Detail, newStatus);
                 tv_order_status_detail.setText(spinnerStatus.getSelectedItem().toString());
                 if (newStatus == 1) {

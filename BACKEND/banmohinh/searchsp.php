@@ -4,7 +4,7 @@ function getSearchAll()
 {
 	include "connect.php";
 	$tensp = $_POST['tensp'];
-	$query = "SELECT * FROM `tbl_newproduct` WHERE tensp LIKE '%" . $tensp . "%'";
+	$query = "SELECT * FROM `tbl_product` WHERE name LIKE '%" . $tensp . "%'";
 	$data = mysqli_query($conn, $query);
 	$result = array();
 	while ($row = mysqli_fetch_assoc($data)) {
@@ -30,7 +30,7 @@ function getNewSearch()
 {
 	include "connect.php";
 	$tensp = $_POST['tensp'];
-	$query = "SELECT * FROM `tbl_newproduct` WHERE tensp LIKE '%" . $tensp . "%' ORDER BY id DESC";
+	$query = "SELECT * FROM `tbl_product` WHERE name LIKE '%" . $tensp . "%' ORDER BY product_id DESC";
 	$data = mysqli_query($conn, $query);
 	$result = array();
 	while ($row = mysqli_fetch_assoc($data)) {
@@ -56,7 +56,7 @@ function getPromotionSearch()
 {
 	include "connect.php";
 	$tensp = $_POST['tensp'];
-	$query = "SELECT * FROM `tbl_newproduct` WHERE coupon > 0 AND tensp LIKE '%" . $tensp . "%' ";
+	$query = "SELECT * FROM `tbl_product` WHERE coupon > 0 AND name LIKE '%" . $tensp . "%' ";
 	$data = mysqli_query($conn, $query);
 	$result = array();
 	while ($row = mysqli_fetch_assoc($data)) {
@@ -83,7 +83,7 @@ function getSortSearch(){
 	include "connect.php";
 	$tensp = $_POST['tensp'];
 	$type = $_POST['type'];
-	$query = "SELECT * FROM `tbl_newproduct` WHERE tensp LIKE '%" . $tensp . "%' ORDER BY giasp $type";
+	$query = "SELECT * FROM `tbl_product` WHERE name LIKE '%" . $tensp . "%' ORDER BY price $type";
 	$data = mysqli_query($conn, $query);
 	$result = array();
 	while ($row = mysqli_fetch_assoc($data)) {

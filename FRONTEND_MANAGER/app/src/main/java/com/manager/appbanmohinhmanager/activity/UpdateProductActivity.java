@@ -288,7 +288,7 @@ public class UpdateProductActivity extends AppCompatActivity {
                     }
                     Log.d("mainImg", ImgMain);
                     quantity = Integer.parseInt(txtQuantity.getText().toString());
-                    Toast.makeText(UpdateProductActivity.this, String.valueOf(idcategory), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(UpdateProductActivity.this, String.valueOf(idcategory), Toast.LENGTH_SHORT).show();
                     updateDataProduct(id, nameProduct, priceProduct, quantity, descriptionProduct, ImgMain, subImg, couponProduct, idcategory, 1);
                     if (listImgSub.size() == 0 && ImgMain_New == null){
                         finish();

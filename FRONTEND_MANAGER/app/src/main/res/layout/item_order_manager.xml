@@ -59,14 +59,13 @@
 
             <TextView
                 android:id="@+id/tv_userName"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="220dp"
                 android:text="Name "
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.409"
                 app:layout_constraintStart_toEndOf="@+id/textView"
                 app:layout_constraintTop_toTopOf="parent"

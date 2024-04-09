@@ -73,11 +73,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="match_parent">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -85,15 +80,12 @@
                     android:text="Tên: "
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
-
                 <TextView
                     android:id="@+id/tv_accountName_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name "
                     android:textSize="@dimen/_15sdp" />
-            </LinearLayout>
-
         </LinearLayout>
 
         <LinearLayout

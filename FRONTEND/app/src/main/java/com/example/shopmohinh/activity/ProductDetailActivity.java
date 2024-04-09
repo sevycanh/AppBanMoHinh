@@ -274,7 +274,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         messageModel -> {
-                            Toast.makeText(getApplicationContext(), "Thanh cong", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getApplicationContext(), "Thành công", Toast.LENGTH_SHORT).show();
                         },
                         throwable -> {
                             Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
@@ -288,7 +288,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         messageModel -> {
-                            Toast.makeText(getApplicationContext(), "Thanh cong", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getApplicationContext(), "Thành công", Toast.LENGTH_SHORT).show();
                         },
                         throwable -> {
                             Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();

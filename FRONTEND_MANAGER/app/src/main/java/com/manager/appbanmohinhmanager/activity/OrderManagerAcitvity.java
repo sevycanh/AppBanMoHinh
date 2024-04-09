@@ -112,7 +112,7 @@ public class OrderManagerAcitvity extends AppCompatActivity {
                     selection = 5;
                     submitQuery(madonhang);
                 }
-                Toast.makeText(OrderManagerAcitvity.this, selection + "", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(OrderManagerAcitvity.this, selection + "", Toast.LENGTH_SHORT).show();
             }
 
             @Override
