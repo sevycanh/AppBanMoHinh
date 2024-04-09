@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -105,6 +107,7 @@ public class AddProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (quantity > 0) {
+                    quantity = Integer.parseInt(txtQuantity.getText().toString());
                     quantity--;
                     txtQuantity.setText(String.valueOf(quantity));
                 }
@@ -113,6 +116,7 @@ public class AddProductActivity extends AppCompatActivity {
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                quantity = Integer.parseInt(txtQuantity.getText().toString());
                 quantity++;
                 txtQuantity.setText(String.valueOf(quantity));
             }
@@ -225,11 +229,16 @@ public class AddProductActivity extends AppCompatActivity {
                     check = false;
                     txtNameProduct.requestFocus();
                     Toast.makeText(AddProductActivity.this, "Vui lòng nhập tên", Toast.LENGTH_SHORT).show();
+                } else if (txtQuantity.getText().toString().isEmpty()) {
+                    check = false;
+                    txtQuantity.setText(String.valueOf(0));
+                    Toast.makeText(AddProductActivity.this, "Vui lòng nhập số lượng", Toast.LENGTH_SHORT).show();
                 } else if (txtDescriptionProduct.getText().toString().isEmpty()) {
                     check = false;
                     txtDescriptionProduct.requestFocus();
                     Toast.makeText(AddProductActivity.this, "Vui lòng nhập mô tả", Toast.LENGTH_SHORT).show();
-                } else if (txtPriceProduct.getText().toString().isEmpty()) {
+                }
+                else if (txtPriceProduct.getText().toString().isEmpty()) {
                     check = false;
                     txtPriceProduct.requestFocus();
                     Toast.makeText(AddProductActivity.this, "Vui lòng nhập giá", Toast.LENGTH_SHORT).show();
@@ -271,9 +280,8 @@ public class AddProductActivity extends AppCompatActivity {
                             }
                         }
                         uploadToFirebase(ImgMain, MainImg, true);
-
+                        quantity = Integer.parseInt(txtQuantity.getText().toString());
                         uploadDataProduct(nameProduct, priceProduct, quantity, descriptionProduct, MainImg, subImg, couponProduct, idcategory, 1);
-
                     }
                 }
             });

@@ -7,9 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".activity.AddProductActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolBarAddProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main"
+        app:title="Thêm Sản Phẩm Mới" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_50sdp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
@@ -17,13 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolBarAddProduct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/main"
-                app:title="Thêm Sản Phẩm Mới" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/outlinedTextField"
@@ -66,7 +72,8 @@
                     android:inputType="number"
                     android:padding="8dp"
                     android:text="0"
-                    android:textSize="24sp" />
+                    android:textSize="24sp" >
+                </com.google.android.material.textfield.TextInputEditText>
 
                 <ImageView
                     android:id="@+id/btnPlus"
@@ -107,6 +114,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number" />
+
+                    <Button
+                        android:id="@+id/getMainPicture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:backgroundTint="@color/main"
+                        android:text="Chọn Hình"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -137,14 +153,6 @@
                     android:text="Hình Đại Diện: "
                     android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/getMainPicture"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:backgroundTint="@color/main"
-                    android:text="Chọn Hình"
-                    android:textColor="@color/black" />
             </LinearLayout>
 
             <ImageView
@@ -209,6 +217,7 @@
         </LinearLayout>
     </ScrollView>
 
+    </LinearLayout>
     <Button
         android:id="@+id/submitDataAddProduct"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -39,6 +39,7 @@ drawable icon_vong_quay
 drawable logo
 drawable minus
 drawable plus
+id Category_Product_Manager
 id animation_splash
 id barchart
 id btnAddCategory

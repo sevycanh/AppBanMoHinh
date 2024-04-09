@@ -20,6 +20,12 @@ public interface ApiManager {
     @GET("getproduct.php")
     Observable<ProductManagerModel> getDataProduct();
 
+    @POST("getproductbycategory.php")
+    @FormUrlEncoded
+    Observable<ProductManagerModel> getDataProductFindByCategory(
+            @Field("categoryid") int categoryid
+    );
+
     @POST("addproduct.php")
     @FormUrlEncoded
     Observable<ProductManagerModel> addDataProduct(

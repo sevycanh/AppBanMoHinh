@@ -215,6 +215,10 @@ public class UpdateProductActivity extends AppCompatActivity {
                     check = false;
                     txtNameProduct.requestFocus();
                     Toast.makeText(UpdateProductActivity.this, "Vui lòng nhập tên", Toast.LENGTH_SHORT).show();
+                } else if (txtQuantity.getText().toString().isEmpty()) {
+                    check = false;
+                    txtQuantity.setText(String.valueOf(0));
+                    Toast.makeText(UpdateProductActivity.this, "Vui lòng nhập số lượng", Toast.LENGTH_SHORT).show();
                 } else if (txtDescriptionProduct.getText().toString().isEmpty()) {
                     check = false;
                     txtDescriptionProduct.requestFocus();
@@ -283,6 +287,8 @@ public class UpdateProductActivity extends AppCompatActivity {
                         DeleteToFirebase(mangDataDownloadDeleted.get(i));
                     }
                     Log.d("mainImg", ImgMain);
+                    quantity = Integer.parseInt(txtQuantity.getText().toString());
+                    Toast.makeText(UpdateProductActivity.this, String.valueOf(idcategory), Toast.LENGTH_SHORT).show();
                     updateDataProduct(id, nameProduct, priceProduct, quantity, descriptionProduct, ImgMain, subImg, couponProduct, idcategory, 1);
                     if (listImgSub.size() == 0 && ImgMain_New == null){
                         finish();
@@ -334,6 +340,7 @@ public class UpdateProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (quantity > 0) {
+                    quantity = Integer.parseInt(txtQuantity.getText().toString());
                     quantity--;
                     txtQuantity.setText(String.valueOf(quantity));
                 }
@@ -342,6 +349,7 @@ public class UpdateProductActivity extends AppCompatActivity {
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                quantity = Integer.parseInt(txtQuantity.getText().toString());
                 quantity++;
                 txtQuantity.setText(String.valueOf(quantity));
             }
@@ -441,7 +449,7 @@ public class UpdateProductActivity extends AppCompatActivity {
 
     private void updateDataProduct(int id, String name, int price, int quantity, String
             description, String main_image, String subimage, int coupon, int idcategory, int status) {
-//        Log.d("query", name + ", " + price + ", " + quantity + ", " + description + ", " + main_image + ", " + subimage + ", " + coupon + ", " + status);
+        Log.d("query", name + ", " + price + ", " + quantity + ", " + description + ", " + main_image + ", " + subimage + ", " + coupon + ", " + status);
         compositeDisposable.add(apiManager.updateDataProduct(id, name, price, quantity, description, main_image, subimage, coupon, idcategory, status)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -488,10 +496,10 @@ public class UpdateProductActivity extends AppCompatActivity {
                                 arrayCategory = CategoryManagerModel.getResult();
                                 dataSpinner = new ArrayList<>();
                                 int selection = 0;
-                                int idCategory = bundle.getInt("id");
+                                idcategory = bundle.getInt("id");
                                 for (int i = 0; i < arrayCategory.size(); i++) {
                                     int id = arrayCategory.get(i).getCategory_id();
-                                    if (id == idCategory) {
+                                    if (id == idcategory) {
                                         selection = i;
                                     }
                                     String s = arrayCategory.get(i).getCategory_id() + "_" + arrayCategory.get(i).getName();

@@ -3934,6 +3934,7 @@ id ALT
 id BOTTOM_END
 id BOTTOM_START
 id CTRL
+id Category_Product_Manager
 id FUNCTION
 id META
 id NO_DEBUG

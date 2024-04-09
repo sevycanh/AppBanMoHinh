@@ -25,6 +25,32 @@
                 android:layout_gravity="right"/>
 
         </com.google.android.material.appbar.MaterialToolbar>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lọc: "
+                android:textSize="@dimen/_12sdp" />
+
+            <Spinner
+                android:id="@+id/Category_Product_Manager"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/black" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listProduct"
             android:layout_width="match_parent"
