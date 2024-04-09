@@ -1,4 +1,4 @@
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardOrder"
@@ -98,7 +98,7 @@
                 app:layout_constraintHorizontal_bias="0.061"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.294"></TextView>
+                app:layout_constraintVertical_bias="0.294"/>
 
             <View
                 android:id="@+id/view"
@@ -186,8 +186,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:text="Tổng tiền : 100K"
-                    android:textStyle="bold"></TextView>
+                    android:textStyle="bold"/>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

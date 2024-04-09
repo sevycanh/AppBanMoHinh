@@ -33,6 +33,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.manager.appbanmohinhmanager.R;
 import com.manager.appbanmohinhmanager.retrofit.RetrofitClient;
 import com.manager.appbanmohinhmanager.retrofit.SalesApi;
@@ -46,7 +47,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ThongKeActivity extends AppCompatActivity {
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     PieChart pieChart;
     BarChart barChart;
     CompositeDisposable compositeDisposable = new CompositeDisposable();

@@ -27,6 +27,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -55,7 +58,7 @@ public class AddProductActivity extends AppCompatActivity {
     Button btn_single_img;
     ImageView single_img;
     Button btn_submit;
-    ProgressBar progressBar;
+    CircularProgressIndicator progressBar;
 
     ArrayList<Uri> uri;
     AddProductAdapter adapter;
@@ -66,7 +69,7 @@ public class AddProductActivity extends AppCompatActivity {
     private List<Uri> listImgSub = new ArrayList<>();
 
     StorageReference storageReference;
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ApiManager apiManager;
@@ -81,7 +84,7 @@ public class AddProductActivity extends AppCompatActivity {
     int quantity;
     ImageView btnMinus, btnPlus;
 
-    EditText txtNameProduct, txtDescriptionProduct, txtPriceProduct, txtCouponProduct;
+    TextInputEditText txtNameProduct, txtDescriptionProduct, txtPriceProduct, txtCouponProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,7 +255,7 @@ public class AddProductActivity extends AppCompatActivity {
                         String nameProduct = txtNameProduct.getText().toString();
                         String descriptionProduct = txtDescriptionProduct.getText().toString();
                         int priceProduct = Integer.parseInt(txtPriceProduct.getText().toString());
-                        int couponProduct = Integer.parseInt(txtCouponProduct.getText().toString());
+                        int couponProduct = Integer.parseInt(txtCouponProduct.getText().toString().equals("") ? "0" : txtCouponProduct.getText().toString());
                         int nextid = bundle.getInt("nextid") + 1;
                         List<String> ArraySubImg = new ArrayList<>();
                         for (int i = 0; i < listImgSub.size(); i++) {

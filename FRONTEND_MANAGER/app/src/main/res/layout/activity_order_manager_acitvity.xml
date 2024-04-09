@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".activity.OrderManagerAcitvity">
 
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/tb_orderManager"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -78,7 +78,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_Orders"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
 </LinearLayout>

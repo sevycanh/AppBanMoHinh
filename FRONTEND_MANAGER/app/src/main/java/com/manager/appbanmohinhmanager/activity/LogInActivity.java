@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.manager.appbanmohinhmanager.R;
@@ -28,7 +29,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class LogInActivity extends AppCompatActivity {
-    EditText edtEmail, edtPass;
+    TextInputEditText edtEmail, edtPass;
     Button btnSignIn;
     TextView txtForgot, txtSaiThongTin;
     FirebaseAuth firebaseAuth;

@@ -24,6 +24,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -41,7 +44,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class AddCategoryActivity extends AppCompatActivity {
-    EditText txtTenDanhMuc;
+    TextInputEditText txtTenDanhMuc;
     Button btnChonAnh;
     Button btnSubmit;
     ImageView imgCategory;
@@ -51,9 +54,9 @@ public class AddCategoryActivity extends AppCompatActivity {
 
     private Uri imageUri = null;
 
-    Toolbar toolbar;
+    MaterialToolbar toolbar;
     StorageReference storageReference;
-    ProgressBar progressBar;
+    CircularProgressIndicator progressBar;
     ApiManager apiManager;
 
     @Override

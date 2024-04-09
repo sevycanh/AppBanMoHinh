@@ -7,12 +7,12 @@
     android:orientation="vertical"
     tools:context=".activity.AccountDetailManagerActivity">
 
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/tb_accountDetailManager"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/main"
-        app:title="Chi tiết tài khoản"></androidx.appcompat.widget.Toolbar>
+        app:title="Chi tiết tài khoản"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:layout_height="@dimen/_150sdp"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_10sdp"
-            android:src="@drawable/logo"></ImageView>
+            android:src="@drawable/logo"/>
     </LinearLayout>
 
     <LinearLayout
