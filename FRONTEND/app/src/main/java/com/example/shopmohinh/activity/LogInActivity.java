@@ -126,6 +126,7 @@ public class LogInActivity extends AppCompatActivity {
                                             alertDialog.show();
                                         }
                                     } else {
+                                        txtSaiThongTin.setText("Sai thông tin đăng nhập!");
                                         txtSaiThongTin.setVisibility(View.VISIBLE);
                                     }
                                 }
@@ -201,6 +202,9 @@ public class LogInActivity extends AppCompatActivity {
 //                                finish();
                             } else {
                                 Toast.makeText(getApplicationContext(),userModel.getMessage(), Toast.LENGTH_SHORT).show();
+                                FirebaseAuth.getInstance().signOut();
+                                GoogleSignIn.getClient(getApplicationContext(), new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build())
+                                        .signOut();
                             }
                         },
                         throwable -> {
@@ -251,6 +255,8 @@ public class LogInActivity extends AppCompatActivity {
                                     }
                                 }, 100);
                             } else {
+//                                Toast.makeText(getApplicationContext(),userModel.getMessage(), Toast.LENGTH_SHORT).show();
+                                txtSaiThongTin.setText(userModel.getMessage());
                                 txtSaiThongTin.setVisibility(View.VISIBLE);
                             }
                         },
