@@ -3,6 +3,8 @@ package com.example.shopmohinh.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.icu.text.DecimalFormat;
+import android.icu.text.DecimalFormatSymbols;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,6 +35,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
+import java.util.Locale;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -65,7 +68,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         apiBanHang = RetrofitClient.getInstance(Utils.BASE_URL).create(ApiBanHang.class);
         Order order = listOrder.get(position);
         holder.tv_order_id.setText(String.valueOf("Mã đơn : " + order.getOrder_id()));
-        holder.tv_total.setText(String.valueOf("Tổng tiền: " + order.getTotal()));
+        //Format Gia'
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
+        symbols.setGroupingSeparator('.'); // Dấu phân tách hàng nghìn
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###", symbols);
+        String TongGiaSanPhamFormat = decimalFormat.format(order.getTotal());
+        holder.tv_total.setText(TongGiaSanPhamFormat + "₫");
+//        holder.tv_total.setText(String.valueOf("Tổng tiền: " + order.getTotal()));
         holder.tv_detail.setText("Chi tiết ->");
         if (order.getOrder_status() == 1) {
             holder.tv_order_status.setText(String.valueOf("Chưa xác nhận"));
@@ -86,7 +95,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
             holder.tv_order_status.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.red));
 
         }
-        holder.tv_price.setText(String.valueOf(order.getPerUnit()));
+        String GiaSanPhamFormat = decimalFormat.format(order.getPerUnit());
+        holder.tv_price.setText(GiaSanPhamFormat + "₫");
+//        holder.tv_price.setText(String.valueOf(order.getPerUnit()));
+
         holder.tv_product_name.setText(String.valueOf("x" + order.getQuantity()) + " " + order.getProduct_name());
         if (order.getProductsInOrder() == 1) {
             holder.tv_productInOrder.setText("");

@@ -1,6 +1,8 @@
 package com.example.shopmohinh.adapter;
 
 import android.content.Context;
+import android.icu.text.DecimalFormat;
+import android.icu.text.DecimalFormatSymbols;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
+import java.util.Locale;
 
 public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.MyViewHolder> {
     private Context context;
@@ -44,9 +47,16 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         ItemOrderDetail itemOrderDetail = itemOrderDetailList.get(position);
         holder.tv_name.setText(itemOrderDetail.getName());
-        holder.tv_productPrice.setText(String.valueOf(itemOrderDetail.getPrice() + " VND"));
+
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
+        symbols.setGroupingSeparator('.'); // Dấu phân tách hàng nghìn
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###", symbols);
+        String PriceFormat = decimalFormat.format(itemOrderDetail.getPrice());
+        String PriceTotalFormat = decimalFormat.format(itemOrderDetail.getTotal());
+
+        holder.tv_productPrice.setText(PriceFormat + " VND");
         holder.tv_quantity.setText(String.valueOf(itemOrderDetail.getQuantity()));
-        holder.tv_total.setText(String.valueOf(itemOrderDetail.getTotal()) + " VND");
+        holder.tv_total.setText(PriceTotalFormat + " VND");
 //        Glide.with(holder.itemView.getContext()).load(itemOrderDetail.getMain_image()).into(holder.imgView_product);
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageReference = storage.getReference()
