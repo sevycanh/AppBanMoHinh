@@ -167,25 +167,31 @@ public class PaymentActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         messageModel -> {
-                            for (int i =0; i< Utils.purchases.size();i++){
-                                Cart gioHang = Utils.purchases.get(i);
-                                UpdateCartApi(gioHang.getIdProduct(), 0);
-                                UpdateQuantityProductApi(gioHang.getIdProduct(), gioHang.getQuantity());
-                                if (Utils.carts.contains(gioHang)){
-                                    Utils.carts.remove(gioHang);
+                            if(messageModel.isSuccess()){
+                                for (int i =0; i< Utils.purchases.size();i++){
+                                    Cart gioHang = Utils.purchases.get(i);
+                                    UpdateCartApi(gioHang.getIdProduct(), 0);
+                                    UpdateQuantityProductApi(gioHang.getIdProduct(), gioHang.getQuantity());
+                                    if (Utils.carts.contains(gioHang)){
+                                        Utils.carts.remove(gioHang);
+                                    }
                                 }
+                                //clear danh sach sp da chon
+                                Utils.purchases.clear();
+                                iddonhang = Integer.parseInt(messageModel.getIddonhang());
+                                UpdateTokenZaloApi(iddonhang, token);
+
+                                pushNotiToAdmin();
+                                Toast.makeText(getApplicationContext(),messageModel.getMessage(), Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                finish();
                             }
-                            //clear danh sach sp da chon
-                            Utils.purchases.clear();
-                            iddonhang = Integer.parseInt(messageModel.getIddonhang());
-                            UpdateTokenZaloApi(iddonhang, token);
+                            else{
+                                Toast.makeText(getApplicationContext(),messageModel.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
 
-                            pushNotiToAdmin();
-
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish();
                         },
                         throwable -> {
                             Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();

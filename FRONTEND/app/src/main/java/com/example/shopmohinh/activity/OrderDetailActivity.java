@@ -2,6 +2,8 @@ package com.example.shopmohinh.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.icu.text.DecimalFormat;
+import android.icu.text.DecimalFormatSymbols;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +30,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
@@ -99,7 +102,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         String address = intent.getStringExtra("address");
         String date = intent.getStringExtra("date");
         String phone = intent.getStringExtra("phone");
-        String total = intent.getStringExtra("total");
+        int total =  Integer.parseInt(intent.getStringExtra("total"));
         tv_order_id_detail.setText(String.valueOf(order_id_Detail));
         tv_name_detail.setText(name);
         checkOrderStatus(order_status);
@@ -108,7 +111,13 @@ public class OrderDetailActivity extends AppCompatActivity {
         tv_address_detail.setText(address);
         tv_date_detail.setText(date);
         tv_phone_detail.setText(phone);
-        tv_total_detail.setText(total + " VND");
+
+        //Format Gia'
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
+        symbols.setGroupingSeparator('.'); // Dấu phân tách hàng nghìn
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###", symbols);
+        String TotalFormat = decimalFormat.format(total);
+        tv_total_detail.setText(TotalFormat + " VND");
     }
 
     private String checkOrderStatus(int order_status) {
