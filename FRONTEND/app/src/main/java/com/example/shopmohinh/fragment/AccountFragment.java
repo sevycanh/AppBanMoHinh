@@ -83,6 +83,7 @@ public class AccountFragment extends Fragment {
             public void onClick(View view) {
                 Utils.user_current = new User();
                 Paper.book().delete("user");
+                Utils.purchases.clear();
                 FirebaseAuth.getInstance().signOut();
                 GoogleSignIn.getClient(getActivity(), new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build())
                         .signOut();

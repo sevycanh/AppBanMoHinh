@@ -28,6 +28,7 @@ import com.manager.appbanmohinhmanager.retrofit.ApiManager;
 import com.manager.appbanmohinhmanager.retrofit.RetrofitClient;
 import com.manager.appbanmohinhmanager.utils.Utils;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -114,7 +115,9 @@ public class OrderDetailManagerActivity extends AppCompatActivity {
         tv_address_detail.setText(address);
         tv_date_detail.setText(date);
         tv_phone_detail.setText(phone);
-        tv_total_detail.setText(total + " VND");
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        tv_total_detail.setText("Price: "+decimalFormat.format(Double.parseDouble(total))+"đ");
+//        tv_total_detail.setText(total + " VND");
         tv_email.setText(email);
     }
 

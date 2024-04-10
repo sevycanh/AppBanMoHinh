@@ -21,6 +21,7 @@ import com.google.firebase.storage.StorageReference;
 import com.manager.appbanmohinhmanager.R;
 import com.manager.appbanmohinhmanager.model.ItemOrderDetailManager;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class OrderDetailManagerAdapter extends RecyclerView.Adapter<OrderDetailManagerAdapter.MyViewHolder> {
@@ -45,10 +46,13 @@ public class OrderDetailManagerAdapter extends RecyclerView.Adapter<OrderDetailM
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         ItemOrderDetailManager itemOrderDetail = itemOrderDetailList.get(position);
         holder.tv_name.setText(itemOrderDetail.getName());
-        holder.tv_productPrice.setText(String.valueOf(itemOrderDetail.getPrice() + " VND"));
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        holder.tv_productPrice.setText("Giá: "+decimalFormat.format(Double.parseDouble(String.valueOf(itemOrderDetail.getPrice())))+"đ");
+//        holder.tv_productPrice.setText(String.valueOf(itemOrderDetail.getPrice() + " VND"));
         holder.tv_quantity.setText(String.valueOf(itemOrderDetail.getQuantity()));
-        holder.tv_total.setText(String.valueOf(itemOrderDetail.getTotal()) + " VND");
-//        Glide.with(holder.itemView.getContext()).load(itemOrderDetail.getMain_image()).into(holder.imgView_product);
+        holder.tv_total.setText("Giá: "+decimalFormat.format(Double.parseDouble(String.valueOf(itemOrderDetail.getTotal())))+"đ");
+//        holder.tv_total.setText(String.valueOf(itemOrderDetail.getTotal()) + " VND");
+//
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageReference = storage.getReference()
                 .child("/images")

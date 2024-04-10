@@ -29,6 +29,7 @@ import com.manager.appbanmohinhmanager.retrofit.ApiManager;
 import com.manager.appbanmohinhmanager.retrofit.RetrofitClient;
 import com.manager.appbanmohinhmanager.utils.Utils;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -70,7 +71,9 @@ public class OrderManagerAdapter extends RecyclerView.Adapter<OrderManagerAdapte
         } else {
             holder.tv_productInOrder.setText("Xem thêm " + String.valueOf(tempPIO) + " sản phẩm");
         }
-        holder.tv_total.setText("Tổng tiền :" + String.valueOf(" " + orderManager.getTotal()) + " VND");
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        holder.tv_total.setText("Giá: "+decimalFormat.format(Double.parseDouble(String.valueOf(orderManager.getTotal())))+"đ");
+//        holder.tv_total.setText("Tổng tiền :" + String.valueOf(" " + orderManager.getTotal()) + " VND");
         if (orderManager.getOrder_status() == 1) {
             holder.tv_order_status.setText("Chưa xác nhận");
             holder.tv_order_status.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.grey));

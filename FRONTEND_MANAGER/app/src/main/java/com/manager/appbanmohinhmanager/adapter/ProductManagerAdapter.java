@@ -26,6 +26,7 @@ import com.manager.appbanmohinhmanager.R;
 import com.manager.appbanmohinhmanager.activity.UpdateProductActivity;
 import com.manager.appbanmohinhmanager.model.ProductManager;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class ProductManagerAdapter extends RecyclerView.Adapter<ProductManagerAdapter.ViewHolder>{
@@ -71,7 +72,10 @@ public class ProductManagerAdapter extends RecyclerView.Adapter<ProductManagerAd
 
         holder.txtName.setText(String.valueOf(productManager.getProduct_id())+"_"+productManager.getName());
         holder.txtQuantity.setText("Số Lượng: "+ String.valueOf(productManager.getQuantity()));
-        holder.txtPrice.setText("Giá: "+String.valueOf(productManager.getPrice()));
+
+//        holder.txtPrice.setText("Giá: "+String.valueOf(productManager.getPrice()));
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        holder.txtPrice.setText("Giá: "+decimalFormat.format(Double.parseDouble(String.valueOf(productManager.getPrice())))+"đ");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
