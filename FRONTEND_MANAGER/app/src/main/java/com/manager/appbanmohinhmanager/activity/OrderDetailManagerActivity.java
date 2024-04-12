@@ -200,9 +200,22 @@ public class OrderDetailManagerActivity extends AppCompatActivity {
                     tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.yellow));
                 } else if (newStatus == 4) {
                     tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
+                    //add coin
+                    Intent intent = getIntent();
+                    int coin_receive = (Integer.parseInt(intent.getStringExtra("total")) * 100) / 100000;
+                    compositeDisposable.add(apiManager.addCoin(order_id_Detail, coin_receive)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                    messageModel -> {
+                                    }, throwable -> {
+                                        Toast.makeText(getApplicationContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                            ));
                 } else if (newStatus == 5) {
                     tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
                 }
+                finish();
             }
         });
         builder.setNegativeButton("Hủy bỏ", new DialogInterface.OnClickListener() {

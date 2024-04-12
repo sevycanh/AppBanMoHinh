@@ -5,6 +5,7 @@ import com.manager.appbanmohinhmanager.model.AccountModel;
 import com.manager.appbanmohinhmanager.model.CategoryManagerModel;
 import com.manager.appbanmohinhmanager.model.InforDetailManagerModel;
 import com.manager.appbanmohinhmanager.model.ItemOrderDetailManagerModel;
+import com.manager.appbanmohinhmanager.model.MessageModel;
 import com.manager.appbanmohinhmanager.model.OrderManagerModel;
 import com.manager.appbanmohinhmanager.model.ProductManagerModel;
 
@@ -114,4 +115,8 @@ public interface ApiManager {
     @POST("updateAccountStatus.php")
     @FormUrlEncoded
     Observable<AccountModel> updateAccountStatus(@Field("status") int status, @Field("accountid") int accountid);
+
+    @POST("addcoin.php")
+    @FormUrlEncoded
+    Observable<MessageModel> addCoin(@Field("order_id") int order_id, @Field("coin_receive") int coin_receive);
 }
