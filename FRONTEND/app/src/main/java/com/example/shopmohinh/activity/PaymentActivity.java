@@ -7,6 +7,7 @@ import android.icu.text.DecimalFormatSymbols;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -20,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.model.Cart;
+import com.example.shopmohinh.model.EventBus.TinhTongEvent;
 import com.example.shopmohinh.model.NotiSendData;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.ApiPushNotification;
@@ -30,6 +32,7 @@ import com.example.shopmohinh.zalo.CreateOrder;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.gson.Gson;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
 
 import java.util.Arrays;
@@ -128,7 +131,7 @@ public class PaymentActivity extends AppCompatActivity {
                 String address = Utils.user_current.getAddress();
                 String administrative_address = Utils.user_current.getAdministrative_address();
 
-                Log.d("test", address);
+//                Log.d("test", address);
 
                 int id = Utils.user_current.getAccount_id();
                 if(name.trim().isEmpty()){
@@ -142,13 +145,10 @@ public class PaymentActivity extends AppCompatActivity {
                     List<String> address_administrative = Arrays.asList(Utils.user_current.getAdministrative_address().split("\n"));
                     String address_user = address + ", " + address_administrative.get(2) + ", " + address_administrative.get(1)+ ", " + address_administrative.get(0);
                     if(Utils.method_payment.equals("COD")){
-                        if(Utils.coupon != null) {
-                            UpdateCouponApi(Utils.coupon.getCoupon_id(), Utils.coupon.getCount());
-                        }
-                        CreateOrderApi(name, sdt, id, address_user, "" , "");
+                        checkQuantityCartWithProduct(name, sdt, id, address_user);
                     } else if (Utils.method_payment.equals("Zalo")) {
 //                        CreateOrderApi(name, sdt, id, address);
-                        requestZalo(id, name, sdt, address_user);
+                        checkQuantityCartWithProductZalo(name, sdt, id, address_user);
                     }
 
 
@@ -156,6 +156,65 @@ public class PaymentActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void checkQuantityCartWithProductZalo(String name, String sdt, int id, String address_user) {
+        compositeDisposable.add(apiBanHang.checkQuantityCartWithProduct(new Gson().toJson(Utils.purchases))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        messageModel -> {
+                            if(messageModel.isSuccess()){
+                                requestZalo(id, name, sdt, address_user);
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(),messageModel.getMessage(), Toast.LENGTH_LONG).show();
+                                AlertQuantity(messageModel.getMessage());
+                            }
+                        },
+                        throwable -> {
+                            Log.d("Throw", throwable.getMessage());
+//                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
+    }
+
+    private void AlertQuantity(String message) {
+        AlertDialog.Builder builder  = new AlertDialog.Builder(getApplicationContext());
+        builder.setTitle("Thông báo");
+        builder.setMessage(message);
+        builder.setPositiveButton("Đồng Ý", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        builder.show();
+    }
+
+
+    private void checkQuantityCartWithProduct(String name, String sdt, int id, String address_user) {
+        compositeDisposable.add(apiBanHang.checkQuantityCartWithProduct(new Gson().toJson(Utils.purchases))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        messageModel -> {
+                            if(messageModel.isSuccess()){
+                                if(Utils.coupon != null) {
+                                    UpdateCouponApi(Utils.coupon.getCoupon_id(), Utils.coupon.getCount());
+                                }
+                                CreateOrderApi(name, sdt, id, address_user, "", "");
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(),messageModel.getMessage(), Toast.LENGTH_LONG).show();
+                                AlertQuantity(messageModel.getMessage());
+                            }
+                        },
+                        throwable -> {
+                            Log.d("Throw", throwable.getMessage());
+//                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
     }
 
     private void UpdateQuantityProductApi(int id, int quantity){
@@ -301,10 +360,6 @@ public class PaymentActivity extends AppCompatActivity {
                 ZaloPaySDK.getInstance().payOrder(PaymentActivity.this, token, "demozpdk://app", new PayOrderListener() {
                     @Override
                     public void onPaymentSucceeded(String s, String s1, String s2) {
-//                        String name = Utils.user_current.getUsername();
-//                        String sdt = String.valueOf(Utils.user_current.getPhone());
-//                        String address = Utils.user_current.getAddress();
-//                        int id = Utils.user_current.getAccount_id();
                         if(Utils.coupon != null) {
                             UpdateCouponApi(Utils.coupon.getCoupon_id(), Utils.coupon.getCount());
                         }

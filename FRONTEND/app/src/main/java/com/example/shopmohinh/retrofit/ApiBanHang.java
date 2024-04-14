@@ -240,4 +240,9 @@ public interface ApiBanHang {
             @Field("administrative_address") String administrative_address
     );
 
+    @POST("check_quantity_purchase.php")
+    @FormUrlEncoded
+    Observable<MessageModel> checkQuantityCartWithProduct(
+            @Field("purchase") String purchase
+    );
 }
