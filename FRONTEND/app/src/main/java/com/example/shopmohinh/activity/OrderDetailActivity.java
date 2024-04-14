@@ -25,8 +25,13 @@ import com.example.shopmohinh.model.ItemOrderDetail;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
+import com.example.shopmohinh.zalo.CreateOrder;
+import com.example.shopmohinh.zalo.GetOrder;
+import com.example.shopmohinh.zalo.RefundOrder;
 import com.google.android.material.appbar.MaterialToolbar;
 
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +52,12 @@ public class OrderDetailActivity extends AppCompatActivity {
     private RecyclerView orderDetailRecylerView;
     private Button btn_CancelOrder;
 
+    private String app_trans_id;
+
+    private long zp_trans_id;
+
+    private int amount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +66,16 @@ public class OrderDetailActivity extends AppCompatActivity {
         AnhXa();
         actionToolBar_OrderDetail();
         setDetailInformation();
+
         btn_CancelOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
                 int order_id_Detail = Integer.parseInt(intent.getStringExtra("order_id"));
                 cancelOrder(order_id_Detail);
+
+
+
             }
         });
     }
@@ -118,6 +133,32 @@ public class OrderDetailActivity extends AppCompatActivity {
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###", symbols);
         String TotalFormat = decimalFormat.format(total);
         tv_total_detail.setText(TotalFormat + " VND");
+
+        app_trans_id = intent.getStringExtra("app_trans_id");
+        GetOrderFunction();
+
+    }
+
+    private void GetOrderFunction() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                GetOrder orderApi = new GetOrder();
+
+                try {
+                    JSONObject data = orderApi.GetOrderApi(app_trans_id);
+                    String code = data.getString("return_code");
+                    if (code.equals("1")) {
+                        zp_trans_id = data.getLong("zp_trans_id");
+                        amount = data.getInt("amount");
+                        System.out.println(zp_trans_id + ", " + amount);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
     }
 
     private String checkOrderStatus(int order_status) {
@@ -178,8 +219,33 @@ public class OrderDetailActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(OrderDetailActivity.this, "Đồng ý hủy đơn hàng :" + order_id, Toast.LENGTH_SHORT).show();
                 updateOrderStatus(order_id);
+                updateQuantityProductInCancelOrder(order_id);
                 tv_order_status_detail.setText("Đã hủy");
                 tv_order_status_detail.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        RefundOrder refundOrder = new RefundOrder();
+
+                        try {
+                            JSONObject data = refundOrder.CreateRefundOrder(zp_trans_id, amount);
+                            Log.d("Code Order", zp_trans_id + "");
+                            Log.d("Code Order", amount + "");
+
+                            String code = data.getString("return_code");
+                            Log.d("Code Order", data + "");
+                            if (code.equals("1")) {
+                                // Xử lý khi mã trả về là 1
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Log.d("Code Order", e + "");
+                        }
+                    }
+                });
+                thread.start();
+
+
                 shutdownBtnCancel();
             }
         });
@@ -191,6 +257,20 @@ public class OrderDetailActivity extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void updateQuantityProductInCancelOrder(int orderId) {
+        compositeDisposable.add(apiBanHang.updateQuantityProductCancelOrder(orderId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                       messageModel -> {
+                            if (messageModel.isSuccess()) {
+                            }
+                        },
+                        throwable -> {
+                        }
+                ));
     }
 
     private void updateOrderStatus(int orderId) {

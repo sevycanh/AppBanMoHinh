@@ -32,7 +32,9 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -92,8 +94,15 @@ public class PaymentActivity extends AppCompatActivity {
         String tongTienFormat = decimalFormat.format(tongtien);
         txtTongTienDatHang.setText(tongTienFormat);
         txtThongTinKH.setText(Utils.user_current.getUsername() + " " + Utils.user_current.getPhone());
-        txtDiaChiKH.setText(Utils.user_current.getAddress());
+//        txtDiaChiKH.setText(Utils.user_current.getAddress());
         txtPTThanhToan.setText(Utils.method_payment);
+        if(!Utils.user_current.getAdministrative_address().isEmpty()){
+            List<String> address_administrative = Arrays.asList(Utils.user_current.getAdministrative_address().split("\n"));
+            txtDiaChiKH.setText(Utils.user_current.getAddress() + "\n" + address_administrative.get(2) + ", " + address_administrative.get(1)+ ", " + address_administrative.get(0));
+        }
+        else{
+            txtDiaChiKH.setText(Utils.user_current.getAddress());
+        }
 
         btnChangePaymentMethod.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +126,7 @@ public class PaymentActivity extends AppCompatActivity {
                 String name = Utils.user_current.getUsername();
                 String sdt = String.valueOf(Utils.user_current.getPhone());
                 String address = Utils.user_current.getAddress();
+                String administrative_address = Utils.user_current.getAdministrative_address();
 
                 Log.d("test", address);
 
@@ -126,17 +136,19 @@ public class PaymentActivity extends AppCompatActivity {
                 }
                 else if(sdt.trim().isEmpty()){
                     Toast.makeText(getApplicationContext(), "Thông tin chưa đầy đủ !!!", Toast.LENGTH_LONG).show();
-                } else if (address.isEmpty()) {
+                } else if (address.isEmpty() || administrative_address.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Thông tin chưa đầy đủ !!!", Toast.LENGTH_LONG).show();
                 }else {
+                    List<String> address_administrative = Arrays.asList(Utils.user_current.getAdministrative_address().split("\n"));
+                    String address_user = address + ", " + address_administrative.get(2) + ", " + address_administrative.get(1)+ ", " + address_administrative.get(0);
                     if(Utils.method_payment.equals("COD")){
                         if(Utils.coupon != null) {
                             UpdateCouponApi(Utils.coupon.getCoupon_id(), Utils.coupon.getCount());
                         }
-                        CreateOrderApi(name, sdt, id, address, "");
+                        CreateOrderApi(name, sdt, id, address_user, "" , "");
                     } else if (Utils.method_payment.equals("Zalo")) {
 //                        CreateOrderApi(name, sdt, id, address);
-                        requestZalo();
+                        requestZalo(id, name, sdt, address_user);
                     }
 
 
@@ -161,8 +173,8 @@ public class PaymentActivity extends AppCompatActivity {
                 ));
     }
 
-    private void CreateOrderApi(String name, String sdt, int id, String address, String token){
-        compositeDisposable.add(apiBanHang.createOrder(name, sdt, String.valueOf(tongtien), id, address, Utils.method_payment , new Gson().toJson(Utils.purchases))
+    private void CreateOrderApi(String name, String sdt, int id, String address, String token, String app_trans_id){
+        compositeDisposable.add(apiBanHang.createOrder(name, sdt, String.valueOf(tongtien), id, address, Utils.method_payment, app_trans_id , new Gson().toJson(Utils.purchases))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -274,13 +286,14 @@ public class PaymentActivity extends AppCompatActivity {
                 ));
     }
 
-    private void requestZalo() {
+    private void requestZalo(int id, String name, String sdt, String address) {
         CreateOrder orderApi = new CreateOrder();
 
         try {
             JSONObject data = orderApi.createOrder(String.valueOf(tongtien));
-            Log.d("Amount", String.valueOf(tongtien));
+            Log.d("dataOrder", String.valueOf(data));
             String code = data.getString("return_code");
+            String app_trans_id = orderApi.getAppTransIdOrder();
 
             if (code.equals("1")) {
                 String token = data.getString("zp_trans_token");
@@ -288,14 +301,14 @@ public class PaymentActivity extends AppCompatActivity {
                 ZaloPaySDK.getInstance().payOrder(PaymentActivity.this, token, "demozpdk://app", new PayOrderListener() {
                     @Override
                     public void onPaymentSucceeded(String s, String s1, String s2) {
-                        String name = Utils.user_current.getUsername();
-                        String sdt = String.valueOf(Utils.user_current.getPhone());
-                        String address = Utils.user_current.getAddress();
-                        int id = Utils.user_current.getAccount_id();
+//                        String name = Utils.user_current.getUsername();
+//                        String sdt = String.valueOf(Utils.user_current.getPhone());
+//                        String address = Utils.user_current.getAddress();
+//                        int id = Utils.user_current.getAccount_id();
                         if(Utils.coupon != null) {
                             UpdateCouponApi(Utils.coupon.getCoupon_id(), Utils.coupon.getCount());
                         }
-                        CreateOrderApi(name, sdt, id, address, token);
+                        CreateOrderApi(name, sdt, id, address, token, app_trans_id);
                     }
 
                     @Override

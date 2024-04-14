@@ -8,6 +8,7 @@ import okhttp3.FormBody;
 import okhttp3.RequestBody;
 
 public class CreateOrder {
+    private String app_trans_id_order;
     private class CreateOrderData {
         String AppId;
         String AppUser;
@@ -46,6 +47,7 @@ public class CreateOrder {
 
      public JSONObject createOrder(String amount) throws Exception {
         CreateOrderData input = new CreateOrderData(amount);
+         app_trans_id_order = input.AppTransId;
 
         RequestBody formBody = new FormBody.Builder()
                 .add("app_id", input.AppId)
@@ -62,6 +64,10 @@ public class CreateOrder {
 
         JSONObject data = HttpProvider.sendPost(AppInfo.URL_CREATE_ORDER, formBody);
         return data;
+    }
+
+    public String getAppTransIdOrder(){
+        return app_trans_id_order;
     }
 }
 

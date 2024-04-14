@@ -24,6 +24,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApi;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Arrays;
+import java.util.List;
+
 import io.paperdb.Paper;
 
 
@@ -59,7 +62,13 @@ public class AccountFragment extends Fragment {
 
     private void initControl() {
         txtUserNameProfile.setText(Utils.user_current.getUsername());
-        txtUserAddressProfile.setText(Utils.user_current.getAddress());
+        if(!Utils.user_current.getAdministrative_address().isEmpty()){
+            List<String> address_administrative = Arrays.asList(Utils.user_current.getAdministrative_address().split("\n"));
+            txtUserAddressProfile.setText(Utils.user_current.getAddress() + "\n" + address_administrative.get(2) + ", " + address_administrative.get(1)+ ", " + address_administrative.get(0));
+        }
+        else{
+            txtUserAddressProfile.setText(Utils.user_current.getAddress());
+        }
         txtUserEmailProfile.setText(Utils.user_current.getEmail());
         txtUserPhoneProfile.setText(Utils.user_current.getPhone());
         btnChangeProfile.setOnClickListener(new View.OnClickListener() {
@@ -96,10 +105,17 @@ public class AccountFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        if(!Utils.user_current.getAdministrative_address().isEmpty()){
+            List<String> address_administrative = Arrays.asList(Utils.user_current.getAdministrative_address().split("\n"));
+            txtUserAddressProfile.setText(Utils.user_current.getAddress() + "\n" + address_administrative.get(2) + ", " + address_administrative.get(1)+ ", " + address_administrative.get(0));
+        }
+        else{
+            txtUserAddressProfile.setText(Utils.user_current.getAddress());
+        }
         txtUserNameProfile.setText(Utils.user_current.getUsername());
-        txtUserAddressProfile.setText(Utils.user_current.getAddress());
         txtUserEmailProfile.setText(Utils.user_current.getEmail());
         txtUserPhoneProfile.setText(Utils.user_current.getPhone());
+
     }
 
 

@@ -180,6 +180,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                                     String date = detail.getDate();
                                     String phone = detail.getPhone();
                                     String total = String.valueOf(detail.getTotal());
+                                    String app_trans_id = detail.getApp_trans_id();
                                     Intent intent = new Intent(mContext, OrderDetailActivity.class);
                                     //set Push du lieu
                                     intent.putExtra("order_id", order_id);
@@ -190,6 +191,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                                     intent.putExtra("date", date);
                                     intent.putExtra("phone", phone);
                                     intent.putExtra("total", total);
+                                    intent.putExtra("app_trans_id", app_trans_id);
                                     mContext.startActivity(intent);
                                 } else {
                                     Toast.makeText(mContext, "No order details found", Toast.LENGTH_SHORT).show();

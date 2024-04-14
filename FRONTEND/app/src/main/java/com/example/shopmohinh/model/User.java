@@ -10,6 +10,10 @@ public class User {
     String username;
     String password;
     String address;
+    String province;
+    String district;
+    String ward;
+    String administrative_address;
     String phone;
     int coin;
     int check_in;
@@ -97,6 +101,37 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getWard() {
+        return ward;
+    }
+
+    public void setWard(String ward) {
+        this.ward = ward;
+    }
+
+    public String getAdministrative_address() {
+        return administrative_address;
+    }
+    public void setAdministrative_address(String administrative_address) {
+        this.administrative_address = administrative_address;
     }
 
     public String getPhone() {
