@@ -86,13 +86,13 @@ public class ProductDetailActivity extends AppCompatActivity {
             int quantity = Integer.parseInt(txtQuantity.getText().toString());
             for (int i=0; i<Utils.carts.size();i++){
                 if (Utils.carts.get(i).getIdProduct() == product.getProduct_id()){
-                    checkQuantityProduct(product.getProduct_id());
-                    if(quantity + Utils.carts.get(i).getQuantity() <= Utils.product.getQuantity()){
+//                    checkQuantityProduct(product.getProduct_id());
+                    if(quantity + Utils.carts.get(i).getQuantity() <= product.getQuantity()){
                         Utils.carts.get(i).setQuantity(quantity + Utils.carts.get(i).getQuantity());
                         UpdateCartApi(Utils.carts.get(i).getQuantity());
                     }
                     else{
-                        Utils.carts.get(i).setQuantity(Utils.product.getQuantity());
+                        Utils.carts.get(i).setQuantity(product.getQuantity());
                         UpdateCartApi(Utils.carts.get(i).getQuantity());
                     }
                     flag = true;
