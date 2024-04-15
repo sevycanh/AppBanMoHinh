@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +20,7 @@ import com.example.shopmohinh.retrofit.RetrofitClient;
 import com.example.shopmohinh.utils.Utils;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import io.paperdb.Paper;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -27,6 +30,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class AddressUserActivity extends AppCompatActivity {
     MaterialToolbar toolbar;
     TextInputEditText edtUsername_Order,edtPhone_Order,edtAddress_Order;
+    TextView txtAddressOne_Order;
+    LinearLayout LayoutChangeAddress;
     Button btnSaveAddress;
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -54,6 +59,17 @@ public class AddressUserActivity extends AppCompatActivity {
         edtUsername_Order.setText(Utils.user_current.getUsername());
         edtPhone_Order.setText(String.valueOf(Utils.user_current.getPhone()));
         edtAddress_Order.setText(Utils.user_current.getAddress());
+        if(!Utils.user_current.getAdministrative_address().isEmpty()){
+            txtAddressOne_Order.setText(Utils.user_current.getAdministrative_address());
+        }
+
+        LayoutChangeAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ChangeAddress.class);
+                startActivity(intent);
+            }
+        });
         btnSaveAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,8 +82,9 @@ public class AddressUserActivity extends AppCompatActivity {
         String name = edtUsername_Order.getText().toString();
         String phone = edtPhone_Order.getText().toString();
         String address = edtAddress_Order.getText().toString();
+        String administrative_address = txtAddressOne_Order.getText().toString();
 
-        if (name.isEmpty() || phone.isEmpty() || address.isEmpty()) {
+        if (name.isEmpty() || phone.isEmpty() || address.isEmpty() || administrative_address.isEmpty()) {
             Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin!!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -102,8 +119,13 @@ public class AddressUserActivity extends AppCompatActivity {
         edtPhone_Order = findViewById(R.id.edtPhone_Order);
         edtAddress_Order = findViewById(R.id.edtAddress_Order);
         btnSaveAddress = findViewById(R.id.btnSaveAddress);
-
+        LayoutChangeAddress = findViewById(R.id.LayoutChangeAddress);
+        txtAddressOne_Order = findViewById(R.id.txtAddressOne_Order);
     }
 
-
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        txtAddressOne_Order.setText(Utils.user_current.getAdministrative_address());
+    }
 }

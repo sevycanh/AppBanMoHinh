@@ -11,6 +11,8 @@ public class InforDetail {
     private String phone;
     private  int total;
 
+    private String app_trans_id;
+
     public int getOrder_id() {
         return order_id;
     }
@@ -81,5 +83,13 @@ public class InforDetail {
 
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    public String getApp_trans_id() {
+        return app_trans_id;
+    }
+
+    public void setApp_trans_id(String app_trans_id) {
+        this.app_trans_id = app_trans_id;
     }
 }

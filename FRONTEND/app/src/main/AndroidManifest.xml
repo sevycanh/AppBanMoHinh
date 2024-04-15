@@ -20,6 +20,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.ChangeAddress"
+            android:exported="true" >
+
+        </activity>
+        <activity
             android:name=".activity.MapsActivity"
             android:exported="false" />
         <activity

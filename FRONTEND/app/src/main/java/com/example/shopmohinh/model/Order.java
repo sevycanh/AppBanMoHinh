@@ -8,7 +8,6 @@ public class Order {
     private String product_name;
     private int product_id;
     private  int perUnit;
-
     private  int productsInOrder;
     private String main_img;
     private int quantity;

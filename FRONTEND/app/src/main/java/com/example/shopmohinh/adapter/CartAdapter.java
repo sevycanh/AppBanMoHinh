@@ -183,10 +183,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     else{
                         AlertDialog.Builder builder  = new AlertDialog.Builder(view.getRootView().getContext());
                         builder.setTitle("Thông báo");
-                        builder.setMessage("Chỉ còn lại " + soluong + " sản phẩm của sản phẩm này!");
+                        builder.setMessage("Chỉ còn lại " + Utils.product.getQuantity() + " sản phẩm của sản phẩm này!");
                         builder.setPositiveButton("Đồng Ý", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                gioHangList.get(pos).setQuantity(Utils.product.getQuantity());
+                                holder.txtSoLuongSanPhamGioHang.setText(Utils.product.getQuantity() + "");
+                                DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
+                                symbols.setGroupingSeparator('.'); // Dấu phân tách hàng nghìn
+                                DecimalFormat decimalFormat = new DecimalFormat("###,###,###", symbols);
+                                String formattedNumber = decimalFormat.format(gia * Utils.product.getQuantity());
+                                holder.txtTongGiaSanPhamGioHang.setText(formattedNumber + "");
+                                EventBus.getDefault().postSticky(new TinhTongEvent());
+                                UpdateCartApi(Utils.carts.get(pos).getIdProduct(), Utils.product.getQuantity());
+
                                 dialogInterface.dismiss();
                             }
                         });

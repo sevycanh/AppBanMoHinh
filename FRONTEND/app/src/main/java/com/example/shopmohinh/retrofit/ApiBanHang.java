@@ -31,6 +31,7 @@ public interface ApiBanHang {
             @Field("accountId") int id,
             @Field("address") String diachi,
             @Field("payment") String payment,
+            @Field("app_trans_id") String app_trans_id,
             @Field("chitiet") String chitiet
     );
 
@@ -223,4 +224,25 @@ public interface ApiBanHang {
     @FormUrlEncoded
     Observable<InforDetailModel> updateOrderStatus(@Field("orderId") int orderID);
 
+    @POST("update_product_cancel_order.php")
+    @FormUrlEncoded
+    Observable<MessageModel> updateQuantityProductCancelOrder (
+            @Field("order_id") int order_id
+    );
+
+    @POST("update_address_profile.php")
+    @FormUrlEncoded
+    Observable<MessageModel> updateAddressProfile(
+            @Field("accountId") int id,
+            @Field("province") String province,
+            @Field("district") String district,
+            @Field("ward") String ward,
+            @Field("administrative_address") String administrative_address
+    );
+
+    @POST("check_quantity_purchase.php")
+    @FormUrlEncoded
+    Observable<MessageModel> checkQuantityCartWithProduct(
+            @Field("purchase") String purchase
+    );
 }

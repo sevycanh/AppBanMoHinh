@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ChangeAddress">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarChangeAddress"
+        app:title="Khu Vực"
+        android:background="@color/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="@dimen/_7sdp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:textSize="@dimen/_13ssp"
+            android:textStyle="bold"
+            android:padding="@dimen/_5sdp"
+            android:text="Khu vực được chọn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_buttonProvince"
+                android:padding="12dp"
+                android:textSize="18sp"
+                android:text="Tỉnh/ Thành Phố">
+            </RadioButton>
+            <RadioButton
+                android:visibility="gone"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_buttonDistrict"
+                android:padding="12dp"
+                android:textSize="18sp"
+                android:text="Huyện">
+            </RadioButton>
+            <RadioButton
+                android:visibility="gone"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_buttonWard"
+                android:padding="12dp"
+                android:textSize="18sp"
+                android:text="Xã">
+            </RadioButton>
+        </RadioGroup>
+
+        <TextView
+            android:padding="@dimen/_7sdp"
+            android:id="@+id/txtAddressChange"
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+
+  </LinearLayout>

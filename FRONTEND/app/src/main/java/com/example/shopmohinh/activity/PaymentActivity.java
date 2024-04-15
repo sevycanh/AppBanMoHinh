@@ -7,6 +7,7 @@ import android.icu.text.DecimalFormatSymbols;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -20,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.shopmohinh.R;
 import com.example.shopmohinh.model.Cart;
+import com.example.shopmohinh.model.EventBus.TinhTongEvent;
 import com.example.shopmohinh.model.NotiSendData;
 import com.example.shopmohinh.retrofit.ApiBanHang;
 import com.example.shopmohinh.retrofit.ApiPushNotification;
@@ -30,9 +32,12 @@ import com.example.shopmohinh.zalo.CreateOrder;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.gson.Gson;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -92,8 +97,15 @@ public class PaymentActivity extends AppCompatActivity {
         String tongTienFormat = decimalFormat.format(tongtien);
         txtTongTienDatHang.setText(tongTienFormat);
         txtThongTinKH.setText(Utils.user_current.getUsername() + " " + Utils.user_current.getPhone());
-        txtDiaChiKH.setText(Utils.user_current.getAddress());
+//        txtDiaChiKH.setText(Utils.user_current.getAddress());
         txtPTThanhToan.setText(Utils.method_payment);
+        if(!Utils.user_current.getAdministrative_address().isEmpty()){
+            List<String> address_administrative = Arrays.asList(Utils.user_current.getAdministrative_address().split("\n"));
+            txtDiaChiKH.setText(Utils.user_current.getAddress() + "\n" + address_administrative.get(2) + ", " + address_administrative.get(1)+ ", " + address_administrative.get(0));
+        }
+        else{
+            txtDiaChiKH.setText(Utils.user_current.getAddress());
+        }
 
         btnChangePaymentMethod.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,8 +129,9 @@ public class PaymentActivity extends AppCompatActivity {
                 String name = Utils.user_current.getUsername();
                 String sdt = String.valueOf(Utils.user_current.getPhone());
                 String address = Utils.user_current.getAddress();
+                String administrative_address = Utils.user_current.getAdministrative_address();
 
-                Log.d("test", address);
+//                Log.d("test", address);
 
                 int id = Utils.user_current.getAccount_id();
                 if(name.trim().isEmpty()){
@@ -126,17 +139,16 @@ public class PaymentActivity extends AppCompatActivity {
                 }
                 else if(sdt.trim().isEmpty()){
                     Toast.makeText(getApplicationContext(), "Thông tin chưa đầy đủ !!!", Toast.LENGTH_LONG).show();
-                } else if (address.isEmpty()) {
+                } else if (address.isEmpty() || administrative_address.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Thông tin chưa đầy đủ !!!", Toast.LENGTH_LONG).show();
                 }else {
+                    List<String> address_administrative = Arrays.asList(Utils.user_current.getAdministrative_address().split("\n"));
+                    String address_user = address + ", " + address_administrative.get(2) + ", " + address_administrative.get(1)+ ", " + address_administrative.get(0);
                     if(Utils.method_payment.equals("COD")){
-                        if(Utils.coupon != null) {
-                            UpdateCouponApi(Utils.coupon.getCoupon_id(), Utils.coupon.getCount());
-                        }
-                        CreateOrderApi(name, sdt, id, address, "");
+                        checkQuantityCartWithProduct(name, sdt, id, address_user);
                     } else if (Utils.method_payment.equals("Zalo")) {
 //                        CreateOrderApi(name, sdt, id, address);
-                        requestZalo();
+                        checkQuantityCartWithProductZalo(name, sdt, id, address_user);
                     }
 
 
@@ -144,6 +156,65 @@ public class PaymentActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void checkQuantityCartWithProductZalo(String name, String sdt, int id, String address_user) {
+        compositeDisposable.add(apiBanHang.checkQuantityCartWithProduct(new Gson().toJson(Utils.purchases))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        messageModel -> {
+                            if(messageModel.isSuccess()){
+                                requestZalo(id, name, sdt, address_user);
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(),messageModel.getMessage(), Toast.LENGTH_LONG).show();
+                                AlertQuantity(messageModel.getMessage());
+                            }
+                        },
+                        throwable -> {
+                            Log.d("Throw", throwable.getMessage());
+//                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
+    }
+
+    private void AlertQuantity(String message) {
+        AlertDialog.Builder builder  = new AlertDialog.Builder(getApplicationContext());
+        builder.setTitle("Thông báo");
+        builder.setMessage(message);
+        builder.setPositiveButton("Đồng Ý", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        builder.show();
+    }
+
+
+    private void checkQuantityCartWithProduct(String name, String sdt, int id, String address_user) {
+        compositeDisposable.add(apiBanHang.checkQuantityCartWithProduct(new Gson().toJson(Utils.purchases))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        messageModel -> {
+                            if(messageModel.isSuccess()){
+                                if(Utils.coupon != null) {
+                                    UpdateCouponApi(Utils.coupon.getCoupon_id(), Utils.coupon.getCount());
+                                }
+                                CreateOrderApi(name, sdt, id, address_user, "", "");
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(),messageModel.getMessage(), Toast.LENGTH_LONG).show();
+                                AlertQuantity(messageModel.getMessage());
+                            }
+                        },
+                        throwable -> {
+                            Log.d("Throw", throwable.getMessage());
+//                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                ));
     }
 
     private void UpdateQuantityProductApi(int id, int quantity){
@@ -161,8 +232,8 @@ public class PaymentActivity extends AppCompatActivity {
                 ));
     }
 
-    private void CreateOrderApi(String name, String sdt, int id, String address, String token){
-        compositeDisposable.add(apiBanHang.createOrder(name, sdt, String.valueOf(tongtien), id, address, Utils.method_payment , new Gson().toJson(Utils.purchases))
+    private void CreateOrderApi(String name, String sdt, int id, String address, String token, String app_trans_id){
+        compositeDisposable.add(apiBanHang.createOrder(name, sdt, String.valueOf(tongtien), id, address, Utils.method_payment, app_trans_id , new Gson().toJson(Utils.purchases))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -274,13 +345,14 @@ public class PaymentActivity extends AppCompatActivity {
                 ));
     }
 
-    private void requestZalo() {
+    private void requestZalo(int id, String name, String sdt, String address) {
         CreateOrder orderApi = new CreateOrder();
 
         try {
             JSONObject data = orderApi.createOrder(String.valueOf(tongtien));
-            Log.d("Amount", String.valueOf(tongtien));
+            Log.d("dataOrder", String.valueOf(data));
             String code = data.getString("return_code");
+            String app_trans_id = orderApi.getAppTransIdOrder();
 
             if (code.equals("1")) {
                 String token = data.getString("zp_trans_token");
@@ -288,14 +360,10 @@ public class PaymentActivity extends AppCompatActivity {
                 ZaloPaySDK.getInstance().payOrder(PaymentActivity.this, token, "demozpdk://app", new PayOrderListener() {
                     @Override
                     public void onPaymentSucceeded(String s, String s1, String s2) {
-                        String name = Utils.user_current.getUsername();
-                        String sdt = String.valueOf(Utils.user_current.getPhone());
-                        String address = Utils.user_current.getAddress();
-                        int id = Utils.user_current.getAccount_id();
                         if(Utils.coupon != null) {
                             UpdateCouponApi(Utils.coupon.getCoupon_id(), Utils.coupon.getCount());
                         }
-                        CreateOrderApi(name, sdt, id, address, token);
+                        CreateOrderApi(name, sdt, id, address, token, app_trans_id);
                     }
 
                     @Override

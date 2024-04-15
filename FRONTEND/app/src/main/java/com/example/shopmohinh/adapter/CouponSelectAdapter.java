@@ -50,7 +50,7 @@ public class CouponSelectAdapter extends RecyclerView.Adapter<CouponSelectAdapte
             @Override
             public void onClick(View view) {
                 if (onClickListener != null) {
-                    onClickListener.onClick(position, coupon);
+                    onClickListener.onClick(holder.getAdapterPosition(), coupon);
                 }
             }
         });
