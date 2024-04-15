@@ -203,8 +203,7 @@ public interface ApiBanHang {
     @POST("update_quantity_product.php")
     @FormUrlEncoded
     Observable<MessageModel> updateQuantityProduct (
-            @Field("product_id") int product_id,
-            @Field("quantity") int quantity
+            @Field("purchase") String purchase
     );
 
     @GET("getorder.php")

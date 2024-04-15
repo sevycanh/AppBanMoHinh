@@ -168,7 +168,6 @@ public class PaymentActivity extends AppCompatActivity {
                             }
                             else{
                                 Toast.makeText(getApplicationContext(),messageModel.getMessage(), Toast.LENGTH_LONG).show();
-                                AlertQuantity(messageModel.getMessage());
                             }
                         },
                         throwable -> {
@@ -176,20 +175,6 @@ public class PaymentActivity extends AppCompatActivity {
 //                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                 ));
-    }
-
-    private void AlertQuantity(String message) {
-        AlertDialog.Builder builder  = new AlertDialog.Builder(getApplicationContext());
-        builder.setTitle("Thông báo");
-        builder.setMessage(message);
-        builder.setPositiveButton("Đồng Ý", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        });
-
-        builder.show();
     }
 
 
@@ -207,7 +192,6 @@ public class PaymentActivity extends AppCompatActivity {
                             }
                             else{
                                 Toast.makeText(getApplicationContext(),messageModel.getMessage(), Toast.LENGTH_LONG).show();
-                                AlertQuantity(messageModel.getMessage());
                             }
                         },
                         throwable -> {
@@ -217,17 +201,16 @@ public class PaymentActivity extends AppCompatActivity {
                 ));
     }
 
-    private void UpdateQuantityProductApi(int id, int quantity){
-        compositeDisposable.add(apiBanHang.updateQuantityProduct(id, quantity)
+    private void UpdateQuantityProductApi(){
+        compositeDisposable.add(apiBanHang.updateQuantityProduct(new Gson().toJson(Utils.purchases))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         messageModel -> {
-//                            Utils.coupon = null;
                             //Toast.makeText(getApplicationContext(), messageModel.getMessage(), Toast.LENGTH_SHORT).show();
                         },
                         throwable -> {
-                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getApplicationContext(),throwable.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                 ));
     }
@@ -242,7 +225,6 @@ public class PaymentActivity extends AppCompatActivity {
                                 for (int i =0; i< Utils.purchases.size();i++){
                                     Cart gioHang = Utils.purchases.get(i);
                                     UpdateCartApi(gioHang.getIdProduct(), 0);
-                                    UpdateQuantityProductApi(gioHang.getIdProduct(), gioHang.getQuantity());
                                     if (Utils.carts.contains(gioHang)){
                                         Utils.carts.remove(gioHang);
                                     }
@@ -347,7 +329,6 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void requestZalo(int id, String name, String sdt, String address) {
         CreateOrder orderApi = new CreateOrder();
-
         try {
             JSONObject data = orderApi.createOrder(String.valueOf(tongtien));
             Log.d("dataOrder", String.valueOf(data));
@@ -368,6 +349,7 @@ public class PaymentActivity extends AppCompatActivity {
 
                     @Override
                     public void onPaymentCanceled(String s, String s1) {
+                        UpdateQuantityProductApi();
                         new AlertDialog.Builder(PaymentActivity.this)
                                 .setTitle("Bạn đã hủy thanh toán")
                                 .setMessage("Vui lòng thanh toán lại hoặc đổi phương thức thanh toán!")
@@ -381,6 +363,7 @@ public class PaymentActivity extends AppCompatActivity {
 
                     @Override
                     public void onPaymentError(ZaloPayError zaloPayError, String s, String s1) {
+                        UpdateQuantityProductApi();
                         new AlertDialog.Builder(PaymentActivity.this)
                                 .setTitle("Thanh Toán Thất Bại")
                                 .setMessage(String.format("Bạn chưa cài đặt Zalo Pay!"))
