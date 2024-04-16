@@ -4,7 +4,7 @@ $page = $_POST['page'];
 $total = 10;
 $pos = ($page-1)*$total;
 
-$query = "SELECT * FROM `tbl_product` ORDER BY product_id DESC LIMIT $pos, $total";
+$query = "SELECT * FROM `tbl_product` WHERE quantity > 0 ORDER BY product_id DESC LIMIT $pos, $total";
 $data = mysqli_query($conn, $query);
 $result = array();
 while ($row = mysqli_fetch_assoc($data)) {

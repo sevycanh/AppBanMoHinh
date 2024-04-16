@@ -4,7 +4,7 @@ function getSearchAll()
 {
 	include "connect.php";
 	$tensp = $_POST['tensp'];
-	$query = "SELECT * FROM `tbl_product` WHERE name LIKE '%" . $tensp . "%'";
+	$query = "SELECT * FROM `tbl_product` WHERE name LIKE '%" . $tensp . "%' AND quantity > 0;";
 	$data = mysqli_query($conn, $query);
 	$result = array();
 	while ($row = mysqli_fetch_assoc($data)) {

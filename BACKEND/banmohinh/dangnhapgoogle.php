@@ -1,23 +1,30 @@
 <?php
 include "connect.php";
 $email=$_POST['email'];
-
-//checkdata
 $query = 'SELECT * FROM `tbl_account` WHERE `email` = "'.$email.'"';
 $data = mysqli_query($conn, $query);
 $numrow = mysqli_num_rows($data);
-if ($numrow > 0){
-    //nếu có tài khoản thì đăng nhập luôn
-    $result = array();
+//checkdata
+if($numrow > 0){
+     $result = array();
     while ($row = mysqli_fetch_assoc($data)) {
         $result[] = ($row);
     }
-	if (!empty($result)){
-        $arr = [
+    if (!empty($result)){
+        $status = $result[0]['status'];
+        if($status == 1){
+            $arr = [
             'success' => true,
             'message' => "Lay thong tin dang nhap thanh cong",
             'result' => $result
-        ];
+            ];
+        }else{
+            $arr = [
+            'success' => false,
+            'message' => "Tài khoản của bạn đã bị khóa !!",
+            'result' => $result
+            ];
+        }
     } else {
         $arr = [
             'success' => false,
@@ -25,7 +32,7 @@ if ($numrow > 0){
             'result' => $result
         ];
     }
-} else {
+}else{
 	//nếu chưa thì đăng ký sau đó đăng nhập
 	$query = 'INSERT INTO `tbl_account`(`email`, `role`, `status`) VALUES ("'.$email.'", "1", "1")';
 	$data = mysqli_query($conn, $query);

@@ -1,7 +1,9 @@
 <?php
 include "connect.php";
 
-$query = "SELECT * FROM `tbl_product` WHERE status='1';";
+
+$category = $_POST['categoryid'];
+$query = "SELECT * FROM `tbl_product` WHERE status='1' AND category_id='$category'";
 $data = mysqli_query($conn, $query);
 $result = array();
 while ($row = mysqli_fetch_assoc($data)) {

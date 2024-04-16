@@ -10,7 +10,7 @@ function getAll(){
     global $pos;
     global $total;
 
-    $query = "SELECT * FROM `tbl_product` WHERE `category_id` = '" . $category . "' LIMIT " . $pos . "," . $total . ";";
+    $query = "SELECT * FROM `tbl_product` WHERE `category_id` = '" . $category . "' AND `quantity` > 0 LIMIT " . $pos . "," . $total . ";";
     $data = $conn->query($query);
     $result = array();
     
