@@ -117,6 +117,7 @@ public class ProductActivity extends AppCompatActivity {
             public void onClick(View v) {
                 clearButtonView();
                 page = 1;
+                isLoading = false;
                 productList.clear();
                 phoneAdapter.notifyDataSetChanged();
                 typeGlobal = "lienquan";
@@ -129,6 +130,7 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 page = 1;
+                isLoading = false;
                 clearButtonView();
                 productList.clear();
                 phoneAdapter.notifyDataSetChanged();
@@ -142,6 +144,7 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 page = 1;
+                isLoading = false;
                 clearButtonView();
                 productList.clear();
                 phoneAdapter.notifyDataSetChanged();
@@ -157,6 +160,7 @@ public class ProductActivity extends AppCompatActivity {
                 if (sortGlobal == "" || sortGlobal == "ASC") {
                     sortGlobal = "DESC";
                     page = 1;
+                    isLoading = false;
                     clearButtonView();
                     productList.clear();
                     phoneAdapter.notifyDataSetChanged();
@@ -167,6 +171,7 @@ public class ProductActivity extends AppCompatActivity {
                 } else {
                     sortGlobal = "ASC";
                     page = 1;
+                    isLoading = false;
                     clearButtonView();
                     productList.clear();
                     phoneAdapter.notifyDataSetChanged();
