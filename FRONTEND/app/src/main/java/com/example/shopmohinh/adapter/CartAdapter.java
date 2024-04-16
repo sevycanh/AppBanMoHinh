@@ -128,6 +128,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 int soluong = gioHangList.get(holder.getAdapterPosition()).getQuantity();
                 int soluongmoi = 1;
                 long gia = gioHangList.get(holder.getAdapterPosition()).getPrice();
+                checkQuantityProduct(gioHangList.get(holder.getAdapterPosition()).getIdProduct());
                 if(giatri == 1){
                     if(soluong > 1){
                         soluongmoi = soluong - 1;
@@ -168,7 +169,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 }
                 else if (giatri == 2){
                     soluongmoi = soluong + 1;
-                    checkQuantityProduct(gioHangList.get(holder.getAdapterPosition()).getIdProduct());
                     if(soluongmoi <= Utils.product.getQuantity()) {
                         gioHangList.get(pos).setQuantity(soluongmoi);
                         holder.txtSoLuongSanPhamGioHang.setText(soluongmoi + "");
